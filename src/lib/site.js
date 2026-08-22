@@ -29,12 +29,13 @@ export const products = [
     menuImage: '/media/img/inventory-scan.jpg',
     headline: 'Know what you have, where it is, and what to reorder, without a spreadsheet.',
     summary:
-      'Live stock across every outlet, warehouse and consignment partner. Barcode receiving, batch and expiry tracking, automatic reorder points, and a purchase flow your team will actually follow.',
+      'One dashboard for every outlet, warehouse and consignment partner, with live stock underneath it. Barcode receiving, batch and expiry tracking, automatic reorder points, and a purchase flow your team will actually follow. Your managers run the day from the dashboard; the floor runs from a phone.',
     href: '/products/inventory',
     hero: '/media/img/inventory-hero.jpg',
     video: '/media/video/warehouse-aisle.mp4',
     poster: '/media/img/inventory-shelves.jpg',
     bullets: [
+      'Operations dashboard: stock health, ageing, variances and reorder alerts',
       'Real-time stock across outlets, warehouses and consignment',
       'Barcode and QR receiving, transfers and stock takes',
       'Batch, serial and expiry tracking with FEFO picking',
@@ -43,6 +44,11 @@ export const products = [
       'Landed cost, margin and dead-stock reporting',
     ],
     features: [
+      {
+        title: 'One dashboard, every outlet',
+        body: 'Stock health, ageing, open purchase orders and variances for the whole group on one screen, with a drill-down to any single outlet or SKU. This is where the day gets run.',
+        image: '/media/img/data-dashboard.jpg',
+      },
       {
         title: 'Scan-first receiving',
         body: 'Receive against a purchase order with a phone camera. Variances flagged before the supplier leaves the door.',
@@ -92,7 +98,7 @@ export const products = [
       'Deposits, packages, credits and no-show protection',
       'Resource-aware scheduling for chairs, rooms and equipment',
       'Client records, treatment notes and consent forms',
-      'Daily ops dashboard: utilisation, revenue and gaps',
+      'Daily operations dashboard: utilisation, revenue and gaps',
     ],
     features: [
       {
@@ -133,7 +139,7 @@ export const products = [
     menuImage: '/media/img/data-laptop.jpg',
     headline: 'Your operations data, finally answering questions.',
     summary:
-      'A layer that sits on top of Inventory and Booking and turns the exhaust of daily operations into forecasts, alerts and plain-language answers. Demand forecasting, staffing recommendations, cohort retention and anomaly detection, no analyst required.',
+      'A layer that sits on top of Inventory and Booking and turns the exhaust of daily operations into forecasts, alerts and plain-language answers, surfaced on the same dashboard your team already runs on. Demand forecasting, staffing recommendations, cohort retention and anomaly detection, no analyst required.',
     href: '/products/data',
     hero: '/media/img/data-dashboard.jpg',
     poster: '/media/img/data-closeup.jpg',

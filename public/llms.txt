@@ -13,7 +13,9 @@ containing duplicate SKUs are quoted three to four weeks up front.
 
 ## Products
 
-- [Inventory & Stock Management](https://yiy.tech/products/inventory): live
+- [Inventory & Stock Management](https://yiy.tech/products/inventory): an
+  operations dashboard covering stock health, ageing, variances and reorder
+  alerts across the whole group, with live
   stock across outlets, warehouses and consignment partners. Barcode and QR
   receiving, transfers and stock takes. Batch, serial and expiry tracking with
   FEFO picking. Reorder points that account for supplier lead time and
@@ -26,6 +28,8 @@ containing duplicate SKUs are quoted three to four weeks up front.
   reserves every required resource or none. Client records, treatment notes and
   consent forms. Daily operations dashboard covering utilisation, revenue and
   gaps. Built for clinics, salons, tuition centres and property agencies.
+- Both live products are driven from an operations dashboard for managers, with
+  a phone interface for staff on the floor or at the front desk.
 - [Data & Intelligence](https://yiy.tech/products/data): limited beta. Demand
   forecasting per SKU, outlet and season. Staffing and capacity recommendations
   by hour. Client cohort retention and lifetime value. Anomaly alerts for

@@ -68,7 +68,7 @@ export default function Nav() {
       onMouseLeave={closeMenu}
     >
       <div className="shell flex items-center justify-between gap-6" style={{ height: 'var(--nav-h)' }}>
-        <Logo variant="light" size={28} />
+        <Logo variant="light" size={28} priority />
 
         <nav className="hidden items-center gap-7 xl:gap-10 lg:flex">
           <Link

@@ -51,7 +51,7 @@ export default async function ProductPage({ params }) {
           explicit height rather than being sized by its content. Shorter than
           it was: the KPI row that used to close the hero now lives further
           down the page. */}
-      <HeroFrame innerClassName="min-h-[30rem] md:min-h-[36rem]">
+      <HeroFrame innerClassName="min-h-[38rem] md:min-h-[46rem]">
         {/* Poster paints first and is what LCP measures; the clip fades in
             behind it once it has frames. */}
         <BackgroundVideo
@@ -93,19 +93,25 @@ export default async function ProductPage({ params }) {
           />
 
           <Reveal delay={220}>
-            <p className="mt-7 max-w-3xl text-base leading-relaxed text-white/65 md:text-lg">
+            <p className="mt-7 max-w-4xl text-base leading-relaxed text-white/65 md:text-lg">
               {product.summary}
             </p>
           </Reveal>
 
-          <Reveal delay={340} className="mt-9 flex flex-wrap gap-3">
-            <Link href="/contact" className="btn bg-white text-ink hover:-translate-y-0.5">
-              {soon ? 'Join the beta list' : 'Book a walkthrough'}
-            </Link>
-            <Link href="/#products" className="btn-invert">
-              See all products
-            </Link>
-          </Reveal>
+          {/* Each button reveals on its own so they land one after the other
+              instead of the pair sliding up as a single block. */}
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Reveal delay={340} className="reveal-pop">
+              <Link href="/contact" className="btn bg-white text-ink hover:-translate-y-0.5">
+                {soon ? 'Join the beta list' : 'Book a walkthrough'}
+              </Link>
+            </Reveal>
+            <Reveal delay={450} className="reveal-pop">
+              <Link href="/#products" className="btn-invert">
+                See all products
+              </Link>
+            </Reveal>
+          </div>
         </div>
       </HeroFrame>
 

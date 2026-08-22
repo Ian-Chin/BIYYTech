@@ -236,8 +236,13 @@ export function FeatureStrip({ product, tone = 'light' }) {
           </div>
         </Reveal>
 
-        {/* The supporting three, lighter and narrower. */}
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* The supporting cards, lighter and narrower. Three sit in a row; four
+            fall back to 2x2 rather than leaving an orphan on the second row. */}
+        <div
+          className={`mt-6 grid gap-6 sm:grid-cols-2 ${
+            rest.length === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-2'
+          }`}
+        >
           {rest.map((f, i) => (
             <Reveal key={f.title} delay={i * 90} blur>
               <div

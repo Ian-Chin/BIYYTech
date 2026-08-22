@@ -230,6 +230,19 @@
   filter: blur(0);
 }
 
+/* Buttons arrive with a slight scale on top of the shared rise, so a CTA reads
+   as landing rather than just fading up with the rest of its section. Declared
+   after .reveal so it wins the equal-specificity transform. Still exponential
+   ease-out, no bounce. */
+.reveal-pop {
+  transform: translate3d(0, 16px, 0) scale(0.94);
+  transition: opacity 0.55s var(--ease-smooth), transform 0.7s var(--ease-smooth);
+}
+
+.reveal-pop[data-visible='true'] {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
 /* Word-by-word headline reveal -----------------------------------------
    No overflow mask on the wrapper: masking clipped descenders on words like
    "guessing". Opacity plus a short rise reads the same. */

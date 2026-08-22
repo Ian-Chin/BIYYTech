@@ -20,7 +20,18 @@ export function Mark({ variant = 'light', size = 30, className = '', priority = 
   );
 }
 
-export default function Logo({ variant = 'light', size = 30, withWordmark = true, className = '' }) {
+/**
+ * `priority` is opt-in. Only the masthead logo is above the fold and worth
+ * pre-loading; the footer copy of the same mark is a screen or more down and
+ * should lazy-load like everything else.
+ */
+export default function Logo({
+  variant = 'light',
+  size = 30,
+  withWordmark = true,
+  className = '',
+  priority = false,
+}) {
   const tone = variant === 'dark' ? 'text-white' : 'text-ink';
 
   return (
@@ -30,7 +41,7 @@ export default function Logo({ variant = 'light', size = 30, withWordmark = true
       className={`group inline-flex items-center gap-2.5 ${tone} ${className}`}
     >
       <span className="relative inline-flex transition-transform duration-700 ease-smooth group-hover:rotate-[-8deg] group-hover:scale-105">
-        <Mark variant={variant} size={size} priority />
+        <Mark variant={variant} size={size} priority={priority} />
       </span>
       {withWordmark ? (
         <span className="flex items-baseline gap-1.5 text-[17px] font-semibold tracking-tighter">
