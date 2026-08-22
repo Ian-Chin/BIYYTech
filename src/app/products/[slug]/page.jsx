@@ -6,7 +6,7 @@ import HeroFrame from '@/components/HeroFrame';
 import JsonLd from '@/components/JsonLd';
 import { breadcrumbLd, graph, pageMeta, productLd } from '@/lib/seo';
 import { ClosingCta, Faq, FeatureStrip, Process, SectionHead } from '@/components/Sections';
-import { CountUp, Parallax, Reveal, SplitWords } from '@/components/motion';
+import { Parallax, Reveal, SplitWords } from '@/components/motion';
 import { products } from '@/lib/site';
 
 export function generateStaticParams() {
@@ -47,7 +47,11 @@ export default async function ProductPage({ params }) {
       />
 
       {/* Hero ---------------------------------------------------------- */}
-      <HeroFrame>
+      {/* Copy sits at the bottom-left of the footage box, so the box carries an
+          explicit height rather than being sized by its content. Shorter than
+          it was: the KPI row that used to close the hero now lives further
+          down the page. */}
+      <HeroFrame innerClassName="min-h-[30rem] md:min-h-[36rem]">
         {/* Poster paints first and is what LCP measures; the clip fades in
             behind it once it has frames. */}
         <BackgroundVideo
@@ -56,10 +60,12 @@ export default async function ProductPage({ params }) {
           priority
           imageClassName={`scale-105 ${product.video ? 'opacity-45' : 'opacity-40'}`}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/75 to-ink" />
+        {/* Weighted to the bottom now that the copy is, so the type keeps its
+            contrast and the top of the footage stays visible. */}
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40" />
         <div className="noise absolute inset-0" />
 
-        <div className="shell relative py-20 md:py-28">
+        <div className="shell relative flex min-h-[inherit] flex-col justify-end py-14 md:py-16">
           <Reveal className="flex items-center gap-4">
             <Link
               href="/#products"
@@ -83,16 +89,16 @@ export default async function ProductPage({ params }) {
             as="h1"
             text={product.headline}
             stagger={38}
-            className="display mt-5 block max-w-[19ch] text-[clamp(1.8rem,3.6vw,3.15rem)]"
+            className="display mt-5 block max-w-[26ch] text-[clamp(1.8rem,3.6vw,3.15rem)]"
           />
 
           <Reveal delay={220}>
-            <p className="mt-8 max-w-2xl text-base leading-relaxed text-white/60 md:text-lg">
+            <p className="mt-7 max-w-3xl text-base leading-relaxed text-white/65 md:text-lg">
               {product.summary}
             </p>
           </Reveal>
 
-          <Reveal delay={340} className="mt-10 flex flex-wrap gap-3">
+          <Reveal delay={340} className="mt-9 flex flex-wrap gap-3">
             <Link href="/contact" className="btn bg-white text-ink hover:-translate-y-0.5">
               {soon ? 'Join the beta list' : 'Book a walkthrough'}
             </Link>
@@ -100,21 +106,6 @@ export default async function ProductPage({ params }) {
               See all products
             </Link>
           </Reveal>
-
-          {product.metrics.length ? (
-            <div className="mt-16 grid gap-8 border-t border-white/15 pt-10 sm:grid-cols-3">
-              {product.metrics.map((m, i) => (
-                <Reveal key={m.label} delay={420 + i * 110}>
-                  <p className="display text-[clamp(2.2rem,4.4vw,3.4rem)]">
-                    <CountUp value={m.value} suffix={m.suffix} />
-                  </p>
-                  <p className="mt-2 max-w-[24ch] text-sm leading-relaxed text-white/45">
-                    {m.label}
-                  </p>
-                </Reveal>
-              ))}
-            </div>
-          ) : null}
         </div>
       </HeroFrame>
 

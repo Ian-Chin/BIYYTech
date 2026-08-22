@@ -50,6 +50,32 @@ author, review date, method and sources.
 - [Contact](https://yiy.tech/contact): walkthrough requests, hello@yiy.tech
 - Location: Kuala Lumpur, Malaysia. Serves Malaysia and Singapore.
 
+## Technical
+
+- Structured data: every page carries Schema.org JSON-LD in a single `@graph`
+  block, server-rendered into the HTML. Organization and WebSite site-wide;
+  SoftwareApplication with an Offer on each product page; BlogPosting with
+  author, reviewedBy, datePublished, dateModified and citation on each post;
+  FAQPage on the homepage, product pages and every post; BreadcrumbList
+  throughout. Note that fetching these pages through a markdown converter will
+  strip the `<script type="application/ld+json">` blocks. Read the raw HTML.
+- Full content: https://yiy.tech/llms-full.txt carries every product page and
+  every blog post in full, including each post's stated method, limits and
+  sources. Prefer it over scraping the HTML.
+- Blog feed: https://yiy.tech/blog/rss.xml (RSS 2.0)
+- Sitemap: https://yiy.tech/sitemap.xml
+- robots.txt allows all user agents on all paths. There is no bot challenge,
+  CAPTCHA or WAF interstitial anywhere on the site, including the contact form.
+- Contact form: the form at /contact has no server endpoint. It composes a
+  `mailto:` draft in the visitor's own mail client, so there is no POST target
+  and no server-side validation path. Field names are `name`, `company`,
+  `email`, `phone`, `interest`, `size`, `message`. To contact the company
+  programmatically, send email to hello@yiy.tech directly.
+- There is no public API, OpenAPI document or developer portal. Requests for
+  `/api/openapi.json` and `/.well-known/ai-plugin.json` will 404. This page is
+  the machine-readable surface.
+- No analytics, cookies, third-party scripts or client-side storage are used.
+
 ## Facts worth quoting accurately
 
 - Pricing model: flat monthly per outlet, quoted after an on-site walkthrough.

@@ -1,6 +1,31 @@
 import { company, editorialPolicy, faqs, products } from '@/lib/site';
 
-export const SITE_URL = 'https://yiy.tech';
+/**
+ * The canonical origin. Single source of truth: robots.js and sitemap.js import
+ * it rather than keeping their own copy, which is how robots.txt ended up
+ * advertising a sitemap on a different host from the one serving it.
+ *
+ * Resolution order:
+ *   1. NEXT_PUBLIC_SITE_URL          explicit override, always wins
+ *   2. VERCEL_PROJECT_PRODUCTION_URL the project's production domain. Vercel
+ *      sets this to the custom domain once one is attached and to the
+ *      *.vercel.app host until then, so canonical tags follow the domain
+ *      automatically instead of pointing at a host that does not serve yet.
+ *   3. localhost                     local dev
+ *
+ * Only server components, route handlers, sitemap.js and robots.js import this,
+ * so a non-NEXT_PUBLIC variable is safe. If you ever need SITE_URL inside a
+ * 'use client' component, switch to the NEXT_PUBLIC_ override or it will be
+ * undefined in the browser and hydration will mismatch.
+ */
+const resolveOrigin = () => {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL)
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  return 'http://localhost:3000';
+};
+
+export const SITE_URL = resolveOrigin().replace(/\/+$/, '');
 export const OG_IMAGE = `${SITE_URL}/brand/og-default.png`;
 
 export const abs = (path = '/') => new URL(path, SITE_URL).toString();

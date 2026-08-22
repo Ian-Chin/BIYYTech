@@ -1,6 +1,7 @@
+import { SITE_URL } from '@/lib/seo';
 import { posts, products } from '@/lib/site';
 
-const BASE = 'https://yiy.tech';
+const BASE = SITE_URL;
 
 export default function sitemap() {
   const now = new Date();

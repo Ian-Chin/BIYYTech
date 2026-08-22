@@ -82,8 +82,16 @@ export default function RootLayout({ children }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        {/* Points model crawlers at a plain-text summary of the site. */}
+        {/* Points model crawlers at a plain-text summary of the site, and at
+            the full corpus behind it. */}
         <link rel="llms" type="text/plain" href="/llms.txt" />
+        <link rel="alternate" type="text/plain" title="Full site content" href="/llms-full.txt" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${company.name} blog`}
+          href="/blog/rss.xml"
+        />
         <JsonLd data={graph(organizationLd(), websiteLd())} />
       </head>
       <body>

@@ -261,6 +261,7 @@ export default function ContactForm() {
                   </span>
                   <select
                     id={`${uid}-interest`}
+                    name="interest"
                     className={fieldClass(false)}
                     value={form.interest}
                     onChange={set('interest')}
@@ -275,6 +276,7 @@ export default function ContactForm() {
                   <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">Size</span>
                   <select
                     id={`${uid}-size`}
+                    name="size"
                     className={fieldClass(false)}
                     value={form.size}
                     onChange={set('size')}
@@ -291,6 +293,7 @@ export default function ContactForm() {
                   </span>
                   <textarea
                     id={`${uid}-message`}
+                    name="message"
                     rows={5}
                     className={fieldClass(false)}
                     value={form.message}
