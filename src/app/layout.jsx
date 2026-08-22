@@ -1,0 +1,98 @@
+import './globals.css';
+import BackToTop from '@/components/BackToTop';
+import Chatbot from '@/components/Chatbot';
+import Footer from '@/components/Footer';
+import JsonLd from '@/components/JsonLd';
+import Nav from '@/components/Nav';
+import { OG_IMAGE, SITE_URL, graph, organizationLd, websiteLd } from '@/lib/seo';
+import { company } from '@/lib/site';
+
+const TITLE = 'YiY Tech: inventory and booking software for SMEs';
+const DESCRIPTION =
+  'YiY Tech builds live inventory and stock management for retail and wholesale SMEs, and a booking and operations dashboard for clinics, salons, tuition centres and property teams. Flat monthly pricing per outlet, live in two weeks.';
+
+export const metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: { default: TITLE, template: '%s | YiY Tech' },
+  description: DESCRIPTION,
+  applicationName: company.name,
+  authors: [{ name: company.legal, url: SITE_URL }],
+  creator: company.legal,
+  publisher: company.legal,
+  category: 'Business software',
+  keywords: [
+    'inventory management software',
+    'stock management software for SMEs',
+    'multi-outlet stock control',
+    'booking system for clinics',
+    'salon booking software',
+    'tuition centre management software',
+    'appointment scheduling software Malaysia',
+    'operations dashboard for small business',
+    'YiY Tech',
+  ],
+  alternates: { canonical: SITE_URL },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    url: SITE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    siteName: company.name,
+    locale: 'en_MY',
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: company.name }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [OG_IMAGE],
+  },
+};
+
+export const viewport = {
+  themeColor: '#0B0B0C',
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/GeneralSans-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/GeneralSans-Semibold.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        {/* Points model crawlers at a plain-text summary of the site. */}
+        <link rel="llms" type="text/plain" href="/llms.txt" />
+        <JsonLd data={graph(organizationLd(), websiteLd())} />
+      </head>
+      <body>
+        <Nav />
+        <main>{children}</main>
+        <Footer />
+        <BackToTop />
+        <Chatbot />
+      </body>
+    </html>
+  );
+}

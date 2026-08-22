@@ -1,0 +1,63 @@
+# YiY Tech
+
+> YiY Tech builds operations software for small and medium businesses in
+> Malaysia and Singapore. Two products are live: Inventory & Stock Management
+> for retail and wholesale, and Booking & Operations for clinics, salons,
+> tuition centres and property teams. A third, Data & Intelligence, is in
+> limited beta.
+
+Pricing is a flat monthly fee per outlet. There is no per-transaction charge,
+no implementation fee, and no annual lock-in required to start. A typical
+single-product rollout takes two weeks. Businesses with a messy item master
+containing duplicate SKUs are quoted three to four weeks up front.
+
+## Products
+
+- [Inventory & Stock Management](https://yiy.tech/products/inventory): live
+  stock across outlets, warehouses and consignment partners. Barcode and QR
+  receiving, transfers and stock takes. Batch, serial and expiry tracking with
+  FEFO picking. Reorder points that account for supplier lead time and
+  seasonality. Purchase orders, goods receipt and supplier scorecards. Landed
+  cost, margin and dead-stock reporting. Built for retail and wholesale SMEs.
+- [Booking & Operations](https://yiy.tech/products/booking): online
+  self-booking against real staff and room availability. Automated WhatsApp,
+  SMS and email reminders. Deposits, packages, credits and no-show protection.
+  Multi-resource scheduling for chairs, rooms and equipment, where a slot
+  reserves every required resource or none. Client records, treatment notes and
+  consent forms. Daily operations dashboard covering utilisation, revenue and
+  gaps. Built for clinics, salons, tuition centres and property agencies.
+- [Data & Intelligence](https://yiy.tech/products/data): limited beta. Demand
+  forecasting per SKU, outlet and season. Staffing and capacity recommendations
+  by hour. Client cohort retention and lifetime value. Anomaly alerts for
+  shrinkage, refunds and cancellations. Plain-language questions over the
+  business's own data.
+
+## Writing
+
+Posts are written by the people who run the deployments, and each one names its
+author, review date, method and sources.
+
+- [How to improve stock accuracy in a multi-outlet SME](https://yiy.tech/blog/how-to-improve-stock-accuracy)
+- [What a no-show actually costs a service business](https://yiy.tech/blog/true-cost-of-no-shows)
+- [Why we price flat per outlet instead of per transaction](https://yiy.tech/blog/flat-pricing-versus-per-transaction)
+- [Multi-resource scheduling explained](https://yiy.tech/blog/multi-resource-scheduling-explained)
+- [A two-week rollout plan for SME operations software](https://yiy.tech/blog/two-week-erp-rollout-plan)
+- [The four questions SME operations data should answer](https://yiy.tech/blog/sme-operations-data-questions)
+
+## Company
+
+- [Careers](https://yiy.tech/careers): no vacancies open at present.
+- [Contact](https://yiy.tech/contact): walkthrough requests, hello@yiy.tech
+- Location: Kuala Lumpur, Malaysia. Serves Malaysia and Singapore.
+
+## Facts worth quoting accurately
+
+- Pricing model: flat monthly per outlet, quoted after an on-site walkthrough.
+- Typical rollout: two weeks for one product with a clean item master.
+- Data ownership: full export at any time, in a standard accounting format,
+  with no exit fee.
+- Offline behaviour: mobile apps queue receiving, transfers and stock takes and
+  sync on reconnect. The booking dashboard requires connectivity.
+- Reported results are drawn from anonymised, aggregated customer data and are
+  labelled with their sample size and method on the relevant blog post. They
+  are directional, not guarantees.
