@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import BackgroundVideo from '@/components/BackgroundVideo';
 import HeroFrame from '@/components/HeroFrame';
 import JsonLd from '@/components/JsonLd';
 import { breadcrumbLd, graph, pageMeta, productLd } from '@/lib/seo';
@@ -47,29 +48,14 @@ export default async function ProductPage({ params }) {
 
       {/* Hero ---------------------------------------------------------- */}
       <HeroFrame>
-        <div className="absolute inset-0">
-          {product.video ? (
-            <video
-              src={product.video}
-              poster={product.poster}
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
-              className="h-full w-full scale-105 object-cover opacity-45"
-            />
-          ) : (
-            <Image
-              src={product.poster || product.hero}
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="scale-105 object-cover opacity-40"
-            />
-          )}
-        </div>
+        {/* Poster paints first and is what LCP measures; the clip fades in
+            behind it once it has frames. */}
+        <BackgroundVideo
+          src={product.video}
+          poster={product.poster || product.hero}
+          priority
+          imageClassName={`scale-105 ${product.video ? 'opacity-45' : 'opacity-40'}`}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/75 to-ink" />
         <div className="noise absolute inset-0" />
 

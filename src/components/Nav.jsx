@@ -12,6 +12,10 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(0);
+  // The panel is closed on every first paint, so its three preview images were
+  // three downloads per page for a menu most visitors never open. They mount
+  // the first time the menu is opened and stay mounted after that.
+  const [primed, setPrimed] = useState(false);
   const closeTimer = useRef(null);
   const pathname = usePathname();
 
@@ -38,6 +42,7 @@ export default function Nav() {
 
   const openMenu = () => {
     clearTimeout(closeTimer.current);
+    setPrimed(true);
     setMenu(true);
   };
 
@@ -71,6 +76,7 @@ export default function Nav() {
             onMouseEnter={openMenu}
             onFocus={openMenu}
             aria-expanded={menu}
+            aria-controls="product-menu"
             className={`inline-flex items-center gap-1.5 py-2 text-sm transition-colors duration-300 hover:text-ink ${
               menu ? 'text-ink' : 'text-ink-mute'
             }`}
@@ -135,8 +141,11 @@ export default function Nav() {
 
       {/* Full-width product mega panel ----------------------------------- */}
       <div
+        id="product-menu"
+        aria-label="Products"
         onMouseEnter={openMenu}
         onMouseLeave={closeMenu}
+        inert={!menu}
         className={`absolute inset-x-0 top-full hidden overflow-hidden border-ink/10 bg-white transition-all duration-500 ease-smooth lg:block ${
           menu
             ? 'pointer-events-auto max-h-[520px] border-b opacity-100'
@@ -201,13 +210,20 @@ export default function Nav() {
           {/* Preview of the hovered product */}
           <div className="grid grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] gap-8 border-l border-ink/[0.08] pl-14">
             <div className="relative aspect-[4/5] overflow-hidden bg-paper-warm">
-              {products.map((p, i) => (
+              {primed && products.map((p, i) => (
+                // The slot is ~294px wide but the box is 4:5 and the sources are
+                // 3:2, so object-cover scales by height and throws away most of
+                // the width. `sizes` has to describe the *cropped* source width
+                // (box height x 1.5 = ~552px), not the CSS width, or the browser
+                // picks a candidate it then has to upscale. At 240px it was
+                // choosing the 256w file for a 552px job.
                 <Image
                   key={p.slug}
                   src={p.menuImage}
                   alt=""
                   fill
-                  sizes="240px"
+                  sizes="580px"
+                  quality={90}
                   className="object-cover transition-opacity duration-700 ease-smooth"
                   style={{ opacity: active === i ? 1 : 0 }}
                 />
@@ -255,6 +271,7 @@ export default function Nav() {
 
       {/* Mobile sheet ---------------------------------------------------- */}
       <div
+        inert={!open}
         className={`fixed inset-0 z-40 bg-white transition-all ease-smooth lg:hidden ${
           open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}

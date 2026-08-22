@@ -52,7 +52,9 @@
 }
 
 :root {
-  --shell: 1240px;
+  /* Shell width lives in tailwind.config as maxWidth.shell (1520px). It is
+     deliberately not duplicated here: the stale 1240px copy that used to sit
+     in this block matched nothing and misled anyone sizing an image. */
   --nav-h: 72px;
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -113,10 +115,6 @@
   .display {
     @apply font-semibold tracking-tightest leading-[1.02];
     padding-bottom: 0.06em;
-  }
-
-  .rule {
-    @apply h-px w-full bg-ink/10;
   }
 
   /* Buttons ------------------------------------------------------------- */
@@ -193,16 +191,7 @@
     box-shadow: 0 26px 60px -30px rgba(11, 11, 12, 0.4);
   }
 
-  .glass {
-    @apply border border-white/[0.12] bg-white/[0.04] backdrop-blur-xl;
-  }
-
   /* Decorative ----------------------------------------------------------- */
-  .fade-edges {
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-  }
-
   .noise::after {
     content: '';
     position: absolute;
@@ -215,6 +204,9 @@
 }
 
 /* Scroll-reveal -------------------------------------------------------- */
+/* will-change is scoped to the pre-reveal state on purpose. Leaving it on
+   every element permanently held a compositor layer per Reveal, and the
+   homepage has more than sixty of them. */
 .reveal {
   opacity: 0;
   transform: translate3d(0, 26px, 0);
@@ -225,6 +217,7 @@
 .reveal[data-visible='true'] {
   opacity: 1;
   transform: translate3d(0, 0, 0);
+  will-change: auto;
 }
 
 .reveal-blur {
@@ -416,17 +409,6 @@
   50% { opacity: 1; transform: translateY(-3px); }
 }
 
-/* Marquee --------------------------------------------------------------- */
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
-}
-
-.marquee-host:hover .marquee-track {
-  animation-play-state: paused;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -438,10 +420,6 @@
     transform: none !important;
     filter: none !important;
     transition: none !important;
-  }
-
-  .marquee-track {
-    animation: none;
   }
 
   .mascot__body,

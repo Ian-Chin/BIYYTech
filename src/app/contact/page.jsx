@@ -25,7 +25,7 @@ export default function ContactPage() {
               '@type': 'Organization',
               '@id': `${SITE_URL}/#organization`,
               email: company.email,
-              telephone: company.phone,
+              ...(company.phone ? { telephone: company.phone } : {}),
             },
           },
           breadcrumbLd([

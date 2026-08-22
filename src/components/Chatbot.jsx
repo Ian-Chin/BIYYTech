@@ -111,6 +111,7 @@ export default function Chatbot() {
       {/* Launcher ---------------------------------------------------- */}
       <div className="fixed bottom-5 right-5 z-[70] flex flex-col items-end gap-3 md:bottom-7 md:right-7">
         <div
+          inert={!nudge || open}
           className={`origin-bottom-right transition-all duration-500 ease-smooth ${
             nudge && !open
               ? 'pointer-events-auto translate-y-0 scale-100 opacity-100'
@@ -154,6 +155,7 @@ export default function Chatbot() {
         role="dialog"
         aria-label="YiY assistant"
         aria-hidden={!open}
+        inert={!open}
         className={`fixed bottom-24 right-5 z-[70] flex w-[calc(100vw-2.5rem)] max-w-[380px] origin-bottom-right flex-col border border-ink/10 bg-white shadow-[0_40px_90px_-40px_rgba(11,11,12,0.6)] transition-all duration-500 ease-smooth md:bottom-28 md:right-7 ${
           open
             ? 'pointer-events-auto translate-y-0 scale-100 opacity-100'

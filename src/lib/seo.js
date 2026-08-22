@@ -49,7 +49,7 @@ export const organizationLd = () => ({
   },
   description: company.tagline,
   email: company.email,
-  telephone: company.phone,
+  ...(company.phone ? { telephone: company.phone } : {}),
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Kuala Lumpur',

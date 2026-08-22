@@ -166,20 +166,9 @@ export default async function PostPage({ params }) {
               <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
                 About the author
               </p>
-              <div className="mt-5 flex items-start gap-4">
-                <span className="relative h-12 w-12 shrink-0 overflow-hidden bg-paper-dim">
-                  <Image
-                    src={post.author.image}
-                    alt=""
-                    fill
-                    sizes="48px"
-                    className="object-cover"
-                  />
-                </span>
-                <span>
-                  <span className="block text-sm font-medium">{post.author.name}</span>
-                  <span className="mt-0.5 block text-xs text-ink-mute">{post.author.role}</span>
-                </span>
+              <div className="mt-5">
+                <p className="text-sm font-medium">{post.author.name}</p>
+                <p className="mt-0.5 text-xs text-ink-mute">{post.author.role}</p>
               </div>
               <p className="mt-4 text-xs leading-relaxed text-ink-mute">
                 {post.author.credential}

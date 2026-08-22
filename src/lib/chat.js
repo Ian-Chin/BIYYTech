@@ -24,7 +24,7 @@ const RULES = [
     id: 'overview',
     keywords: ['what do you build', 'what is yiy', 'about', 'products', 'overview', 'what do you do', 'who are you'],
     answer: () => ({
-      text: 'Two systems, live today. Inventory & Stock Management for retail and wholesale, and Booking & Operations for clinics, salons, tuition centres and property teams. A third, Data & Intelligence, is in private beta.',
+      text: 'Two systems, live today. Inventory & Stock Management for retail and wholesale, and Booking & Operations for clinics, salons, tuition centres and property teams. A third, Data & Intelligence, is in limited beta.',
       chips: ['Inventory', 'Booking', 'Data & Intelligence'],
       links: [
         { label: 'Inventory & Stock Management', href: '/products/inventory' },
@@ -54,7 +54,7 @@ const RULES = [
     id: 'multiresource',
     keywords: ['rooms and staff', 'room and staff', 'resource', 'double book', 'double-book', 'tutor', 'chair', 'equipment'],
     answer: () => ({
-      text: 'Yes. A slot can require several resources at once, a tutor and a room, an agent and a unit, a stylist and a chair. If both are not free, the slot cannot be booked. That single rule is what kills double-booking.',
+      text: 'Yes. A slot can require several resources at once: a tutor and a room, an agent and a unit, a stylist and a chair. If both are not free, the slot cannot be booked. That single rule is what kills double-booking.',
       chips: ['Booking', 'Book a walkthrough'],
     }),
   },
@@ -62,7 +62,7 @@ const RULES = [
     id: 'data',
     keywords: ['data', 'analytics', 'report', 'reporting', 'forecast', 'forecasting', 'dashboard', 'insight', 'intelligence', 'ai', 'signal'],
     answer: () => ({
-      text: 'Data & Intelligence is in private beta. It sits on top of Inventory and Booking: demand forecasting per SKU and outlet, staffing recommendations by hour, cohort retention, and anomaly alerts for shrinkage and refunds. If you run either product today, your data is already shaped for it.',
+      text: 'Data & Intelligence is in limited beta. It sits on top of Inventory and Booking: demand forecasting per SKU and outlet, staffing recommendations by hour, cohort retention, and anomaly alerts for shrinkage and refunds. If you run either product today, your data is already shaped for it.',
       chips: ['Join the beta list', 'What do you build?'],
       links: [{ label: 'Read the roadmap', href: '/products/data' }],
     }),
@@ -71,7 +71,7 @@ const RULES = [
     id: 'pricing',
     keywords: ['price', 'pricing', 'cost', 'how much', 'fee', 'subscription', 'expensive', 'budget', 'quote', 'per month'],
     answer: () => ({
-      text: 'Flat monthly per outlet. No per-transaction skim, no surprise implementation fee, and no annual lock-in to sign on day one. The exact number depends on outlets and which products you run, we quote it on the walkthrough, before you commit to anything.',
+      text: 'Flat monthly per outlet. No per-transaction skim, no surprise implementation fee, and no annual lock-in to sign on day one. The exact number depends on outlets and which products you run. We quote it on the walkthrough, before you commit to anything.',
       chips: ['Book a walkthrough', 'What if we outgrow it?'],
       links: [{ label: 'Get a quote', href: '/contact' }],
     }),
@@ -80,7 +80,7 @@ const RULES = [
     id: 'timeline',
     keywords: ['how long', 'timeline', 'go live', 'live', 'setup', 'set up', 'onboard', 'onboarding', 'implementation', 'rollout', 'roll out', 'two weeks', 'how fast'],
     answer: () => ({
-      text: 'Two weeks is typical: walkthrough on day 0, migration days 1–4, one pilot outlet live days 5–10, remaining outlets and handover days 11–14. Multi-outlet groups with messy item masters run three to four weeks, we tell you which one you are before you pay.',
+      text: 'Two weeks is typical: walkthrough on day 0, migration days 1–4, one pilot outlet live days 5–10, remaining outlets and handover days 11–14. Multi-outlet groups with messy item masters run three to four weeks. We tell you which one you are before you pay.',
       chips: ['What about my existing data?', 'Book a walkthrough'],
       links: [{ label: 'See the rollout', href: '/#process' }],
     }),
@@ -89,7 +89,7 @@ const RULES = [
     id: 'migration',
     keywords: ['existing data', 'migrate', 'migration', 'import', 'spreadsheet', 'excel', 'my data', 'transfer'],
     answer: () => ({
-      text: 'We migrate it, item lists, suppliers, client histories, open bookings and current stock counts, from whatever you have including that spreadsheet. Anything that cannot be mapped cleanly gets flagged for you to decide, never silently dropped.',
+      text: 'We migrate it: item lists, suppliers, client histories, open bookings and current stock counts, from whatever you have, including that spreadsheet. Anything that cannot be mapped cleanly gets flagged for you to decide, never silently dropped.',
       chips: ['How long to go live?', 'Can I export my data?'],
     }),
   },
@@ -97,7 +97,7 @@ const RULES = [
     id: 'export',
     keywords: ['export', 'lock in', 'lock-in', 'leave', 'cancel', 'own my data', 'outgrow', 'contract'],
     answer: () => ({
-      text: 'Full data export any time, in a format your accountant recognises, with no exit fee. We would rather you leave cleanly than stay unhappy, it keeps us honest about earning the renewal.',
+      text: 'Full data export any time, in a format your accountant recognises, with no exit fee. We would rather you leave cleanly than stay unhappy, and it keeps us honest about earning the renewal.',
       chips: ['How much does it cost?', 'Book a walkthrough'],
     }),
   },
@@ -163,7 +163,7 @@ const RULES = [
 ];
 
 const FALLBACK = {
-  text: "I did not catch that one. I know about the two products, pricing, rollout, migration, integrations and support, try one of these.",
+  text: 'I did not catch that one. I know about the two products, pricing, rollout, migration, integrations and support. Try one of these.',
   chips: ['What do you build?', 'How much does it cost?', 'How long to go live?', 'Book a walkthrough'],
 };
 

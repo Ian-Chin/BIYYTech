@@ -17,11 +17,11 @@ export const metadata = pageMeta({
 const perks = [
   {
     title: 'Four-day onboarding',
-    body: 'Your first week is spent in customer warehouses and front desks, not in a wiki.',
+    body: 'Your first four days are spent in customer warehouses and at front desks, not in a wiki.',
   },
   {
     title: 'Ship in week one',
-    body: 'Everyone merges something a customer touches inside their first fortnight.',
+    body: 'Everyone merges something a customer touches inside their first week.',
   },
   {
     title: 'Hardware you choose',
@@ -95,18 +95,17 @@ export default function CareersPage() {
             />
           </div>
 
-          <div className="grid gap-px bg-ink/10 sm:grid-cols-2">
+          {/* Read as a manifesto, not a feature grid: display-weight titles,
+              hairline rules, no boxes and no numbering. */}
+          <div>
             {values.map((v, i) => (
               <Reveal
                 key={v.title}
                 delay={i * 90}
-                className="group bg-white p-7 transition-colors duration-700 ease-smooth hover:bg-paper-warm"
+                className="border-t border-ink/[0.12] py-7 first:border-t-0 first:pt-0"
               >
-                <span className="font-mono text-[10px] tracking-[0.2em] text-ink-faint">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="mt-4 text-lg font-semibold tracking-tighter">{v.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-mute">{v.body}</p>
+                <h3 className="display text-[clamp(1.25rem,1.9vw,1.6rem)]">{v.title}</h3>
+                <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-ink-mute">{v.body}</p>
               </Reveal>
             ))}
           </div>
@@ -207,14 +206,19 @@ export default function CareersPage() {
       {/* Perks ----------------------------------------------------------- */}
       <section className="relative overflow-hidden bg-paper-warm py-20 md:py-28">
         <div className="shell grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <div className="grid gap-6 sm:grid-cols-2">
+          {/* Spec-sheet rows: term on the left, detail on the right. */}
+          <dl>
             {perks.map((perk, i) => (
-              <Reveal key={perk.title} delay={i * 80} className="border-t border-ink/[0.12] pt-6">
-                <h3 className="text-base font-semibold tracking-tighter">{perk.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-mute">{perk.body}</p>
+              <Reveal
+                key={perk.title}
+                delay={i * 80}
+                className="grid gap-1.5 border-t border-ink/[0.12] py-5 sm:grid-cols-[minmax(0,0.75fr)_minmax(0,1.35fr)] sm:gap-8"
+              >
+                <dt className="text-sm font-semibold tracking-tighter">{perk.title}</dt>
+                <dd className="text-sm leading-relaxed text-ink-mute">{perk.body}</dd>
               </Reveal>
             ))}
-          </div>
+          </dl>
 
           <Reveal blur delay={160}>
             <Parallax speed={-32} className="relative aspect-[4/3] overflow-hidden">

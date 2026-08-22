@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import HeroFrame from '@/components/HeroFrame';
-import { Reveal, SplitWords, onScrollFrame } from '@/components/motion';
+import { Reveal, SplitWords, onScrollFrame, prefersReducedMotion } from '@/components/motion';
 
 // Only the current scene is mounted as a <video>; the rest stay as poster
 // stills until they are about to play, so the page loads one clip, not three.
@@ -16,7 +16,10 @@ const SCENES = [
 
 export default function Hero() {
   const [scene, setScene] = useState(0);
-  const [mounted, setMounted] = useState(() => new Set([0]));
+  // Starts empty so the first paint is the poster still, not a 12MB download.
+  // Scene 0's clip is mounted once the browser is idle, and reduced-motion
+  // visitors never mount one at all.
+  const [mounted, setMounted] = useState(() => new Set());
   const veilRef = useRef(null);
   const contentRef = useRef(null);
 
@@ -25,8 +28,24 @@ export default function Hero() {
     setMounted((prev) => (prev.has(i) ? prev : new Set(prev).add(i)));
   };
 
-  // Cross-fade the background footage.
   useEffect(() => {
+    if (prefersReducedMotion()) return undefined;
+    const idle =
+      typeof window.requestIdleCallback === 'function'
+        ? window.requestIdleCallback(() => setMounted((prev) => new Set(prev).add(0)), {
+            timeout: 2500,
+          })
+        : setTimeout(() => setMounted((prev) => new Set(prev).add(0)), 1200);
+    return () => {
+      if (typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(idle);
+      else clearTimeout(idle);
+    };
+  }, []);
+
+  // Cross-fade the background footage. An auto-rotating background is motion,
+  // so reduced-motion visitors keep whichever still they land on.
+  useEffect(() => {
+    if (prefersReducedMotion()) return undefined;
     const id = setInterval(() => {
       setScene((s) => {
         const next = (s + 1) % SCENES.length;
@@ -54,23 +73,23 @@ export default function Hero() {
       {/* Footage stack */}
       <div className="absolute inset-0">
         {SCENES.map((s, i) =>
-          mounted.has(i) ? (
+          s.src && mounted.has(i) ? (
             <video
-              key={s.src}
+              key={s.poster}
               src={s.src}
               poster={s.poster}
               autoPlay
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               aria-hidden="true"
               className="absolute inset-0 h-full w-full object-cover saturate-[0.55] transition-opacity duration-[2000ms] ease-smooth"
               style={{ opacity: scene === i ? 1 : 0, transform: 'scale(1.08)' }}
             />
           ) : (
             <Image
-              key={s.src}
+              key={s.poster}
               src={s.poster}
               alt=""
               fill
@@ -115,7 +134,7 @@ export default function Hero() {
 
           <Reveal delay={420}>
             <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-white/60">
-              YiY Tech builds the two systems small businesses actually run on, live
+              YiY Tech builds the two systems small businesses actually run on: live
               inventory for retail and wholesale, and a booking and operations dashboard
               for clinics, salons, tuition centres and property teams. One account, one
               login, live in two weeks.
@@ -142,17 +161,23 @@ export default function Hero() {
         </div>
 
         {/* Scene dots */}
-        <div className="mt-14 flex items-center justify-center gap-2">
+        <div className="mt-9 flex items-center justify-center gap-1">
           {SCENES.map((s, i) => (
+            // Padded to a 44px-tall hit area; the visible rule stays 3px.
             <button
-              key={s.src}
+              key={s.poster}
               type="button"
               onClick={() => show(i)}
               aria-label={`Show background ${i + 1}`}
-              className={`h-[3px] rounded-full transition-all duration-700 ease-smooth ${
-                scene === i ? 'w-9 bg-white' : 'w-4 bg-white/25 hover:bg-white/50'
-              }`}
-            />
+              aria-current={scene === i}
+              className="group flex h-11 items-center px-1"
+            >
+              <span
+                className={`block h-[3px] rounded-full transition-all duration-700 ease-smooth ${
+                  scene === i ? 'w-9 bg-white' : 'w-4 bg-white/25 group-hover:bg-white/50'
+                }`}
+              />
+            </button>
           ))}
         </div>
       </div>

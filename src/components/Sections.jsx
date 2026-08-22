@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import BackgroundVideo from '@/components/BackgroundVideo';
 import Carousel from '@/components/Carousel';
 import { Mark } from '@/components/Logo';
 import { CountUp, Parallax, Reveal, SplitWords, onScrollFrame } from '@/components/motion';
@@ -83,7 +84,7 @@ export function StatsBand() {
           <p className="mt-12 max-w-2xl text-xs leading-relaxed text-white/30">
             Figures reflect typical results reported by YiY Tech pilot customers across
             retail, wholesale and service businesses. Your numbers will depend on your
-            starting point, we will tell you what to expect during the walkthrough.
+            starting point. We will tell you what to expect during the walkthrough.
           </p>
         </Reveal>
       </div>
@@ -102,22 +103,28 @@ export function Pillars() {
         <SectionHead
           eyebrow="Why YiY"
           title="Enterprise discipline, sized for a business that still knows every customer."
-          body="Most SME software is either a toy or a cut-down ERP. We build the middle: rigorous where it matters, stock ledgers, audit trails, permissions, and ruthlessly simple everywhere else."
+          body="Most SME software is either a toy or a cut-down ERP. We build the middle: rigorous where it matters (stock ledgers, audit trails, permissions) and ruthlessly simple everywhere else."
         />
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 md:grid-cols-2 lg:grid-cols-3">
+        {/* Numbered editorial list, not a card grid. Six boxes of identical
+            weight said nothing about which of these matters most; hairlines and
+            a large numeral give the eye somewhere to start. */}
+        <div className="mt-16 grid md:grid-cols-2 md:gap-x-16">
           {pillars.map((p, i) => (
             <Reveal
               key={p.title}
-              delay={i * 80}
-              className="group relative bg-white p-8 transition-colors duration-700 ease-smooth hover:bg-paper-warm"
+              delay={i * 70}
+              className="group grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-6 border-t border-ink/[0.12] py-7"
             >
-              <span className="font-mono text-[10px] tracking-[0.2em] text-ink-faint">
+              <span className="display text-[clamp(1.5rem,2.2vw,2rem)] text-ink-faint transition-colors duration-700 ease-smooth group-hover:text-ink">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h3 className="mt-5 text-lg font-semibold tracking-tighter">{p.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink-mute">{p.body}</p>
-              <span className="absolute inset-x-8 bottom-0 h-px w-0 bg-ink transition-all duration-700 ease-smooth group-hover:w-[calc(100%-4rem)]" />
+              <span>
+                <h3 className="text-lg font-semibold tracking-tighter">{p.title}</h3>
+                <p className="mt-2.5 max-w-[46ch] text-sm leading-relaxed text-ink-mute">
+                  {p.body}
+                </p>
+              </span>
             </Reveal>
           ))}
         </div>
@@ -181,6 +188,14 @@ export function Industries() {
 
 export function FeatureStrip({ product, tone = 'light' }) {
   const dark = tone === 'dark';
+  // The first capability carries the section; the other three support it. A
+  // 2x2 grid of equal cards claimed they all mattered the same amount.
+  const [lead, ...rest] = product.features ?? [];
+  if (!lead) return null;
+  const shell = dark ? 'border-white/10 bg-white/[0.03]' : 'border-ink/10 bg-white';
+  const body = dark ? 'text-white/55' : 'text-ink-mute';
+  const index = dark ? 'text-white/35' : 'text-ink-faint';
+
   return (
     <section
       className={`relative overflow-hidden py-24 md:py-32 ${dark ? 'bg-ink text-white' : 'bg-paper-warm'}`}
@@ -192,20 +207,48 @@ export function FeatureStrip({ product, tone = 'light' }) {
           tone={tone}
         />
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2">
-          {product.features.map((f, i) => (
+        {/* Lead capability, full width and side by side. */}
+        <Reveal blur className="mt-16">
+          <div
+            className={`group grid overflow-hidden rounded-2xl border lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] ${shell} transition-all duration-700 ease-smooth hover:-translate-y-1`}
+          >
+            <div className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[22rem]">
+              <Image
+                src={lead.image}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 52vw, 92vw"
+                className="object-cover transition-transform duration-[1400ms] ease-smooth group-hover:scale-105"
+              />
+              <div
+                className={`absolute inset-0 ${
+                  dark
+                    ? 'bg-gradient-to-t from-ink/70 to-transparent'
+                    : 'bg-gradient-to-t from-white/25 to-transparent'
+                }`}
+              />
+            </div>
+            <div className="flex flex-col justify-center p-8 md:p-11">
+              <span className={`font-mono text-[10px] tracking-[0.2em] ${index}`}>01</span>
+              <h3 className="display mt-5 text-[clamp(1.35rem,2.2vw,1.9rem)]">{lead.title}</h3>
+              <p className={`mt-4 max-w-[42ch] text-base leading-relaxed ${body}`}>{lead.body}</p>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* The supporting three, lighter and narrower. */}
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {rest.map((f, i) => (
             <Reveal key={f.title} delay={i * 90} blur>
               <div
-                className={`group relative h-full overflow-hidden rounded-2xl border ${
-                  dark ? 'border-white/10 bg-white/[0.03]' : 'border-ink/10 bg-white'
-                } transition-all duration-700 ease-smooth hover:-translate-y-1`}
+                className={`group h-full overflow-hidden rounded-2xl border ${shell} transition-all duration-700 ease-smooth hover:-translate-y-1`}
               >
-                <div className="relative aspect-[16/9] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={f.image}
                     alt=""
                     fill
-                    sizes="(min-width: 768px) 46vw, 92vw"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 92vw"
                     className="object-cover transition-transform duration-[1400ms] ease-smooth group-hover:scale-105"
                   />
                   <div
@@ -217,21 +260,11 @@ export function FeatureStrip({ product, tone = 'light' }) {
                   />
                 </div>
                 <div className="p-7">
-                  <span
-                    className={`font-mono text-[10px] tracking-[0.2em] ${
-                      dark ? 'text-white/35' : 'text-ink-faint'
-                    }`}
-                  >
-                    {String(i + 1).padStart(2, '0')}
+                  <span className={`font-mono text-[10px] tracking-[0.2em] ${index}`}>
+                    {String(i + 2).padStart(2, '0')}
                   </span>
-                  <h3 className="mt-4 text-lg font-semibold tracking-tighter">{f.title}</h3>
-                  <p
-                    className={`mt-2.5 text-sm leading-relaxed ${
-                      dark ? 'text-white/55' : 'text-ink-mute'
-                    }`}
-                  >
-                    {f.body}
-                  </p>
+                  <h3 className="mt-4 text-base font-semibold tracking-tighter">{f.title}</h3>
+                  <p className={`mt-2.5 text-sm leading-relaxed ${body}`}>{f.body}</p>
                 </div>
               </div>
             </Reveal>
@@ -425,8 +458,11 @@ export function Process() {
                 as="li"
                 key={p.step}
                 delay={i * 110}
+                // Hover only, and deliberately so: the ghost image is pure
+                // decoration and every card reads completely without it. The
+                // onFocus that used to sit here could never fire, because
+                // nothing inside the <li> is focusable.
                 onMouseEnter={() => setStep(i)}
-                onFocus={() => setStep(i)}
                 className="group relative cursor-default overflow-hidden bg-ink p-7"
               >
                 {/* Ghost image + wash that surface on hover */}
@@ -541,18 +577,12 @@ export function Faq() {
 export function ClosingCta() {
   return (
     <section className="relative isolate overflow-hidden bg-ink text-white">
-      <div className="absolute inset-0">
-        <video
-          src="/media/video/warehouse-work.mp4"
-          poster="/media/img/inventory-aisle.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden="true"
-          className="h-full w-full object-cover opacity-30"
-        />
-      </div>
+      {/* Below the fold on every page, so the clip only loads if you get here. */}
+      <BackgroundVideo
+        src="/media/video/warehouse-work.mp4"
+        poster="/media/img/inventory-aisle.jpg"
+        imageClassName="opacity-30"
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/80 to-ink" />
       <div className="noise absolute inset-0" />
 

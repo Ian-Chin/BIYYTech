@@ -24,7 +24,10 @@ module.exports = {
       fontFamily: {
         sans: ['Aeonik', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
       },
-      // Single sharp radius across the whole system.
+      // Single sharp radius across the whole system. Every step, including
+      // `full`, resolves to 2px on purpose: `rounded-full` will NOT give you a
+      // circle here. Use an explicit border-radius in CSS if you genuinely need
+      // one (the mascot does).
       borderRadius: {
         none: '0px',
         sm: '2px',
@@ -47,27 +50,12 @@ module.exports = {
         smooth: 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
-        marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-        floaty: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        sheen: {
-          '0%': { transform: 'translateX(-120%) skewX(-18deg)' },
-          '100%': { transform: 'translateX(220%) skewX(-18deg)' },
-        },
         pulseRing: {
           '0%': { transform: 'scale(0.85)', opacity: '0.55' },
           '100%': { transform: 'scale(1.6)', opacity: '0' },
         },
       },
       animation: {
-        marquee: 'marquee 38s linear infinite',
-        floaty: 'floaty 7s ease-in-out infinite',
-        sheen: 'sheen 1.1s ease-out',
         pulseRing: 'pulseRing 2.6s ease-out infinite',
       },
     },

@@ -3,13 +3,16 @@ export const company = {
   legal: 'YiY Technologies',
   tagline: 'Operations software for the businesses that keep everything moving.',
   email: 'hello@yiy.tech',
-  phone: '+60 3-000 0000',
+  // Set this to the real number and it reappears on the contact page and in the
+  // Organization JSON-LD. Left null on purpose: shipping a placeholder number
+  // means search engines index a number that does not ring.
+  phone: null,
   location: 'Kuala Lumpur, Malaysia',
 };
 
 export const nav = [
   { label: 'Products', href: '/#products' },
-  { label: 'Blogs', href: '/blog' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -330,7 +333,7 @@ export const faqs = [
   },
   {
     q: 'When is the data product available?',
-    a: 'Data & Intelligence is in private beta with existing customers. If you are running Inventory or Booking today, your data is already shaped for it, you will get an invite before general release.',
+    a: 'Data & Intelligence is in limited beta with existing customers. If you are running Inventory or Booking today, your data is already shaped for it, and you will get an invite before general release.',
   },
   {
     q: 'What if we outgrow it?',
@@ -350,19 +353,23 @@ export const faqs = [
 /* -------------------------------------------------------------------------- */
 
 export const authors = {
-  wanTeoh: {
-    name: 'Wan Teoh',
-    role: 'Implementation Lead, YiY Tech',
+  ianChin: {
+    name: 'Ian Chin',
+    role: 'Co-Founder of YiY Tech',
     credential:
-      'Has run 30-plus inventory and booking rollouts across retail, wholesale and clinic groups in Malaysia and Singapore since 2021.',
-    image: '/media/img/founder-portrait.jpg',
+      'Co-founded YiY Tech and still runs rollouts on site. Has walked the receiving bay and the front desk of retail, wholesale and clinic groups across Malaysia and Singapore since 2021.',
   },
-  priyaNair: {
-    name: 'Priya Nair',
-    role: 'Head of Product, YiY Tech',
+  yeWen: {
+    name: 'Ye Wen',
+    role: 'Co-Founder of YiY Tech',
     credential:
-      'Twelve years building operations software. Previously ran warehouse systems for a 40-outlet grocery chain.',
-    image: '/media/img/team-office.jpg',
+      'Co-founded YiY Tech after a decade building operations software, including the warehouse systems behind a 40-outlet grocery chain.',
+  },
+  yongHan: {
+    name: 'Yong Han',
+    role: 'Co-Founder of YiY Tech',
+    credential:
+      'Co-founded YiY Tech and owns the stock ledger and scheduling engine. Spends most weeks with customers reconciling counts that a spreadsheet could not.',
   },
 };
 
@@ -384,8 +391,8 @@ export const posts = [
     readingTime: '7 min',
     image: '/media/img/inventory-shelves.jpg',
     imageAlt: 'Racking in a multi-outlet distribution warehouse',
-    author: authors.wanTeoh,
-    reviewer: authors.priyaNair,
+    author: authors.yongHan,
+    reviewer: authors.ianChin,
     answer:
       'Stock accuracy improves when three habits are adopted in order: scan every receipt against its purchase order, move stock only with a transfer document, and count in weekly cycles by zone instead of quarterly full counts. Software makes those habits fast, but it does not create them. In the deployments we measured, teams that adopted all three reached the high nineties by the second full cycle. Teams that installed software and changed nothing stayed where they started.',
     takeaways: [
@@ -479,8 +486,8 @@ export const posts = [
     readingTime: '6 min',
     image: '/media/img/salon-interior.jpg',
     imageAlt: 'Styling stations in a salon between appointments',
-    author: authors.wanTeoh,
-    reviewer: authors.priyaNair,
+    author: authors.yeWen,
+    reviewer: authors.yongHan,
     answer:
       'A no-show costs more than the missed service fee. Add the staff hour you already paid for, the margin on the customer you turned away while the slot looked full, and the front-desk time spent chasing. For a typical clinic or salon slot, that lands between 1.6 and 2.4 times the headline service price. A three-step reminder sequence sent on the channel customers actually read is the cheapest reliable intervention.',
     takeaways: [
@@ -567,7 +574,8 @@ export const posts = [
     readingTime: '5 min',
     image: '/media/img/retail-counter.jpg',
     imageAlt: 'A retail counter during a quiet trading hour',
-    author: authors.priyaNair,
+    author: authors.ianChin,
+    reviewer: authors.yeWen,
     answer:
       'Per-transaction pricing charges customers more as they grow, for software that has not changed. Worse, it gives them a reason to route volume around the system to manage the bill, which makes the stock ledger unreliable. YiY Tech charges a flat monthly fee per outlet so that the price tracks how much of the business the system covers, not how busy the business happens to be.',
     takeaways: [
@@ -642,8 +650,8 @@ export const posts = [
     readingTime: '6 min',
     image: '/media/img/tuition-class.jpg',
     imageAlt: 'A tutor working with students in a classroom',
-    author: authors.wanTeoh,
-    reviewer: authors.priyaNair,
+    author: authors.ianChin,
+    reviewer: authors.yeWen,
     answer:
       'Multi-resource scheduling means a booking reserves every resource it needs at once, and fails if any one of them is unavailable. A haircut needs a stylist and a chair. A tuition slot needs a tutor and a room. A viewing needs an agent and a unit. Booking tools that model only staff availability push the second resource into a whiteboard or a group chat, which is where double-booking originates.',
     takeaways: [
@@ -722,8 +730,8 @@ export const posts = [
     readingTime: '8 min',
     image: '/media/img/team-meeting.jpg',
     imageAlt: 'An onboarding session with an operations team',
-    author: authors.wanTeoh,
-    reviewer: authors.priyaNair,
+    author: authors.yeWen,
+    reviewer: authors.ianChin,
     answer:
       'A two-week rollout is realistic for a single-product SME deployment when scope is fixed before configuration starts. Day 0 is an on-site walkthrough, days 1 to 4 are data migration, days 5 to 10 are one pilot outlet running live, and days 11 to 14 are the remaining outlets plus handover. The main thing that extends this is a messy item master with duplicate SKUs, which pushes the estimate to three or four weeks.',
     takeaways: [
@@ -816,7 +824,8 @@ export const posts = [
     readingTime: '6 min',
     image: '/media/img/data-dashboard.jpg',
     imageAlt: 'An operations dashboard being reviewed on a laptop',
-    author: authors.priyaNair,
+    author: authors.yongHan,
+    reviewer: authors.yeWen,
     answer:
       'Four questions change an SME operating decision: what am I about to run out of, which hours am I overstaffed, which customers stopped coming and when, and what changed this week that should not have. All four are answerable from transactions the business already records. None of them require a data warehouse. They do require an operational ledger that is trusted, which is why analytics should follow the operations layer rather than lead it.',
     takeaways: [

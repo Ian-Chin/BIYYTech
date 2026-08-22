@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import HeroFrame from '@/components/HeroFrame';
 import { Parallax, Reveal, SplitWords } from '@/components/motion';
 import { company, products } from '@/lib/site';
@@ -15,8 +15,40 @@ const INTERESTS = [
 
 const SIZES = ['1 outlet', '2–5 outlets', '6–20 outlets', '20+ outlets'];
 
+const FIELD =
+  'w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition-all duration-500 ease-smooth placeholder:text-ink-faint focus:ring-4 focus:ring-ink/5';
+
+/**
+ * There is no error colour in the palette and the accent is reserved for focus
+ * rings, so an invalid field is marked with a full ink border plus a written
+ * message. Never colour alone.
+ */
+const fieldClass = (invalid) =>
+  `${FIELD} ${invalid ? 'border-ink' : 'border-ink/[0.12] focus:border-ink/45'}`;
+
+/** Deliberately permissive. The mail client and our reply are the real check. */
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+function validate(form) {
+  const errors = {};
+  if (!form.name.trim()) errors.name = 'Tell us who you are.';
+  if (!form.company.trim()) errors.company = 'Which business is this for?';
+  if (!form.email.trim()) errors.email = 'We need somewhere to reply.';
+  else if (!EMAIL.test(form.email.trim())) errors.email = 'That does not look like an email address.';
+  if (form.phone.trim() && !/[0-9]{6}/.test(form.phone.replace(/[^0-9]/g, '')))
+    errors.phone = 'Leave this blank, or give a number we can actually dial.';
+  return errors;
+}
+
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [tried, setTried] = useState(false);
+  const [draftBody, setDraftBody] = useState('');
+  const [copied, setCopied] = useState(false);
+  const formRef = useRef(null);
+  const uid = useId();
+
   const [form, setForm] = useState({
     name: '',
     company: '',
@@ -27,31 +59,64 @@ export default function ContactForm() {
     message: '',
   });
 
-  const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
+  const set = (key) => (e) => {
+    const { value } = e.target;
+    setForm((f) => {
+      const next = { ...f, [key]: value };
+      // Only re-validate live once the visitor has already been shown errors.
+      if (tried) setErrors(validate(next));
+      return next;
+    });
+  };
+
+  const compose = (f) =>
+    [
+      `Name: ${f.name}`,
+      `Business: ${f.company}`,
+      `Email: ${f.email}`,
+      `Phone: ${f.phone || '—'}`,
+      `Interested in: ${f.interest}`,
+      `Size: ${f.size}`,
+      '',
+      f.message || '(no message)',
+    ].join('\n');
+
+  const subject = `Walkthrough request: ${form.company || form.name}`;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // No backend is wired yet, so hand the enquiry to the user's mail client so
-    // nothing is silently dropped. Swap this for a POST when the API exists.
-    const body = [
-      `Name: ${form.name}`,
-      `Business: ${form.company}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      `Interested in: ${form.interest}`,
-      `Size: ${form.size}`,
-      '',
-      form.message,
-    ].join('\n');
+    setTried(true);
 
+    const found = validate(form);
+    setErrors(found);
+    if (Object.keys(found).length) {
+      // Move the visitor to the first thing that needs fixing.
+      const first = ['name', 'company', 'email', 'phone'].find((k) => found[k]);
+      formRef.current?.querySelector(`#${CSS.escape(`${uid}-${first}`)}`)?.focus();
+      return;
+    }
+
+    const body = compose(form);
+    setDraftBody(body);
+    // No backend is wired yet, so hand the enquiry to the visitor's mail client.
+    // It can silently do nothing on a machine with no mail app configured, so
+    // the confirmation state below shows the drafted text rather than claiming
+    // the message was sent.
     window.location.href = `mailto:${company.email}?subject=${encodeURIComponent(
-      `Walkthrough request: ${form.company || form.name}`,
+      subject,
     )}&body=${encodeURIComponent(body)}`;
     setSent(true);
   };
 
-  const field =
-    'w-full rounded-xl border border-ink/[0.12] bg-white px-4 py-3 text-sm outline-none transition-all duration-500 ease-smooth placeholder:text-ink-faint focus:border-ink/45 focus:ring-4 focus:ring-ink/5';
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(`To: ${company.email}\nSubject: ${subject}\n\n${draftBody}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2400);
+    } catch {
+      setCopied(false);
+    }
+  };
 
   return (
     <>
@@ -100,103 +165,134 @@ export default function ContactForm() {
             {sent ? (
               <div className="rounded-2xl border border-ink/[0.12] bg-white p-10">
                 <h2 className="text-2xl font-semibold tracking-tighter">
-                  Your mail client is open.
+                  We opened a draft in your mail client.
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-ink-mute">
-                  Send the drafted message and we will reply within one working day. If
-                  nothing opened, email us directly at{' '}
-                  <a className="underline underline-offset-4" href={`mailto:${company.email}`}>
-                    {company.email}
-                  </a>
-                  .
+                  Nothing has reached us yet. Press send on that draft and we will reply
+                  within one working day.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => setSent(false)}
-                  className="btn-ghost mt-8"
-                >
-                  Edit the enquiry
-                </button>
+
+                <div className="mt-8 border-t border-ink/[0.12] pt-7">
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+                    If no draft appeared
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-mute">
+                    Some machines have no mail app configured. Copy the enquiry and send it
+                    from wherever you do read mail, to{' '}
+                    <a className="link-underline text-ink" href={`mailto:${company.email}`}>
+                      {company.email}
+                    </a>
+                    .
+                  </p>
+
+                  <pre className="mt-5 max-h-56 overflow-auto whitespace-pre-wrap border border-ink/[0.12] bg-paper-warm p-4 text-xs leading-relaxed text-ink-soft">
+                    {draftBody}
+                  </pre>
+
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <button type="button" onClick={copy} className="btn-primary">
+                      {copied ? 'Copied' : 'Copy the enquiry'}
+                    </button>
+                    <button type="button" onClick={() => setSent(false)} className="btn-ghost">
+                      Edit the enquiry
+                    </button>
+                  </div>
+                </div>
               </div>
             ) : (
-              <form onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2">
-                <label className="grid gap-2 text-sm">
-                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">Name</span>
-                  <input
-                    required
-                    className={field}
-                    value={form.name}
-                    onChange={set('name')}
-                    placeholder="Your name"
-                  />
-                </label>
+              <form ref={formRef} onSubmit={onSubmit} noValidate className="grid gap-5 sm:grid-cols-2">
+                <p className="text-xs text-ink-faint sm:col-span-2">
+                  Fields marked required are the ones we need to reply. Everything else
+                  helps us come prepared.
+                </p>
 
-                <label className="grid gap-2 text-sm">
-                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
-                    Business
-                  </span>
-                  <input
-                    required
-                    className={field}
-                    value={form.company}
-                    onChange={set('company')}
-                    placeholder="Business name"
-                  />
-                </label>
+                <Field
+                  uid={uid}
+                  name="name"
+                  label="Name"
+                  required
+                  error={errors.name}
+                  value={form.name}
+                  onChange={set('name')}
+                  placeholder="Your name"
+                  autoComplete="name"
+                />
 
-                <label className="grid gap-2 text-sm">
-                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">Email</span>
-                  <input
-                    required
-                    type="email"
-                    className={field}
-                    value={form.email}
-                    onChange={set('email')}
-                    placeholder="you@business.com"
-                  />
-                </label>
+                <Field
+                  uid={uid}
+                  name="company"
+                  label="Business"
+                  required
+                  error={errors.company}
+                  value={form.company}
+                  onChange={set('company')}
+                  placeholder="Business name"
+                  autoComplete="organization"
+                />
 
-                <label className="grid gap-2 text-sm">
-                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
-                    Phone / WhatsApp
-                  </span>
-                  <input
-                    className={field}
-                    value={form.phone}
-                    onChange={set('phone')}
-                    placeholder="Optional"
-                  />
-                </label>
+                <Field
+                  uid={uid}
+                  name="email"
+                  label="Email"
+                  type="email"
+                  required
+                  error={errors.email}
+                  value={form.email}
+                  onChange={set('email')}
+                  placeholder="you@business.com"
+                  autoComplete="email"
+                />
 
-                <label className="grid gap-2 text-sm">
+                <Field
+                  uid={uid}
+                  name="phone"
+                  label="Phone / WhatsApp"
+                  error={errors.phone}
+                  value={form.phone}
+                  onChange={set('phone')}
+                  placeholder="Optional"
+                  autoComplete="tel"
+                  inputMode="tel"
+                />
+
+                <label className="grid gap-2 text-sm" htmlFor={`${uid}-interest`}>
                   <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
                     Interested in
                   </span>
-                  <select className={field} value={form.interest} onChange={set('interest')}>
+                  <select
+                    id={`${uid}-interest`}
+                    className={fieldClass(false)}
+                    value={form.interest}
+                    onChange={set('interest')}
+                  >
                     {INTERESTS.map((o) => (
                       <option key={o}>{o}</option>
                     ))}
                   </select>
                 </label>
 
-                <label className="grid gap-2 text-sm">
-                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
-                    Size
-                  </span>
-                  <select className={field} value={form.size} onChange={set('size')}>
+                <label className="grid gap-2 text-sm" htmlFor={`${uid}-size`}>
+                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">Size</span>
+                  <select
+                    id={`${uid}-size`}
+                    className={fieldClass(false)}
+                    value={form.size}
+                    onChange={set('size')}
+                  >
                     {SIZES.map((o) => (
                       <option key={o}>{o}</option>
                     ))}
                   </select>
                 </label>
 
-                <label className="grid gap-2 text-sm sm:col-span-2">
+                <label className="grid gap-2 text-sm sm:col-span-2" htmlFor={`${uid}-message`}>
                   <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
                     What is costing you time right now?
                   </span>
                   <textarea
+                    id={`${uid}-message`}
                     rows={5}
-                    className={field}
+                    className={fieldClass(false)}
                     value={form.message}
                     onChange={set('message')}
                     placeholder="Stock counts, double bookings, no-shows, month-end reporting…"
@@ -204,6 +300,18 @@ export default function ContactForm() {
                 </label>
 
                 <div className="sm:col-span-2">
+                  {tried && Object.keys(errors).length ? (
+                    <p
+                      role="alert"
+                      className="mb-5 flex items-start gap-3 border border-ink/[0.12] bg-paper-warm p-4 text-sm leading-relaxed text-ink-soft"
+                    >
+                      <span className="mt-[7px] h-1 w-1 shrink-0 bg-ink" />
+                      {Object.keys(errors).length === 1
+                        ? 'One field still needs fixing before we can draft the enquiry.'
+                        : `${Object.keys(errors).length} fields still need fixing before we can draft the enquiry.`}
+                    </p>
+                  ) : null}
+
                   <button type="submit" className="btn-primary w-full sm:w-auto">
                     Send enquiry
                     <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
@@ -217,7 +325,9 @@ export default function ContactForm() {
                     </svg>
                   </button>
                   <p className="mt-4 text-xs leading-relaxed text-ink-faint">
-                    No newsletter, no drip sequence. We reply once, from a human.
+                    This opens a draft in your own mail client. Nothing is sent until you
+                    press send there. No newsletter, no drip sequence. We reply once, from
+                    a human.
                   </p>
                 </div>
               </form>
@@ -247,7 +357,7 @@ export default function ContactForm() {
                 >
                   {company.email}
                 </a>
-                <p className="text-ink-mute">{company.phone}</p>
+                {company.phone ? <p className="text-ink-mute">{company.phone}</p> : null}
                 <p className="text-ink-mute">{company.location}</p>
               </div>
             </Reveal>
@@ -272,5 +382,37 @@ export default function ContactForm() {
         </div>
       </section>
     </>
+  );
+}
+
+function Field({ uid, name, label, required = false, error, ...rest }) {
+  const id = `${uid}-${name}`;
+  const errorId = `${id}-error`;
+
+  return (
+    <label className="grid gap-2 text-sm" htmlFor={id}>
+      <span className="flex items-baseline gap-2 text-xs uppercase tracking-[0.14em] text-ink-mute">
+        {label}
+        {required ? (
+          <span className="text-[10px] normal-case tracking-normal text-ink-faint">required</span>
+        ) : null}
+      </span>
+      <input
+        id={id}
+        name={name}
+        required={required}
+        aria-required={required || undefined}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errorId : undefined}
+        className={fieldClass(Boolean(error))}
+        {...rest}
+      />
+      {error ? (
+        <span id={errorId} className="flex items-start gap-2 text-xs leading-relaxed text-ink">
+          <span className="mt-[6px] h-1 w-1 shrink-0 bg-ink" />
+          {error}
+        </span>
+      ) : null}
+    </label>
   );
 }
