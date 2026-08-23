@@ -12,6 +12,7 @@ export default function sitemap() {
     { url: `${BASE}/careers`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/privacy`, lastModified: now, priority: 0.3 },
     { url: `${BASE}/terms`, lastModified: now, priority: 0.3 },
+    { url: `${BASE}/cookies`, lastModified: now, priority: 0.3 },
     ...products.map((p) => ({
       url: `${BASE}/products/${p.slug}`,
       lastModified: now,

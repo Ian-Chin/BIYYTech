@@ -67,7 +67,13 @@ export default function Nav() {
       }`}
       onMouseLeave={closeMenu}
     >
-      <div className="shell flex items-center justify-between gap-6" style={{ height: 'var(--nav-h)' }}>
+      <div
+        className="shell-edge flex items-center justify-between gap-6"
+        style={{ height: 'var(--nav-h)' }}
+      >
+        {/* Logo and the links travel together on the left; the CTA holds the
+            right edge. */}
+        <div className="flex items-center gap-8 xl:gap-12">
         <Logo variant="light" size={28} priority />
 
         <nav className="hidden items-center gap-7 xl:gap-10 lg:flex">
@@ -77,8 +83,8 @@ export default function Nav() {
             onFocus={openMenu}
             aria-expanded={menu}
             aria-controls="product-menu"
-            className={`inline-flex items-center gap-1.5 py-2 text-sm transition-colors duration-300 hover:text-ink ${
-              menu ? 'text-ink' : 'text-ink-mute'
+            className={`inline-flex items-center gap-1.5 py-2 text-sm font-medium transition-colors duration-300 hover:text-ink ${
+              menu ? 'text-ink' : 'text-ink-soft'
             }`}
           >
             Products
@@ -101,12 +107,13 @@ export default function Nav() {
                 key={item.href}
                 href={item.href}
                 onMouseEnter={closeMenu}
-                className="link-underline py-2 text-sm text-ink-mute transition-colors duration-300 hover:text-ink"
+                className="link-underline py-2 text-sm font-medium text-ink-soft transition-colors duration-300 hover:text-ink"
               >
                 {item.label}
               </Link>
             ))}
         </nav>
+        </div>
 
         <div className="hidden items-center gap-2 lg:flex">
           <Link
@@ -148,11 +155,13 @@ export default function Nav() {
         inert={!menu}
         className={`absolute inset-x-0 top-full hidden overflow-hidden border-ink/10 bg-white transition-all duration-500 ease-smooth lg:block ${
           menu
-            ? 'pointer-events-auto max-h-[520px] border-b opacity-100'
+            ? 'pointer-events-auto max-h-[560px] border-b opacity-100'
             : 'pointer-events-none max-h-0 border-b-0 opacity-0'
         }`}
       >
-        <div className="shell grid grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-14 py-10">
+        {/* Deliberately inset further than the bar above it: the bar is a row of
+            controls that wants the edge, the panel is a block of reading. */}
+        <div className="grid w-full grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-16 px-10 py-14 md:px-14 xl:px-20 xl:gap-20">
           {/* Product list */}
           <div>
             <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">Products</p>
@@ -209,7 +218,10 @@ export default function Nav() {
 
           {/* Preview of the hovered product */}
           <div className="grid grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] gap-8 border-l border-ink/[0.08] pl-14">
-            <div className="relative aspect-[4/5] overflow-hidden bg-paper-warm">
+            {/* Fixed height rather than an aspect ratio: the panel got wider
+                when it moved out to the edges, and a 4:5 box grew with it until
+                the collapse max-height clipped the bottom of the preview. */}
+            <div className="relative h-[320px] overflow-hidden bg-paper-warm">
               {primed && products.map((p, i) => (
                 // The slot is ~294px wide but the box is 4:5 and the sources are
                 // 3:2, so object-cover scales by height and throws away most of
@@ -277,7 +289,7 @@ export default function Nav() {
         }`}
         style={{ transitionDuration: '600ms' }}
       >
-        <div className="shell flex h-full flex-col justify-between pb-10 pt-28">
+        <div className="shell-edge flex h-full flex-col justify-between pb-10 pt-28">
           <nav className="flex flex-col">
             {products.map((p, i) => (
               <Link

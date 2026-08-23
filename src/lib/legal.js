@@ -2,8 +2,9 @@
 /*  Legal pages                                                               */
 /*                                                                            */
 /*  These describe what this website actually does, which today is very       */
-/*  little: no analytics, no cookies, no third-party scripts, no client        */
-/*  storage, no backend. Every claim below is verifiable in the source.        */
+/*  little: no analytics, no cookies, no third-party scripts, no backend.      */
+/*  The single thing written to your browser is the cookie-banner choice, in   */
+/*  localStorage. Every claim below is verifiable in the source.               */
 /*                                                                            */
 /*  IMPORTANT: if you add an analytics tag, an embedded map, a hosted font,    */
 /*  a chat widget, or a real form endpoint, the privacy policy below stops     */
@@ -13,7 +14,7 @@
 /*  practitioner review before relying on it commercially.                     */
 /* -------------------------------------------------------------------------- */
 
-export const LEGAL_UPDATED = '2026-08-22';
+export const LEGAL_UPDATED = '2026-08-23';
 
 export const privacy = {
   slug: 'privacy',
@@ -25,8 +26,9 @@ export const privacy = {
     {
       heading: 'What the website collects',
       paragraphs: [
-        'Nothing, on our side. This site sets no cookies, loads no analytics, embeds no third-party scripts, and stores nothing in your browser. Fonts and images are served from our own domain, so no request leaves for another company while you read.',
-        'You can verify that. Open your browser developer tools, look at the network tab and the storage tab, and you will find no tracker and no cookie.',
+        'Nothing, on our side. This site sets no cookies, loads no analytics and embeds no third-party scripts. Fonts and images are served from our own domain, so no request leaves for another company while you read.',
+        'One thing is written to your browser: the choice you make on the cookie banner, kept in localStorage under yiy.consent. It stays on your device, is never sent to us, and exists so we do not ask you again. The cookie policy explains it in full.',
+        'You can verify all of that. Open your browser developer tools, look at the network tab and the storage tab, and you will find no tracker and no cookie.',
       ],
     },
     {
@@ -124,4 +126,61 @@ export const terms = {
   ],
 };
 
-export const legalPages = [privacy, terms];
+export const cookies = {
+  slug: 'cookies',
+  title: 'Cookies',
+  headline: 'A cookie policy for a site that sets no cookies.',
+  intro:
+    'Most cookie policies are written to cover a tracking stack the visitor cannot see. This one covers yiy.tech, which has no tracking stack. It states what the banner is for, what the single stored value is, and how to change your mind.',
+  sections: [
+    {
+      heading: 'What we set today',
+      paragraphs: [
+        'No cookies. Not ours, and none belonging to anyone else. There is no analytics tag, no advertising pixel, no embedded video, no hosted font and no chat widget from a third party. Fonts and images come from our own domain.',
+        'The chat assistant on this site is a keyword matcher running in your browser. It makes no network call and stores nothing between visits.',
+      ],
+    },
+    {
+      heading: 'The one thing stored in your browser',
+      paragraphs: [
+        'When you answer the banner, we save your answer in localStorage under the key yiy.consent. It records which categories you allowed and the date you decided, and nothing else. It is not a cookie, so it is never attached to a request and never reaches our server.',
+        'If you decline everything, that decision is what gets stored. Storing a refusal is the only way to stop asking you.',
+      ],
+    },
+    {
+      heading: 'The categories',
+      paragraphs: [
+        'Strictly necessary covers serving the page and remembering your answer. It has no switch, because the site cannot function without it and it does not track you.',
+        'Analytics would cover anonymous page and traffic statistics. Marketing would cover advertising and remarketing tags belonging to other companies. Both are off by default and neither is loaded today, so granting them right now switches nothing on. The record exists so that if we ever add one, it runs only for people who already said yes.',
+      ],
+    },
+    {
+      heading: 'Rejecting is a real option',
+      paragraphs: [
+        'Reject all sits next to Accept all, is the same size, and takes the same one click. Nothing on this site is withheld, degraded or delayed if you decline. There is no cookie wall and no second prompt.',
+        'Closing the banner without choosing is not treated as agreement. Nothing is enabled until you pick.',
+      ],
+    },
+    {
+      heading: 'Changing your mind',
+      paragraphs: [
+        'Use the Cookie preferences link in the footer of any page. It reopens the banner with your current settings, and saving overwrites them immediately.',
+        'Clearing site data in your browser removes the stored answer entirely, and the banner will ask again on your next visit.',
+      ],
+    },
+    {
+      heading: 'Server logs',
+      paragraphs: [
+        'Separately from any of this, our hosting provider writes standard web server logs when a page is served: IP address, timestamp, URL and user agent. That is how web servers work and it is not something consent can switch off. We do not profile you with it. The privacy policy covers it in more detail.',
+      ],
+    },
+    {
+      heading: 'Changes',
+      paragraphs: [
+        'If we add anything that sets a cookie or loads a third-party script, we will update this page in the same change that adds it, move the date at the top, and ask you again rather than assume an old answer still covers it.',
+      ],
+    },
+  ],
+};
+
+export const legalPages = [privacy, terms, cookies];

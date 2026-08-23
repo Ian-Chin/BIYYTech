@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CookiePreferencesButton } from '@/components/CookieConsent';
 import Logo, { Mark } from '@/components/Logo';
 import { company, products } from '@/lib/site';
 
@@ -87,6 +88,10 @@ export default function Footer() {
             <Link href="/terms" className="transition-colors hover:text-white/70">
               Terms
             </Link>
+            <Link href="/cookies" className="transition-colors hover:text-white/70">
+              Cookies
+            </Link>
+            <CookiePreferencesButton className="transition-colors hover:text-white/70" />
             <span>Photography via Pexels</span>
           </div>
         </div>

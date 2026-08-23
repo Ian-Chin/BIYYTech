@@ -1,6 +1,7 @@
 import './globals.css';
 import BackToTop from '@/components/BackToTop';
 import Chatbot from '@/components/Chatbot';
+import CookieConsent from '@/components/CookieConsent';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
 import Nav from '@/components/Nav';
@@ -100,6 +101,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <BackToTop />
         <Chatbot />
+        <CookieConsent />
       </body>
     </html>
   );

@@ -106,6 +106,13 @@
     @apply mx-auto w-full max-w-shell px-6 md:px-10 xl:px-14;
   }
 
+  /* The nav bar and its panels run to the viewport edges rather than sitting
+     inside the 1520px shell, so the logo and the CTA sit against the left and
+     right of the window. Only a small gutter, matching the floating widgets. */
+  .shell-edge {
+    @apply w-full px-5 md:px-7;
+  }
+
   .eyebrow {
     @apply inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-ink-mute;
   }
@@ -201,6 +208,17 @@
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
   }
+}
+
+/* Consent bar ----------------------------------------------------------
+   The cookie bar is fixed to the bottom edge and would otherwise sit on top
+   of the chat launcher and the back-to-top button. It publishes its own
+   height as --consent-h; anything floating in that corner carries
+   .consent-offset and moves up by exactly that much. margin-bottom rather
+   than a transform, because those elements already animate their transform. */
+.consent-offset {
+  margin-bottom: var(--consent-h, 0px);
+  transition: margin-bottom 0.5s var(--ease-smooth);
 }
 
 /* Scroll-reveal -------------------------------------------------------- */
@@ -444,5 +462,9 @@
 
   [data-parallax] {
     transform: none !important;
+  }
+
+  .consent-offset {
+    transition: none !important;
   }
 }
