@@ -1,7 +1,6 @@
 import JsonLd from '@/components/JsonLd';
 import LegalPage from '@/components/LegalPage';
 import { breadcrumbLd, graph, pageMeta } from '@/lib/seo';
-import { privacy } from '@/lib/legal';
 
 export const metadata = pageMeta({
   title: 'Privacy',
@@ -21,7 +20,7 @@ export default function PrivacyPage() {
           ]),
         )}
       />
-      <LegalPage doc={privacy} />
+      <LegalPage slug="privacy" />
     </>
   );
 }

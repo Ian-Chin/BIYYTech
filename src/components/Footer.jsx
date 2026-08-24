@@ -1,34 +1,40 @@
+'use client';
+
 import Link from 'next/link';
 import { CookiePreferencesButton } from '@/components/CookieConsent';
+import LanguageToggle from '@/components/LanguageToggle';
 import Logo, { Mark } from '@/components/Logo';
-import { company, products } from '@/lib/site';
-
-const columns = [
-  {
-    title: 'Products',
-    links: products.map((p) => ({ label: p.name, href: p.href })),
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'Blog', href: '/blog' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Why YiY', href: '/#why' },
-      { label: 'Contact', href: '/contact' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { label: 'Results', href: '/#results' },
-      { label: 'How rollout works', href: '/#process' },
-      { label: 'FAQ', href: '/#faq' },
-      { label: 'Support', href: `mailto:${company.email}` },
-    ],
-  },
-];
+import { useLocale } from '@/lib/i18n';
 
 export default function Footer() {
+  const { t, content } = useLocale();
+  const { company, products } = content;
+
+  const columns = [
+    {
+      title: t('common.products'),
+      links: products.map((p) => ({ label: p.name, href: p.href })),
+    },
+    {
+      title: t('footer.companyTitle'),
+      links: [
+        { label: t('common.blog'), href: '/blog' },
+        { label: t('common.careers'), href: '/careers' },
+        { label: t('footer.whyYiy'), href: '/#why' },
+        { label: t('common.contact'), href: '/contact' },
+      ],
+    },
+    {
+      title: t('footer.resourcesTitle'),
+      links: [
+        { label: t('footer.results'), href: '/#results' },
+        { label: t('footer.rollout'), href: '/#process' },
+        { label: t('footer.faqLink'), href: '/#faq' },
+        { label: t('footer.support'), href: `mailto:${company.email}` },
+      ],
+    },
+  ];
+
   return (
     <footer className="relative overflow-hidden bg-ink text-white">
 
@@ -40,7 +46,7 @@ export default function Footer() {
       <div className="shell relative py-20">
         <div className="grid gap-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <Logo variant="dark" size={30} />
+            <Logo variant="dark" size={30} label={t('common.logoHome')} />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/55">
               {company.tagline}
             </p>
@@ -53,6 +59,9 @@ export default function Footer() {
                 {company.email}
               </a>
             </div>
+            {/* Repeated here because the masthead toggle scrolls away, and the
+                footer is where visitors look for site-wide settings. */}
+            <LanguageToggle tone="dark" className="mt-7" />
           </div>
 
           {columns.map((col) => (
@@ -78,21 +87,19 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-7 text-xs text-white/35 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} {company.legal}. All rights reserved.
-          </p>
+          <p>{t('footer.rights', { year: new Date().getFullYear(), legal: company.legal })}</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="transition-colors hover:text-white/70">
-              Privacy
+              {t('footer.privacy')}
             </Link>
             <Link href="/terms" className="transition-colors hover:text-white/70">
-              Terms
+              {t('footer.terms')}
             </Link>
             <Link href="/cookies" className="transition-colors hover:text-white/70">
-              Cookies
+              {t('footer.cookies')}
             </Link>
             <CookiePreferencesButton className="transition-colors hover:text-white/70" />
-            <span>Photography via Pexels</span>
+            <span>{t('footer.photography')}</span>
           </div>
         </div>
       </div>

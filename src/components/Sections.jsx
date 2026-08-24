@@ -7,15 +7,8 @@ import BackgroundVideo from '@/components/BackgroundVideo';
 import Carousel from '@/components/Carousel';
 import { Mark } from '@/components/Logo';
 import { CountUp, Parallax, Reveal, SplitWords, onScrollFrame } from '@/components/motion';
-import {
-  comparison,
-  faqs,
-  industries,
-  pillars,
-  rollout,
-  stats,
-  testimonials,
-} from '@/lib/site';
+import { bySlug } from '@/lib/content';
+import { useLocale } from '@/lib/i18n';
 
 /* -------------------------------------------------------------------------- */
 /*  Section heading                                                           */
@@ -55,10 +48,34 @@ export function SectionHead({ eyebrow, title, body, align = 'left', tone = 'ligh
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Home products intro                                                       */
+/* -------------------------------------------------------------------------- */
+
+export function ProductsIntro() {
+  const { t } = useLocale();
+
+  return (
+    <section id="products" className="relative bg-paper pt-24 md:pt-32">
+      <div className="shell">
+        <SectionHead
+          align="center"
+          eyebrow={t('home.productsEyebrow')}
+          title={t('home.productsTitle')}
+          body={t('home.productsBody')}
+        />
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Stats band                                                                */
 /* -------------------------------------------------------------------------- */
 
 export function StatsBand() {
+  const { t, content } = useLocale();
+  const { stats } = content;
+
   return (
     <section id="results" className="relative overflow-hidden bg-ink py-20 text-white md:py-24">
       <Parallax speed={70} className="pointer-events-none absolute -right-24 -top-24 opacity-[0.06]">
@@ -82,9 +99,7 @@ export function StatsBand() {
         </div>
         <Reveal delay={520}>
           <p className="mt-12 max-w-2xl text-xs leading-relaxed text-white/30">
-            Figures reflect typical results reported by YiY Tech pilot customers across
-            retail, wholesale and service businesses. Your numbers will depend on your
-            starting point. We will tell you what to expect during the walkthrough.
+            {t('stats.note')}
           </p>
         </Reveal>
       </div>
@@ -97,13 +112,16 @@ export function StatsBand() {
 /* -------------------------------------------------------------------------- */
 
 export function Pillars() {
+  const { t, content } = useLocale();
+  const { pillars } = content;
+
   return (
     <section id="why" className="relative overflow-hidden bg-paper-warm py-24 md:py-32">
       <div className="shell relative">
         <SectionHead
-          eyebrow="Why YiY"
-          title="Enterprise discipline, sized for a business that still knows every customer."
-          body="Most SME software is either a toy or a cut-down ERP. We build the middle: rigorous where it matters (stock ledgers, audit trails, permissions) and ruthlessly simple everywhere else."
+          eyebrow={t('pillars.eyebrow')}
+          title={t('pillars.title')}
+          body={t('pillars.body')}
         />
 
         {/* Numbered editorial list, not a card grid. Six boxes of identical
@@ -138,19 +156,22 @@ export function Pillars() {
 /* -------------------------------------------------------------------------- */
 
 export function Industries() {
+  const { t, content } = useLocale();
+  const { industries } = content;
+
   return (
     <section className="relative overflow-hidden bg-paper py-24 md:py-32">
       <div className="shell relative">
         <div className="flex flex-wrap items-end justify-between gap-8">
           <SectionHead
-            eyebrow="Who runs on YiY"
-            title="Different floors. Same operating problem."
-            body="Stock that nobody trusts, or a calendar that nobody controls. Pick the one that is costing you money this month."
+            eyebrow={t('industries.eyebrow')}
+            title={t('industries.title')}
+            body={t('industries.body')}
           />
         </div>
 
         <Carousel
-          ariaLabel="Industries served"
+          ariaLabel={t('industries.carouselLabel')}
           autoplay={4200}
           className="mt-14"
           trackClassName="px-1"
@@ -186,11 +207,13 @@ export function Industries() {
 /*  Feature strip, sticky scroll storytelling                                */
 /* -------------------------------------------------------------------------- */
 
-export function FeatureStrip({ product, tone = 'light' }) {
+export function FeatureStrip({ slug, tone = 'light' }) {
+  const { t, content } = useLocale();
+  const product = bySlug(content.products, slug);
   const dark = tone === 'dark';
   // The first capability carries the section; the other three support it. A
   // 2x2 grid of equal cards claimed they all mattered the same amount.
-  const [lead, ...rest] = product.features ?? [];
+  const [lead, ...rest] = product?.features ?? [];
   if (!lead) return null;
   const shell = dark ? 'border-white/10 bg-white/[0.03]' : 'border-ink/10 bg-white';
   const body = dark ? 'text-white/55' : 'text-ink-mute';
@@ -202,8 +225,8 @@ export function FeatureStrip({ product, tone = 'light' }) {
     >
       <div className="shell relative">
         <SectionHead
-          eyebrow={`Inside ${product.short}`}
-          title="The four things your team will actually touch every day."
+          eyebrow={t('features.eyebrow', { name: product.short })}
+          title={t('features.title')}
           tone={tone}
         />
 
@@ -285,16 +308,24 @@ export function FeatureStrip({ product, tone = 'light' }) {
 /* -------------------------------------------------------------------------- */
 
 export function Testimonials() {
+  const { t, content } = useLocale();
+  const { testimonials } = content;
+
   return (
     <section className="relative overflow-hidden bg-ink py-24 text-white md:py-32">
       <div className="shell relative">
         <SectionHead
-          eyebrow="From the floor"
-          title="What changed after the second week."
+          eyebrow={t('testimonials.eyebrow')}
+          title={t('testimonials.title')}
           tone="dark"
         />
 
-        <Carousel ariaLabel="Customer stories" autoplay={6500} tone="dark" className="mt-14">
+        <Carousel
+          ariaLabel={t('testimonials.carouselLabel')}
+          autoplay={6500}
+          tone="dark"
+          className="mt-14"
+        >
           {testimonials.map((t) => (
             <figure
               key={t.quote}
@@ -332,19 +363,24 @@ export function Testimonials() {
 /* -------------------------------------------------------------------------- */
 
 export function Comparison() {
+  const { t, content } = useLocale();
+  const { comparison } = content;
+
   return (
     <section className="relative overflow-hidden bg-paper py-24 md:py-32">
       <div className="shell relative">
-        <SectionHead
-          eyebrow="The honest comparison"
-          title="Four ways to run operations. Here is where each one breaks."
-        />
+        <SectionHead eyebrow={t('comparison.eyebrow')} title={t('comparison.title')} />
 
         <Reveal delay={120} className="mt-14 overflow-x-auto">
           <table className="w-full min-w-[720px] border-collapse text-left">
             <thead>
               <tr className="border-b border-ink/15">
-                {['Approach', 'Cost', 'Time to value', 'Where it lands'].map((h) => (
+                {[
+                  t('comparison.headApproach'),
+                  t('comparison.headCost'),
+                  t('comparison.headSpeed'),
+                  t('comparison.headVerdict'),
+                ].map((h) => (
                   <th
                     key={h}
                     scope="col"
@@ -407,6 +443,8 @@ export function Comparison() {
 /* -------------------------------------------------------------------------- */
 
 export function Process() {
+  const { t, content } = useLocale();
+  const { rollout } = content;
   const [step, setStep] = useState(0);
   const railRef = useRef(null);
 
@@ -426,9 +464,9 @@ export function Process() {
       <div className="shell relative">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead
-            eyebrow="Rollout"
-            title="Two weeks. Four steps. No consultants living in your office."
-            body="Every step has an owner, a date and a definition of done before we start."
+            eyebrow={t('process.eyebrow')}
+            title={t('process.title')}
+            body={t('process.body')}
             tone="dark"
           />
 
@@ -436,7 +474,7 @@ export function Process() {
             <div className="flex items-baseline gap-3 border border-white/15 px-6 py-4">
               <span className="display text-4xl">14</span>
               <span className="max-w-[12ch] text-xs leading-tight text-white/45">
-                days from walkthrough to every branch live
+                {t('process.badge')}
               </span>
             </div>
           </Reveal>
@@ -520,15 +558,17 @@ export function Process() {
 /* -------------------------------------------------------------------------- */
 
 export function Faq() {
+  const { t, content } = useLocale();
+  const { faqs } = content;
   const [open, setOpen] = useState(0);
 
   return (
     <section id="faq" className="relative overflow-hidden bg-paper py-24 md:py-32">
       <div className="shell relative grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
         <SectionHead
-          eyebrow="Questions"
-          title="The things people ask before they say yes."
-          body="If yours is not here, ask it on the walkthrough. We would rather answer it before you buy."
+          eyebrow={t('faq.eyebrow')}
+          title={t('faq.title')}
+          body={t('faq.body')}
         />
 
         <div className="border-t border-ink/[0.12]">
@@ -580,6 +620,8 @@ export function Faq() {
 /* -------------------------------------------------------------------------- */
 
 export function ClosingCta() {
+  const { t } = useLocale();
+
   return (
     <section className="relative isolate overflow-hidden bg-ink text-white">
       {/* Below the fold on every page, so the clip only loads if you get here. */}
@@ -600,21 +642,20 @@ export function ClosingCta() {
 
         <SplitWords
           as="h2"
-          text="Ready to stop guessing what you have and who is coming in?"
+          text={t('cta.title')}
           stagger={34}
           className="display mx-auto mt-8 block max-w-[18ch] text-[clamp(2.1rem,5.4vw,4.25rem)]"
         />
 
         <Reveal delay={280}>
           <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-white/55">
-            Thirty minutes, your actual numbers, and a straight answer on whether YiY is
-            worth it for your business. No slide deck.
+            {t('cta.body')}
           </p>
         </Reveal>
 
         <Reveal delay={400} className="mt-10 flex flex-wrap justify-center gap-3">
           <Link href="/contact" className="btn bg-white text-ink hover:-translate-y-0.5">
-            Book a walkthrough
+            {t('common.walkthrough')}
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
               <path
                 d="M9 1l4 4-4 4M13 5H1"
@@ -626,7 +667,7 @@ export function ClosingCta() {
             </svg>
           </Link>
           <Link href="/#products" className="btn-invert">
-            Compare the products
+            {t('common.compareProducts')}
           </Link>
         </Reveal>
       </div>

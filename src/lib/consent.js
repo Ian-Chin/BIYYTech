@@ -20,21 +20,12 @@ export const CONSENT_EVENT = 'yiy:consent';
 /**
  * Necessary is not listed: it is not optional and cannot be declined. It
  * covers the consent record itself and anything required to serve the page.
+ *
+ * The id is the storage contract and must not change. The label and
+ * description shown in the banner live in `ui.js` under `consent.<id>Label`
+ * and `consent.<id>Body`, because they are translated.
  */
-export const CATEGORIES = [
-  {
-    id: 'analytics',
-    label: 'Analytics',
-    description:
-      'Anonymous page and traffic statistics, so we can see which pages are worth writing more of. None are loaded today.',
-  },
-  {
-    id: 'marketing',
-    label: 'Marketing',
-    description:
-      'Advertising and remarketing tags belonging to other companies. We do not run any, and we would rather keep it that way.',
-  },
-];
+export const CATEGORIES = [{ id: 'analytics' }, { id: 'marketing' }];
 
 export const DENY_ALL = { analytics: false, marketing: false };
 export const ALLOW_ALL = { analytics: true, marketing: true };

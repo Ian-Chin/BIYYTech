@@ -11,6 +11,7 @@ import {
   readConsent,
   writeConsent,
 } from '@/lib/consent';
+import { useLocale } from '@/lib/i18n';
 
 /**
  * Full-width consent bar, first visit only.
@@ -24,6 +25,7 @@ import {
  * already answered.
  */
 export default function CookieConsent() {
+  const { t } = useLocale();
   const [open, setOpen] = useState(false);
   const [panel, setPanel] = useState(false);
   const [prefs, setPrefs] = useState(DENY_ALL);
@@ -90,21 +92,19 @@ export default function CookieConsent() {
       ref={barRef}
       role="dialog"
       aria-modal="false"
-      aria-label="Cookie preferences"
+      aria-label={t('consent.dialogLabel')}
       className="fixed inset-x-0 bottom-0 z-[80] border-t border-white/10 bg-ink text-white shadow-[0_-24px_60px_-32px_rgba(11,11,12,0.8)]"
     >
       <div className="shell py-6 md:py-7">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/35">
-              Cookies
+              {t('consent.eyebrow')}
             </p>
             <p className="mt-3 text-sm leading-relaxed text-white/70">
-              This site sets no tracking cookies and loads no third-party scripts. We keep the
-              choice below so that if we ever add analytics, it only runs for people who agreed.
-              Declining changes nothing about what you can read here.{' '}
+              {t('consent.body')}{' '}
               <Link href="/cookies" className="link-underline text-white">
-                Cookie policy
+                {t('consent.policyLink')}
               </Link>
               .
             </p>
@@ -118,17 +118,17 @@ export default function CookieConsent() {
               aria-controls={panelId}
               className="link-underline self-start text-sm text-white/60 transition-colors hover:text-white sm:self-auto"
             >
-              Manage preferences
+              {t('consent.manage')}
             </button>
             <button type="button" onClick={() => decide(DENY_ALL)} className="btn-invert">
-              Reject all
+              {t('consent.rejectAll')}
             </button>
             <button
               type="button"
               onClick={() => decide(ALLOW_ALL)}
               className="btn bg-white text-ink hover:-translate-y-0.5"
             >
-              Accept all
+              {t('consent.acceptAll')}
             </button>
           </div>
         </div>
@@ -140,16 +140,19 @@ export default function CookieConsent() {
         >
           <div className="grid gap-6 md:grid-cols-3">
             <Category
-              label="Strictly necessary"
-              description="Serving the page and remembering this choice. Always on, and there is no switch for it because the site cannot work without it."
+              label={t('consent.necessaryLabel')}
+              description={t('consent.necessaryBody')}
+              lockedLabel={t('consent.alwaysOn')}
               checked
               locked
             />
+            {/* The category ids in consent.js are the storage contract; their
+                wording lives in the dictionary so it can be translated. */}
             {CATEGORIES.map((cat) => (
               <Category
                 key={cat.id}
-                label={cat.label}
-                description={cat.description}
+                label={t(`consent.${cat.id}Label`)}
+                description={t(`consent.${cat.id}Body`)}
                 checked={prefs[cat.id]}
                 onChange={(next) => setPrefs((p) => ({ ...p, [cat.id]: next }))}
               />
@@ -158,7 +161,7 @@ export default function CookieConsent() {
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
             <button type="button" onClick={() => decide(prefs)} className="btn-invert">
-              Save preferences
+              {t('consent.save')}
             </button>
           </div>
         </div>
@@ -167,7 +170,7 @@ export default function CookieConsent() {
   );
 }
 
-function Category({ label, description, checked, onChange, locked = false }) {
+function Category({ label, description, checked, onChange, locked = false, lockedLabel }) {
   return (
     <label
       className={`flex gap-3.5 border border-white/10 bg-white/[0.03] p-4 ${
@@ -184,7 +187,7 @@ function Category({ label, description, checked, onChange, locked = false }) {
       <span>
         <span className="block text-sm font-medium text-white">
           {label}
-          {locked ? <span className="ml-2 text-[11px] text-white/40">Always on</span> : null}
+          {locked ? <span className="ml-2 text-[11px] text-white/40">{lockedLabel}</span> : null}
         </span>
         <span className="mt-1.5 block text-xs leading-relaxed text-white/50">{description}</span>
       </span>
@@ -194,9 +197,11 @@ function Category({ label, description, checked, onChange, locked = false }) {
 
 /** Footer / policy-page trigger that brings the bar back with the panel open. */
 export function CookiePreferencesButton({ className = '' }) {
+  const { t } = useLocale();
+
   return (
     <button type="button" onClick={openConsentPreferences} className={className}>
-      Cookie preferences
+      {t('consent.preferencesButton')}
     </button>
   );
 }

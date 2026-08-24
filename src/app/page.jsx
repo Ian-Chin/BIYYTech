@@ -9,7 +9,7 @@ import {
   Industries,
   Pillars,
   Process,
-  SectionHead,
+  ProductsIntro,
   StatsBand,
   Testimonials,
 } from '@/components/Sections';
@@ -25,24 +25,15 @@ export default function HomePage() {
 
       <Hero />
 
-      <section id="products" className="relative bg-paper pt-24 md:pt-32">
-        <div className="shell">
-          <SectionHead
-            align="center"
-            eyebrow="Products"
-            title="Two systems live today. A third listening in the background."
-            body="Buy one, buy both. They share an account and a login, and once Data & Intelligence lands, one intelligence layer over everything your business does."
-          />
-        </div>
-      </section>
+      <ProductsIntro />
 
-      <ProductSection product={stock} />
-      <FeatureStrip product={stock} />
+      <ProductSection slug={stock.slug} />
+      <FeatureStrip slug={stock.slug} />
 
-      <ProductSection product={desk} flip />
-      <FeatureStrip product={desk} tone="dark" />
+      <ProductSection slug={desk.slug} flip />
+      <FeatureStrip slug={desk.slug} tone="dark" />
 
-      <ProductSection product={signal} />
+      <ProductSection slug={signal.slug} />
 
       <StatsBand />
       <Pillars />

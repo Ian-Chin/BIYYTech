@@ -154,9 +154,7 @@ export const productLd = (product) => ({
         'Flat monthly price per outlet. Quoted during the walkthrough based on outlet count and products.',
     },
     availability:
-      product.status === 'Coming soon'
-        ? 'https://schema.org/PreOrder'
-        : 'https://schema.org/InStock',
+      product.soon ? 'https://schema.org/PreOrder' : 'https://schema.org/InStock',
   },
 });
 

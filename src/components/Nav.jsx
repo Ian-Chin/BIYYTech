@@ -4,10 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import LanguageToggle from '@/components/LanguageToggle';
 import Logo from '@/components/Logo';
-import { nav, products } from '@/lib/site';
+import { useLocale } from '@/lib/i18n';
 
 export default function Nav() {
+  const { t, content } = useLocale();
+  const { nav, products } = content;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -74,7 +77,7 @@ export default function Nav() {
         {/* Logo and the links travel together on the left; the CTA holds the
             right edge. */}
         <div className="flex items-center gap-8 xl:gap-12">
-        <Logo variant="light" size={28} priority />
+        <Logo variant="light" size={28} priority label={t('common.logoHome')} />
 
         <nav className="hidden items-center gap-7 xl:gap-10 lg:flex">
           <Link
@@ -87,7 +90,7 @@ export default function Nav() {
               menu ? 'text-ink' : 'text-ink-soft'
             }`}
           >
-            Products
+            {t('common.products')}
             <svg
               width="10"
               height="6"
@@ -101,7 +104,7 @@ export default function Nav() {
           </Link>
 
           {nav
-            .filter((item) => item.label !== 'Products')
+            .slice(1)
             .map((item) => (
               <Link
                 key={item.href}
@@ -120,36 +123,42 @@ export default function Nav() {
             href="/contact"
             className="btn bg-ink px-5 py-2.5 text-[13px] text-white transition-all duration-500 ease-smooth hover:-translate-y-0.5 active:scale-95"
           >
-            Book a walkthrough
+            {t('common.walkthrough')}
           </Link>
+          <LanguageToggle className="ml-1" />
         </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          className="relative z-50 flex h-10 w-10 items-center justify-center border border-ink/[0.12] lg:hidden"
-        >
-          <span className="relative block h-3 w-4">
-            <span
-              className={`absolute left-0 block h-px w-full bg-ink transition-all duration-500 ease-smooth ${
-                open ? 'top-1.5 rotate-45' : 'top-0'
-              }`}
-            />
-            <span
-              className={`absolute left-0 block h-px w-full bg-ink transition-all duration-500 ease-smooth ${
-                open ? 'top-1.5 -rotate-45' : 'top-3'
-              }`}
-            />
-          </span>
-        </button>
+        {/* Both controls sit above the mobile sheet so the language can still be
+            changed while the menu is open. */}
+        <div className="relative z-50 flex items-center gap-2 lg:hidden">
+          <LanguageToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? t('nav.closeMenu') : t('nav.openMenu')}
+            aria-expanded={open}
+            className="flex h-10 w-10 items-center justify-center border border-ink/[0.12]"
+          >
+            <span className="relative block h-3 w-4">
+              <span
+                className={`absolute left-0 block h-px w-full bg-ink transition-all duration-500 ease-smooth ${
+                  open ? 'top-1.5 rotate-45' : 'top-0'
+                }`}
+              />
+              <span
+                className={`absolute left-0 block h-px w-full bg-ink transition-all duration-500 ease-smooth ${
+                  open ? 'top-1.5 -rotate-45' : 'top-3'
+                }`}
+              />
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Full-width product mega panel ----------------------------------- */}
       <div
         id="product-menu"
-        aria-label="Products"
+        aria-label={t('nav.panelLabel')}
         onMouseEnter={openMenu}
         onMouseLeave={closeMenu}
         inert={!menu}
@@ -164,7 +173,9 @@ export default function Nav() {
         <div className="grid w-full grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-16 px-10 py-14 md:px-14 xl:px-20 xl:gap-20">
           {/* Product list */}
           <div>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">Products</p>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              {t('common.products')}
+            </p>
             <ul className="mt-5">
               {products.map((p, i) => (
                 <li key={p.slug}>
@@ -186,9 +197,9 @@ export default function Nav() {
                     <span className="min-w-0 flex-1">
                       <span className="flex items-center gap-3">
                         <span className="text-lg font-semibold tracking-tighter">{p.name}</span>
-                        {p.status === 'Coming soon' ? (
+                        {p.soon ? (
                           <span className="border border-ink/15 px-1.5 py-px text-[9px] uppercase tracking-[0.16em] text-ink-faint">
-                            Soon
+                            {t('common.soon')}
                           </span>
                         ) : null}
                       </span>
@@ -265,7 +276,7 @@ export default function Nav() {
                 href={product.href}
                 className="mt-6 inline-flex items-center gap-2 self-start border-b border-ink pb-1 text-sm font-medium"
               >
-                Explore {product.short}
+                {t('common.exploreProduct', { name: product.short })}
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
                   <path
                     d="M9 1l4 4-4 4M13 5H1"
@@ -313,7 +324,7 @@ export default function Nav() {
               </Link>
             ))}
             {nav
-              .filter((item) => item.label !== 'Products')
+              .slice(1)
               .map((item, i) => (
                 <Link
                   key={item.href}
@@ -332,7 +343,7 @@ export default function Nav() {
           </nav>
 
           <Link href="/contact" className="btn-primary w-full">
-            Book a walkthrough
+            {t('common.walkthrough')}
           </Link>
         </div>
       </div>

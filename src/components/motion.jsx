@@ -118,9 +118,58 @@ export function Reveal({
    SplitWords: headline that assembles word by word
 --------------------------------------------------------------------------- */
 
+// Every token is an inline-block, which is also what keeps a token from
+// wrapping mid-word. Chinese has no spaces, so splitting on them would produce
+// a single token for the whole headline and overflow the container. CJK is
+// therefore split per character, with Latin runs inside it kept whole.
+const CJK = /[　-〿㐀-鿿＀-￯]/;
+// A normal space would let the browser break between token and space, which is
+// why the English path has always joined words with a non-breaking one.
+const NBSP = ' ';
+
+function tokenize(text) {
+  const source = String(text);
+
+  if (!CJK.test(source)) {
+    const words = source.split(' ');
+    return words.map((word, i) => (i < words.length - 1 ? word + NBSP : word));
+  }
+
+  const tokens = [];
+  let latin = '';
+
+  const flush = () => {
+    if (latin) {
+      tokens.push(latin);
+      latin = '';
+    }
+  };
+
+  for (const char of source) {
+    if (CJK.test(char)) {
+      flush();
+      tokens.push(char);
+    } else if (char === ' ') {
+      // A space belongs to whatever preceded it, so it never becomes a token
+      // of its own and never starts a line.
+      if (latin) {
+        tokens.push(latin + NBSP);
+        latin = '';
+      } else if (tokens.length) {
+        tokens[tokens.length - 1] += NBSP;
+      }
+    } else {
+      latin += char;
+    }
+  }
+
+  flush();
+  return tokens;
+}
+
 export function SplitWords({ text, className = '', stagger = 55, delay = 0, as: Tag = 'span' }) {
   const [ref, visible] = useInView({ threshold: 0.25 });
-  const words = String(text).split(' ');
+  const words = tokenize(text);
 
   return (
     <Tag ref={ref} data-visible={visible ? 'true' : 'false'} className={className}>
@@ -128,7 +177,6 @@ export function SplitWords({ text, className = '', stagger = 55, delay = 0, as: 
         <span key={`${word}-${i}`} className="inline-block">
           <span className="word" style={{ transitionDelay: `${delay + i * stagger}ms` }}>
             {word}
-            {i < words.length - 1 ? ' ' : ''}
           </span>
         </span>
       ))}

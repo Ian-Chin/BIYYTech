@@ -1,7 +1,6 @@
 import JsonLd from '@/components/JsonLd';
 import LegalPage from '@/components/LegalPage';
 import { breadcrumbLd, graph, pageMeta } from '@/lib/seo';
-import { cookies } from '@/lib/legal';
 
 export const metadata = pageMeta({
   title: 'Cookies',
@@ -21,7 +20,7 @@ export default function CookiesPage() {
           ]),
         )}
       />
-      <LegalPage doc={cookies} />
+      <LegalPage slug="cookies" />
     </>
   );
 }

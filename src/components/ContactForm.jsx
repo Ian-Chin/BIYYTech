@@ -4,16 +4,7 @@ import Image from 'next/image';
 import { useId, useRef, useState } from 'react';
 import HeroFrame from '@/components/HeroFrame';
 import { Parallax, Reveal, SplitWords } from '@/components/motion';
-import { company, products } from '@/lib/site';
-
-const INTERESTS = [
-  'Inventory & Stock Management',
-  'Booking & Operations',
-  'Both',
-  'Not sure yet',
-];
-
-const SIZES = ['1 outlet', '2–5 outlets', '6–20 outlets', '20+ outlets'];
+import { useLocale } from '@/lib/i18n';
 
 const FIELD =
   'w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition-all duration-500 ease-smooth placeholder:text-ink-faint focus:ring-4 focus:ring-ink/5';
@@ -29,18 +20,23 @@ const fieldClass = (invalid) =>
 /** Deliberately permissive. The mail client and our reply are the real check. */
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-function validate(form) {
+function validate(form, t) {
   const errors = {};
-  if (!form.name.trim()) errors.name = 'Tell us who you are.';
-  if (!form.company.trim()) errors.company = 'Which business is this for?';
-  if (!form.email.trim()) errors.email = 'We need somewhere to reply.';
-  else if (!EMAIL.test(form.email.trim())) errors.email = 'That does not look like an email address.';
+  if (!form.name.trim()) errors.name = t('contact.errName');
+  if (!form.company.trim()) errors.company = t('contact.errBusiness');
+  if (!form.email.trim()) errors.email = t('contact.errEmail');
+  else if (!EMAIL.test(form.email.trim())) errors.email = t('contact.errEmailFormat');
   if (form.phone.trim() && !/[0-9]{6}/.test(form.phone.replace(/[^0-9]/g, '')))
-    errors.phone = 'Leave this blank, or give a number we can actually dial.';
+    errors.phone = t('contact.errPhone');
   return errors;
 }
 
 export default function ContactForm() {
+  const { t, locale, content } = useLocale();
+  const { company, products } = content;
+  const interests = t('contact.interests');
+  const sizes = t('contact.sizes');
+
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState({});
   const [tried, setTried] = useState(false);
@@ -49,13 +45,16 @@ export default function ContactForm() {
   const formRef = useRef(null);
   const uid = useId();
 
+  // The two dropdowns hold an index rather than a label, so switching language
+  // moves the selection with it instead of stranding a Chinese answer in an
+  // English enquiry.
   const [form, setForm] = useState({
     name: '',
     company: '',
     email: '',
     phone: '',
-    interest: INTERESTS[0],
-    size: SIZES[1],
+    interest: 0,
+    size: 1,
     message: '',
   });
 
@@ -64,30 +63,35 @@ export default function ContactForm() {
     setForm((f) => {
       const next = { ...f, [key]: value };
       // Only re-validate live once the visitor has already been shown errors.
-      if (tried) setErrors(validate(next));
+      if (tried) setErrors(validate(next, t));
       return next;
     });
   };
 
+  const setIndex = (key) => (e) => {
+    const index = Number(e.target.value);
+    setForm((f) => ({ ...f, [key]: index }));
+  };
+
   const compose = (f) =>
     [
-      `Name: ${f.name}`,
-      `Business: ${f.company}`,
-      `Email: ${f.email}`,
-      `Phone: ${f.phone || '—'}`,
-      `Interested in: ${f.interest}`,
-      `Size: ${f.size}`,
+      `${t('contact.mailName')}: ${f.name}`,
+      `${t('contact.mailBusiness')}: ${f.company}`,
+      `${t('contact.mailEmail')}: ${f.email}`,
+      `${t('contact.mailPhone')}: ${f.phone || '—'}`,
+      `${t('contact.mailInterest')}: ${interests[f.interest]}`,
+      `${t('contact.mailSize')}: ${sizes[f.size]}`,
       '',
-      f.message || '(no message)',
+      f.message || t('contact.mailNoMessage'),
     ].join('\n');
 
-  const subject = `Walkthrough request: ${form.company || form.name}`;
+  const subject = t('contact.mailSubject', { who: form.company || form.name });
 
   const onSubmit = (e) => {
     e.preventDefault();
     setTried(true);
 
-    const found = validate(form);
+    const found = validate(form, t);
     setErrors(found);
     if (Object.keys(found).length) {
       // Move the visitor to the first thing that needs fixing.
@@ -110,7 +114,9 @@ export default function ContactForm() {
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(`To: ${company.email}\nSubject: ${subject}\n\n${draftBody}`);
+      await navigator.clipboard.writeText(
+        `To: ${company.email}\nSubject: ${subject}\n\n${draftBody}`,
+      );
       setCopied(true);
       setTimeout(() => setCopied(false), 2400);
     } catch {
@@ -137,22 +143,20 @@ export default function ContactForm() {
           <Reveal>
             <span className="eyebrow text-white/45">
               <span className="h-px w-6 bg-white/30" />
-              Book a walkthrough
+              {t('contact.eyebrow')}
             </span>
           </Reveal>
 
           <SplitWords
             as="h1"
-            text="Thirty minutes. Your numbers. A straight answer."
+            text={t('contact.title')}
             stagger={38}
             className="display mt-6 block max-w-[17ch] text-[clamp(1.9rem,4vw,3.4rem)]"
           />
 
           <Reveal delay={220}>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-white/60 md:text-lg">
-              We will walk your floor or your front desk, map how stock and bookings move
-              today, and tell you whether YiY is worth it for your business. If it is not,
-              we will say so.
+              {t('contact.body')}
             </p>
           </Reveal>
         </div>
@@ -165,24 +169,22 @@ export default function ContactForm() {
             {sent ? (
               <div className="rounded-2xl border border-ink/[0.12] bg-white p-10">
                 <h2 className="text-2xl font-semibold tracking-tighter">
-                  We opened a draft in your mail client.
+                  {t('contact.sentTitle')}
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-ink-mute">
-                  Nothing has reached us yet. Press send on that draft and we will reply
-                  within one working day.
+                  {t('contact.sentBody')}
                 </p>
 
                 <div className="mt-8 border-t border-ink/[0.12] pt-7">
                   <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
-                    If no draft appeared
+                    {t('contact.noDraftTitle')}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-ink-mute">
-                    Some machines have no mail app configured. Copy the enquiry and send it
-                    from wherever you do read mail, to{' '}
+                    {t('contact.noDraftBody')}{' '}
                     <a className="link-underline text-ink" href={`mailto:${company.email}`}>
                       {company.email}
                     </a>
-                    .
+                    {locale === 'zh' ? '。' : '.'}
                   </p>
 
                   <pre className="mt-5 max-h-56 overflow-auto whitespace-pre-wrap border border-ink/[0.12] bg-paper-warm p-4 text-xs leading-relaxed text-ink-soft">
@@ -191,105 +193,116 @@ export default function ContactForm() {
 
                   <div className="mt-6 flex flex-wrap gap-3">
                     <button type="button" onClick={copy} className="btn-primary">
-                      {copied ? 'Copied' : 'Copy the enquiry'}
+                      {copied ? t('contact.copied') : t('contact.copy')}
                     </button>
                     <button type="button" onClick={() => setSent(false)} className="btn-ghost">
-                      Edit the enquiry
+                      {t('contact.edit')}
                     </button>
                   </div>
                 </div>
               </div>
             ) : (
-              <form ref={formRef} onSubmit={onSubmit} noValidate className="grid gap-5 sm:grid-cols-2">
-                <p className="text-xs text-ink-faint sm:col-span-2">
-                  Fields marked required are the ones we need to reply. Everything else
-                  helps us come prepared.
-                </p>
+              <form
+                ref={formRef}
+                onSubmit={onSubmit}
+                noValidate
+                className="grid gap-5 sm:grid-cols-2"
+              >
+                <p className="text-xs text-ink-faint sm:col-span-2">{t('contact.preamble')}</p>
 
                 <Field
                   uid={uid}
                   name="name"
-                  label="Name"
+                  label={t('contact.name')}
+                  requiredLabel={t('contact.required')}
                   required
                   error={errors.name}
                   value={form.name}
                   onChange={set('name')}
-                  placeholder="Your name"
+                  placeholder={t('contact.namePlaceholder')}
                   autoComplete="name"
                 />
 
                 <Field
                   uid={uid}
                   name="company"
-                  label="Business"
+                  label={t('contact.business')}
+                  requiredLabel={t('contact.required')}
                   required
                   error={errors.company}
                   value={form.company}
                   onChange={set('company')}
-                  placeholder="Business name"
+                  placeholder={t('contact.businessPlaceholder')}
                   autoComplete="organization"
                 />
 
                 <Field
                   uid={uid}
                   name="email"
-                  label="Email"
+                  label={t('contact.email')}
+                  requiredLabel={t('contact.required')}
                   type="email"
                   required
                   error={errors.email}
                   value={form.email}
                   onChange={set('email')}
-                  placeholder="you@business.com"
+                  placeholder={t('contact.emailPlaceholder')}
                   autoComplete="email"
                 />
 
                 <Field
                   uid={uid}
                   name="phone"
-                  label="Phone / WhatsApp"
+                  label={t('contact.phone')}
                   error={errors.phone}
                   value={form.phone}
                   onChange={set('phone')}
-                  placeholder="Optional"
+                  placeholder={t('contact.phonePlaceholder')}
                   autoComplete="tel"
                   inputMode="tel"
                 />
 
                 <label className="grid gap-2 text-sm" htmlFor={`${uid}-interest`}>
                   <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
-                    Interested in
+                    {t('contact.interest')}
                   </span>
                   <select
                     id={`${uid}-interest`}
                     name="interest"
                     className={fieldClass(false)}
                     value={form.interest}
-                    onChange={set('interest')}
+                    onChange={setIndex('interest')}
                   >
-                    {INTERESTS.map((o) => (
-                      <option key={o}>{o}</option>
+                    {interests.map((o, i) => (
+                      <option key={o} value={i}>
+                        {o}
+                      </option>
                     ))}
                   </select>
                 </label>
 
                 <label className="grid gap-2 text-sm" htmlFor={`${uid}-size`}>
-                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">Size</span>
+                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
+                    {t('contact.size')}
+                  </span>
                   <select
                     id={`${uid}-size`}
                     name="size"
                     className={fieldClass(false)}
                     value={form.size}
-                    onChange={set('size')}
+                    onChange={setIndex('size')}
                   >
-                    {SIZES.map((o) => (
-                      <option key={o}>{o}</option>
+                    {sizes.map((o, i) => (
+                      <option key={o} value={i}>
+                        {o}
+                      </option>
                     ))}
                   </select>
                 </label>
 
                 <label className="grid gap-2 text-sm sm:col-span-2" htmlFor={`${uid}-message`}>
                   <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
-                    What is costing you time right now?
+                    {t('contact.message')}
                   </span>
                   <textarea
                     id={`${uid}-message`}
@@ -298,7 +311,7 @@ export default function ContactForm() {
                     className={fieldClass(false)}
                     value={form.message}
                     onChange={set('message')}
-                    placeholder="Stock counts, double bookings, no-shows, month-end reporting…"
+                    placeholder={t('contact.messagePlaceholder')}
                   />
                 </label>
 
@@ -310,13 +323,13 @@ export default function ContactForm() {
                     >
                       <span className="mt-[7px] h-1 w-1 shrink-0 bg-ink" />
                       {Object.keys(errors).length === 1
-                        ? 'One field still needs fixing before we can draft the enquiry.'
-                        : `${Object.keys(errors).length} fields still need fixing before we can draft the enquiry.`}
+                        ? t('contact.oneError')
+                        : t('contact.manyErrors', { n: Object.keys(errors).length })}
                     </p>
                   ) : null}
 
                   <button type="submit" className="btn-primary w-full sm:w-auto">
-                    Send enquiry
+                    {t('contact.submit')}
                     <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
                       <path
                         d="M9 1l4 4-4 4M13 5H1"
@@ -328,9 +341,7 @@ export default function ContactForm() {
                     </svg>
                   </button>
                   <p className="mt-4 text-xs leading-relaxed text-ink-faint">
-                    This opens a draft in your own mail client. Nothing is sent until you
-                    press send there. No newsletter, no drip sequence. We reply once, from
-                    a human.
+                    {t('contact.disclaimer')}
                   </p>
                 </div>
               </form>
@@ -352,7 +363,9 @@ export default function ContactForm() {
             </Reveal>
 
             <Reveal delay={200} className="rounded-2xl border border-ink/[0.12] bg-white p-7">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">Direct</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+                {t('contact.direct')}
+              </p>
               <div className="mt-4 space-y-2 text-sm">
                 <a
                   href={`mailto:${company.email}`}
@@ -367,7 +380,7 @@ export default function ContactForm() {
 
             <Reveal delay={280} className="rounded-2xl border border-ink/[0.12] bg-white p-7">
               <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
-                What we will cover
+                {t('contact.coverTitle')}
               </p>
               <ul className="mt-4 space-y-3 text-sm text-ink-mute">
                 {products.map((p) => (
@@ -375,7 +388,7 @@ export default function ContactForm() {
                     <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-ink" />
                     <span>
                       <span className="font-medium text-ink">{p.name}</span>: {p.audience}
-                      {p.status === 'Coming soon' ? ' (roadmap)' : ''}
+                      {p.soon ? t('contact.roadmapSuffix') : ''}
                     </span>
                   </li>
                 ))}
@@ -388,7 +401,7 @@ export default function ContactForm() {
   );
 }
 
-function Field({ uid, name, label, required = false, error, ...rest }) {
+function Field({ uid, name, label, required = false, requiredLabel, error, ...rest }) {
   const id = `${uid}-${name}`;
   const errorId = `${id}-error`;
 
@@ -397,7 +410,9 @@ function Field({ uid, name, label, required = false, error, ...rest }) {
       <span className="flex items-baseline gap-2 text-xs uppercase tracking-[0.14em] text-ink-mute">
         {label}
         {required ? (
-          <span className="text-[10px] normal-case tracking-normal text-ink-faint">required</span>
+          <span className="text-[10px] normal-case tracking-normal text-ink-faint">
+            {requiredLabel}
+          </span>
         ) : null}
       </span>
       <input

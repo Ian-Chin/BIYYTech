@@ -1,7 +1,6 @@
 import JsonLd from '@/components/JsonLd';
 import LegalPage from '@/components/LegalPage';
 import { breadcrumbLd, graph, pageMeta } from '@/lib/seo';
-import { terms } from '@/lib/legal';
 
 export const metadata = pageMeta({
   title: 'Terms',
@@ -21,7 +20,7 @@ export default function TermsPage() {
           ]),
         )}
       />
-      <LegalPage doc={terms} />
+      <LegalPage slug="terms" />
     </>
   );
 }

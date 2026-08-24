@@ -1,18 +1,25 @@
+'use client';
+
 import HeroFrame from '@/components/HeroFrame';
 import { ClosingCta } from '@/components/Sections';
 import { Reveal, SplitWords } from '@/components/motion';
-import { LEGAL_UPDATED } from '@/lib/legal';
-import { company, editorialPolicy } from '@/lib/site';
-
-const fmt = (iso) =>
-  new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+import { formatDate, useLocale } from '@/lib/i18n';
 
 /**
- * Shared shell for /privacy and /terms. Deliberately plainer than the rest of
- * the site: no imagery, no parallax, no cards. A legal page that tries to be
- * interesting is a legal page nobody trusts.
+ * Shared shell for /privacy, /terms and /cookies. Deliberately plainer than the
+ * rest of the site: no imagery, no parallax, no cards. A legal page that tries
+ * to be interesting is a legal page nobody trusts.
+ *
+ * Takes the document slug rather than the document itself: the route file runs
+ * on the server and cannot know which language the visitor reads.
  */
-export default function LegalPage({ doc }) {
+export default function LegalPage({ slug }) {
+  const { t, locale, content } = useLocale();
+  const { company, editorialPolicy } = content;
+  const doc = content.legal[slug];
+  const updated = content.legal.updated;
+  if (!doc) return null;
+
   return (
     <>
       <HeroFrame>
@@ -39,7 +46,8 @@ export default function LegalPage({ doc }) {
 
           <Reveal delay={300}>
             <p className="mt-9 border-t border-white/15 pt-6 text-xs text-white/45">
-              Last updated <time dateTime={LEGAL_UPDATED}>{fmt(LEGAL_UPDATED)}</time>
+              {t('legal.lastUpdated')}{' '}
+              <time dateTime={updated}>{formatDate(updated, locale, { long: true })}</time>
             </p>
           </Reveal>
         </div>
@@ -49,7 +57,9 @@ export default function LegalPage({ doc }) {
         <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,2fr)]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">Contents</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+                {t('common.contents')}
+              </p>
               <ol className="mt-5 space-y-2.5">
                 {doc.sections.map((s, i) => (
                   <li key={s.heading}>
@@ -65,7 +75,9 @@ export default function LegalPage({ doc }) {
             </Reveal>
 
             <Reveal delay={160} className="mt-10 border-t border-ink/[0.12] pt-7">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">Ask us</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+                {t('legal.askUs')}
+              </p>
               <div className="mt-4 space-y-1.5 text-sm">
                 <a className="link-underline block" href={`mailto:${company.email}`}>
                   {company.email}

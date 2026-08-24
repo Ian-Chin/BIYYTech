@@ -5,6 +5,7 @@ import CookieConsent from '@/components/CookieConsent';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
 import Nav from '@/components/Nav';
+import { LocaleProvider } from '@/lib/i18n';
 import { OG_IMAGE, SITE_URL, graph, organizationLd, websiteLd } from '@/lib/seo';
 import { company } from '@/lib/site';
 
@@ -95,13 +96,17 @@ export default function RootLayout({ children }) {
         />
         <JsonLd data={graph(organizationLd(), websiteLd())} />
       </head>
+      {/* The pages are statically generated, so `lang` starts as English and is
+          corrected on the client once the stored locale is known. */}
       <body>
-        <Nav />
-        <main>{children}</main>
-        <Footer />
-        <BackToTop />
-        <Chatbot />
-        <CookieConsent />
+        <LocaleProvider>
+          <Nav />
+          <main>{children}</main>
+          <Footer />
+          <BackToTop />
+          <Chatbot />
+          <CookieConsent />
+        </LocaleProvider>
       </body>
     </html>
   );

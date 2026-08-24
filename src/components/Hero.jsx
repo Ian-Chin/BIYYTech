@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import HeroFrame from '@/components/HeroFrame';
 import { Reveal, SplitWords, onScrollFrame, prefersReducedMotion } from '@/components/motion';
+import { useLocale } from '@/lib/i18n';
 
 // Only the current scene is mounted as a <video>; the rest stay as poster
 // stills until they are about to play, so the page loads one clip, not three.
@@ -15,6 +16,7 @@ const SCENES = [
 ];
 
 export default function Hero() {
+  const { t } = useLocale();
   const [scene, setScene] = useState(0);
   // Starts empty so the first paint is the poster still, not a 12MB download.
   // Scene 0's clip is mounted once the browser is idle, and reduced-motion
@@ -120,29 +122,26 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-pulseRing rounded-full bg-white" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
               </span>
-              Operations software for SMEs
+              {t('hero.eyebrow')}
             </span>
           </Reveal>
 
           <h1 className="display mx-auto max-w-[16ch] text-[clamp(2.15rem,5.4vw,4.5rem)]">
-            <SplitWords text="Run the whole" />
+            <SplitWords text={t('hero.line1')} />
             <br />
-            <SplitWords text="operation from" delay={120} className="text-white/45" />
+            <SplitWords text={t('hero.line2')} delay={120} className="text-white/45" />
             <br />
-            <SplitWords text="one screen." delay={240} />
+            <SplitWords text={t('hero.line3')} delay={240} />
           </h1>
 
           <Reveal delay={420}>
             <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-white/60">
-              YiY Tech builds the two systems small businesses actually run on: live
-              inventory for retail and wholesale, and a booking and operations dashboard
-              for clinics, salons, tuition centres and property teams. One account, one
-              login, live in two weeks.
+              {t('hero.body')}
             </p>
 
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <Link href="/contact" className="btn bg-white text-ink hover:-translate-y-0.5">
-                Book a walkthrough
+                {t('common.walkthrough')}
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
                   <path
                     d="M9 1l4 4-4 4M13 5H1"
@@ -154,7 +153,7 @@ export default function Hero() {
                 </svg>
               </Link>
               <Link href="/#products" className="btn-invert">
-                See the products
+                {t('common.seeProducts')}
               </Link>
             </div>
           </Reveal>
@@ -168,7 +167,7 @@ export default function Hero() {
               key={s.poster}
               type="button"
               onClick={() => show(i)}
-              aria-label={`Show background ${i + 1}`}
+              aria-label={t('hero.sceneLabel', { n: i + 1 })}
               aria-current={scene === i}
               className="group flex h-11 items-center px-1"
             >

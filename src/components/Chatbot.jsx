@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Mascot from '@/components/Mascot';
-import { greeting, reply } from '@/lib/chat';
+import { greetingFor, reply } from '@/lib/chat';
+import { DEFAULT_LOCALE, useLocale } from '@/lib/i18n';
 
 const OPEN_EVENT = 'yiy:chat-open';
 
@@ -19,14 +20,27 @@ const nextId = () => {
 };
 
 export default function Chatbot() {
+  const { t, locale } = useLocale();
   const [open, setOpen] = useState(false);
   const [typing, setTyping] = useState(false);
   const [nudge, setNudge] = useState(false);
   const [draft, setDraft] = useState('');
   const [mood, setMood] = useState('idle');
-  const [messages, setMessages] = useState([
-    { id: nextId(), from: 'bot', text: greeting.text, chips: greeting.chips },
-  ]);
+  const [messages, setMessages] = useState(() => {
+    const greeting = greetingFor(DEFAULT_LOCALE);
+    return [{ id: nextId(), from: 'bot', text: greeting.text, chips: greeting.chips }];
+  });
+
+  // Switching language mid-conversation restarts it. Translating a transcript
+  // that was answered by a different rule set would produce a dialogue that
+  // never happened, and the greeting is the only honest place to resume from.
+  useEffect(() => {
+    const greeting = greetingFor(locale);
+    setMessages([{ id: nextId(), from: 'bot', text: greeting.text, chips: greeting.chips }]);
+    setTyping(false);
+    setMood('idle');
+    setDraft('');
+  }, [locale]);
 
   const scrollerRef = useRef(null);
   const inputRef = useRef(null);
@@ -76,30 +90,33 @@ export default function Chatbot() {
 
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
-  const ask = useCallback((raw) => {
-    const text = raw.trim();
-    if (!text) return;
+  const ask = useCallback(
+    (raw) => {
+      const text = raw.trim();
+      if (!text) return;
 
-    setMessages((m) => [...m, { id: nextId(), from: 'me', text }]);
-    setDraft('');
-    setTyping(true);
-    setMood('thinking');
+      setMessages((m) => [...m, { id: nextId(), from: 'me', text }]);
+      setDraft('');
+      setTyping(true);
+      setMood('thinking');
 
-    // A beat of "thinking" so the answer does not teleport in.
-    const delay = Math.min(1100, 380 + text.length * 12);
-    const t1 = setTimeout(() => {
-      const res = reply(text);
-      setTyping(false);
-      setMood(res.mood === 'happy' ? 'happy' : 'talking');
-      setMessages((m) => [
-        ...m,
-        { id: nextId(), from: 'bot', text: res.text, chips: res.chips, links: res.links },
-      ]);
-      const t2 = setTimeout(() => setMood('idle'), 2200);
-      timers.current.push(t2);
-    }, delay);
-    timers.current.push(t1);
-  }, []);
+      // A beat of "thinking" so the answer does not teleport in.
+      const delay = Math.min(1100, 380 + text.length * 12);
+      const t1 = setTimeout(() => {
+        const res = reply(text, locale);
+        setTyping(false);
+        setMood(res.mood === 'happy' ? 'happy' : 'talking');
+        setMessages((m) => [
+          ...m,
+          { id: nextId(), from: 'bot', text: res.text, chips: res.chips, links: res.links },
+        ]);
+        const t2 = setTimeout(() => setMood('idle'), 2200);
+        timers.current.push(t2);
+      }, delay);
+      timers.current.push(t1);
+    },
+    [locale],
+  );
 
   const lastChips = (() => {
     const last = [...messages].reverse().find((m) => m.from === 'bot' && m.chips?.length);
@@ -123,14 +140,14 @@ export default function Chatbot() {
             onClick={() => setOpen(true)}
             className="max-w-[15rem] border border-ink/10 bg-white px-4 py-3 text-left text-xs leading-relaxed text-ink-soft shadow-[0_20px_50px_-30px_rgba(11,11,12,0.6)] transition-transform duration-500 ease-smooth hover:-translate-y-0.5"
           >
-            Questions about stock or bookings? Ask me, no form required.
+            {t('chat.nudge')}
           </button>
         </div>
 
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          aria-label={open ? 'Close the assistant' : 'Open the assistant'}
+          aria-label={open ? t('chat.close') : t('chat.open')}
           aria-expanded={open}
           className="group relative flex h-14 w-14 items-center justify-center border border-ink/10 bg-white shadow-[0_18px_44px_-22px_rgba(11,11,12,0.65)] transition-all duration-500 ease-smooth hover:-translate-y-1 active:scale-95"
         >
@@ -153,7 +170,7 @@ export default function Chatbot() {
       {/* Panel ------------------------------------------------------- */}
       <div
         role="dialog"
-        aria-label="YiY assistant"
+        aria-label={t('chat.dialogLabel')}
         aria-hidden={!open}
         inert={!open}
         className={`consent-offset fixed bottom-24 right-5 z-[70] flex w-[calc(100vw-2.5rem)] max-w-[380px] origin-bottom-right flex-col border border-ink/10 bg-white shadow-[0_40px_90px_-40px_rgba(11,11,12,0.6)] transition-all duration-500 ease-smooth md:bottom-28 md:right-7 ${
@@ -167,16 +184,16 @@ export default function Chatbot() {
         <div className="flex items-center gap-3 border-b border-ink/10 px-5 py-4">
           <Mascot state={typing ? 'thinking' : mood} size={34} />
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-semibold tracking-tight">YiY Bot</p>
+            <p className="text-sm font-semibold tracking-tight">{t('chat.name')}</p>
             <p className="flex items-center gap-1.5 text-[11px] text-ink-faint">
               <span className="inline-block h-1.5 w-1.5 bg-accent" />
-              {typing ? 'typing…' : 'rule-based assistant'}
+              {typing ? t('chat.typing') : t('chat.status')}
             </p>
           </div>
           <button
             type="button"
             onClick={() => setOpen(false)}
-            aria-label="Close the assistant"
+            aria-label={t('chat.close')}
             className="text-ink-faint transition-colors duration-300 hover:text-ink"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -278,13 +295,13 @@ export default function Chatbot() {
             ref={inputRef}
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
-            placeholder="Ask about stock, bookings, pricing…"
-            aria-label="Message the assistant"
+            placeholder={t('chat.placeholder')}
+            aria-label={t('chat.inputLabel')}
             className="min-w-0 flex-1 bg-transparent px-2 py-2 text-[13px] outline-none placeholder:text-ink-faint"
           />
           <button
             type="submit"
-            aria-label="Send"
+            aria-label={t('chat.send')}
             disabled={!draft.trim()}
             className="flex h-9 w-9 items-center justify-center bg-ink text-white transition-all duration-300 ease-smooth hover:-translate-y-0.5 active:scale-90 disabled:pointer-events-none disabled:opacity-25"
           >

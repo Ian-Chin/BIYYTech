@@ -31,13 +31,15 @@ export default function Logo({
   withWordmark = true,
   className = '',
   priority = false,
+  // Passed in rather than read from context so this stays a server component.
+  label = 'YiY Tech home',
 }) {
   const tone = variant === 'dark' ? 'text-white' : 'text-ink';
 
   return (
     <Link
       href="/"
-      aria-label="YiY Tech home"
+      aria-label={label}
       className={`group inline-flex items-center gap-2.5 ${tone} ${className}`}
     >
       <span className="relative inline-flex transition-transform duration-700 ease-smooth group-hover:rotate-[-8deg] group-hover:scale-105">

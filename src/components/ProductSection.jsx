@@ -3,9 +3,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Parallax, Reveal, SplitWords } from '@/components/motion';
+import { bySlug } from '@/lib/content';
+import { useLocale } from '@/lib/i18n';
 
-export default function ProductSection({ product, flip = false }) {
-  const soon = product.status === 'Coming soon';
+export default function ProductSection({ slug, flip = false }) {
+  const { t, content } = useLocale();
+  const product = bySlug(content.products, slug);
+  if (!product) return null;
+  const soon = Boolean(product.soon);
 
   return (
     <article
@@ -89,7 +94,9 @@ export default function ProductSection({ product, flip = false }) {
 
             <Reveal delay={520} className="mt-10 flex flex-wrap gap-3">
               <Link href={product.href} className={soon ? 'btn-invert' : 'btn-primary'}>
-                {soon ? 'Read the roadmap' : `Explore ${product.short}`}
+                {soon
+                  ? t('common.readRoadmap')
+                  : t('common.exploreProduct', { name: product.short })}
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
                   <path
                     d="M9 1l4 4-4 4M13 5H1"
@@ -101,7 +108,7 @@ export default function ProductSection({ product, flip = false }) {
                 </svg>
               </Link>
               <Link href="/contact" className={soon ? 'btn-invert' : 'btn-ghost'}>
-                {soon ? 'Join the beta list' : 'Book a walkthrough'}
+                {soon ? t('common.joinBeta') : t('common.walkthrough')}
               </Link>
             </Reveal>
           </div>
@@ -113,7 +120,7 @@ export default function ProductSection({ product, flip = false }) {
                 <div className="relative aspect-[4/5] overflow-hidden rounded-3xl md:aspect-[5/6]">
                   <Image
                     src={product.hero}
-                    alt={`${product.name} in use`}
+                    alt={t('product.inUseAlt', { name: product.name })}
                     fill
                     sizes="(min-width: 1024px) 46vw, 92vw"
                     className="object-cover"
@@ -141,7 +148,7 @@ export default function ProductSection({ product, flip = false }) {
                       soon ? 'text-white/40' : 'text-ink-faint'
                     }`}
                   >
-                    Built for
+                    {t('common.builtFor')}
                   </p>
                   <p
                     className={`mt-2 text-sm leading-relaxed ${

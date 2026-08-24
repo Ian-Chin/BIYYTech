@@ -132,6 +132,9 @@ export const products = [
     slug: 'data',
     index: '03',
     status: 'Coming soon',
+    // Locale-independent flag. `status` is display copy and gets translated, so
+    // nothing may branch on its English wording.
+    soon: true,
     name: 'Data & Intelligence',
     short: 'Data',
     tagline: 'Forecasts, alerts and answers over your own operations data',

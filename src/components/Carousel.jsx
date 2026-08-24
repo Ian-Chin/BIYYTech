@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLocale } from '@/lib/i18n';
 
 /**
  * Scroll-snap carousel. No dependencies: native horizontal scrolling gives us
@@ -15,6 +16,7 @@ export default function Carousel({
   trackClassName = '',
   tone = 'light',
 }) {
+  const { t } = useLocale();
   const trackRef = useRef(null);
   const [index, setIndex] = useState(0);
   const [count, setCount] = useState(0);
@@ -197,14 +199,14 @@ export default function Carousel({
 
         <div className="flex gap-2">
           {[
-            { dir: -1, label: 'Previous', d: 'M9 1L5 5l4 4', edge: atStart },
-            { dir: 1, label: 'Next', d: 'M5 1l4 4-4 4', edge: atEnd },
+            { dir: -1, label: t('carousel.previous'), d: 'M9 1L5 5l4 4', edge: atStart },
+            { dir: 1, label: t('carousel.next'), d: 'M5 1l4 4-4 4', edge: atEnd },
           ].map((btn) => (
             <button
               key={btn.label}
               type="button"
               onClick={() => step(btn.dir)}
-              aria-label={btn.edge ? `${btn.label} (wraps around)` : btn.label}
+              aria-label={btn.edge ? t('carousel.wraps', { label: btn.label }) : btn.label}
               className={`group flex h-11 w-11 items-center justify-center border transition-all duration-500 ease-smooth active:scale-90 ${
                 dark
                   ? 'border-white/20 text-white hover:border-white/50 hover:bg-white/10'
