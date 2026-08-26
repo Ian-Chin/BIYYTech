@@ -1,4 +1,4 @@
-import { company, editorialPolicy, faqs, products } from '@/lib/site';
+import { company, editorialPolicy, faqs, products, webService } from '@/lib/site';
 
 /**
  * The canonical origin. Single source of truth: robots.js and sitemap.js import
@@ -168,6 +168,35 @@ export const productListLd = () => ({
     url: abs(p.href),
     description: p.summary,
   })),
+});
+
+/**
+ * The website build is a service, not a licensed application, so it is a
+ * `Service` rather than the `SoftwareApplication` the products use. No Offer
+ * node: the fee is quoted per project after the content session, and inventing
+ * a price here would put a number on the page that nobody at YiY has agreed to.
+ */
+export const webServiceLd = () => ({
+  '@type': 'Service',
+  '@id': abs(`${webService.href}#service`),
+  name: 'Website design and YiY integration',
+  serviceType: 'Website design, development and operations-system integration',
+  url: abs(webService.href),
+  description:
+    'Websites for SMEs, wired into the YiY Tech operations layer so stock levels, staff and room availability, outlet hours and enquiries stay in one system.',
+  provider: { '@id': `${SITE_URL}/#organization` },
+  areaServed: ['MY', 'SG'],
+  audience: { '@type': 'BusinessAudience', audienceType: 'Small and medium businesses' },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'What a build includes',
+    itemListElement: webService.build.map((row, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: row.term,
+      description: row.detail,
+    })),
+  },
 });
 
 export const articleLd = (post) => ({

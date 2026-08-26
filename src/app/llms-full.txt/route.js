@@ -9,6 +9,7 @@ import {
   products,
   rollout,
   values,
+  webService,
 } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -87,6 +88,38 @@ export function GET() {
 
     rule('PRODUCTS'),
     products.map(productBlock).join('\n\n'),
+
+    rule('WEBSITE & INTEGRATIONS (SERVICE)'),
+    `URL: ${SITE_URL}${webService.href}`,
+    'A website build wired into the YiY operations layer. Three weeks, fixed scope,',
+    'quoted as a flat project fee after a content session. No per-transaction charge',
+    'and no percentage of sales. Domain, DNS, repository and hosting are in the',
+    "customer's name from the first day of the build.",
+    '',
+    'What a build includes:',
+    webService.build.map((b) => `- ${b.term}: ${b.detail}`).join('\n'),
+    '',
+    'What the site reads from YiY, and what it writes back:',
+    webService.connections
+      .map(
+        (c) =>
+          `- ${c.surface}\n  Reads: ${c.reads || 'nothing'}\n  Writes back: ${c.writes || 'nothing'}`,
+      )
+      .join('\n'),
+    '',
+    'Integration depth by platform, for businesses that already have a site:',
+    webService.platforms.map((p) => `- ${p.name} (${p.depth}): ${p.body}`).join('\n'),
+    '',
+    'Stages:',
+    webService.stages
+      .map((s) => `- ${s.step} ${s.when}, ${s.title} (${s.owner}): ${s.body}`)
+      .join('\n'),
+    '',
+    'Explicitly out of scope:',
+    list(webService.limits),
+    '',
+    'Questions answered on this page:',
+    webService.faqs.map((f) => `Q: ${f.q}\nA: ${f.a}`).join('\n\n'),
 
     rule('WHY YIY'),
     pillars.map((p) => `- ${p.title}: ${p.body}`).join('\n'),

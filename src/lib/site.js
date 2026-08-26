@@ -12,6 +12,7 @@ export const company = {
 
 export const nav = [
   { label: 'Products', href: '/#products' },
+  { label: 'Website', href: '/website' },
   { label: 'Blog', href: '/blog' },
   { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
@@ -179,6 +180,189 @@ export const products = [
     metrics: [],
   },
 ];
+
+/* -------------------------------------------------------------------------- */
+/*  Website & integrations                                                     */
+/*                                                                             */
+/*  A service, not a product: one page at /website, no slug routing and no      */
+/*  Offer schema, because nothing here has a list price. It lives in this file  */
+/*  rather than in the page so the zh translation and llms-full.txt read from   */
+/*  the same source the page renders from.                                     */
+/* -------------------------------------------------------------------------- */
+
+export const webService = {
+  href: '/website',
+  /* Photographed for this page rather than borrowed from a product: a counter
+     with the shop's own site open on it, a listing being shot for that site,
+     and a workshop running its orders off it. */
+  hero: '/media/img/web-counter.jpg',
+  aside: '/media/img/web-listing.jpg',
+  band: '/media/img/web-workshop.jpg',
+
+  /* What is in scope, quoted before anyone opens an editor. */
+  build: [
+    {
+      term: 'Pages',
+      detail:
+        'Home, what you sell, who you are, and the page your customers keep phoning to ask about. Written with you in one session, not filled with placeholder paragraphs about passion and excellence.',
+    },
+    {
+      term: 'Build',
+      detail:
+        'Static pages served from a CDN. Nothing to patch on a Tuesday morning, and no plugin that quietly stops working when it updates itself in March.',
+    },
+    {
+      term: 'Speed',
+      detail:
+        'Tested on a mid-range Android over mobile data, because that is what your customers are actually holding. If it is slow on that phone, it is not finished.',
+    },
+    {
+      term: 'Editing',
+      detail:
+        'Stock, prices, staff and opening hours come from YiY, so they change when your operations do. Prose is one file per page and we show you how to edit it. There is no CMS to keep patched.',
+    },
+    {
+      term: 'Findable',
+      detail:
+        'Structured data, a sitemap, clean URLs and a real page per outlet with its own address and hours. The structural half of search, done once. Not a monthly retainer.',
+    },
+    {
+      term: 'Languages',
+      detail:
+        'English and Chinese as standard, Malay on request. One translation file per language rather than a duplicated site that drifts apart within a year.',
+    },
+    {
+      term: 'Handover',
+      detail:
+        'Domain, DNS, repository and hosting account in your name from the first day of the build. If you leave us, nothing has to move.',
+    },
+  ],
+
+  /* The half a web studio cannot do and a software vendor will not. */
+  connections: [
+    {
+      surface: 'Catalogue pages',
+      reads: 'Live stock, price and lead time, per SKU and per outlet',
+      writes: null,
+    },
+    {
+      surface: 'Booking page',
+      reads: 'Real staff, room and equipment availability',
+      writes: 'Creates the appointment and reserves every resource it needs',
+    },
+    {
+      surface: 'Online orders',
+      reads: 'Stock, so the site cannot sell what left the shelf this morning',
+      writes: 'Holds the stock and opens a picking job at the right outlet',
+    },
+    {
+      surface: 'Enquiry form',
+      reads: null,
+      writes: 'Lands as a lead on the dashboard with the page it came from attached',
+    },
+    {
+      surface: 'Outlet pages',
+      reads: 'Address, trading hours and holiday closures from the operations calendar',
+      writes: null,
+    },
+    {
+      surface: 'WhatsApp',
+      reads: 'Appointment and order status',
+      writes: 'Logs the message and the customer’s reply against the record',
+    },
+  ],
+
+  /* What an integration can actually reach, by platform. Asked on every call,
+     so it is answered here rather than in a quote three weeks later. */
+  platforms: [
+    {
+      name: 'Custom build',
+      depth: 'Full',
+      body: 'Stock and availability render on the server, the way they do on this site. Nothing loads twice and nothing flashes stale.',
+    },
+    {
+      name: 'WordPress',
+      depth: 'Full',
+      body: 'A plugin written against your theme. We will also tell you honestly whether the theme is worth keeping before we write it.',
+    },
+    {
+      name: 'Shopify',
+      depth: 'Two-way',
+      body: 'Stock syncs both directions and bookings embed. Checkout stays in Shopify, which is where it belongs.',
+    },
+    {
+      name: 'Wix, Squarespace, GoDaddy',
+      depth: 'Embed only',
+      body: 'A booking widget and a stock badge. The rest of the page cannot be reached from outside, and no amount of work on our side changes that.',
+    },
+  ],
+
+  stages: [
+    {
+      step: '01',
+      when: 'Week 0',
+      title: 'Content session',
+      body: 'Two hours with whoever answers the phone. What customers ask, what they get wrong, what you repeat every day. That conversation becomes the copy.',
+      owner: 'You + us, on site',
+    },
+    {
+      step: '02',
+      when: 'Week 1',
+      title: 'Build',
+      body: 'Pages go up on a staging link you can send to anyone. Real photographs and real words from the start, so nobody is asked to imagine past placeholder text.',
+      owner: 'Us, reviewed daily',
+    },
+    {
+      step: '03',
+      when: 'Week 2',
+      title: 'Wiring',
+      body: 'Stock, availability and forms connect to your YiY account. We test by breaking it: bookings for a room already taken, orders for stock that left an hour ago.',
+      owner: 'Us, on your data',
+    },
+    {
+      step: '04',
+      when: 'Week 3',
+      title: 'Launch',
+      body: 'DNS cuts over outside trading hours. The old site stays reachable for a fortnight, and the repository is handed to you on the day.',
+      owner: 'Your domain, your repo',
+    },
+  ],
+
+  limits: [
+    'Marketing retainers, ad management or monthly SEO reports. We build the structural half once and hand it over.',
+    'Logos, brand identity and social accounts. We will work alongside your designer, or name one who is better at this than we are.',
+    'Cross-border storefronts with multi-currency tax rules and six-figure SKU counts. Buy Shopify for that and let us wire YiY into it.',
+    'Any percentage of what the site sells. A project fee, and hosting inside the monthly outlet price you already pay.',
+    'Rebuilding a site that works. If yours is sound we integrate with it, quote less, and say so on the first call.',
+  ],
+
+  faqs: [
+    {
+      q: 'Do I need to be a YiY customer to get a website?',
+      a: 'Effectively yes. We take website work where there is an operations system to wire it into, either one you already run or one going live in the same quarter. A brochure site with nothing behind it is not something we do better than a local studio, and we would rather tell you that than take the work.',
+    },
+    {
+      q: 'What does a website build cost?',
+      a: 'A flat project fee, quoted after the content session once the page count and the number of wired surfaces are known, plus hosting folded into your existing monthly per-outlet price. There is no per-transaction charge and no fee tied to what the site sells.',
+    },
+    {
+      q: 'Can we edit the site ourselves?',
+      a: 'The things that change weekly, stock, prices, availability, staff and opening hours, change in YiY and the site follows within a minute. Prose lives in one file per page and we show you how to edit it. There is no CMS, because a CMS is one more system to patch and one more password to lose.',
+    },
+    {
+      q: 'Who owns the site when it is finished?',
+      a: 'You do. Domain, DNS, repository and hosting account are in your name from the first day of the build rather than transferred at the end. Leaving costs nothing and moves nothing.',
+    },
+    {
+      q: 'We already have a website we like. Can it still connect to YiY?',
+      a: 'Usually. How deeply depends on what it is built on. Custom sites and WordPress integrate fully, Shopify syncs stock and embeds bookings, and hosted builders such as Wix accept an embed and nothing deeper. We check before quoting rather than after.',
+    },
+    {
+      q: 'Do you build in Chinese as well as English?',
+      a: 'Yes. English and Chinese as standard, Malay on request. One translation file per language, so an opening time or a price is written once and stays correct in all of them.',
+    },
+  ],
+};
 
 export const industries = [
   { name: 'Retail chains', image: '/media/img/retail-counter.jpg', product: 'Inventory' },

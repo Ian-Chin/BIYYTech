@@ -54,7 +54,7 @@ public/llms.txt             plain-text site summary for model crawlers
 public/
   brand/                    transparent logo marks (white + black, 512 + full)
   fonts/                    self-hosted webfonts
-  media/img/                31 Pexels photographs (7 MB)
+  media/img/                34 Pexels photographs (8 MB)
   media/video/              3 Pexels clips (24 MB)
 ```
 

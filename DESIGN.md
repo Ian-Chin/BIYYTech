@@ -102,6 +102,21 @@ document independently.
   launcher in the bottom-right can never cover them.
 - `Mascot` — one CSS blob, morphing border-radius, two-dot face, five states.
   No SVG morphing, no animation library.
+- `Splash` — the opening curtain. Two ink halves with `.noise` meeting on a
+  full-bleed hairline. The seam grows from the centre outward, a 132px lit
+  segment draws along it as the load, the mark resolves out of a 10px blur
+  above it and the wordmark climbs out of a mask below it with the same
+  `rotateX(-26deg)` rise `SplitWords` uses. Then the sheet is cut along that
+  same line: the halves part, 60ms apart, each carrying half the lockup, which
+  drifts a further 34px to read as two planes rather than one. ~2.2s end to end.
+  Pure CSS keyframes on server-rendered markup, so it starts on first paint
+  rather than after hydration and cannot hang on a slow bundle. A blocking
+  inline script in `<head>` (`SplashBoot`) sets `data-splash="run"` on `<html>`
+  once per browser session and clears it to `done` when the sequence ends —
+  that attribute is the only thing that makes the panel visible, so no JS means
+  no splash, and repeat page views inside a session never see it. The same
+  attribute holds the scroll lock while the sheet is up; reduced motion drops
+  both the panel and the lock.
 
 ## Rules
 

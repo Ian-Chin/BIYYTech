@@ -398,6 +398,165 @@
   animation: blobMorph 7s ease-in-out infinite, wave 0.9s ease-in-out 2;
 }
 
+/* Splash ---------------------------------------------------------------
+   Shown once per session, gated entirely by the data-splash attribute the
+   inline boot script writes in <head> before first paint. Without that
+   attribute the panel is display:none, so a visitor with JS off never sees a
+   curtain they cannot lift. Every step is transform/opacity/filter, and the
+   panel self-dismisses on keyframes — the script only clears the attribute
+   afterwards so the scroll lock is released. */
+.splash {
+  display: none;
+}
+
+html[data-splash='run'] {
+  /* Nothing should move underneath the sheet while it is up. */
+  overflow: hidden;
+}
+
+html[data-splash='run'] .splash {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: block;
+  overflow: hidden;
+}
+
+/* Two ink halves meeting on a hairline. The seam is both the progress
+   indicator and, a moment later, the line the sheet is cut along — which is
+   why the lockup is split across it: the mark sits in the top half and the
+   wordmark in the bottom, so the curtain takes them with it in opposite
+   directions instead of fading them out first. */
+.splash__half {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background: #0b0b0c;
+  will-change: transform;
+}
+
+.splash__half--top {
+  top: 0;
+  align-items: flex-end;
+  padding-bottom: 30px;
+  animation: splashPartUp 0.85s var(--ease-smooth) 1.3s forwards;
+}
+
+.splash__half--bottom {
+  bottom: 0;
+  align-items: flex-start;
+  padding-top: 26px;
+  /* Trails the top half by 60ms. Parting in perfect symmetry read as a
+     mechanism; the offset reads as a hand. */
+  animation: splashPartDown 0.85s var(--ease-smooth) 1.36s forwards;
+}
+
+/* Two animations, no overlap: the entrance holds its end state until the exit
+   drift starts. The drift is only 34px against the half's full 50vh of travel,
+   but it is enough to read as two planes coming apart rather than one. */
+.splash__mark {
+  display: inline-flex;
+  animation: splashMark 0.9s var(--ease-smooth) 0.1s both,
+             splashDriftUp 0.85s var(--ease-smooth) 1.3s forwards;
+}
+
+/* Full-bleed track. It grows from the centre out to both edges, so the eye is
+   told where the cut will be before it happens. */
+.splash__seam {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  animation: splashSeam 0.9s var(--ease-smooth) 0.08s forwards;
+}
+
+/* The lit segment riding on that track is the load itself. */
+.splash__seam i {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 132px;
+  margin-left: -66px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.8);
+  transform: scaleX(0);
+  animation: splashDraw 0.95s var(--ease-smooth) 0.42s forwards;
+}
+
+/* Mask, so the wordmark climbs into view from behind the seam rather than
+   fading in on top of it. Padding-bottom clears the descender the way
+   .display does. */
+.splash__word {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  perspective: 620px;
+  animation: splashDriftDown 0.85s var(--ease-smooth) 1.36s forwards;
+}
+
+.splash__word-in {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  transform-origin: top center;
+  animation: splashWord 0.85s var(--ease-smooth) 0.34s both;
+}
+
+.splash__word-sub {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  opacity: 0.5;
+}
+
+@keyframes splashMark {
+  from { opacity: 0; transform: translate3d(0, 10px, 0) scale(0.9); filter: blur(10px); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+}
+
+@keyframes splashSeam {
+  to { transform: scaleX(1); }
+}
+
+@keyframes splashDraw {
+  to { transform: scaleX(1); }
+}
+
+/* Same gesture as SplitWords on the headlines: rise out of a mask with a
+   slight rotateX, no bounce. */
+@keyframes splashWord {
+  from { opacity: 0; transform: translate3d(0, 105%, 0) rotateX(-26deg); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) rotateX(0); }
+}
+
+@keyframes splashDriftUp {
+  to { transform: translate3d(0, -34px, 0); }
+}
+
+@keyframes splashDriftDown {
+  to { transform: translate3d(0, 34px, 0); }
+}
+
+@keyframes splashPartUp {
+  to { transform: translate3d(0, -100.5%, 0); visibility: hidden; }
+}
+
+@keyframes splashPartDown {
+  to { transform: translate3d(0, 100.5%, 0); visibility: hidden; }
+}
+
 @keyframes blobMorph {
   0%, 100% { border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%; }
   33% { border-radius: 58% 42% 44% 56% / 44% 58% 42% 56%; }
@@ -466,5 +625,14 @@
 
   .consent-offset {
     transition: none !important;
+  }
+
+  /* No curtain at all, and crucially no scroll lock waiting on it. */
+  html[data-splash='run'] {
+    overflow: visible;
+  }
+
+  html[data-splash='run'] .splash {
+    display: none;
   }
 }

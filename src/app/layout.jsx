@@ -5,6 +5,7 @@ import CookieConsent from '@/components/CookieConsent';
 import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
 import Nav from '@/components/Nav';
+import Splash, { SplashBoot } from '@/components/Splash';
 import { LocaleProvider } from '@/lib/i18n';
 import { OG_IMAGE, SITE_URL, graph, organizationLd, websiteLd } from '@/lib/seo';
 import { company } from '@/lib/site';
@@ -67,9 +68,15 @@ export const viewport = {
 };
 
 export default function RootLayout({ children }) {
+  // suppressHydrationWarning: the splash boot script writes data-splash on
+  // <html> before React hydrates, which is a deliberate mismatch. The flag is
+  // scoped to this element's own attributes and nothing else.
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Must run before the first paint: it decides whether the splash is
+            shown at all, and nothing below should render over a bare page. */}
+        <SplashBoot />
         <link
           rel="preload"
           href="/fonts/GeneralSans-Regular.woff2"
@@ -99,6 +106,7 @@ export default function RootLayout({ children }) {
       {/* The pages are statically generated, so `lang` starts as English and is
           corrected on the client once the stored locale is known. */}
       <body>
+        <Splash />
         <LocaleProvider>
           <Nav />
           <main>{children}</main>

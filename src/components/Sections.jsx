@@ -557,18 +557,23 @@ export function Process() {
 /*  FAQ                                                                       */
 /* -------------------------------------------------------------------------- */
 
-export function Faq() {
+/**
+ * Defaults to the site-wide questions. A page with its own set (the website
+ * service, which is asked entirely different things) passes `items` and its own
+ * heading rather than forking the accordion.
+ */
+export function Faq({ items, eyebrow, title, body }) {
   const { t, content } = useLocale();
-  const { faqs } = content;
+  const faqs = items ?? content.faqs;
   const [open, setOpen] = useState(0);
 
   return (
     <section id="faq" className="relative overflow-hidden bg-paper py-24 md:py-32">
       <div className="shell relative grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
         <SectionHead
-          eyebrow={t('faq.eyebrow')}
-          title={t('faq.title')}
-          body={t('faq.body')}
+          eyebrow={eyebrow ?? t('faq.eyebrow')}
+          title={title ?? t('faq.title')}
+          body={body ?? t('faq.body')}
         />
 
         <div className="border-t border-ink/[0.12]">

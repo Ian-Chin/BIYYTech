@@ -15,6 +15,7 @@ const build = (site, legal) => ({
   company: site.company,
   nav: site.nav,
   products: site.products,
+  webService: site.webService,
   industries: site.industries,
   pillars: site.pillars,
   stats: site.stats,

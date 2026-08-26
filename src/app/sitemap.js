@@ -8,6 +8,7 @@ export default function sitemap() {
   return [
     { url: `${BASE}/`, lastModified: now, priority: 1 },
     { url: `${BASE}/contact`, lastModified: now, priority: 0.8 },
+    { url: `${BASE}/website`, lastModified: now, priority: 0.8 },
     { url: `${BASE}/blog`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/careers`, lastModified: now, priority: 0.7 },
     { url: `${BASE}/privacy`, lastModified: now, priority: 0.3 },

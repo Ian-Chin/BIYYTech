@@ -36,6 +36,26 @@ containing duplicate SKUs are quoted three to four weeks up front.
   shrinkage, refunds and cancellations. Plain-language questions over the
   business's own data.
 
+## Services
+
+- [Website & integrations](https://yiy.tech/website): YiY Tech also builds
+  websites for its customers and wires them into the operations layer. Catalogue
+  pages read live stock and lead time per SKU and outlet. The booking page reads
+  real staff, room and equipment availability and writes the appointment back,
+  reserving every resource it needs. Online orders hold stock and open a picking
+  job. Enquiry forms land as leads on the dashboard. Outlet pages take address,
+  trading hours and closures from the operations calendar. Static pages on a
+  CDN, no CMS, English and Chinese as standard. Typical build is three weeks:
+  content session, build, wiring, launch. Priced as a flat project fee quoted
+  after the content session, with hosting inside the existing monthly per-outlet
+  price; there is no per-transaction charge and no percentage of sales. Domain,
+  DNS, repository and hosting are in the customer's name from day one.
+  Businesses with an existing site can integrate it instead: custom builds and
+  WordPress fully, Shopify two-way for stock plus embedded bookings, and hosted
+  builders such as Wix by embed only. Explicitly not offered: marketing
+  retainers, ad management, monthly SEO reports, logo or brand identity work,
+  and cross-border storefronts with multi-currency tax rules.
+
 ## Writing
 
 Posts are written by the people who run the deployments, and each one names its
