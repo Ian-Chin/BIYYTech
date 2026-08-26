@@ -1,3 +1,5 @@
+import { getContent } from '@/lib/content';
+import { LOCALES, localePath } from '@/lib/routes';
 import { company, editorialPolicy, faqs, products, webService } from '@/lib/site';
 
 /**
@@ -38,18 +40,41 @@ export const abs = (path = '/') => new URL(path, SITE_URL).toString();
 /*  is written to stand alone as a summary of the page.                        */
 /* -------------------------------------------------------------------------- */
 
-export function pageMeta({ title, description, path = '/', image = OG_IMAGE, type = 'website' }) {
-  const url = abs(path);
+/**
+ * Every page exists twice, once per locale, at `path` and `/zh` + `path`. Both
+ * copies carry the same hreflang set pointing at each other plus an x-default
+ * on the English one, which is what tells a search engine they are translations
+ * rather than duplicates competing with each other.
+ */
+export const hreflang = (path = '/') => ({
+  'en-MY': abs(path),
+  'zh-Hans': abs(localePath('zh', path)),
+  'x-default': abs(path),
+});
+
+const OG_LOCALE = { en: 'en_MY', zh: 'zh_MY' };
+
+export function pageMeta({
+  title,
+  description,
+  path = '/',
+  image = OG_IMAGE,
+  type = 'website',
+  locale = 'en',
+}) {
+  const url = abs(localePath(locale, path));
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages: hreflang(path) },
     openGraph: {
       type,
       url,
       title,
       description,
       siteName: company.name,
+      locale: OG_LOCALE[locale] ?? OG_LOCALE.en,
+      alternateLocale: LOCALES.filter((l) => l !== locale).map((l) => OG_LOCALE[l]),
       images: [{ url: image, width: 1200, height: 630, alt: title }],
     },
     twitter: { card: 'summary_large_image', title, description, images: [image] },
@@ -98,6 +123,7 @@ export const organizationLd = () => ({
   publishingPrinciples: abs('/blog'),
 });
 
+/* One WebSite node covering both trees: same site, two languages. */
 export const websiteLd = () => ({
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
@@ -105,16 +131,18 @@ export const websiteLd = () => ({
   name: company.name,
   description: company.tagline,
   publisher: { '@id': `${SITE_URL}/#organization` },
-  inLanguage: 'en',
+  inLanguage: ['en', 'zh-Hans'],
 });
 
-export const breadcrumbLd = (trail) => ({
+/* `path` entries are locale-independent, so the trail is resolved into the
+   tree the page is actually being rendered for. */
+export const breadcrumbLd = (trail, locale = 'en') => ({
   '@type': 'BreadcrumbList',
   itemListElement: trail.map((item, i) => ({
     '@type': 'ListItem',
     position: i + 1,
     name: item.name,
-    item: abs(item.path),
+    item: abs(localePath(locale, item.path)),
   })),
 });
 
@@ -127,16 +155,19 @@ export const faqLd = (items) => ({
   })),
 });
 
-export const homeFaqLd = () => faqLd(faqs);
+export const homeFaqLd = (locale = 'en') => faqLd(getContent(locale).faqs);
 
-export const productLd = (product) => ({
+/* Every node below takes the already-translated entry from getContent(locale)
+   and only needs to be told which tree to build URLs in. The @id therefore
+   differs per locale, which is correct: they are two pages. */
+export const productLd = (product, locale = 'en') => ({
   '@type': 'SoftwareApplication',
-  '@id': abs(`${product.href}#software`),
+  '@id': abs(`${localePath(locale, product.href)}#software`),
   name: `${company.name} ${product.name}`,
   applicationCategory: 'BusinessApplication',
   applicationSubCategory: product.slug === 'booking' ? 'Scheduling' : 'Inventory management',
   operatingSystem: 'Web, iOS, Android',
-  url: abs(product.href),
+  url: abs(localePath(locale, product.href)),
   description: product.summary,
   audience: { '@type': 'BusinessAudience', audienceType: product.audience },
   featureList: product.bullets,
@@ -158,14 +189,14 @@ export const productLd = (product) => ({
   },
 });
 
-export const productListLd = () => ({
+export const productListLd = (locale = 'en') => ({
   '@type': 'ItemList',
   name: `${company.name} products`,
-  itemListElement: products.map((p, i) => ({
+  itemListElement: getContent(locale).products.map((p, i) => ({
     '@type': 'ListItem',
     position: i + 1,
     name: p.name,
-    url: abs(p.href),
+    url: abs(localePath(locale, p.href)),
     description: p.summary,
   })),
 });
@@ -176,12 +207,12 @@ export const productListLd = () => ({
  * node: the fee is quoted per project after the content session, and inventing
  * a price here would put a number on the page that nobody at YiY has agreed to.
  */
-export const webServiceLd = () => ({
+export const webServiceLd = (locale = 'en') => ({
   '@type': 'Service',
-  '@id': abs(`${webService.href}#service`),
+  '@id': abs(`${localePath(locale, webService.href)}#service`),
   name: 'Website design and YiY integration',
   serviceType: 'Website design, development and operations-system integration',
-  url: abs(webService.href),
+  url: abs(localePath(locale, webService.href)),
   description:
     'Websites for SMEs, wired into the YiY Tech operations layer so stock levels, staff and room availability, outlet hours and enquiries stay in one system.',
   provider: { '@id': `${SITE_URL}/#organization` },
@@ -190,7 +221,7 @@ export const webServiceLd = () => ({
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'What a build includes',
-    itemListElement: webService.build.map((row, i) => ({
+    itemListElement: getContent(locale).webService.build.map((row, i) => ({
       '@type': 'ListItem',
       position: i + 1,
       name: row.term,
@@ -199,18 +230,21 @@ export const webServiceLd = () => ({
   },
 });
 
-export const articleLd = (post) => ({
+export const articleLd = (post, locale = 'en') => ({
   '@type': 'BlogPosting',
-  '@id': abs(`/blog/${post.slug}#article`),
+  '@id': abs(`${localePath(locale, `/blog/${post.slug}`)}#article`),
   headline: post.title,
   description: post.excerpt,
   abstract: post.answer,
-  url: abs(`/blog/${post.slug}`),
-  mainEntityOfPage: { '@type': 'WebPage', '@id': abs(`/blog/${post.slug}`) },
+  url: abs(localePath(locale, `/blog/${post.slug}`)),
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': abs(localePath(locale, `/blog/${post.slug}`)),
+  },
   datePublished: post.date,
   dateModified: post.updated || post.date,
   articleSection: post.category,
-  inLanguage: 'en',
+  inLanguage: locale === 'zh' ? 'zh-Hans' : 'en',
   image: [abs(post.image)],
   wordCount: post.sections.reduce(
     (n, s) => n + s.paragraphs.join(' ').split(/\s+/).length,
@@ -236,22 +270,23 @@ export const articleLd = (post) => ({
   isAccessibleForFree: true,
   creativeWorkStatus: 'Published',
   citation: post.sources.map((s) => s.label),
-  publishingPrinciples: abs('/blog#editorial'),
+  publishingPrinciples: abs(localePath(locale, '/blog#editorial')),
   ...(editorialPolicy ? { copyrightHolder: { '@id': `${SITE_URL}/#organization` } } : {}),
 });
 
-export const blogLd = (posts) => ({
+export const blogLd = (posts, locale = 'en') => ({
   '@type': 'Blog',
-  '@id': `${SITE_URL}/blog#blog`,
+  '@id': `${SITE_URL}${localePath(locale, '/blog')}#blog`,
   name: `${company.name} blog`,
   description:
     'Field notes on inventory accuracy, booking operations and rolling software into small businesses.',
-  url: abs('/blog'),
+  url: abs(localePath(locale, '/blog')),
+  inLanguage: locale === 'zh' ? 'zh-Hans' : 'en',
   publisher: { '@id': `${SITE_URL}/#organization` },
   blogPost: posts.map((p) => ({
     '@type': 'BlogPosting',
     headline: p.title,
-    url: abs(`/blog/${p.slug}`),
+    url: abs(localePath(locale, `/blog/${p.slug}`)),
     datePublished: p.date,
     dateModified: p.updated || p.date,
     author: { '@type': 'Person', name: p.author.name },

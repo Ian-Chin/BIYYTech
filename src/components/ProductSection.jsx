@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/Link';
 import { Parallax, Reveal, SplitWords } from '@/components/motion';
 import { bySlug } from '@/lib/content';
 import { useLocale } from '@/lib/i18n';

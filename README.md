@@ -22,16 +22,15 @@ no motion library.
 ```
 src/
   app/
-    layout.jsx              root shell: nav, footer, scroll progress, fonts
-    page.jsx                home page composition
-    contact/page.jsx        walkthrough enquiry
-    products/[slug]/page.jsx  one template for all three products
-    blog/page.jsx           article index (lead story + grid)
-    blog/[slug]/page.jsx    article template
-    careers/page.jsx        values, open roles, perks
+    layout.jsx              <html>, fonts, splash, site-wide structured data
+    _pages/                 each page defined once: metadata + structured data
+                            + composition, taking a locale
+    (en)/                   English tree, served from / (route group, no prefix)
+    zh/                     Chinese tree, served from /zh
     globals.css             Tailwind layers, @font-face, motion primitives
     icon.png                favicon (YiY mark)
   components/
+    Shell.jsx               nav, footer, assistant and consent, in one locale
     motion.jsx              shared scroll engine: Reveal, Parallax, SplitWords,
                             CountUp, useInView
     HeroFrame.jsx           the inset hero card that unfolds to full bleed
@@ -48,6 +47,9 @@ src/
     ContactForm.jsx         enquiry form
     Logo.jsx                logo + bare mark
   lib/site.js               all copy and data, edit this, not the components
+  lib/site.zh.js            the Chinese translation of the same, merged by index
+  lib/routes.js             locale prefixes: / for English, /zh for Chinese
+  lib/meta.js               per-locale <title> and <meta description>
   lib/chat.js               the assistant's keyword rules and answers
   lib/seo.js                metadata helper and schema.org builders
 public/llms.txt             plain-text site summary for model crawlers
@@ -61,6 +63,21 @@ public/
 **All copy lives in `src/lib/site.js`.** Products, bullets, stats, FAQ,
 testimonials and the comparison table are data, change them there and every
 page updates.
+
+## Two languages, two URL trees
+
+English is served from the root and Chinese from `/zh`, and both are statically
+generated in their own language. The locale is a property of the URL, not of the
+browser: `/zh/products/booking` is Chinese for everyone, which is what makes it
+indexable. Every page carries a canonical URL plus an `hreflang` set pointing at
+its twin, and the sitemap lists both with the same alternates.
+
+- Add a page by writing it once in `src/app/_pages/`, then mounting it from a
+  two-line route file in `(en)/` and another in `zh/`.
+- Write internal links against the English path (`/contact`) and import `Link`
+  from `@/components/Link`, which adds the prefix for the tree it renders in.
+- The language toggle is a navigation between the trees, and it stores the
+  choice so the homepage stops redirecting Chinese-preferring browsers.
 
 ## Typeface
 

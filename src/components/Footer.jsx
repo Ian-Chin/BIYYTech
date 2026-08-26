@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from '@/components/Link';
 import { CookiePreferencesButton } from '@/components/CookieConsent';
 import LanguageToggle from '@/components/LanguageToggle';
 import Logo, { Mark } from '@/components/Logo';

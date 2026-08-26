@@ -1,18 +1,11 @@
 import './globals.css';
-import BackToTop from '@/components/BackToTop';
-import Chatbot from '@/components/Chatbot';
-import CookieConsent from '@/components/CookieConsent';
-import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
-import Nav from '@/components/Nav';
-import Splash, { SplashBoot } from '@/components/Splash';
-import { LocaleProvider } from '@/lib/i18n';
-import { OG_IMAGE, SITE_URL, graph, organizationLd, websiteLd } from '@/lib/seo';
+import Splash, { LangBoot, SplashBoot } from '@/components/Splash';
+import { pageCopy } from '@/lib/meta';
+import { OG_IMAGE, SITE_URL, graph, hreflang, organizationLd, websiteLd } from '@/lib/seo';
 import { company } from '@/lib/site';
 
-const TITLE = 'YiY Tech: inventory and booking software for SMEs';
-const DESCRIPTION =
-  'YiY Tech builds live inventory and stock management for retail and wholesale SMEs, and a booking and operations dashboard for clinics, salons, tuition centres and property teams. Flat monthly pricing per outlet, live in two weeks.';
+const { title: TITLE, description: DESCRIPTION } = pageCopy('home', 'en');
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,7 +27,7 @@ export const metadata = {
     'operations dashboard for small business',
     'YiY Tech',
   ],
-  alternates: { canonical: SITE_URL },
+  alternates: { canonical: SITE_URL, languages: hreflang('/') },
   robots: {
     index: true,
     follow: true,
@@ -77,6 +70,7 @@ export default function RootLayout({ children }) {
         {/* Must run before the first paint: it decides whether the splash is
             shown at all, and nothing below should render over a bare page. */}
         <SplashBoot />
+        <LangBoot />
         <link
           rel="preload"
           href="/fonts/GeneralSans-Regular.woff2"
@@ -103,18 +97,14 @@ export default function RootLayout({ children }) {
         />
         <JsonLd data={graph(organizationLd(), websiteLd())} />
       </head>
-      {/* The pages are statically generated, so `lang` starts as English and is
-          corrected on the client once the stored locale is known. */}
+      {/* One <html> for both language trees, so `lang` is written as English
+          here and corrected before paint by the Chinese tree's shell. The
+          chrome (nav, footer, assistant, consent) lives in that shell rather
+          than here, because it has to be rendered in the page's own language
+          on the server. */}
       <body>
         <Splash />
-        <LocaleProvider>
-          <Nav />
-          <main>{children}</main>
-          <Footer />
-          <BackToTop />
-          <Chatbot />
-          <CookieConsent />
-        </LocaleProvider>
+        {children}
       </body>
     </html>
   );

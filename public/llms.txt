@@ -74,6 +74,15 @@ author, review date, method and sources.
 - [Contact](https://yiy.tech/contact): walkthrough requests, hello@yiy.tech
 - Location: Kuala Lumpur, Malaysia. Serves Malaysia and Singapore.
 
+## Languages
+
+The site is published in English and Simplified Chinese. English is served from
+the root and Chinese from a `/zh` prefix: every page listed above exists at both
+`https://yiy.tech/PATH` and `https://yiy.tech/zh/PATH`, statically generated in
+that language, cross-referenced with `hreflang` and both listed in the sitemap.
+The Chinese pages are translations of the same content, not different content.
+This plain-text summary and the full corpus at /llms-full.txt are English only.
+
 ## Technical
 
 - Structured data: every page carries Schema.org JSON-LD in a single `@graph`

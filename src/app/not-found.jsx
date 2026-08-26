@@ -1,30 +1,16 @@
-'use client';
+import NotFoundView from '@/components/NotFoundView';
+import Shell from '@/components/Shell';
 
-import Link from 'next/link';
-import { useLocale } from '@/lib/i18n';
-
+/**
+ * The global 404 sits above both language trees, so it brings its own shell.
+ * It answers in English: an unmatched URL carries no reliable signal about
+ * which language the visitor wanted, and the page's job is to get them to a
+ * real one, where the toggle is waiting.
+ */
 export default function NotFound() {
-  const { t } = useLocale();
-
   return (
-    <section className="relative flex min-h-[70svh] items-center overflow-hidden bg-paper">
-      <div className="shell relative py-32">
-        <p className="font-mono text-xs tracking-[0.2em] text-ink-faint">404</p>
-        <h1 className="display mt-5 max-w-[14ch] text-[clamp(2.2rem,6vw,4.5rem)]">
-          {t('notFound.title')}
-        </h1>
-        <p className="mt-6 max-w-md text-base leading-relaxed text-ink-mute">
-          {t('notFound.body')}
-        </p>
-        <div className="mt-9 flex flex-wrap gap-3">
-          <Link href="/" className="btn-primary">
-            {t('notFound.home')}
-          </Link>
-          <Link href="/contact" className="btn-ghost">
-            {t('notFound.contact')}
-          </Link>
-        </div>
-      </div>
-    </section>
+    <Shell locale="en">
+      <NotFoundView />
+    </Shell>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/Link';
 import BackgroundVideo from '@/components/BackgroundVideo';
 import HeroFrame from '@/components/HeroFrame';
 import { ClosingCta, Faq, FeatureStrip, Process, SectionHead } from '@/components/Sections';

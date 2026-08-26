@@ -3,25 +3,30 @@
 /* -------------------------------------------------------------------------- */
 /*  Locale context                                                             */
 /*                                                                             */
-/*  The site is statically generated, so the server has no way of knowing which */
-/*  language a visitor wants: there is no cookie read on the server and no      */
-/*  /zh URL prefix. The first paint is therefore always English, and the stored */
-/*  (or browser-preferred) locale is applied on mount. That is a deliberate     */
-/*  trade: switching to server-read cookies would make every page dynamic.      */
+/*  The locale is decided by the URL, not by the browser: English is served     */
+/*  from the root and Chinese from /zh, and each tree is statically generated   */
+/*  in its own language. That is what makes the Chinese site visible to         */
+/*  crawlers, which it was not while the translation was swapped in on mount.   */
+/*                                                                             */
+/*  Because the locale is a route prop rather than state, there is no first     */
+/*  paint in the wrong language and nothing to hydrate around.                  */
 /* -------------------------------------------------------------------------- */
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo } from 'react';
 import { getContent } from '@/lib/content';
+import { DEFAULT_LOCALE, LOCALES, htmlLang, localePath } from '@/lib/routes';
 import { ui } from '@/lib/ui';
 
-export const LOCALES = ['en', 'zh'];
-export const DEFAULT_LOCALE = 'en';
+export { DEFAULT_LOCALE, LOCALES };
+
+/** Remembers the visitor's explicit choice, so the homepage stops guessing. */
 export const LOCALE_KEY = 'yiy.locale';
 
-/** Short label for the toggle, and the `lang` attribute each locale maps to. */
+/** Labels for the toggle. The lang tags come from routes.js, which server code
+    can also read — see the note there. */
 export const LOCALE_META = {
-  en: { short: 'EN', name: 'English', htmlLang: 'en' },
-  zh: { short: '中文', name: '中文', htmlLang: 'zh-Hans' },
+  en: { short: 'EN', name: 'English', htmlLang: htmlLang('en') },
+  zh: { short: '中文', name: '中文', htmlLang: htmlLang('zh') },
 };
 
 const LocaleContext = createContext(null);
@@ -29,42 +34,7 @@ const LocaleContext = createContext(null);
 const dig = (key, obj) =>
   key.split('.').reduce((node, part) => (node == null ? undefined : node[part]), obj);
 
-/** Picks a starting locale from the visitor's browser on a first visit. */
-function detect() {
-  if (typeof navigator === 'undefined') return DEFAULT_LOCALE;
-  const tags = navigator.languages?.length ? navigator.languages : [navigator.language || ''];
-  return tags.some((tag) => String(tag).toLowerCase().startsWith('zh')) ? 'zh' : DEFAULT_LOCALE;
-}
-
-export function LocaleProvider({ children }) {
-  const [locale, setStored] = useState(DEFAULT_LOCALE);
-
-  useEffect(() => {
-    let saved = null;
-    try {
-      saved = window.localStorage.getItem(LOCALE_KEY);
-    } catch {
-      // Private mode or storage disabled. Fall through to detection.
-    }
-    const next = LOCALES.includes(saved) ? saved : detect();
-    if (next !== DEFAULT_LOCALE) setStored(next);
-  }, []);
-
-  // The server renders lang="en"; keep the document honest once we know better.
-  useEffect(() => {
-    document.documentElement.lang = LOCALE_META[locale].htmlLang;
-  }, [locale]);
-
-  const setLocale = useCallback((next) => {
-    if (!LOCALES.includes(next)) return;
-    try {
-      window.localStorage.setItem(LOCALE_KEY, next);
-    } catch {
-      // The choice still applies for this visit; it just will not be remembered.
-    }
-    setStored(next);
-  }, []);
-
+export function LocaleProvider({ locale = DEFAULT_LOCALE, children }) {
   const value = useMemo(() => {
     const dict = ui[locale] ?? ui[DEFAULT_LOCALE];
     const fallback = ui[DEFAULT_LOCALE];
@@ -77,8 +47,14 @@ export function LocaleProvider({ children }) {
       );
     };
 
-    return { locale, setLocale, t, content: getContent(locale) };
-  }, [locale, setLocale]);
+    return {
+      locale,
+      t,
+      content: getContent(locale),
+      // Every internal link goes through this, usually via <Link>.
+      path: (to) => localePath(locale, to),
+    };
+  }, [locale]);
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 }

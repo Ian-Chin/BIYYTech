@@ -24,6 +24,21 @@ export function SplashBoot() {
   return <script dangerouslySetInnerHTML={{ __html: BOOT }} />;
 }
 
+/**
+ * Sets <html lang> from the URL before the first paint.
+ *
+ * One <html> element serves both language trees, so the attribute cannot be
+ * static, and it has to be right in the first painted frame rather than after
+ * hydration: it is what a screen reader uses to pick a voice. Lives here beside
+ * the splash boot because it is the same trick — a blocking inline script in
+ * <head>, the one place a script is guaranteed to run before the body renders.
+ */
+const LANG_BOOT = `(function(){var p=location.pathname;if(p==='/zh'||p.indexOf('/zh/')===0)document.documentElement.lang='zh-Hans'})();`;
+
+export function LangBoot() {
+  return <script dangerouslySetInnerHTML={{ __html: LANG_BOOT }} />;
+}
+
 export default function Splash() {
   return (
     <div className="splash" aria-hidden="true">

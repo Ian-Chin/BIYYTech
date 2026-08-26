@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/Link';
 import { useEffect, useRef, useState } from 'react';
 import HeroFrame from '@/components/HeroFrame';
 import { Reveal, SplitWords, onScrollFrame, prefersReducedMotion } from '@/components/motion';

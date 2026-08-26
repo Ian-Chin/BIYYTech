@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/Link';
 import HeroFrame from '@/components/HeroFrame';
 import { ClosingCta, Faq, SectionHead } from '@/components/Sections';
 import { Parallax, Reveal, SplitWords } from '@/components/motion';

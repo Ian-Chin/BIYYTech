@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/Link';
 
 const MARKS = {
   dark: '/brand/yiy-mark-white-512.png',

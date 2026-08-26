@@ -1,16 +1,34 @@
 'use client';
 
-import { LOCALES, LOCALE_META, useLocale } from '@/lib/i18n';
+import { usePathname, useRouter } from 'next/navigation';
+import { LOCALES, LOCALE_KEY, LOCALE_META, useLocale } from '@/lib/i18n';
+import { localePath, stripLocale } from '@/lib/routes';
 
 /**
  * Two-state segmented control rather than a dropdown: with exactly two locales
  * a select is a click more expensive and hides the alternative until opened.
  * The pressed state is carried by aria-pressed as well as by weight, so it
  * reads correctly without colour.
+ *
+ * Switching language is a navigation now, not a state change: each language is
+ * a real URL, so the toggle moves the same page across trees (/blog/x ⇄
+ * /zh/blog/x) and records the choice so the homepage stops guessing.
  */
 export default function LanguageToggle({ tone = 'light', className = '' }) {
-  const { locale, setLocale, t } = useLocale();
+  const { locale, t } = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
   const dark = tone === 'dark';
+
+  const switchTo = (code) => {
+    if (code === locale) return;
+    try {
+      window.localStorage.setItem(LOCALE_KEY, code);
+    } catch {
+      // The choice still applies for this visit; it just will not be remembered.
+    }
+    router.push(localePath(code, stripLocale(pathname)));
+  };
 
   return (
     <div
@@ -27,7 +45,7 @@ export default function LanguageToggle({ tone = 'light', className = '' }) {
             key={code}
             type="button"
             lang={LOCALE_META[code].htmlLang}
-            onClick={() => setLocale(code)}
+            onClick={() => switchTo(code)}
             aria-pressed={on}
             className={`px-2.5 py-1.5 text-[11px] font-medium leading-none tracking-[0.08em] transition-colors duration-300 ${
               on
