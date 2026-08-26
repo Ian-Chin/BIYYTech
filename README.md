@@ -4,7 +4,7 @@ Next.js 15 (App Router) marketing site for YiY Tech. Business-professional
 minimalist layout modelled on the section rhythm of sudu.ai, with parallax,
 scroll-reveal, split-word headlines, count-up stats and a dependency-free
 scroll-snap carousel.
-
+ 
 ## Run it
 
 ```bash
