@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from '@/components/Link';
 import BackgroundVideo from '@/components/BackgroundVideo';
 import HeroFrame from '@/components/HeroFrame';
+import ProductExtras from '@/components/ProductExtras';
 import { ClosingCta, Faq, FeatureStrip, Process, SectionHead } from '@/components/Sections';
 import { Parallax, Reveal, SplitWords } from '@/components/motion';
 import { bySlug } from '@/lib/content';
@@ -137,14 +138,24 @@ export default function ProductView({ slug }) {
 
       <FeatureStrip slug={product.slug} tone={soon ? 'dark' : 'light'} />
 
-      {!soon ? <Process /> : null}
+      <ProductExtras product={product} />
+
+      {/* A product carrying its own stages has already shown its timeline, so
+          the shared two-week rollout would contradict it. */}
+      {!soon && !product.stages ? <Process /> : null}
 
       {/* Cross-sell ----------------------------------------------------- */}
       <section className="relative overflow-hidden bg-paper-warm py-24 md:py-32">
         <div className="shell">
           <SectionHead eyebrow={t('product.crossEyebrow')} title={t('product.crossTitle')} />
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {/* Three siblings sit in a row; two stay wide rather than leaving a
+              gap where a third card would be. */}
+          <div
+            className={`mt-14 grid gap-6 md:grid-cols-2 ${
+              others.length === 3 ? 'lg:grid-cols-3' : ''
+            }`}
+          >
             {others.map((other, i) => (
               <Reveal key={other.slug} delay={i * 110}>
                 <Link href={other.href} className="card group block h-full">
@@ -176,7 +187,18 @@ export default function ProductView({ slug }) {
         </div>
       </section>
 
-      <Faq />
+      {/* A product asked entirely different questions brings its own set and
+          its own heading; everything else falls back to the site-wide ones. */}
+      {product.faqs ? (
+        <Faq
+          items={product.faqs}
+          eyebrow={t('web.faqEyebrow')}
+          title={t('web.faqTitle')}
+          body={t('web.faqBody')}
+        />
+      ) : (
+        <Faq />
+      )}
       <ClosingCta />
     </>
   );

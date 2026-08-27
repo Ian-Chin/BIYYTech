@@ -21,7 +21,6 @@ export const ui = {
     },
     common: {
       products: 'Products',
-      website: 'Website',
       blog: 'Blog',
       careers: 'Careers',
       contact: 'Contact',
@@ -52,9 +51,9 @@ export const ui = {
     },
     home: {
       productsEyebrow: 'Products',
-      productsTitle: 'Two systems live today. A third listening in the background.',
+      productsTitle: 'Three live today. A fourth listening in the background.',
       productsBody:
-        'Buy one, buy both. They share an account and a login, and once Data & Intelligence lands, one intelligence layer over everything your business does.',
+        'Two operations systems, a website wired into both, and one account behind them. Buy one or buy all three; once Data & Intelligence lands, there is one intelligence layer over everything your business does.',
     },
     stats: {
       note: 'Figures reflect typical results reported by YiY Tech pilot customers across retail, wholesale and service businesses. Your numbers will depend on your starting point. We will tell you what to expect during the walkthrough.',
@@ -194,7 +193,8 @@ export const ui = {
       interests: [
         'Inventory & Stock Management',
         'Booking & Operations',
-        'Both',
+        'Website & Integrations',
+        'More than one',
         'Not sure yet',
       ],
       sizes: ['1 outlet', '2–5 outlets', '6–20 outlets', '20+ outlets'],
@@ -253,17 +253,15 @@ export const ui = {
         },
       ],
     },
+    /* Section copy for the Website & Integrations product page. It keeps its
+       own namespace because these headings belong to the sections in
+       ProductExtras, which no other product renders. */
     web: {
-      eyebrow: 'Website & integrations',
-      title: 'A website that knows what is in stock and who is free at three.',
-      body: 'Most small-business websites are a brochure nobody has edited since launch, sitting a few feet from an operations system that knows everything. We build the site, then wire it into YiY so the two stop disagreeing.',
-      heroAlt: 'A shop owner working on a laptop at the counter of their store',
-      asideAlt: 'A product being photographed for an online listing beside a laptop',
-      bandAlt: 'A print shop owner working through orders on a laptop',
-      buildEyebrow: 'Scope',
-      buildTitle: 'What a build includes, agreed before anyone opens an editor.',
-      buildBody:
-        'Fixed scope, quoted after the content session. Anything outside it gets said out loud at the time, rather than absorbed quietly into week three.',
+      bandAlt: 'A product being photographed for an online listing beside a laptop',
+      valueEyebrow: 'What it is worth',
+      valueTitle: 'What a new site actually changes for the business.',
+      valueBody:
+        'Not impressions and bounce rate. What is different on the floor once the site and the system behind it are the same system.',
       connectEyebrow: 'The wiring',
       connectTitle: 'What the site reads, and what it writes back.',
       connectBody:
@@ -273,10 +271,10 @@ export const ui = {
       headWrites: 'Writes back to YiY',
       none: '—',
       platformsEyebrow: 'Already have a site',
-      platformsTitle: 'We would rather wire yours than sell you another one.',
+      platformsTitle: 'If yours is worth keeping, we wire it instead of rebuilding it.',
       platformsBody:
-        'How deep an integration can go is decided by what the site is built on, not by how much you spend. The honest version, before you ask.',
-      stagesEyebrow: 'How it runs',
+        'Most of this work is a new build. When a site is genuinely sound we integrate with the one you have and quote less, and how deep that can go is decided by what it was built on rather than by what you spend.',
+      stagesEyebrow: 'How the build runs',
       stagesTitle: 'Three weeks, four stages, one staging link you can share.',
       stagesBody: 'Every stage has an owner and something you can look at by the end of it.',
       limitsEyebrow: 'The limits',
@@ -285,8 +283,6 @@ export const ui = {
       faqEyebrow: 'Questions',
       faqTitle: 'Asked on every one of these calls.',
       faqBody: 'If yours is not here, ask it on the walkthrough. We would rather answer before you commit.',
-      cta: 'Talk about a build',
-      seeProducts: 'See what it connects to',
     },
     blog: {
       eyebrow: 'Blog',
@@ -345,7 +341,6 @@ export const ui = {
     },
     common: {
       products: '产品',
-      website: '网站',
       blog: '博客',
       careers: '招聘',
       contact: '联系我们',
@@ -376,9 +371,9 @@ export const ui = {
     },
     home: {
       productsEyebrow: '产品',
-      productsTitle: '两套系统今天已经上线。第三套正在背后听着。',
+      productsTitle: '三个今天已经上线。第四个正在背后听着。',
       productsBody:
-        '买一个，或者两个都买。它们共用账户和登录；等数据与智能上线之后，你的所有业务之上还会多一层智能。',
+        '两套运营系统，一个接进它们的网站，背后共用一个账户。买一个，或者三个都买；等数据与智能上线之后，你的所有业务之上还会多一层智能。',
     },
     stats: {
       note: '这些数字反映 YiY Tech 试点客户在零售、批发与服务行业中报告的典型结果。你的数字取决于你的起点。我们会在走访时告诉你该期待什么。',
@@ -513,7 +508,7 @@ export const ui = {
       direct: '直接联系',
       coverTitle: '走访会聊什么',
       roadmapSuffix: '（路线图）',
-      interests: ['库存管理', '预约与运营', '两个都要', '还不确定'],
+      interests: ['库存管理', '预约与运营', '网站与集成', '不止一个', '还不确定'],
       sizes: ['1 家门店', '2 至 5 家门店', '6 至 20 家门店', '20 家以上'],
       errName: '告诉我们你是谁。',
       errBusiness: '这是为哪家企业问的？',
@@ -567,16 +562,10 @@ export const ui = {
       ],
     },
     web: {
-      eyebrow: '网站与集成',
-      title: '一个知道还剩多少货、三点谁有空的网站。',
-      body: '多数小生意的网站，是一份上线之后再没人改过的宣传册，而几步之外就摆着一套什么都知道的运营系统。我们把网站做出来，再把它接进 YiY，让这两边不再各说各话。',
-      heroAlt: '店主在自家店铺的柜台上用笔记本电脑办公',
-      asideAlt: '在笔记本电脑旁给商品拍照，准备上架',
-      bandAlt: '印刷店老板用笔记本电脑处理订单',
-      buildEyebrow: '范围',
-      buildTitle: '一个项目包含什么，在动手之前就说定。',
-      buildBody:
-        '范围固定，在内容会谈之后报价。超出范围的事情当场说出来，而不是悄悄压进第三周。',
+      bandAlt: '在笔记本电脑旁给商品拍照，准备上架',
+      valueEyebrow: '它值在哪里',
+      valueTitle: '一个新网站到底给这门生意带来什么改变。',
+      valueBody: '不是曝光量和跳出率，而是当网站和它背后的系统合成一套之后，店里实际发生的变化。',
       connectEyebrow: '接线',
       connectTitle: '网站读什么，又写回去什么。',
       connectBody:
@@ -586,9 +575,10 @@ export const ui = {
       headWrites: '写回 YiY',
       none: '—',
       platformsEyebrow: '已经有网站',
-      platformsTitle: '与其再卖你一个，不如把你现有的接上。',
-      platformsBody: '集成能做到多深，取决于网站是用什么做的，而不是你花了多少钱。先把话说清楚。',
-      stagesEyebrow: '怎么推进',
+      platformsTitle: '如果你现在的站值得留，我们就接上去，而不是重做。',
+      platformsBody:
+        '这类项目多数是从头做一个新站。只有当现有网站确实没问题时，我们才直接接上去，报价也更低；能接多深取决于它是用什么做的，而不是你花了多少钱。',
+      stagesEyebrow: '建站怎么推进',
       stagesTitle: '三周，四个阶段，一个可以随便转发的预览链接。',
       stagesBody: '每个阶段都有负责人，结束时都有你可以亲眼看的东西。',
       limitsEyebrow: '边界',
@@ -597,8 +587,6 @@ export const ui = {
       faqEyebrow: '常见问题',
       faqTitle: '这类电话里每次都会问到的。',
       faqBody: '这里没有你的问题，就在走访时问出来。我们宁愿在你决定之前回答。',
-      cta: '聊聊这个项目',
-      seeProducts: '看看它接的是什么',
     },
     blog: {
       eyebrow: '博客',

@@ -11,7 +11,6 @@ const BASE = SITE_URL;
 const PATHS = [
   { path: '/', priority: 1 },
   { path: '/contact', priority: 0.8 },
-  { path: '/website', priority: 0.8 },
   { path: '/blog', priority: 0.7 },
   { path: '/careers', priority: 0.7 },
   { path: '/privacy', priority: 0.3 },

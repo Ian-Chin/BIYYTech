@@ -1,10 +1,11 @@
 # YiY Tech
 
 > YiY Tech builds operations software for small and medium businesses in
-> Malaysia and Singapore. Two products are live: Inventory & Stock Management
-> for retail and wholesale, and Booking & Operations for clinics, salons,
-> tuition centres and property teams. A third, Data & Intelligence, is in
-> limited beta.
+> Malaysia and Singapore. Three products are live: Inventory & Stock Management
+> for retail and wholesale, Booking & Operations for clinics, salons, tuition
+> centres and property teams, and Website & Integrations, which builds a new
+> website for the business and wires it into both. A fourth, Data &
+> Intelligence, is in limited beta.
 
 Pricing is a flat monthly fee per outlet. There is no per-transaction charge,
 no implementation fee, and no annual lock-in required to start. A typical
@@ -28,33 +29,36 @@ containing duplicate SKUs are quoted three to four weeks up front.
   reserves every required resource or none. Client records, treatment notes and
   consent forms. Daily operations dashboard covering utilisation, revenue and
   gaps. Built for clinics, salons, tuition centres and property agencies.
-- Both live products are driven from an operations dashboard for managers, with
+- Both of the above are driven from an operations dashboard for managers, with
   a phone interface for staff on the floor or at the front desk.
+- [Website & Integrations](https://yiy.tech/products/website): YiY Tech designs
+  and builds new websites for its customers and wires them into the operations
+  layer. The build is bespoke rather than templated, with copy written in a
+  session with the business. The value to the customer is that the site takes
+  orders and bookings outside trading hours, answers the questions that
+  otherwise arrive by phone, and cannot go stale because prices, staff,
+  availability and opening hours are read from the operations system rather
+  than typed into a page.
+  Catalogue pages read live stock and lead time per SKU and outlet. The booking
+  page reads real staff, room and equipment availability and writes the
+  appointment back, reserving every resource it needs. Online orders hold stock
+  and open a picking job. Enquiry forms land as leads on the dashboard. Outlet
+  pages take address, trading hours and closures from the operations calendar.
+  Static pages on a CDN, no CMS, English and Chinese as standard. Typical build
+  is three weeks: content session, build, wiring, launch. Priced as a flat
+  project fee quoted after the content session, with hosting inside the existing
+  monthly per-outlet price; there is no per-transaction charge and no percentage
+  of sales. Domain, DNS, repository and hosting are in the customer's name from
+  day one. Businesses with an existing site can integrate it instead: custom
+  builds and WordPress fully, Shopify two-way for stock plus embedded bookings,
+  and hosted builders such as Wix by embed only. Explicitly not offered:
+  marketing retainers, ad management, monthly SEO reports, logo or brand
+  identity work, and cross-border storefronts with multi-currency tax rules.
 - [Data & Intelligence](https://yiy.tech/products/data): limited beta. Demand
   forecasting per SKU, outlet and season. Staffing and capacity recommendations
   by hour. Client cohort retention and lifetime value. Anomaly alerts for
   shrinkage, refunds and cancellations. Plain-language questions over the
   business's own data.
-
-## Services
-
-- [Website & integrations](https://yiy.tech/website): YiY Tech also builds
-  websites for its customers and wires them into the operations layer. Catalogue
-  pages read live stock and lead time per SKU and outlet. The booking page reads
-  real staff, room and equipment availability and writes the appointment back,
-  reserving every resource it needs. Online orders hold stock and open a picking
-  job. Enquiry forms land as leads on the dashboard. Outlet pages take address,
-  trading hours and closures from the operations calendar. Static pages on a
-  CDN, no CMS, English and Chinese as standard. Typical build is three weeks:
-  content session, build, wiring, launch. Priced as a flat project fee quoted
-  after the content session, with hosting inside the existing monthly per-outlet
-  price; there is no per-transaction charge and no percentage of sales. Domain,
-  DNS, repository and hosting are in the customer's name from day one.
-  Businesses with an existing site can integrate it instead: custom builds and
-  WordPress fully, Shopify two-way for stock plus embedded bookings, and hosted
-  builders such as Wix by embed only. Explicitly not offered: marketing
-  retainers, ad management, monthly SEO reports, logo or brand identity work,
-  and cross-border storefronts with multi-currency tax rules.
 
 ## Writing
 
@@ -87,7 +91,9 @@ This plain-text summary and the full corpus at /llms-full.txt are English only.
 
 - Structured data: every page carries Schema.org JSON-LD in a single `@graph`
   block, server-rendered into the HTML. Organization and WebSite site-wide;
-  SoftwareApplication with an Offer on each product page; BlogPosting with
+  SoftwareApplication with an Offer on each software product page, and a
+  Service node with no Offer on Website & Integrations, which is quoted per
+  project rather than priced per outlet; BlogPosting with
   author, reviewedBy, datePublished, dateModified and citation on each post;
   FAQPage on the homepage, product pages and every post; BreadcrumbList
   throughout. Note that fetching these pages through a markdown converter will

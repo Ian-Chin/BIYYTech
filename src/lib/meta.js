@@ -23,18 +23,6 @@ export const PAGE_META = {
         'YiY Tech 为零售与批发中小企业做实时库存与进销存管理，也为诊所、美容院、补习中心和房产团队做预约与运营仪表板。按门店固定月费，两周上线。',
     },
   },
-  website: {
-    en: {
-      title: 'Website & integrations',
-      description:
-        'YiY Tech builds websites for SMEs and wires them into the operations system behind them: live stock on catalogue pages, real availability on the booking page, enquiries landing on the dashboard. Three weeks, fixed scope, everything in your name.',
-    },
-    zh: {
-      title: '网站与集成',
-      description:
-        'YiY Tech 为中小企业做网站，并把它接进背后的运营系统：商品页显示实时库存，预约页显示真实可用时段，询问直接落到仪表板上。三周，范围固定，所有权都在你名下。',
-    },
-  },
   contact: {
     en: {
       title: 'Book a walkthrough',
@@ -110,8 +98,8 @@ export const PAGE_META = {
 
 /** Breadcrumb labels, which are chrome rather than content. */
 export const CRUMBS = {
-  en: { home: 'Home', products: 'Products', blog: 'Blog', website: 'Website & integrations' },
-  zh: { home: '首页', products: '产品', blog: '博客', website: '网站与集成' },
+  en: { home: 'Home', products: 'Products', blog: 'Blog' },
+  zh: { home: '首页', products: '产品', blog: '博客' },
 };
 
 export const pageCopy = (key, locale) => PAGE_META[key][locale] ?? PAGE_META[key].en;

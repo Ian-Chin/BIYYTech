@@ -13,10 +13,7 @@ export default function Footer() {
   const columns = [
     {
       title: t('common.products'),
-      links: [
-        ...products.map((p) => ({ label: p.name, href: p.href })),
-        { label: t('web.eyebrow'), href: '/website' },
-      ],
+      links: products.map((p) => ({ label: p.name, href: p.href })),
     },
     {
       title: t('footer.companyTitle'),

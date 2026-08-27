@@ -3,7 +3,7 @@ import JsonLd from '@/components/JsonLd';
 import ProductView from '@/components/ProductView';
 import { bySlug, getContent } from '@/lib/content';
 import { crumb } from '@/lib/meta';
-import { breadcrumbLd, graph, pageMeta, productLd } from '@/lib/seo';
+import { breadcrumbLd, faqLd, graph, pageMeta, productLd } from '@/lib/seo';
 import { products } from '@/lib/site';
 
 export const staticParams = () => products.map((p) => ({ slug: p.slug }));
@@ -44,6 +44,9 @@ export async function Page({ params, locale }) {
             ],
             locale,
           ),
+          // Only the products that answer their own questions on the page; the
+          // rest render the site-wide set, which the homepage already emits.
+          product.faqs ? faqLd(product.faqs) : null,
         )}
       />
 

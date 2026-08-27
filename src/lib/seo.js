@@ -1,6 +1,6 @@
 import { getContent } from '@/lib/content';
 import { LOCALES, localePath } from '@/lib/routes';
-import { company, editorialPolicy, faqs, products, webService } from '@/lib/site';
+import { company, editorialPolicy, faqs, products } from '@/lib/site';
 
 /**
  * The canonical origin. Single source of truth: robots.js and sitemap.js import
@@ -160,34 +160,68 @@ export const homeFaqLd = (locale = 'en') => faqLd(getContent(locale).faqs);
 /* Every node below takes the already-translated entry from getContent(locale)
    and only needs to be told which tree to build URLs in. The @id therefore
    differs per locale, which is correct: they are two pages. */
-export const productLd = (product, locale = 'en') => ({
-  '@type': 'SoftwareApplication',
-  '@id': abs(`${localePath(locale, product.href)}#software`),
-  name: `${company.name} ${product.name}`,
-  applicationCategory: 'BusinessApplication',
-  applicationSubCategory: product.slug === 'booking' ? 'Scheduling' : 'Inventory management',
-  operatingSystem: 'Web, iOS, Android',
-  url: abs(localePath(locale, product.href)),
-  description: product.summary,
-  audience: { '@type': 'BusinessAudience', audienceType: product.audience },
-  featureList: product.bullets,
-  provider: { '@id': `${SITE_URL}/#organization` },
-  offers: {
-    '@type': 'Offer',
-    priceCurrency: 'MYR',
-    priceSpecification: {
-      '@type': 'UnitPriceSpecification',
-      price: '0',
+export const productLd = (product, locale = 'en') => {
+  const url = abs(localePath(locale, product.href));
+
+  /**
+   * A product marked `service` is delivered as a project rather than licensed
+   * per seat, so it is a `Service` and not a `SoftwareApplication`. It also
+   * carries no Offer node: the fee is quoted per project after the content
+   * session, and inventing a price here would put a number on the page that
+   * nobody at YiY has agreed to.
+   */
+  if (product.service) {
+    return {
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: `${company.name} ${product.name}`,
+      serviceType: 'Website design, development and operations-system integration',
+      url,
+      description: product.summary,
+      provider: { '@id': `${SITE_URL}/#organization` },
+      areaServed: ['MY', 'SG'],
+      audience: { '@type': 'BusinessAudience', audienceType: product.audience },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'What a build includes',
+        itemListElement: product.bullets.map((item, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: item,
+        })),
+      },
+    };
+  }
+
+  return {
+    '@type': 'SoftwareApplication',
+    '@id': `${url}#software`,
+    name: `${company.name} ${product.name}`,
+    applicationCategory: 'BusinessApplication',
+    applicationSubCategory: product.slug === 'booking' ? 'Scheduling' : 'Inventory management',
+    operatingSystem: 'Web, iOS, Android',
+    url,
+    description: product.summary,
+    audience: { '@type': 'BusinessAudience', audienceType: product.audience },
+    featureList: product.bullets,
+    provider: { '@id': `${SITE_URL}/#organization` },
+    offers: {
+      '@type': 'Offer',
       priceCurrency: 'MYR',
-      unitText: 'per outlet, per month',
-      valueAddedTaxIncluded: false,
-      description:
-        'Flat monthly price per outlet. Quoted during the walkthrough based on outlet count and products.',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '0',
+        priceCurrency: 'MYR',
+        unitText: 'per outlet, per month',
+        valueAddedTaxIncluded: false,
+        description:
+          'Flat monthly price per outlet. Quoted during the walkthrough based on outlet count and products.',
+      },
+      availability:
+        product.soon ? 'https://schema.org/PreOrder' : 'https://schema.org/InStock',
     },
-    availability:
-      product.soon ? 'https://schema.org/PreOrder' : 'https://schema.org/InStock',
-  },
-});
+  };
+};
 
 export const productListLd = (locale = 'en') => ({
   '@type': 'ItemList',
@@ -199,35 +233,6 @@ export const productListLd = (locale = 'en') => ({
     url: abs(localePath(locale, p.href)),
     description: p.summary,
   })),
-});
-
-/**
- * The website build is a service, not a licensed application, so it is a
- * `Service` rather than the `SoftwareApplication` the products use. No Offer
- * node: the fee is quoted per project after the content session, and inventing
- * a price here would put a number on the page that nobody at YiY has agreed to.
- */
-export const webServiceLd = (locale = 'en') => ({
-  '@type': 'Service',
-  '@id': abs(`${localePath(locale, webService.href)}#service`),
-  name: 'Website design and YiY integration',
-  serviceType: 'Website design, development and operations-system integration',
-  url: abs(localePath(locale, webService.href)),
-  description:
-    'Websites for SMEs, wired into the YiY Tech operations layer so stock levels, staff and room availability, outlet hours and enquiries stay in one system.',
-  provider: { '@id': `${SITE_URL}/#organization` },
-  areaServed: ['MY', 'SG'],
-  audience: { '@type': 'BusinessAudience', audienceType: 'Small and medium businesses' },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'What a build includes',
-    itemListElement: getContent(locale).webService.build.map((row, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: row.term,
-      description: row.detail,
-    })),
-  },
 });
 
 export const articleLd = (post, locale = 'en') => ({
