@@ -9,6 +9,11 @@ import { useLocale } from '@/lib/i18n';
 
 // Only the current scene is mounted as a <video>; the rest stay as poster
 // stills until they are about to play, so the page loads one clip, not three.
+//
+// The three clips are the floors the dashboards are built for rather than
+// footage of software: a distribution aisle, a salon, a working warehouse.
+// Each poster is a still from the same subject, so the crossfade between the
+// image and the clip does not jump. Adding a fourth scene is one more entry.
 const SCENES = [
   { src: '/media/video/warehouse-aisle.mp4', poster: '/media/img/inventory-shelves.jpg' },
   { src: '/media/video/salon-color.mp4', poster: '/media/img/salon-interior.jpg' },

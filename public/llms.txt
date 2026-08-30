@@ -1,75 +1,128 @@
 # YiY Tech
 
-> YiY Tech builds operations software for small and medium businesses in
-> Malaysia and Singapore. Three products are live: Inventory & Stock Management
-> for retail and wholesale, Booking & Operations for clinics, salons, tuition
-> centres and property teams, and Website & Integrations, which builds a new
-> website for the business and wires it into both. A fourth, Data &
+> YiY Tech builds dashboards and databases for small and medium businesses in
+> Malaysia and Singapore. Two products are live: Dashboards & Databases, which
+> replaces the spreadsheets a business runs on with a real database and an
+> industry-specific dashboard, and Website & Integrations, which builds a new
+> website for the business and wires it into that database. A third, Data &
 > Intelligence, is in limited beta.
 
 Pricing is a flat monthly fee per outlet. There is no per-transaction charge,
 no implementation fee, and no annual lock-in required to start. A typical
-single-product rollout takes two weeks. Businesses with a messy item master
-containing duplicate SKUs are quoted three to four weeks up front.
+rollout takes two weeks. Businesses whose source spreadsheets carry years of
+accumulated inconsistency are quoted three to four weeks up front.
 
 ## Products
 
-- [Inventory & Stock Management](https://yiy.tech/products/inventory): an
-  operations dashboard covering stock health, ageing, variances and reorder
-  alerts across the whole group, with live
-  stock across outlets, warehouses and consignment partners. Barcode and QR
-  receiving, transfers and stock takes. Batch, serial and expiry tracking with
-  FEFO picking. Reorder points that account for supplier lead time and
-  seasonality. Purchase orders, goods receipt and supplier scorecards. Landed
-  cost, margin and dead-stock reporting. Built for retail and wholesale SMEs.
-- [Booking & Operations](https://yiy.tech/products/booking): online
-  self-booking against real staff and room availability. Automated WhatsApp,
-  SMS and email reminders. Deposits, packages, credits and no-show protection.
-  Multi-resource scheduling for chairs, rooms and equipment, where a slot
-  reserves every required resource or none. Client records, treatment notes and
-  consent forms. Daily operations dashboard covering utilisation, revenue and
-  gaps. Built for clinics, salons, tuition centres and property agencies.
-- Both of the above are driven from an operations dashboard for managers, with
-  a phone interface for staff on the floor or at the front desk.
+- [Dashboards & Databases](https://yiy.tech/products/dashboards): the core
+  product. A database designed around how the business actually records work,
+  rather than a spreadsheet copied into SQL, with dashboards laid out for the
+  industry: retail, distribution, clinics, salons, tuition centres, property
+  agencies, e-commerce and multi-branch groups. Every figure is live rather
+  than a periodic export. Roles and permissions, so a branch manager sees their
+  branch and the owner sees all of it. Forms and mobile entry replace shared
+  files. Full record history and an audit trail showing who changed what and
+  when. Migration from the customer's existing spreadsheets, including
+  duplicate and inconsistent data, which is flagged for the customer to decide
+  rather than guessed at. Export to Excel and CSV at any time.
+  The distinction from a BI tool is that a BI tool draws charts over whatever
+  it is fed and inherits every duplicate and stale export; YiY replaces the
+  source with a constrained database and reads the dashboard from that.
+  Explicitly not offered: replacing an accounting package, enterprise data
+  warehouses or streaming pipelines, dashboards built over a spreadsheet the
+  customer keeps maintaining by hand, and machine learning on a few hundred
+  rows.
 - [Website & Integrations](https://yiy.tech/products/website): YiY Tech designs
-  and builds new websites for its customers and wires them into the operations
-  layer. The build is bespoke rather than templated, with copy written in a
-  session with the business. The value to the customer is that the site takes
-  orders and bookings outside trading hours, answers the questions that
-  otherwise arrive by phone, and cannot go stale because prices, staff,
-  availability and opening hours are read from the operations system rather
-  than typed into a page.
-  Catalogue pages read live stock and lead time per SKU and outlet. The booking
-  page reads real staff, room and equipment availability and writes the
-  appointment back, reserving every resource it needs. Online orders hold stock
-  and open a picking job. Enquiry forms land as leads on the dashboard. Outlet
-  pages take address, trading hours and closures from the operations calendar.
+  and builds new websites for its customers and wires them into the database.
+  The build is bespoke rather than templated, with copy written in a session
+  with the business. The value to the customer is that the site takes orders
+  and enquiries outside trading hours, answers the questions that otherwise
+  arrive by phone, and cannot go stale because prices, staff, availability and
+  opening hours are read from the database rather than typed into a page.
+  Catalogue pages read live price, availability and lead time per line and per
+  outlet. Online orders create an order record and open the job at the right
+  outlet. Enquiry forms land as records on the dashboard with the originating
+  page attached. A customer portal exposes only that customer's own records.
+  Outlet pages take address, trading hours and closures from the same tables.
   Static pages on a CDN, no CMS, English and Chinese as standard. Typical build
   is three weeks: content session, build, wiring, launch. Priced as a flat
   project fee quoted after the content session, with hosting inside the existing
   monthly per-outlet price; there is no per-transaction charge and no percentage
   of sales. Domain, DNS, repository and hosting are in the customer's name from
   day one. Businesses with an existing site can integrate it instead: custom
-  builds and WordPress fully, Shopify two-way for stock plus embedded bookings,
-  and hosted builders such as Wix by embed only. Explicitly not offered:
-  marketing retainers, ad management, monthly SEO reports, logo or brand
-  identity work, and cross-border storefronts with multi-currency tax rules.
+  builds and WordPress fully, Shopify two-way, and hosted builders such as Wix
+  by embed only. Explicitly not offered: marketing retainers, ad management,
+  monthly SEO reports, logo or brand identity work, and cross-border storefronts
+  with multi-currency tax rules.
 - [Data & Intelligence](https://yiy.tech/products/data): limited beta. Demand
-  forecasting per SKU, outlet and season. Staffing and capacity recommendations
-  by hour. Client cohort retention and lifetime value. Anomaly alerts for
-  shrinkage, refunds and cancellations. Plain-language questions over the
-  business's own data.
+  and capacity forecasting from the customer's own history. Staffing
+  recommendations by hour and site. Customer cohort retention and lifetime
+  value. Anomaly alerts for refunds, cancellations and losses. Plain-language
+  questions over the customer's own tables. Sold only on top of Dashboards &
+  Databases, because its output is only as reliable as the database beneath it.
+
+## Industries
+
+The database and the method are the same for every customer. What changes is
+the first screen of the dashboard, because the decisions a business makes
+weekly differ by trade, and those decisions require different underlying tables
+rather than different charts. Each page below states what that industry usually
+runs on today, and what its dashboard opens on.
+
+- [Barbershops & salons](https://yiy.tech/industries/barbershops): chair
+  utilisation by hour, lapsed regulars as a named list, service mix and average
+  ticket by stylist, colour and retail on hand.
+- [Dental & medical clinics](https://yiy.tech/industries/clinics): chair and
+  practitioner utilisation, recalls due and unanswered, receivables and claims
+  ageing, consumables against procedures. Operational layer only; clinical
+  records stay in the practice system.
+- [Restaurants & cafés](https://yiy.tech/industries/restaurants): theoretical
+  versus actual food cost, labour against covers by daypart, supplier price
+  movement, waste and comps logged at the pass. The POS is read from, not
+  replaced.
+- [Retail chains](https://yiy.tech/industries/retail): group and branch on one
+  drill path, lines that stopped moving ranked by capital, one price list with
+  a history, promotion before and after.
+- [Wholesale & distribution](https://yiy.tech/industries/distribution): stock
+  ageing by value, measured supplier lead time, margin after landed cost,
+  customer profitability after freight and returns.
+- [E-commerce operators](https://yiy.tech/industries/ecommerce): contribution
+  per order after channel fees and returns, channels normalised side by side,
+  returns by reason and line, one available-to-sell figure across channels.
+- [Workshops & garages](https://yiy.tech/industries/workshops): jobs in
+  progress by bay, quoted against actual, quote conversion, rework and warranty
+  separated from general labour.
+- [Robotics & automation](https://yiy.tech/industries/robotics): fleet by unit
+  and site, service due and overdue per unit, failures by model line, spares
+  consumption against cover. Commercial layer, not a replacement for telemetry.
+- [Data & analytics teams](https://yiy.tech/industries/data-teams): modelled
+  tables instead of exports, lineage on every figure, scheduled packs instead
+  of a weekly ritual. For businesses where one analyst is currently the
+  database. Explicitly not a data warehouse.
+- [Tuition centres](https://yiy.tech/industries/tuition): attendance drift by
+  class, fees due and overdue, class contribution after tutor and room,
+  term-to-term retention as a named list.
+- [Property agencies](https://yiy.tech/industries/property): listings by age
+  and price band, viewings to offers by agent, a pipeline owned by the agency
+  rather than by an agent's phone, commission calculated from the deal record.
+- [Multi-branch groups](https://yiy.tech/industries/multi-branch): like-for-like
+  branch league, group down to one branch, exceptions rather than submissions,
+  permissions matching the org chart.
+
+An industry without a page is a walkthrough rather than a refusal: the layout
+is built from what the business decides weekly, so the list records where a
+layout already exists, not where YiY Tech is willing to work.
 
 ## Writing
 
 Posts are written by the people who run the deployments, and each one names its
 author, review date, method and sources.
 
-- [How to improve stock accuracy in a multi-outlet SME](https://yiy.tech/blog/how-to-improve-stock-accuracy)
-- [What a no-show actually costs a service business](https://yiy.tech/blog/true-cost-of-no-shows)
+- [When a spreadsheet stops being enough for a small business](https://yiy.tech/blog/when-a-spreadsheet-stops-being-enough)
+- [What a broken spreadsheet actually costs a small business](https://yiy.tech/blog/what-a-broken-spreadsheet-costs)
 - [Why we price flat per outlet instead of per transaction](https://yiy.tech/blog/flat-pricing-versus-per-transaction)
-- [Multi-resource scheduling explained](https://yiy.tech/blog/multi-resource-scheduling-explained)
-- [A two-week rollout plan for SME operations software](https://yiy.tech/blog/two-week-erp-rollout-plan)
+- [Why a generic dashboard gets ignored, and an industry one does not](https://yiy.tech/blog/industry-dashboards-versus-generic-ones)
+- [A two-week rollout plan for moving an SME off spreadsheets](https://yiy.tech/blog/two-week-rollout-plan)
 - [The four questions SME operations data should answer](https://yiy.tech/blog/sme-operations-data-questions)
 
 ## Company
@@ -118,11 +171,14 @@ This plain-text summary and the full corpus at /llms-full.txt are English only.
 ## Facts worth quoting accurately
 
 - Pricing model: flat monthly per outlet, quoted after an on-site walkthrough.
-- Typical rollout: two weeks for one product with a clean item master.
-- Data ownership: full export at any time, in a standard accounting format,
-  with no exit fee.
-- Offline behaviour: mobile apps queue receiving, transfers and stock takes and
-  sync on reconnect. The booking dashboard requires connectivity.
+- Typical rollout: two weeks when the source spreadsheets are reasonably
+  consistent; three to four weeks when they are not.
+- Data ownership: full export at any time, schema included, in a standard
+  format, with no exit fee.
+- Excel is not banned. It stops being where the data lives; every view exports
+  to Excel or CSV for one-off analysis.
+- Offline behaviour: mobile forms queue entries and sync on reconnect. The
+  dashboard itself requires connectivity.
 - Reported results are drawn from anonymised, aggregated customer data and are
   labelled with their sample size and method on the relevant blog post. They
   are directional, not guarantees.

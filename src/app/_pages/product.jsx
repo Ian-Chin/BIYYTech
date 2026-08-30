@@ -14,8 +14,8 @@ export async function meta({ params, locale }) {
   if (!product) return {};
 
   return pageMeta({
-    // Reads naturally in both: "Booking & Operations for clinics…" and
-    // "预约与运营 · 诊所、美容院…".
+    // Reads naturally in both: "Dashboards & Databases for SMEs running the
+    // business on spreadsheets" and "仪表板与数据库 · 还在用表格跑生意的中小企业".
     title: locale === 'zh'
       ? `${product.name} · ${product.audience}`
       : `${product.name} for ${product.audience}`,

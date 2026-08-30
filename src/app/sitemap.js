@@ -1,6 +1,6 @@
 import { localePath } from '@/lib/routes';
 import { SITE_URL } from '@/lib/seo';
-import { posts, products } from '@/lib/site';
+import { industries, posts, products } from '@/lib/site';
 
 const BASE = SITE_URL;
 
@@ -10,6 +10,7 @@ const BASE = SITE_URL;
    one language is the usual reason a translated site never gets indexed. */
 const PATHS = [
   { path: '/', priority: 1 },
+  { path: '/industries', priority: 0.8 },
   { path: '/contact', priority: 0.8 },
   { path: '/blog', priority: 0.7 },
   { path: '/careers', priority: 0.7 },
@@ -17,6 +18,9 @@ const PATHS = [
   { path: '/terms', priority: 0.3 },
   { path: '/cookies', priority: 0.3 },
   ...products.map((p) => ({ path: `/products/${p.slug}`, priority: 0.9 })),
+  // The industry pages are the ones a trade-specific search lands on, so they
+  // sit level with the product pages rather than below the blog.
+  ...industries.map((i) => ({ path: `/industries/${i.slug}`, priority: 0.8 })),
   ...posts.map((p) => ({ path: `/blog/${p.slug}`, priority: 0.6, lastModified: p.date })),
 ];
 

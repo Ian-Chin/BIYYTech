@@ -4,6 +4,7 @@ import {
   comparison,
   editorialPolicy,
   faqs,
+  industries,
   pillars,
   posts,
   products,
@@ -79,6 +80,27 @@ function productBlock(p) {
     .join('\n');
 }
 
+/* One industry page. The same database sold to one trade, so the block leads
+   with what that trade runs on today and what its first screen answers. */
+function industryBlock(item) {
+  return [
+    sub(`${item.name} — ${item.product}`),
+    `URL: ${SITE_URL}${item.href}`,
+    `Positioning: ${item.headline}`,
+    '',
+    item.summary,
+    '',
+    'What it usually replaces:',
+    list(item.pains),
+    '',
+    'What the dashboard opens on:',
+    item.panels.map((panel) => `- ${panel.title}: ${panel.body}`).join('\n'),
+    '',
+    'Questions answered on this page:',
+    item.faqs.map((f) => `Q: ${f.q}\nA: ${f.a}`).join('\n\n'),
+  ].join('\n');
+}
+
 function postBlock(p) {
   return [
     sub(p.title),
@@ -120,6 +142,10 @@ export function GET() {
 
     rule('PRODUCTS'),
     products.map(productBlock).join('\n\n'),
+
+    rule('INDUSTRIES'),
+    'The database and the rollout are identical across these. What changes is the first screen of the dashboard, because the weekly decisions differ by trade and those decisions need different underlying tables rather than different charts. An industry without a page below is a walkthrough rather than a refusal.',
+    industries.map(industryBlock).join('\n\n'),
 
     rule('WHY YIY'),
     pillars.map((p) => `- ${p.title}: ${p.body}`).join('\n'),

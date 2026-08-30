@@ -68,7 +68,7 @@ page updates.
 
 English is served from the root and Chinese from `/zh`, and both are statically
 generated in their own language. The locale is a property of the URL, not of the
-browser: `/zh/products/booking` is Chinese for everyone, which is what makes it
+browser: `/zh/products/dashboards` is Chinese for everyone, which is what makes it
 indexable. Every page carries a canonical URL plus an `hreflang` set pointing at
 its twin, and the sitemap lists both with the same alternates.
 

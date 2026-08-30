@@ -168,6 +168,24 @@ export function Industries() {
             title={t('industries.title')}
             body={t('industries.body')}
           />
+
+          <Reveal delay={160}>
+            <Link
+              href="/industries"
+              className="inline-flex items-center gap-2 border-b border-ink pb-1 text-sm font-medium"
+            >
+              {t('common.allIndustries')}
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path
+                  d="M9 1l4 4-4 4M13 5H1"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          </Reveal>
         </div>
 
         <Carousel
@@ -176,9 +194,12 @@ export function Industries() {
           className="mt-14"
           trackClassName="px-1"
         >
+          {/* Each card is the entry point to that industry's page, which is
+              where a visitor who recognises their own trade wants to go. */}
           {industries.map((item) => (
-            <div
-              key={item.name}
+            <Link
+              key={item.slug}
+              href={item.href}
               className="snap-item group relative aspect-[3/4] w-[74vw] shrink-0 overflow-hidden rounded-2xl sm:w-[46vw] lg:w-[300px]"
             >
               <Image
@@ -195,7 +216,7 @@ export function Industries() {
                 </p>
                 <p className="mt-2 text-lg font-semibold tracking-tighter">{item.name}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </Carousel>
       </div>
