@@ -112,10 +112,10 @@ export const organizationLd = () => ({
   },
   areaServed: ['MY', 'SG'],
   knowsAbout: [
-    'Inventory management',
-    'Stock control',
-    'Appointment scheduling',
-    'Multi-resource scheduling',
+    'Business intelligence dashboards',
+    'Operational database design',
+    'Spreadsheet migration',
+    'Data modelling for small business',
     'Retail operations',
     'Wholesale distribution',
     'Small business operations software',
@@ -175,7 +175,7 @@ export const productLd = (product, locale = 'en') => {
       '@type': 'Service',
       '@id': `${url}#service`,
       name: `${company.name} ${product.name}`,
-      serviceType: 'Website design, development and operations-system integration',
+      serviceType: 'Website design, development and operations-database integration',
       url,
       description: product.summary,
       provider: { '@id': `${SITE_URL}/#organization` },
@@ -198,7 +198,8 @@ export const productLd = (product, locale = 'en') => {
     '@id': `${url}#software`,
     name: `${company.name} ${product.name}`,
     applicationCategory: 'BusinessApplication',
-    applicationSubCategory: product.slug === 'booking' ? 'Scheduling' : 'Inventory management',
+    applicationSubCategory:
+      product.slug === 'data' ? 'Analytics' : 'Business intelligence and database',
     operatingSystem: 'Web, iOS, Android',
     url,
     description: product.summary,
@@ -222,6 +223,54 @@ export const productLd = (product, locale = 'en') => {
     },
   };
 };
+
+/* -------------------------------------------------------------------------- */
+/*  Industries                                                                */
+/*                                                                            */
+/*  An industry page sells a configuration of Dashboards & Databases to one   */
+/*  trade, so it is a Service with an audience rather than a second product.  */
+/*  No Offer node: the price is the product's flat per-outlet fee, quoted on   */
+/*  the walkthrough, and repeating it here would put a number on the page      */
+/*  that the pricing page does not commit to.                                  */
+/* -------------------------------------------------------------------------- */
+
+export const industryLd = (item, locale = 'en') => {
+  const url = abs(localePath(locale, item.href));
+
+  return {
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: `${company.name} ${item.product}`,
+    serviceType: 'Operational database and business intelligence dashboard',
+    url,
+    description: item.summary,
+    provider: { '@id': `${SITE_URL}/#organization` },
+    areaServed: ['MY', 'SG'],
+    audience: { '@type': 'BusinessAudience', audienceType: item.name },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'What the dashboard opens on',
+      itemListElement: item.panels.map((panel, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: panel.title,
+        description: panel.body,
+      })),
+    },
+  };
+};
+
+export const industryListLd = (locale = 'en') => ({
+  '@type': 'ItemList',
+  name: `${company.name} industries`,
+  itemListElement: getContent(locale).industries.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.name,
+    url: abs(localePath(locale, item.href)),
+    description: item.summary,
+  })),
+});
 
 export const productListLd = (locale = 'en') => ({
   '@type': 'ItemList',
@@ -284,7 +333,7 @@ export const blogLd = (posts, locale = 'en') => ({
   '@id': `${SITE_URL}${localePath(locale, '/blog')}#blog`,
   name: `${company.name} blog`,
   description:
-    'Field notes on inventory accuracy, booking operations and rolling software into small businesses.',
+    'Field notes on leaving spreadsheets, designing an operational database and rolling software into small businesses.',
   url: abs(localePath(locale, '/blog')),
   inLanguage: locale === 'zh' ? 'zh-Hans' : 'en',
   publisher: { '@id': `${SITE_URL}/#organization` },

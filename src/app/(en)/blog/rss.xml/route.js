@@ -37,7 +37,7 @@ export function GET() {
     <title>${esc(company.name)} blog</title>
     <link>${SITE_URL}/blog</link>
     <atom:link href="${SITE_URL}/blog/rss.xml" rel="self" type="application/rss+xml" />
-    <description>Field notes on inventory accuracy, booking operations and rolling software into small businesses that cannot afford downtime.</description>
+    <description>Field notes on leaving spreadsheets, designing an operational database and rolling software into small businesses that cannot afford downtime.</description>
     <language>en</language>
     <copyright>${esc(company.legal)}</copyright>
     <lastBuildDate>${rfc822(latest)}</lastBuildDate>

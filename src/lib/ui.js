@@ -22,6 +22,11 @@ export const ui = {
     common: {
       products: 'Products',
       industries: 'Industries',
+<<<<<<< HEAD
+=======
+      allIndustries: 'See all industries',
+      exploreIndustry: 'Explore the {name} dashboard',
+>>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
       blog: 'Blog',
       careers: 'Careers',
       contact: 'Contact',
@@ -42,20 +47,25 @@ export const ui = {
       closeMenu: 'Close menu',
       panelLabel: 'Products',
       industriesPanelLabel: 'Industries',
+<<<<<<< HEAD
+=======
+      industriesPanelNote:
+        'Same database underneath. The screen is laid out for the decisions your trade makes weekly.',
+>>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
     },
     hero: {
-      eyebrow: 'Operations software for SMEs',
-      line1: 'Run the whole',
-      line2: 'operation from',
-      line3: 'one screen.',
-      body: 'YiY Tech builds the two systems small businesses actually run on: live inventory for retail and wholesale, and a booking and operations dashboard for clinics, salons, tuition centres and property teams. One account, one login, live in two weeks.',
+      eyebrow: 'Dashboards and databases for SMEs',
+      line1: 'Retire the',
+      line2: 'spreadsheet.',
+      line3: 'Keep the business.',
+      body: 'YiY Tech replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. One version of the truth, updating as work happens, live in two weeks.',
       sceneLabel: 'Show background {n}',
     },
     home: {
       productsEyebrow: 'Products',
-      productsTitle: 'Three live today. A fourth listening in the background.',
+      productsTitle: 'Two live today. A third listening in the background.',
       productsBody:
-        'Two operations systems, a website wired into both, and one account behind them. Buy one or buy all three; once Data & Intelligence lands, there is one intelligence layer over everything your business does.',
+        'The dashboard and the database your business runs on, a website wired into the same data, and one account behind both. Once Data & Intelligence lands, there is an intelligence layer over everything you record.',
     },
     stats: {
       note: 'Figures reflect typical results reported by YiY Tech pilot customers across retail, wholesale and service businesses. Your numbers will depend on your starting point. We will tell you what to expect during the walkthrough.',
@@ -63,12 +73,12 @@ export const ui = {
     pillars: {
       eyebrow: 'Why YiY',
       title: 'Enterprise discipline, sized for a business that still knows every customer.',
-      body: 'Most SME software is either a toy or a cut-down ERP. We build the middle: rigorous where it matters (stock ledgers, audit trails, permissions) and ruthlessly simple everywhere else.',
+      body: 'Most SME software is either a toy or a cut-down ERP. We build the middle: rigorous where it matters (schema design, audit trails, permissions) and ruthlessly simple everywhere else.',
     },
     industries: {
       eyebrow: 'Who runs on YiY',
-      title: 'Different floors. Same operating problem.',
-      body: 'Stock that nobody trusts, or a calendar that nobody controls. Pick the one that is costing you money this month.',
+      title: 'Different floors. Same spreadsheet.',
+      body: 'The dashboard changes by industry because the weekly decisions do. The file everyone is currently emailing each other does not.',
       carouselLabel: 'Industries served',
       runsOn: 'Runs on {name}',
       menuBlurb: 'The same two problems, on eight different floors. Pick the one that looks like yours.',
@@ -102,8 +112,8 @@ export const ui = {
       body: 'If yours is not here, ask it on the walkthrough. We would rather answer it before you buy.',
     },
     cta: {
-      title: 'Ready to stop guessing what you have and who is coming in?',
-      body: 'Thirty minutes, your actual numbers, and a straight answer on whether YiY is worth it for your business. No slide deck.',
+      title: 'Ready to stop rebuilding the same report every Monday?',
+      body: 'Thirty minutes, your actual spreadsheets open, and a straight answer on whether YiY is worth it for your business. No slide deck.',
     },
     carousel: {
       previous: 'Previous',
@@ -153,15 +163,15 @@ export const ui = {
       typing: 'typing…',
       open: 'Open the assistant',
       close: 'Close the assistant',
-      nudge: 'Questions about stock or bookings? Ask me, no form required.',
-      placeholder: 'Ask about stock, bookings, pricing…',
+      nudge: 'Questions about dashboards, databases or migrating off spreadsheets? Ask me, no form required.',
+      placeholder: 'Ask about dashboards, migration, pricing…',
       inputLabel: 'Message the assistant',
       send: 'Send',
     },
     contact: {
       eyebrow: 'Book a walkthrough',
-      title: 'Thirty minutes. Your numbers. A straight answer.',
-      body: 'We will walk your floor or your front desk, map how stock and bookings move today, and tell you whether YiY is worth it for your business. If it is not, we will say so.',
+      title: 'Thirty minutes. Your spreadsheets. A straight answer.',
+      body: 'We will walk your floor or your front desk with your own files open, map what gets recorded and where it goes, and tell you whether YiY is worth it for your business. If it is not, we will say so.',
       sentTitle: 'We opened a draft in your mail client.',
       sentBody:
         'Nothing has reached us yet. Press send on that draft and we will reply within one working day.',
@@ -185,7 +195,7 @@ export const ui = {
       interest: 'Interested in',
       size: 'Size',
       message: 'What is costing you time right now?',
-      messagePlaceholder: 'Stock counts, double bookings, no-shows, month-end reporting…',
+      messagePlaceholder: 'Rebuilding the weekly report, versions that disagree, month-end reporting…',
       submit: 'Send enquiry',
       disclaimer:
         'This opens a draft in your own mail client. Nothing is sent until you press send there. No newsletter, no drip sequence. We reply once, from a human.',
@@ -195,9 +205,9 @@ export const ui = {
       coverTitle: 'What we will cover',
       roadmapSuffix: ' (roadmap)',
       interests: [
-        'Inventory & Stock Management',
-        'Booking & Operations',
+        'Dashboards & Databases',
         'Website & Integrations',
+        'Data & Intelligence',
         'More than one',
         'Not sure yet',
       ],
@@ -219,7 +229,7 @@ export const ui = {
     careers: {
       eyebrow: 'Careers',
       title: 'Build the software that runs the shop.',
-      body: 'A small team in {location}, building two products that small businesses depend on every trading day. If the phrase “the count is wrong again” makes you want to fix something, we should talk.',
+      body: 'A small team in {location}, replacing the spreadsheets small businesses depend on every trading day. If the phrase “which version is the right one” makes you want to fix something, we should talk.',
       valuesEyebrow: 'How we work',
       valuesTitle: 'Four things we actually hold each other to.',
       valuesBody:
@@ -257,9 +267,53 @@ export const ui = {
         },
       ],
     },
-    /* Section copy for the Website & Integrations product page. It keeps its
-       own namespace because these headings belong to the sections in
-       ProductExtras, which no other product renders. */
+    /* The /industries index and the per-industry pages under it. `industries`
+       above is the homepage carousel; this is the section that owns the
+       standalone pages. */
+    industryIndex: {
+      eyebrow: 'Industries',
+      title: 'Twelve floors we have already built the layout for.',
+      body: 'The database is the same underneath. What changes is the first screen, because a distributor, a clinic and a barbershop do not make the same decision on a Monday. Pick the one you recognise.',
+      cardCta: 'See the dashboard',
+      notListed: 'Not on this list?',
+      notListedBody:
+        'We build the layout from what you decide every week, so an industry we have not written a page for is a walkthrough rather than a no. Tell us the trade and the three numbers you check most, and we will tell you honestly whether we are the right people.',
+    },
+    industry: {
+      eyebrow: 'Industries',
+      painsEyebrow: 'What it replaces',
+      painsTitle: 'The way this usually works today.',
+      painsBody:
+        'Written from walkthroughs rather than from a persona document. If none of these are true for you, say so on the call and we will stop wasting your afternoon.',
+      panelsEyebrow: 'The first screen',
+      panelsTitle: 'What the dashboard opens on.',
+      panelsBody:
+        'Every panel is attached to a decision somebody makes on a known rhythm. Anything that only restates what you already knew does not ship.',
+      crossEyebrow: 'Other floors',
+      crossTitle: 'Same method, different first screen.',
+      faqEyebrow: 'Questions',
+      faqTitle: 'Asked on every one of these calls.',
+      faqBody: 'If yours is not here, ask it on the walkthrough. We would rather answer before you commit.',
+      heroAlt: 'A {name} business at work',
+    },
+    /* Section copy for the extra blocks in ProductExtras. Each product that
+       carries those blocks names its own namespace through `extrasKey` in
+       site.js, because the same table means different things on a website
+       build and on a database build. `web` is the default. */
+    dash: {
+      valueEyebrow: 'What it is worth',
+      valueTitle: 'What changes in the working week.',
+      valueBody:
+        'Not features. What is different once the data lives in one place and the screen is already correct when somebody opens it.',
+      limitsEyebrow: 'The limits',
+      limitsTitle: 'What we do not do.',
+      limitsBody: 'Better said here than discovered in month two.',
+      faqEyebrow: 'Questions',
+      faqTitle: 'Asked on every one of these calls.',
+      faqBody:
+        'If yours is not here, ask it on the walkthrough. We would rather answer before you commit.',
+      bandAlt: 'An operations dashboard open on a laptop in a back office',
+    },
     web: {
       bandAlt: 'A product being photographed for an online listing beside a laptop',
       valueEyebrow: 'What it is worth',
@@ -291,7 +345,7 @@ export const ui = {
     blog: {
       eyebrow: 'Blog',
       title: 'Field notes from the floor.',
-      body: 'What we learn rolling operations software into businesses that cannot afford a bad week. Inventory, bookings, pricing, and the things that go wrong before they go right.',
+      body: 'What we learn moving businesses off spreadsheets when they cannot afford a bad week. Databases, dashboards, pricing, and the things that go wrong before they go right.',
       readPiece: 'Read the piece',
       moreWriting: 'More writing',
       policyTitle: 'How we write this',
@@ -346,6 +400,11 @@ export const ui = {
     common: {
       products: '产品',
       industries: '行业',
+<<<<<<< HEAD
+=======
+      allIndustries: '查看所有行业',
+      exploreIndustry: '了解{name}仪表板',
+>>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
       blog: '博客',
       careers: '招聘',
       contact: '联系我们',
@@ -366,20 +425,24 @@ export const ui = {
       closeMenu: '关闭菜单',
       panelLabel: '产品',
       industriesPanelLabel: '行业',
+<<<<<<< HEAD
+=======
+      industriesPanelNote: '底下是同一个数据库。变的是屏幕的排布，按你这一行每周要做的决定来排。',
+>>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
     },
     hero: {
-      eyebrow: '为中小企业打造的运营软件',
-      line1: '一个屏幕，',
-      line2: '跑完整间',
-      line3: '生意。',
-      body: 'YiY Tech 做的是小企业真正赖以运转的两套系统：给零售与批发用的实时库存，以及给诊所、美容院、补习中心和房产团队用的预约与运营仪表板。一个账户，一次登录，两周上线。',
+      eyebrow: '为中小企业做的仪表板与数据库',
+      line1: '让表格退休，',
+      line2: '生意',
+      line3: '照常运转。',
+      body: 'YiY Tech 把你生意赖以运转的那些表格，换成一个真正的数据库，加一块为你的行业做的仪表板。只有一份真数，随着工作发生而更新，两周上线。',
       sceneLabel: '显示第 {n} 个背景',
     },
     home: {
       productsEyebrow: '产品',
-      productsTitle: '三个今天已经上线。第四个正在背后听着。',
+      productsTitle: '两个今天已经上线。第三个正在背后听着。',
       productsBody:
-        '两套运营系统，一个接进它们的网站，背后共用一个账户。买一个，或者三个都买；等数据与智能上线之后，你的所有业务之上还会多一层智能。',
+        '你的生意每天要看的那块仪表板和它底下的数据库，一个接进同一批数据的网站，背后共用一个账户。等数据与智能上线之后，你记下的每一件事之上还会多一层智能。',
     },
     stats: {
       note: '这些数字反映 YiY Tech 试点客户在零售、批发与服务行业中报告的典型结果。你的数字取决于你的起点。我们会在走访时告诉你该期待什么。',
@@ -387,12 +450,12 @@ export const ui = {
     pillars: {
       eyebrow: '为什么选 YiY',
       title: '大企业级的严谨，尺寸却适合一家还认得每位客户的公司。',
-      body: '多数中小企业软件不是玩具，就是删减版 ERP。我们做中间那一档：在重要的地方严谨（库存账、审计轨迹、权限），在其余所有地方简单到底。',
+      body: '多数中小企业软件不是玩具，就是删减版 ERP。我们做中间那一档：在重要的地方严谨（表结构设计、审计轨迹、权限），在其余所有地方简单到底。',
     },
     industries: {
       eyebrow: '谁在用 YiY',
-      title: '不同的场地，同一个运营难题。',
-      body: '一本没人相信的库存账，或者一份没人控制得住的日历。挑出这个月正在让你亏钱的那一个。',
+      title: '不同的场地，同一张表格。',
+      body: '仪表板因行业而不同，因为每周要做的决定不同。而大家现在互相转发的那个文件，各行各业都一样。',
       carouselLabel: '服务的行业',
       runsOn: '运行在{name}上',
       menuBlurb: '同样的两个难题，出现在八种不同的场地里。挑出最像你的那一个。',
@@ -426,8 +489,8 @@ export const ui = {
       body: '如果这里没有你的问题，走访时问出来。我们宁愿在你付钱之前就回答。',
     },
     cta: {
-      title: '准备好不再猜自己有什么货、今天谁会来了吗？',
-      body: '三十分钟，用你真实的数字，直接告诉你 YiY 对你的生意值不值。没有幻灯片。',
+      title: '准备好不用每个周一都重做同一张报表了吗？',
+      body: '三十分钟，把你真实的表格打开，直接告诉你 YiY 对你的生意值不值。没有幻灯片。',
     },
     carousel: {
       previous: '上一个',
@@ -477,15 +540,15 @@ export const ui = {
       typing: '正在输入…',
       open: '打开助手',
       close: '关闭助手',
-      nudge: '关于库存或预约有疑问？直接问我，不用填表。',
-      placeholder: '问问库存、预约或价格…',
+      nudge: '关于仪表板、数据库，或者怎么离开表格有疑问？直接问我，不用填表。',
+      placeholder: '问问仪表板、数据迁移或价格…',
       inputLabel: '给助手发消息',
       send: '发送',
     },
     contact: {
       eyebrow: '预约实地走访',
-      title: '三十分钟。你的数字。一个直接的答案。',
-      body: '我们会走一遍你的卖场或前台，把库存和预约今天是怎么流动的画出来，然后告诉你 YiY 对你的生意值不值。如果不值，我们会直说。',
+      title: '三十分钟。你的表格。一个直接的答案。',
+      body: '我们会带着你自己的文件走一遍你的卖场或前台，把「什么被记下来、之后去了哪里」画出来，然后告诉你 YiY 对你的生意值不值。如果不值，我们会直说。',
       sentTitle: '我们已经在你的邮件客户端里打开了一封草稿。',
       sentBody: '目前还没有任何东西到达我们这里。在那封草稿上按发送，我们会在一个工作日内回复。',
       noDraftTitle: '如果没有出现草稿',
@@ -507,7 +570,7 @@ export const ui = {
       interest: '感兴趣的产品',
       size: '规模',
       message: '现在什么最花你的时间？',
-      messagePlaceholder: '盘点、重复预订、爽约、月底报表…',
+      messagePlaceholder: '每周重做报表、几个版本对不上、月底报表…',
       submit: '发送询问',
       disclaimer:
         '这会在你自己的邮件客户端里打开一封草稿。在你按下发送之前什么都不会寄出。没有新闻邮件，没有培育序列。我们由真人回复一次。',
@@ -516,7 +579,7 @@ export const ui = {
       direct: '直接联系',
       coverTitle: '走访会聊什么',
       roadmapSuffix: '（路线图）',
-      interests: ['库存管理', '预约与运营', '网站与集成', '不止一个', '还不确定'],
+      interests: ['仪表板与数据库', '网站与集成', '数据与智能', '不止一个', '还不确定'],
       sizes: ['1 家门店', '2 至 5 家门店', '6 至 20 家门店', '20 家以上'],
       errName: '告诉我们你是谁。',
       errBusiness: '这是为哪家企业问的？',
@@ -535,7 +598,7 @@ export const ui = {
     careers: {
       eyebrow: '招聘',
       title: '做那套让店真正跑起来的软件。',
-      body: '一支在{location}的小团队，做着两个小企业每个营业日都要依赖的产品。如果「这个数又对不上了」这句话让你想动手修点什么，我们该聊聊。',
+      body: '一支在{location}的小团队，替换掉小企业每个营业日都要依赖的那些表格。如果「到底哪个版本才是对的」这句话让你想动手修点什么，我们该聊聊。',
       valuesEyebrow: '我们怎么工作',
       valuesTitle: '我们真的会互相要求的四件事。',
       valuesBody: '不是墙上的标语。这些是我们在代码评审和客户电话里真的会争的东西。',
@@ -569,6 +632,42 @@ export const ui = {
         },
       ],
     },
+    industryIndex: {
+      eyebrow: '行业',
+      title: '十二种场地，布局我们已经做过了。',
+      body: '底下的数据库是同一个。变的是第一屏，因为分销商、诊所和理发店在周一要做的决定不一样。挑一个你认得的。',
+      cardCta: '看这块仪表板',
+      notListed: '名单上没有你这一行？',
+      notListedBody:
+        '我们是按「你每周要决定什么」来做布局的，所以一个我们还没写页面的行业，意味着一次走访，而不是一句拒绝。告诉我们你做哪一行、最常看的三个数字是什么，我们会诚实地告诉你我们是不是合适的人。',
+    },
+    industry: {
+      eyebrow: '行业',
+      painsEyebrow: '它取代了什么',
+      painsTitle: '这件事今天通常是怎么办的。',
+      painsBody: '写自真实走访，不是写自一份用户画像文档。如果这些对你一条都不成立，在电话里直说，我们就不浪费你一个下午。',
+      panelsEyebrow: '第一屏',
+      panelsTitle: '这块仪表板打开时是什么。',
+      panelsBody: '每一块面板都挂在某个人按固定节奏做的决定上。任何只是重述你早就知道的东西，都不会上线。',
+      crossEyebrow: '其他场地',
+      crossTitle: '同一套方法，不同的第一屏。',
+      faqEyebrow: '常见问题',
+      faqTitle: '这类电话里每次都会问到的。',
+      faqBody: '这里没有你的问题，就在走访时问出来。我们宁愿在你决定之前回答。',
+      heroAlt: '工作中的{name}',
+    },
+    dash: {
+      valueEyebrow: '它值在哪里',
+      valueTitle: '一周的工作里，到底有什么变了。',
+      valueBody: '不是功能清单，而是当数据只待在一个地方、屏幕在有人打开时就已经是对的之后，实际发生的变化。',
+      limitsEyebrow: '边界',
+      limitsTitle: '我们不做什么。',
+      limitsBody: '写在这里，好过第二个月才发现。',
+      faqEyebrow: '常见问题',
+      faqTitle: '这类电话里每次都会问到的。',
+      faqBody: '这里没有你的问题，就在走访时问出来。我们宁愿在你决定之前回答。',
+      bandAlt: '后台办公室里笔记本电脑上打开的运营仪表板',
+    },
     web: {
       bandAlt: '在笔记本电脑旁给商品拍照，准备上架',
       valueEyebrow: '它值在哪里',
@@ -599,7 +698,7 @@ export const ui = {
     blog: {
       eyebrow: '博客',
       title: '来自一线的现场笔记。',
-      body: '把运营软件推进那些经不起一个坏星期的企业时，我们学到的东西。库存、预约、定价，以及在做对之前会出的那些错。',
+      body: '把那些经不起一个坏星期的企业从表格里搬出来时，我们学到的东西。数据库、仪表板、定价，以及在做对之前会出的那些错。',
       readPiece: '阅读全文',
       moreWriting: '更多文章',
       policyTitle: '我们怎么写这些',

@@ -27,7 +27,7 @@ export const htmlLang = (locale) => HTML_LANG[locale] ?? HTML_LANG[DEFAULT_LOCAL
 export const localeBase = (locale) => (locale === 'zh' ? '/zh' : '');
 
 /**
- * Turns a locale-independent path from the content files (`/products/booking`,
+ * Turns a locale-independent path from the content files (`/products/dashboards`,
  * `/#products`) into a real URL for one locale.
  *
  *   localePath('zh', '/contact')   → '/zh/contact'

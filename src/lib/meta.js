@@ -13,26 +13,38 @@
 export const PAGE_META = {
   home: {
     en: {
-      title: 'YiY Tech: inventory and booking software for SMEs',
+      title: 'YiY Tech: dashboards and databases for SMEs',
       description:
-        'YiY Tech builds live inventory and stock management for retail and wholesale SMEs, and a booking and operations dashboard for clinics, salons, tuition centres and property teams. Flat monthly pricing per outlet, live in two weeks.',
+        'YiY Tech replaces the spreadsheets an SME runs on with a real database and a dashboard built for its industry: retail, distribution, clinics, salons, tuition and property. Flat monthly pricing per outlet, live in two weeks.',
     },
     zh: {
-      title: 'YiY Tech：为中小企业打造的库存与预约软件',
+      title: 'YiY Tech：为中小企业打造的仪表板与数据库',
       description:
-        'YiY Tech 为零售与批发中小企业做实时库存与进销存管理，也为诊所、美容院、补习中心和房产团队做预约与运营仪表板。按门店固定月费，两周上线。',
+        'YiY Tech 把中小企业赖以运转的表格，换成一个真正的数据库，加一块为其行业打造的仪表板：零售、分销、诊所、美容、补习与房产。按门店固定月费，两周上线。',
     },
   },
   contact: {
     en: {
       title: 'Book a walkthrough',
       description:
-        'Thirty minutes on your floor or front desk. We map how stock and bookings move today and tell you straight whether YiY Tech is worth it.',
+        'Thirty minutes on your floor or front desk with your own spreadsheets open. We map what gets recorded and where it goes, and tell you straight whether YiY Tech is worth it.',
     },
     zh: {
       title: '预约实地走访',
       description:
-        '三十分钟，在你的卖场或前台。我们把库存和预约今天怎么流动画出来，然后直接告诉你 YiY Tech 对你值不值。',
+        '三十分钟，在你的卖场或前台，把你自己的表格打开。我们把「什么被记下来、之后去了哪里」画出来，然后直接告诉你 YiY Tech 对你值不值。',
+    },
+  },
+  industries: {
+    en: {
+      title: 'Industries',
+      description:
+        'The dashboard layouts YiY Tech has already built: barbershops, clinics, restaurants, retail, distribution, e-commerce, workshops, robotics, data teams, tuition centres, property agencies and multi-branch groups. Same database underneath, different first screen.',
+    },
+    zh: {
+      title: '行业',
+      description:
+        'YiY Tech 已经做过的仪表板布局：理发店、诊所、餐厅、零售、分销、电商、维修厂、机器人、数据团队、补习中心、房产中介与多分店集团。底下是同一个数据库，不同的只是第一屏。',
     },
   },
   careers: {
@@ -50,12 +62,12 @@ export const PAGE_META = {
     en: {
       title: 'Blog',
       description:
-        'Field notes on inventory accuracy, booking operations and rolling software into small businesses that cannot afford downtime. Written by the people who run the rollouts.',
+        'Field notes on leaving spreadsheets, designing an operational database and rolling software into small businesses that cannot afford downtime. Written by the people who run the rollouts.',
     },
     zh: {
       title: '博客',
       description:
-        '关于库存准确率、预约运营，以及把软件推进那些经不起停摆的小企业时的现场笔记。由真正做实施的人来写。',
+        '关于离开表格、设计运营数据库，以及把软件推进那些经不起停摆的小企业时的现场笔记。由真正做实施的人来写。',
     },
   },
   privacy: {
@@ -98,8 +110,8 @@ export const PAGE_META = {
 
 /** Breadcrumb labels, which are chrome rather than content. */
 export const CRUMBS = {
-  en: { home: 'Home', products: 'Products', blog: 'Blog' },
-  zh: { home: '首页', products: '产品', blog: '博客' },
+  en: { home: 'Home', products: 'Products', industries: 'Industries', blog: 'Blog' },
+  zh: { home: '首页', products: '产品', industries: '行业', blog: '博客' },
 };
 
 export const pageCopy = (key, locale) => PAGE_META[key][locale] ?? PAGE_META[key].en;

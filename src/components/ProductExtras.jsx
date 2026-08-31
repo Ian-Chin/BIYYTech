@@ -8,11 +8,12 @@ import { useLocale } from '@/lib/i18n';
 /**
  * The sections a product only gets if it carries the data for them.
  *
- * Website & Integrations is the one that does: it is sold as a project rather
- * than a seat, so the questions it gets asked (what does the site read, how
- * deep can you go on Shopify, what will you not do) have no equivalent on
- * Inventory or Booking. Each block below returns null when its field is
- * missing, so the other products render the standard page and nothing else.
+ * Dashboards & Databases and Website & Integrations both do, and they are
+ * asked different questions: one about schema, migration and what a screen is
+ * for, the other about what the site reads and how deep Shopify goes. So the
+ * headings are looked up under the namespace the product names in `extrasKey`
+ * (`web` by default) rather than hard-coded. Each block below returns null
+ * when its field is missing, so a product without them renders nothing.
  *
  * Each section is deliberately given a different treatment — a three-column
  * table, a hairline grid, a numbered rail, a dark list — because this is one
@@ -21,6 +22,7 @@ import { useLocale } from '@/lib/i18n';
 export default function ProductExtras({ product }) {
   const { t } = useLocale();
   const { value, connections, platforms, stages, limits, band } = product;
+  const copy = (key) => t(`${product.extrasKey ?? 'web'}.${key}`);
 
   if (!value && !connections && !platforms && !stages && !limits) return null;
 
@@ -34,9 +36,9 @@ export default function ProductExtras({ product }) {
         <section className="relative overflow-hidden bg-paper py-24 md:py-32">
           <div className="shell">
             <SectionHead
-              eyebrow={t('web.valueEyebrow')}
-              title={t('web.valueTitle')}
-              body={t('web.valueBody')}
+              eyebrow={copy('valueEyebrow')}
+              title={copy('valueTitle')}
+              body={copy('valueBody')}
             />
 
             <ol className="mt-16 grid gap-x-14 gap-y-10 lg:grid-cols-2">
@@ -70,9 +72,9 @@ export default function ProductExtras({ product }) {
 
           <div className="shell relative">
             <SectionHead
-              eyebrow={t('web.connectEyebrow')}
-              title={t('web.connectTitle')}
-              body={t('web.connectBody')}
+              eyebrow={copy('connectEyebrow')}
+              title={copy('connectTitle')}
+              body={copy('connectBody')}
               tone="dark"
             />
 
@@ -80,7 +82,7 @@ export default function ProductExtras({ product }) {
               <table className="w-full min-w-[760px] border-collapse text-left">
                 <thead>
                   <tr className="border-b border-white/20">
-                    {[t('web.headSurface'), t('web.headReads'), t('web.headWrites')].map((h) => (
+                    {[copy('headSurface'), copy('headReads'), copy('headWrites')].map((h) => (
                       <th
                         key={h}
                         scope="col"
@@ -110,14 +112,14 @@ export default function ProductExtras({ product }) {
                           row.reads ? 'text-white/65' : 'text-white/25'
                         }`}
                       >
-                        {row.reads ?? t('web.none')}
+                        {row.reads ?? copy('none')}
                       </td>
                       <td
                         className={`py-5 align-top text-sm leading-relaxed ${
                           row.writes ? 'text-white/65' : 'text-white/25'
                         }`}
                       >
-                        {row.writes ?? t('web.none')}
+                        {row.writes ?? copy('none')}
                       </td>
                     </tr>
                   ))}
@@ -133,9 +135,9 @@ export default function ProductExtras({ product }) {
         <section className="relative overflow-hidden bg-paper-warm py-24 md:py-32">
           <div className="shell">
             <SectionHead
-              eyebrow={t('web.platformsEyebrow')}
-              title={t('web.platformsTitle')}
-              body={t('web.platformsBody')}
+              eyebrow={copy('platformsEyebrow')}
+              title={copy('platformsTitle')}
+              body={copy('platformsBody')}
             />
 
             {/* Hairline grid: the gap-px parent draws the rules, the cells sit on
@@ -165,7 +167,7 @@ export default function ProductExtras({ product }) {
       {band ? (
         <section className="relative h-[34vh] min-h-[13rem] overflow-hidden bg-ink md:h-[46vh]">
           <Parallax speed={52} className="absolute -bottom-16 -top-16 left-0 right-0">
-            <Image src={band} alt={t('web.bandAlt')} fill sizes="100vw" className="object-cover" />
+            <Image src={band} alt={copy('bandAlt')} fill sizes="100vw" className="object-cover" />
           </Parallax>
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent" />
         </section>
@@ -178,9 +180,9 @@ export default function ProductExtras({ product }) {
         <section className="relative overflow-hidden bg-paper py-24 md:py-32">
           <div className="shell">
             <SectionHead
-              eyebrow={t('web.stagesEyebrow')}
-              title={t('web.stagesTitle')}
-              body={t('web.stagesBody')}
+              eyebrow={copy('stagesEyebrow')}
+              title={copy('stagesTitle')}
+              body={copy('stagesBody')}
             />
 
             <ol className="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
@@ -213,9 +215,9 @@ export default function ProductExtras({ product }) {
 
           <div className="shell relative grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
             <SectionHead
-              eyebrow={t('web.limitsEyebrow')}
-              title={t('web.limitsTitle')}
-              body={t('web.limitsBody')}
+              eyebrow={copy('limitsEyebrow')}
+              title={copy('limitsTitle')}
+              body={copy('limitsBody')}
               tone="dark"
             />
 

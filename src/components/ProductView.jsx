@@ -22,6 +22,9 @@ export default function ProductView({ slug }) {
 
   const soon = Boolean(product.soon);
   const others = content.products.filter((p) => p.slug !== product.slug);
+  // Which copy namespace the product's own sections read from. Kept in step
+  // with the same field in ProductExtras.
+  const extras = product.extrasKey ?? 'web';
 
   return (
     <>
@@ -192,9 +195,9 @@ export default function ProductView({ slug }) {
       {product.faqs ? (
         <Faq
           items={product.faqs}
-          eyebrow={t('web.faqEyebrow')}
-          title={t('web.faqTitle')}
-          body={t('web.faqBody')}
+          eyebrow={t(`${extras}.faqEyebrow`)}
+          title={t(`${extras}.faqTitle`)}
+          body={t(`${extras}.faqBody`)}
         />
       ) : (
         <Faq />

@@ -38,7 +38,7 @@ export function meta(locale) {
 }
 
 export function Page({ locale }) {
-  const [stock, desk, web, signal] = products;
+  const [dash, web, signal] = products;
 
   return (
     <>
@@ -49,17 +49,15 @@ export function Page({ locale }) {
 
       <ProductsIntro />
 
-      <ProductSection slug={stock.slug} />
-      <FeatureStrip slug={stock.slug} />
+      <ProductSection slug={dash.slug} />
+      <FeatureStrip slug={dash.slug} />
 
-      <ProductSection slug={desk.slug} flip />
-      <FeatureStrip slug={desk.slug} tone="dark" />
+      <ProductSection slug={web.slug} flip />
+      <FeatureStrip slug={web.slug} tone="dark" />
 
-      {/* The last two carry no feature strip of their own: the page has made
-          its case by here, and the roadmap product closes it on ink. */}
-      <ProductSection slug={web.slug} />
-
-      <ProductSection slug={signal.slug} flip />
+      {/* The roadmap product carries no feature strip of its own: the page has
+          made its case by here, and it closes the run on ink. */}
+      <ProductSection slug={signal.slug} />
 
       <StatsBand />
       <Pillars />

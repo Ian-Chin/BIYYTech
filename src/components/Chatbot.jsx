@@ -67,6 +67,14 @@ export default function Chatbot() {
     if (open) setNudge(false);
   }, [open]);
 
+  // The bot says hello with its hands, not just its text.
+  useEffect(() => {
+    if (!open) return undefined;
+    setMood('wave');
+    const t = setTimeout(() => setMood('idle'), 1900);
+    return () => clearTimeout(t);
+  }, [open]);
+
   useEffect(() => {
     const el = scrollerRef.current;
     if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });

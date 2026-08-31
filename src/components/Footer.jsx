@@ -8,12 +8,27 @@ import { useLocale } from '@/lib/i18n';
 
 export default function Footer() {
   const { t, content } = useLocale();
-  const { company, products } = content;
+  const { company, products, industries } = content;
 
   const columns = [
     {
       title: t('common.products'),
-      links: products.map((p) => ({ label: p.name, href: p.href })),
+      links: [
+        ...products.map((p) => ({ label: p.name, href: p.href })),
+        { label: t('footer.results'), href: '/#results' },
+        { label: t('footer.rollout'), href: '/#process' },
+        { label: t('footer.faqLink'), href: '/#faq' },
+      ],
+    },
+    {
+      /* Six of the twelve, then the index. A footer that lists every industry
+         buries the company column on a phone, and the panel and /industries
+         both carry the full set. */
+      title: t('common.industries'),
+      links: [
+        ...industries.slice(0, 6).map((i) => ({ label: i.name, href: i.href })),
+        { label: t('common.allIndustries'), href: '/industries' },
+      ],
     },
     {
       title: t('footer.companyTitle'),
@@ -22,14 +37,6 @@ export default function Footer() {
         { label: t('common.careers'), href: '/careers' },
         { label: t('footer.whyYiy'), href: '/#why' },
         { label: t('common.contact'), href: '/contact' },
-      ],
-    },
-    {
-      title: t('footer.resourcesTitle'),
-      links: [
-        { label: t('footer.results'), href: '/#results' },
-        { label: t('footer.rollout'), href: '/#process' },
-        { label: t('footer.faqLink'), href: '/#faq' },
         { label: t('footer.support'), href: `mailto:${company.email}` },
       ],
     },

@@ -7,21 +7,33 @@
 ## Register
 
 **brand** — this is a marketing site. The design is the product surface. Every
-page exists to make an SME owner believe these people have actually stood in a
-stockroom.
+page exists to make an SME owner believe these people have actually sat down
+with somebody else's operations spreadsheet open.
 
 ## Product purpose
 
-YiY Tech sells two operations systems to small and medium businesses in Malaysia
-and Singapore:
+YiY Tech sells to small and medium businesses in Malaysia and Singapore that
+are still running on spreadsheets:
 
-- **Inventory & Stock Management** — live stock across outlets, warehouses and
-  consignment. Retail and wholesale.
-- **Booking & Operations** — multi-resource scheduling, reminders, deposits,
-  utilisation. Clinics, salons, tuition centres, property agencies.
+- **Dashboards & Databases** — the core product. A real database designed
+  around how the business records work, migrated out of its existing
+  spreadsheets, with the dashboard laid out for that industry: retail,
+  distribution, clinics, salons, tuition centres, property, e-commerce,
+  multi-branch groups.
+- **Website & Integrations** — a bespoke website build, wired into the same
+  database. Sold as a project, not a seat.
 
-A third, **Data & Intelligence**, is in limited beta and sits on top of the
-other two. It is deliberately not sold standalone.
+A third, **Data & Intelligence**, is in limited beta and sits on top of
+Dashboards & Databases. It is deliberately not sold standalone, because its
+output is only as good as the database beneath it.
+
+**Industries** (`/industries`, twelve pages) are not extra products. They are
+the same database sold to one trade, and the page exists to prove we know what
+that trade decides on a Monday. The pitch is that the schema and the first
+screen change while the method does not, so every industry page carries the
+same three blocks: what it runs on today, what the first screen opens on, and
+the questions that trade actually asks. The list records where a layout already
+exists, never where we are willing to work — say that on the page.
 
 Pricing is flat monthly per outlet. No per-transaction charge, no implementation
 fee, no annual lock-in. Typical rollout is two weeks.
@@ -42,14 +54,14 @@ and can smell a slide deck through a screen.
 Blunt, concrete, load-bearing. Short declaratives. Numbers with their method
 attached. The site says the unflattering thing on purpose:
 
-- "The first count after go-live looks bad because it is the first honest
+- "The first honest report looks bad because it is the first honest
   measurement."
 - "We lose money on fast-growing customers under this model."
 - "If the estimate is four weeks we say four weeks now, before any money
   changes hands."
 
-Specific physical detail over abstraction: a receiving bay with no power socket,
-a stockroom two floors from the till, 5pm on a Friday. Never "solutions",
+Specific physical detail over abstraction: a tab nobody remembers creating,
+final_v2.xlsx, 5pm on a Friday. Never "solutions",
 "empower", "seamless", "transform".
 
 British spelling (utilisation, recognises, anonymised, centres). Ringgit for
@@ -60,7 +72,8 @@ worked examples.
 1. **Honesty is the differentiator.** Every number carries its sample size,
    method and limits. There is a corrections address. Do not add a claim that
    cannot be sourced.
-2. **Two products, deeply.** Scope discipline is the pitch. Never imply a
+2. **One product, deeply.** Scope discipline is the pitch. The website build
+   exists to extend the database, not to widen the catalogue. Never imply a
    feature that does not exist.
 3. **Leaving is easy.** Full export, no exit fee. This is stated repeatedly and
    must stay true in the UI.

@@ -21,7 +21,7 @@ export const privacy = {
   title: 'Privacy',
   headline: 'What this website collects, which is almost nothing.',
   intro:
-    'This policy covers yiy.tech, the website. It does not cover the Inventory, Booking or Data products, which are governed by the service agreement you sign at onboarding and by the data processing terms attached to it.',
+    'This policy covers yiy.tech, the website. It does not cover the Dashboards & Databases, Website or Data products, which are governed by the service agreement you sign at onboarding and by the data processing terms attached to it.',
   sections: [
     {
       heading: 'What the website collects',
@@ -73,7 +73,7 @@ export const terms = {
   title: 'Terms',
   headline: 'The terms that apply to this website.',
   intro:
-    'These terms cover your use of yiy.tech. They are not the software contract. If you become a customer, the Inventory, Booking or Data products are governed by the separate service agreement you sign at onboarding, and that agreement takes precedence over anything here.',
+    'These terms cover your use of yiy.tech. They are not the software contract. If you become a customer, the Dashboards & Databases, Website or Data products are governed by the separate service agreement you sign at onboarding, and that agreement takes precedence over anything here.',
   sections: [
     {
       heading: 'Using the site',
@@ -84,7 +84,7 @@ export const terms = {
     {
       heading: 'The numbers on this site',
       paragraphs: [
-        'Figures quoted here, including stock accuracy, no-show reduction, utilisation and rollout duration, come from anonymised and aggregated data across YiY Tech deployments. Each blog post states its own sample size, measurement window and method, and names the limits of the comparison.',
+        'Figures quoted here, including admin hours returned, report-assembly time and rollout duration, come from anonymised and aggregated data across YiY Tech deployments. Each blog post states its own sample size, measurement window and method, and names the limits of the comparison.',
         'They are directional results from small samples, not guarantees, and they are not a promise of what your business will achieve. Your starting point determines most of it. We will give you a specific estimate during the walkthrough, before you pay anything.',
         'If you think a figure here is wrong, write to corrections@yiy.tech. We will check it, correct it if you are right, and note the change.',
       ],
@@ -100,7 +100,7 @@ export const terms = {
       heading: 'Availability',
       paragraphs: [
         'Data & Intelligence is described on this site as being in limited beta. It is not generally available, and nothing here is an offer to sell it to you today.',
-        'Features described for Inventory and Booking reflect what those products do now. Where something is on the roadmap rather than shipped, we say so on the page.',
+        'Features described for Dashboards & Databases and Website & Integrations reflect what those products do now. Where something is on the roadmap rather than shipped, we say so on the page.',
       ],
     },
     {
