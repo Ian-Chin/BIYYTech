@@ -22,11 +22,8 @@ export const ui = {
     common: {
       products: 'Products',
       industries: 'Industries',
-<<<<<<< HEAD
-=======
       allIndustries: 'See all industries',
       exploreIndustry: 'Explore the {name} dashboard',
->>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
       blog: 'Blog',
       careers: 'Careers',
       contact: 'Contact',
@@ -47,11 +44,8 @@ export const ui = {
       closeMenu: 'Close menu',
       panelLabel: 'Products',
       industriesPanelLabel: 'Industries',
-<<<<<<< HEAD
-=======
       industriesPanelNote:
         'Same database underneath. The screen is laid out for the decisions your trade makes weekly.',
->>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
     },
     hero: {
       eyebrow: 'Dashboards and databases for SMEs',
@@ -80,8 +74,6 @@ export const ui = {
       title: 'Different floors. Same spreadsheet.',
       body: 'The dashboard changes by industry because the weekly decisions do. The file everyone is currently emailing each other does not.',
       carouselLabel: 'Industries served',
-      runsOn: 'Runs on {name}',
-      menuBlurb: 'The same two problems, on eight different floors. Pick the one that looks like yours.',
     },
     features: {
       eyebrow: 'Inside {name}',
@@ -400,11 +392,8 @@ export const ui = {
     common: {
       products: '产品',
       industries: '行业',
-<<<<<<< HEAD
-=======
       allIndustries: '查看所有行业',
       exploreIndustry: '了解{name}仪表板',
->>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
       blog: '博客',
       careers: '招聘',
       contact: '联系我们',
@@ -425,10 +414,7 @@ export const ui = {
       closeMenu: '关闭菜单',
       panelLabel: '产品',
       industriesPanelLabel: '行业',
-<<<<<<< HEAD
-=======
       industriesPanelNote: '底下是同一个数据库。变的是屏幕的排布，按你这一行每周要做的决定来排。',
->>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
     },
     hero: {
       eyebrow: '为中小企业做的仪表板与数据库',
@@ -457,8 +443,6 @@ export const ui = {
       title: '不同的场地，同一张表格。',
       body: '仪表板因行业而不同，因为每周要做的决定不同。而大家现在互相转发的那个文件，各行各业都一样。',
       carouselLabel: '服务的行业',
-      runsOn: '运行在{name}上',
-      menuBlurb: '同样的两个难题，出现在八种不同的场地里。挑出最像你的那一个。',
     },
     features: {
       eyebrow: '走进{name}',

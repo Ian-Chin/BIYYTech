@@ -13,13 +13,8 @@ export const company = {
 /* `panel` names the dropdown a link opens in the masthead. Anything without
    one is a plain link, in both the desktop bar and the mobile sheet. */
 export const nav = [
-<<<<<<< HEAD
-  { label: 'Products', href: '/#products' },
-  { label: 'Industries', href: '/#industries' },
-=======
   { label: 'Products', href: '/#products', panel: 'products' },
   { label: 'Industries', href: '/industries', panel: 'industries' },
->>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
   { label: 'Blog', href: '/blog' },
   { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
@@ -475,56 +470,6 @@ export const products = [
 const industry = (entry) => ({ ...entry, href: `/industries/${entry.slug}` });
 
 export const industries = [
-<<<<<<< HEAD
-  {
-    name: 'Retail chains',
-    image: '/media/img/retail-counter.jpg',
-    product: 'Inventory',
-    href: '/products/inventory',
-  },
-  {
-    name: 'Wholesale & distribution',
-    image: '/media/img/inventory-boxes.jpg',
-    product: 'Inventory',
-    href: '/products/inventory',
-  },
-  {
-    name: 'Dental & medical clinics',
-    image: '/media/img/clinic-consult.jpg',
-    product: 'Booking',
-    href: '/products/booking',
-  },
-  {
-    name: 'Salons & wellness',
-    image: '/media/img/salon-manicure.jpg',
-    product: 'Booking',
-    href: '/products/booking',
-  },
-  {
-    name: 'Tuition centres',
-    image: '/media/img/tuition-class.jpg',
-    product: 'Booking',
-    href: '/products/booking',
-  },
-  {
-    name: 'Property agencies',
-    image: '/media/img/property-agent.jpg',
-    product: 'Booking',
-    href: '/products/booking',
-  },
-  {
-    name: 'E-commerce operators',
-    image: '/media/img/inventory-packing.jpg',
-    product: 'Inventory',
-    href: '/products/inventory',
-  },
-  {
-    name: 'Multi-branch groups',
-    image: '/media/img/team-office.jpg',
-    product: 'Inventory + Booking',
-    href: '/#products',
-  },
-=======
   industry({
     slug: 'barbershops',
     name: 'Barbershops & salons',
@@ -1149,9 +1094,7 @@ export const industries = [
       },
     ],
   }),
->>>>>>> f71a7ce83933a975878c66dc7c3d31807cad5ebe
 ];
-
 
 export const pillars = [
   {
