@@ -12,7 +12,7 @@
 
 const GREETINGS = {
   en: {
-    text: "Hi, I'm YiY Bot. I answer questions about YiY Tech: what the products do, what rollout looks like, what it costs.",
+    text: "Hi, I'm BYIY Bot. I answer questions about BYIY Tech: what the products do, what rollout looks like, what it costs.",
     chips: [
       'What do you build?',
       'How much does it cost?',
@@ -21,7 +21,7 @@ const GREETINGS = {
     ],
   },
   zh: {
-    text: '你好，我是 YiY 小助手。关于 YiY Tech 的问题都可以问我：产品能做什么、实施是怎么走的、要多少钱。',
+    text: '你好，我是 BYIY 小助手。关于 BYIY Tech 的问题都可以问我：产品能做什么、实施是怎么走的、要多少钱。',
     chips: ['你们做什么产品？', '要多少钱？', '多久能上线？', '预约实地走访'],
   },
 };
@@ -40,6 +40,9 @@ const RULES = {
       id: 'overview',
       keywords: [
         'what do you build',
+        'what is byiy',
+        // The old spelling still matches: visitors who knew the company as YiY
+        // will type it for a while yet.
         'what is yiy',
         'about',
         'products',
@@ -48,8 +51,8 @@ const RULES = {
         'who are you',
       ],
       answer: {
-        text: 'Two things, live today. Dashboards & Databases replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. Website & Integrations builds your website and wires it into the same data. A third, Data & Intelligence, is in limited beta.',
-        chips: ['Dashboards', 'Website', 'Data & Intelligence'],
+        text: 'Two things, live today. Dashboards & Databases replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. Website & Integrations builds your website and wires it into the same data.',
+        chips: ['Dashboards', 'Website', 'How much does it cost?'],
         links: [
           { label: 'Dashboards & Databases', href: '/products/dashboards' },
           { label: 'Website & Integrations', href: '/products/website' },
@@ -153,28 +156,9 @@ const RULES = {
       id: 'website',
       keywords: ['website', 'web site', 'site', 'wordpress', 'shopify', 'wix', 'squarespace', 'landing page'],
       answer: {
-        text: 'Website & Integrations designs and builds your new site, then wires it into your YiY database. Prices and availability are read live, orders and enquiries land as records on your dashboard, and the domain, repository and hosting are in your name from day one. Three weeks, one flat project fee.',
+        text: 'Website & Integrations designs and builds your new site, then wires it into your BYIY database. Prices and availability are read live, orders and enquiries land as records on your dashboard, and the domain, repository and hosting are in your name from day one. Three weeks, one flat project fee.',
         chips: ['How much does it cost?', 'We already have a site', 'Book a walkthrough'],
         links: [{ label: 'Explore Website', href: '/products/website' }],
-      },
-    },
-    {
-      id: 'data',
-      keywords: [
-        'analytics',
-        'forecast',
-        'forecasting',
-        'insight',
-        'intelligence',
-        'ai',
-        'machine learning',
-        'prediction',
-        'anomaly',
-      ],
-      answer: {
-        text: 'Data & Intelligence is in limited beta. It sits on top of Dashboards & Databases: demand and capacity forecasting, cohort retention, anomaly alerts for refunds and cancellations, and plain-language questions over your own tables. It is not sold on its own, because it is only as good as the database underneath it.',
-        chips: ['Join the beta list', 'What do you build?'],
-        links: [{ label: 'Read the roadmap', href: '/products/data' }],
       },
     },
     {
@@ -287,7 +271,7 @@ const RULES = {
         'sign up',
       ],
       answer: {
-        text: 'Thirty minutes on your floor or front desk with your own spreadsheets open, and a straight answer on whether YiY is worth it. No slide deck. Reach us at hello@yiy.tech or use the form.',
+        text: 'Thirty minutes on your floor or front desk with your own spreadsheets open, and a straight answer on whether BYIY is worth it. No slide deck. Reach us at hello@yiy.tech or use the form.',
         chips: ['How much does it cost?', 'How long to go live?'],
         links: [{ label: 'Book a walkthrough', href: '/contact' }],
       },
@@ -333,8 +317,8 @@ const RULES = {
       id: 'overview',
       keywords: ['做什么产品', '什么产品', '你们是做什么的', '介绍', '产品', '概览', '你是谁'],
       answer: {
-        text: '两样东西，今天已经上线。仪表板与数据库，把你生意赖以运转的表格换成一个真正的数据库，加一块为你的行业做的仪表板。网站与集成，做你的网站并把它接进同一批数据。第三个「数据与智能」正在小范围内测。',
-        chips: ['仪表板', '网站', '数据与智能'],
+        text: '两样东西，今天已经上线。仪表板与数据库，把你生意赖以运转的表格换成一个真正的数据库，加一块为你的行业做的仪表板。网站与集成，做你的网站并把它接进同一批数据。',
+        chips: ['仪表板', '网站', '要多少钱？'],
         links: [
           { label: '仪表板与数据库', href: '/products/dashboards' },
           { label: '网站与集成', href: '/products/website' },
@@ -387,18 +371,9 @@ const RULES = {
       id: 'website',
       keywords: ['网站', '官网', '建站', 'wordpress', 'shopify', 'wix', 'squarespace', '落地页'],
       answer: {
-        text: '网站与集成会设计并搭建你的新站，然后把它接进你的 YiY 数据库。价格与可用情况实时读取，订单和询问作为记录落到仪表板上，域名、代码仓库和主机从第一天起就在你名下。三周，一笔固定项目费。',
+        text: '网站与集成会设计并搭建你的新站，然后把它接进你的 BYIY 数据库。价格与可用情况实时读取，订单和询问作为记录落到仪表板上，域名、代码仓库和主机从第一天起就在你名下。三周，一笔固定项目费。',
         chips: ['要多少钱？', '我们已经有网站了', '预约实地走访'],
         links: [{ label: '了解网站', href: '/products/website' }],
-      },
-    },
-    {
-      id: 'data',
-      keywords: ['分析', '预测', '洞察', '智能', 'ai', '人工智能', '机器学习', '异常'],
-      answer: {
-        text: '数据与智能正在小范围内测。它叠在仪表板与数据库之上：需求与产能预测、客户分群留存、针对退款和取消的异常告警，以及用大白话对自己的表提问。它不单独售卖，因为它的上限就是底下那个数据库的质量。',
-        chips: ['加入内测名单', '你们做什么产品？'],
-        links: [{ label: '查看路线图', href: '/products/data' }],
       },
     },
     {
@@ -463,7 +438,7 @@ const RULES = {
       id: 'contact',
       keywords: ['走访', '演示', '联系', '聊聊', '打电话', '邮件', '销售', '真人', '开会', '内测名单', '报名'],
       answer: {
-        text: '在你的卖场或前台待三十分钟，把你自己的表格打开，直接告诉你 YiY 值不值。没有幻灯片。写信到 hello@yiy.tech，或者用表单联系我们。',
+        text: '在你的卖场或前台待三十分钟，把你自己的表格打开，直接告诉你 BYIY 值不值。没有幻灯片。写信到 hello@yiy.tech，或者用表单联系我们。',
         chips: ['要多少钱？', '多久能上线？'],
         links: [{ label: '预约实地走访', href: '/contact' }],
       },

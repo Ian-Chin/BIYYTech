@@ -32,7 +32,7 @@ export default function Logo({
   className = '',
   priority = false,
   // Passed in rather than read from context so this stays a server component.
-  label = 'YiY Tech home',
+  label = 'BYIY Tech home',
 }) {
   const tone = variant === 'dark' ? 'text-white' : 'text-ink';
 
@@ -47,7 +47,7 @@ export default function Logo({
       </span>
       {withWordmark ? (
         <span className="flex items-baseline gap-1.5 text-[17px] font-semibold tracking-tighter">
-          YiY
+          BYIY
           <span className="text-[11px] font-medium uppercase tracking-[0.22em] opacity-55">
             Tech
           </span>

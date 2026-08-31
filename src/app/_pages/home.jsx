@@ -38,7 +38,7 @@ export function meta(locale) {
 }
 
 export function Page({ locale }) {
-  const [dash, web, signal] = products;
+  const [dash, web] = products;
 
   return (
     <>
@@ -54,10 +54,6 @@ export function Page({ locale }) {
 
       <ProductSection slug={web.slug} flip />
       <FeatureStrip slug={web.slug} tone="dark" />
-
-      {/* The roadmap product carries no feature strip of its own: the page has
-          made its case by here, and it closes the run on ink. */}
-      <ProductSection slug={signal.slug} />
 
       <StatsBand />
       <Pillars />

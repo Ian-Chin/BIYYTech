@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 /**
- * The YiY Bot mascot.
+ * The BYIY Bot mascot.
  *
  * One perfect circle in a design system where every other radius is 2px — it
  * is the only round thing on the site, which is what makes it read as a

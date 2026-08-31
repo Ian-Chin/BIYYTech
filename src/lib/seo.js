@@ -168,7 +168,7 @@ export const productLd = (product, locale = 'en') => {
    * per seat, so it is a `Service` and not a `SoftwareApplication`. It also
    * carries no Offer node: the fee is quoted per project after the content
    * session, and inventing a price here would put a number on the page that
-   * nobody at YiY has agreed to.
+   * nobody at BYIY has agreed to.
    */
   if (product.service) {
     return {
@@ -198,8 +198,7 @@ export const productLd = (product, locale = 'en') => {
     '@id': `${url}#software`,
     name: `${company.name} ${product.name}`,
     applicationCategory: 'BusinessApplication',
-    applicationSubCategory:
-      product.slug === 'data' ? 'Analytics' : 'Business intelligence and database',
+    applicationSubCategory: 'Business intelligence and database',
     operatingSystem: 'Web, iOS, Android',
     url,
     description: product.summary,

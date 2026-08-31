@@ -54,7 +54,7 @@ export default function Splash() {
       <div className="splash__half splash__half--bottom noise">
         <span className="splash__word">
           <span className="splash__word-in">
-            YiY
+            BYIY
             <span className="splash__word-sub">Tech</span>
           </span>
         </span>
