@@ -21,6 +21,7 @@ export const ui = {
     },
     common: {
       products: 'Products',
+      industries: 'Industries',
       blog: 'Blog',
       careers: 'Careers',
       contact: 'Contact',
@@ -40,6 +41,7 @@ export const ui = {
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       panelLabel: 'Products',
+      industriesPanelLabel: 'Industries',
     },
     hero: {
       eyebrow: 'Operations software for SMEs',
@@ -68,6 +70,8 @@ export const ui = {
       title: 'Different floors. Same operating problem.',
       body: 'Stock that nobody trusts, or a calendar that nobody controls. Pick the one that is costing you money this month.',
       carouselLabel: 'Industries served',
+      runsOn: 'Runs on {name}',
+      menuBlurb: 'The same two problems, on eight different floors. Pick the one that looks like yours.',
     },
     features: {
       eyebrow: 'Inside {name}',
@@ -341,6 +345,7 @@ export const ui = {
     },
     common: {
       products: '产品',
+      industries: '行业',
       blog: '博客',
       careers: '招聘',
       contact: '联系我们',
@@ -360,6 +365,7 @@ export const ui = {
       openMenu: '打开菜单',
       closeMenu: '关闭菜单',
       panelLabel: '产品',
+      industriesPanelLabel: '行业',
     },
     hero: {
       eyebrow: '为中小企业打造的运营软件',
@@ -388,6 +394,8 @@ export const ui = {
       title: '不同的场地，同一个运营难题。',
       body: '一本没人相信的库存账，或者一份没人控制得住的日历。挑出这个月正在让你亏钱的那一个。',
       carouselLabel: '服务的行业',
+      runsOn: '运行在{name}上',
+      menuBlurb: '同样的两个难题，出现在八种不同的场地里。挑出最像你的那一个。',
     },
     features: {
       eyebrow: '走进{name}',

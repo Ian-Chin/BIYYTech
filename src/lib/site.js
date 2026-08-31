@@ -12,6 +12,7 @@ export const company = {
 
 export const nav = [
   { label: 'Products', href: '/#products' },
+  { label: 'Industries', href: '/#industries' },
   { label: 'Blog', href: '/blog' },
   { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
@@ -407,15 +408,56 @@ export const products = [
 ];
 
 export const industries = [
-  { name: 'Retail chains', image: '/media/img/retail-counter.jpg', product: 'Inventory' },
-  { name: 'Wholesale & distribution', image: '/media/img/inventory-boxes.jpg', product: 'Inventory' },
-  { name: 'Dental & medical clinics', image: '/media/img/clinic-consult.jpg', product: 'Booking' },
-  { name: 'Salons & wellness', image: '/media/img/salon-manicure.jpg', product: 'Booking' },
-  { name: 'Tuition centres', image: '/media/img/tuition-class.jpg', product: 'Booking' },
-  { name: 'Property agencies', image: '/media/img/property-agent.jpg', product: 'Booking' },
-  { name: 'E-commerce operators', image: '/media/img/inventory-packing.jpg', product: 'Inventory' },
-  { name: 'Multi-branch groups', image: '/media/img/team-office.jpg', product: 'Inventory + Booking' },
+  {
+    name: 'Retail chains',
+    image: '/media/img/retail-counter.jpg',
+    product: 'Inventory',
+    href: '/products/inventory',
+  },
+  {
+    name: 'Wholesale & distribution',
+    image: '/media/img/inventory-boxes.jpg',
+    product: 'Inventory',
+    href: '/products/inventory',
+  },
+  {
+    name: 'Dental & medical clinics',
+    image: '/media/img/clinic-consult.jpg',
+    product: 'Booking',
+    href: '/products/booking',
+  },
+  {
+    name: 'Salons & wellness',
+    image: '/media/img/salon-manicure.jpg',
+    product: 'Booking',
+    href: '/products/booking',
+  },
+  {
+    name: 'Tuition centres',
+    image: '/media/img/tuition-class.jpg',
+    product: 'Booking',
+    href: '/products/booking',
+  },
+  {
+    name: 'Property agencies',
+    image: '/media/img/property-agent.jpg',
+    product: 'Booking',
+    href: '/products/booking',
+  },
+  {
+    name: 'E-commerce operators',
+    image: '/media/img/inventory-packing.jpg',
+    product: 'Inventory',
+    href: '/products/inventory',
+  },
+  {
+    name: 'Multi-branch groups',
+    image: '/media/img/team-office.jpg',
+    product: 'Inventory + Booking',
+    href: '/#products',
+  },
 ];
+
 
 export const pillars = [
   {

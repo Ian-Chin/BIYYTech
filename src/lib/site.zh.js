@@ -41,6 +41,7 @@ export const company = {
 
 export const nav = zip(enNav, [
   { label: '产品' },
+  { label: '行业' },
   { label: '博客' },
   { label: '招聘' },
   { label: '联系我们' },

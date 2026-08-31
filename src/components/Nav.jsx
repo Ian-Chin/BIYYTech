@@ -10,11 +10,13 @@ import { useLocale } from '@/lib/i18n';
 
 export default function Nav() {
   const { t, content } = useLocale();
-  const { nav, products } = content;
+  const { nav, products, industries } = content;
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [menu, setMenu] = useState(false);
+  // Which mega panel is open, if any: 'products', 'industries' or null.
+  const [menu, setMenu] = useState(null);
   const [active, setActive] = useState(0);
+  const [activeIndustry, setActiveIndustry] = useState(0);
   // The panel is closed on every first paint, so its three preview images were
   // three downloads per page for a menu most visitors never open. They mount
   // the first time the menu is opened and stay mounted after that.
@@ -31,7 +33,7 @@ export default function Nav() {
 
   useEffect(() => {
     setOpen(false);
-    setMenu(false);
+    setMenu(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -43,23 +45,24 @@ export default function Nav() {
 
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
-  const openMenu = () => {
+  const openMenu = (which) => () => {
     clearTimeout(closeTimer.current);
     setPrimed(true);
-    setMenu(true);
+    setMenu(which);
   };
 
   // Short grace period so the pointer can cross the gap into the panel.
   const closeMenu = () => {
     clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setMenu(false), 120);
+    closeTimer.current = setTimeout(() => setMenu(null), 120);
   };
 
   // Heroes open as an inset card on a paper surround, so the bar is always
   // dark-on-light: transparent over white at rest, a white blur bar once
   // scrolled or when the product panel is open.
-  const solid = scrolled || menu;
+  const solid = scrolled || Boolean(menu);
   const product = products[active];
+  const industry = industries[activeIndustry];
 
   return (
     <header
@@ -82,12 +85,12 @@ export default function Nav() {
         <nav className="hidden items-center gap-7 xl:gap-10 lg:flex">
           <Link
             href="/#products"
-            onMouseEnter={openMenu}
-            onFocus={openMenu}
-            aria-expanded={menu}
+            onMouseEnter={openMenu('products')}
+            onFocus={openMenu('products')}
+            aria-expanded={menu === 'products'}
             aria-controls="product-menu"
             className={`inline-flex items-center gap-1.5 py-2 text-sm font-medium transition-colors duration-300 hover:text-ink ${
-              menu ? 'text-ink' : 'text-ink-soft'
+              menu === 'products' ? 'text-ink' : 'text-ink-soft'
             }`}
           >
             {t('common.products')}
@@ -96,7 +99,36 @@ export default function Nav() {
               height="6"
               viewBox="0 0 10 6"
               fill="none"
-              className={`transition-transform duration-500 ease-smooth ${menu ? 'rotate-180' : ''}`}
+              className={`transition-transform duration-500 ease-smooth ${
+                menu === 'products' ? 'rotate-180' : ''
+              }`}
+              aria-hidden="true"
+            >
+              <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+            </svg>
+          </Link>
+
+          {/* Industries opens the mirrored panel: image on the left, list on
+              the right, so the two menus do not read as the same card twice. */}
+          <Link
+            href="/#industries"
+            onMouseEnter={openMenu('industries')}
+            onFocus={openMenu('industries')}
+            aria-expanded={menu === 'industries'}
+            aria-controls="industry-menu"
+            className={`inline-flex items-center gap-1.5 py-2 text-sm font-medium transition-colors duration-300 hover:text-ink ${
+              menu === 'industries' ? 'text-ink' : 'text-ink-soft'
+            }`}
+          >
+            {t('common.industries')}
+            <svg
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              className={`transition-transform duration-500 ease-smooth ${
+                menu === 'industries' ? 'rotate-180' : ''
+              }`}
               aria-hidden="true"
             >
               <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
@@ -104,7 +136,7 @@ export default function Nav() {
           </Link>
 
           {nav
-            .slice(1)
+            .slice(2)
             .map((item) => (
               <Link
                 key={item.href}
@@ -159,11 +191,11 @@ export default function Nav() {
       <div
         id="product-menu"
         aria-label={t('nav.panelLabel')}
-        onMouseEnter={openMenu}
+        onMouseEnter={openMenu('products')}
         onMouseLeave={closeMenu}
-        inert={!menu}
+        inert={menu !== 'products'}
         className={`absolute inset-x-0 top-full hidden overflow-hidden border-ink/10 bg-white transition-all duration-500 ease-smooth lg:block ${
-          menu
+          menu === 'products'
             ? 'pointer-events-auto max-h-[560px] border-b opacity-100'
             : 'pointer-events-none max-h-0 border-b-0 opacity-0'
         }`}
@@ -288,6 +320,128 @@ export default function Nav() {
                 </svg>
               </Link>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Full-width industries mega panel -------------------------------
+          Mirrored from the product panel on purpose: there the preview sits on
+          the right of the list, here it holds the left edge, so the two menus
+          are told apart before either is read. */}
+      <div
+        id="industry-menu"
+        aria-label={t('nav.industriesPanelLabel')}
+        onMouseEnter={openMenu('industries')}
+        onMouseLeave={closeMenu}
+        inert={menu !== 'industries'}
+        className={`absolute inset-x-0 top-full hidden overflow-hidden border-ink/10 bg-white transition-all duration-500 ease-smooth lg:block ${
+          menu === 'industries'
+            ? 'pointer-events-auto max-h-[560px] border-b opacity-100'
+            : 'pointer-events-none max-h-0 border-b-0 opacity-0'
+        }`}
+      >
+        <div className="grid w-full grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] gap-16 px-10 py-14 md:px-14 xl:gap-20 xl:px-20">
+          {/* Preview of the hovered industry, image first */}
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] gap-8 border-r border-ink/[0.08] pr-14">
+            {/* Same fixed height as the product preview so the two panels open
+                to the same depth and the bar does not jump between them. */}
+            <div className="relative h-[320px] overflow-hidden bg-paper-warm">
+              {primed &&
+                industries.map((item, i) => (
+                  <Image
+                    key={item.name}
+                    src={item.image}
+                    alt=""
+                    fill
+                    sizes="580px"
+                    quality={90}
+                    className="object-cover transition-opacity duration-700 ease-smooth"
+                    style={{ opacity: activeIndustry === i ? 1 : 0 }}
+                  />
+                ))}
+            </div>
+
+            <div className="flex flex-col justify-between py-1">
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+                  {t('industries.eyebrow')}
+                </p>
+                <p className="mt-4 text-2xl font-semibold leading-tight tracking-tighter">
+                  {industry.name}
+                </p>
+                <p className="mt-3">
+                  <span className="border border-ink/15 px-2 py-0.5 text-[9px] uppercase tracking-[0.16em] text-ink-mute">
+                    {t('industries.runsOn', { name: industry.product })}
+                  </span>
+                </p>
+                <p className="mt-5 text-sm leading-relaxed text-ink-soft">
+                  {t('industries.menuBlurb')}
+                </p>
+              </div>
+
+              <Link
+                href={industry.href}
+                className="mt-6 inline-flex items-center gap-2 self-start border-b border-ink pb-1 text-sm font-medium"
+              >
+                {t('common.exploreProduct', { name: industry.product })}
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                  <path
+                    d="M9 1l4 4-4 4M13 5H1"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
+
+          {/* Industry list. Eight rows would run past the panel in one column,
+              so they sit two-up and lighter than the product rows. */}
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              {t('common.industries')}
+            </p>
+            <ul className="mt-5 grid grid-cols-2 gap-x-10">
+              {industries.map((item, i) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    onMouseEnter={() => setActiveIndustry(i)}
+                    onFocus={() => setActiveIndustry(i)}
+                    className={`group flex items-center gap-3 border-t border-ink/[0.08] py-[13px] transition-colors duration-300 ${
+                      activeIndustry === i ? 'text-ink' : 'text-ink-mute'
+                    }`}
+                  >
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-medium tracking-tight">
+                        {item.name}
+                      </span>
+                      <span className="mt-0.5 block text-[11px] text-ink-faint">
+                        {item.product}
+                      </span>
+                    </span>
+                    <span
+                      className={`transition-all duration-500 ease-smooth ${
+                        activeIndustry === i ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0'
+                      }`}
+                      aria-hidden="true"
+                    >
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                        <path
+                          d="M9 1l4 4-4 4M13 5H1"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
