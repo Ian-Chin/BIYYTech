@@ -33,7 +33,10 @@ export function SplashBoot() {
  * the splash boot because it is the same trick — a blocking inline script in
  * <head>, the one place a script is guaranteed to run before the body renders.
  */
-const LANG_BOOT = `(function(){var p=location.pathname;if(p==='/zh'||p.indexOf('/zh/')===0)document.documentElement.lang='zh-Hans'})();`;
+/* Kept as a literal map rather than built from routes.js: this string is
+   serialised into <head> as-is, so it cannot import anything. Adding a locale
+   means adding it here too. */
+const LANG_BOOT = `(function(){var m={zh:'zh-Hans',ms:'ms'};var p=location.pathname;for(var c in m){if(p==='/'+c||p.indexOf('/'+c+'/')===0){document.documentElement.lang=m[c];return}}})();`;
 
 export function LangBoot() {
   return <script dangerouslySetInnerHTML={{ __html: LANG_BOOT }} />;

@@ -1,5 +1,5 @@
-import { localePath } from '@/lib/routes';
-import { SITE_URL } from '@/lib/seo';
+import { LOCALES, localePath } from '@/lib/routes';
+import { HREFLANG_TAG, SITE_URL } from '@/lib/seo';
 import { industries, posts, products } from '@/lib/site';
 
 const BASE = SITE_URL;
@@ -29,12 +29,13 @@ export default function sitemap() {
 
   return PATHS.flatMap(({ path, priority, lastModified }) => {
     const languages = {
-      'en-MY': `${BASE}${path}`,
-      'zh-Hans': `${BASE}${localePath('zh', path)}`,
+      ...Object.fromEntries(
+        LOCALES.map((locale) => [HREFLANG_TAG[locale], `${BASE}${localePath(locale, path)}`]),
+      ),
       'x-default': `${BASE}${path}`,
     };
 
-    return ['en', 'zh'].map((locale) => ({
+    return LOCALES.map((locale) => ({
       url: `${BASE}${localePath(locale, path)}`,
       lastModified: lastModified ? new Date(lastModified) : now,
       priority,

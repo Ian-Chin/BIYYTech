@@ -151,11 +151,14 @@ author, review date, method and sources.
 
 ## Languages
 
-The site is published in English and Simplified Chinese. English is served from
-the root and Chinese from a `/zh` prefix: every page listed above exists at both
-`https://yiy.tech/PATH` and `https://yiy.tech/zh/PATH`, statically generated in
-that language, cross-referenced with `hreflang` and both listed in the sitemap.
-The Chinese pages are translations of the same content, not different content.
+The site is published in English, Simplified Chinese and Bahasa Melayu.
+English is served from the root, Chinese from a `/zh` prefix and Malay from
+`/ms`: every page listed above exists at `https://yiy.tech/PATH`,
+`https://yiy.tech/zh/PATH` and `https://yiy.tech/ms/PATH`, statically generated
+in that language, cross-referenced with `hreflang` and all listed in the
+sitemap. The translated pages carry the same content, not different content,
+with one exception: the blog posts are still English inside the Malay tree,
+pending review by a Malay reader, and the Malay blog index says so on the page.
 This plain-text summary and the full corpus at /llms-full.txt are English only.
 
 ## Technical

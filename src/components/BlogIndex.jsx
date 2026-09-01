@@ -49,6 +49,17 @@ export default function BlogIndex() {
               {t('blog.body')}
             </p>
           </Reveal>
+
+          {/* Only a locale whose posts are still untranslated defines this key,
+              so the note appears for that reader and nobody else. Delete the
+              key once that locale's posts are reviewed and translated. */}
+          {t('blog.languageNote') !== 'blog.languageNote' ? (
+            <Reveal delay={300}>
+              <p className="mt-5 max-w-xl border-l border-white/20 pl-4 text-sm leading-relaxed text-white/45">
+                {t('blog.languageNote')}
+              </p>
+            </Reveal>
+          ) : null}
         </div>
       </HeroFrame>
 

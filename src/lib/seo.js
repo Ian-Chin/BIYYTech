@@ -1,5 +1,5 @@
 import { getContent } from '@/lib/content';
-import { LOCALES, localePath } from '@/lib/routes';
+import { LOCALES, htmlLang, localePath } from '@/lib/routes';
 import { company, editorialPolicy, faqs, products } from '@/lib/site';
 
 /**
@@ -41,18 +41,22 @@ export const abs = (path = '/') => new URL(path, SITE_URL).toString();
 /* -------------------------------------------------------------------------- */
 
 /**
- * Every page exists twice, once per locale, at `path` and `/zh` + `path`. Both
- * copies carry the same hreflang set pointing at each other plus an x-default
- * on the English one, which is what tells a search engine they are translations
- * rather than duplicates competing with each other.
+ * Every page exists once per locale, at `path` for English and `/<code>` +
+ * `path` for the rest. Every copy carries the same hreflang set pointing at all
+ * of them plus an x-default on the English one, which is what tells a search
+ * engine they are translations rather than duplicates competing with each
+ * other. Built from LOCALES so a new language is listed automatically.
  */
+export const HREFLANG_TAG = { en: 'en-MY', zh: 'zh-Hans', ms: 'ms-MY' };
+
 export const hreflang = (path = '/') => ({
-  'en-MY': abs(path),
-  'zh-Hans': abs(localePath('zh', path)),
+  ...Object.fromEntries(
+    LOCALES.map((locale) => [HREFLANG_TAG[locale], abs(localePath(locale, path))]),
+  ),
   'x-default': abs(path),
 });
 
-const OG_LOCALE = { en: 'en_MY', zh: 'zh_MY' };
+const OG_LOCALE = { en: 'en_MY', zh: 'zh_MY', ms: 'ms_MY' };
 
 export function pageMeta({
   title,
@@ -123,7 +127,7 @@ export const organizationLd = () => ({
   publishingPrinciples: abs('/blog'),
 });
 
-/* One WebSite node covering both trees: same site, two languages. */
+/* One WebSite node covering every tree: same site, three languages. */
 export const websiteLd = () => ({
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
@@ -131,7 +135,7 @@ export const websiteLd = () => ({
   name: company.name,
   description: company.tagline,
   publisher: { '@id': `${SITE_URL}/#organization` },
-  inLanguage: ['en', 'zh-Hans'],
+  inLanguage: LOCALES.map((locale) => htmlLang(locale)),
 });
 
 /* `path` entries are locale-independent, so the trail is resolved into the
@@ -299,7 +303,7 @@ export const articleLd = (post, locale = 'en') => ({
   datePublished: post.date,
   dateModified: post.updated || post.date,
   articleSection: post.category,
-  inLanguage: locale === 'zh' ? 'zh-Hans' : 'en',
+  inLanguage: htmlLang(locale),
   image: [abs(post.image)],
   wordCount: post.sections.reduce(
     (n, s) => n + s.paragraphs.join(' ').split(/\s+/).length,
@@ -336,7 +340,7 @@ export const blogLd = (posts, locale = 'en') => ({
   description:
     'Field notes on leaving spreadsheets, designing an operational database and rolling software into small businesses.',
   url: abs(localePath(locale, '/blog')),
-  inLanguage: locale === 'zh' ? 'zh-Hans' : 'en',
+  inLanguage: htmlLang(locale),
   publisher: { '@id': `${SITE_URL}/#organization` },
   blogPost: posts.map((p) => ({
     '@type': 'BlogPosting',

@@ -7,7 +7,7 @@
 /*  seo.js cannot be pulled into the browser (it reads server-only env).        */
 /* -------------------------------------------------------------------------- */
 
-export const LOCALES = ['en', 'zh'];
+export const LOCALES = ['en', 'zh', 'ms'];
 export const DEFAULT_LOCALE = 'en';
 
 /**
@@ -19,12 +19,17 @@ export const DEFAULT_LOCALE = 'en';
  * object from it receives a client reference, not the object, and every lookup
  * quietly returns undefined. Server code needs this, so it cannot live there.
  */
-export const HTML_LANG = { en: 'en', zh: 'zh-Hans' };
+export const HTML_LANG = { en: 'en', zh: 'zh-Hans', ms: 'ms' };
 
 export const htmlLang = (locale) => HTML_LANG[locale] ?? HTML_LANG[DEFAULT_LOCALE];
 
-/** The URL prefix a locale lives under. English has none, by design. */
-export const localeBase = (locale) => (locale === 'zh' ? '/zh' : '');
+/**
+ * The URL prefix a locale lives under. English has none, by design; every other
+ * locale lives under its own code. Derived from LOCALES rather than listed, so
+ * adding a language is this file's array plus a route tree, and nothing here.
+ */
+export const localeBase = (locale) =>
+  locale !== DEFAULT_LOCALE && LOCALES.includes(locale) ? `/${locale}` : '';
 
 /**
  * Turns a locale-independent path from the content files (`/products/dashboards`,
@@ -55,5 +60,10 @@ export function stripLocale(pathname = '/') {
 
 /** Which tree a pathname belongs to. Used by the language toggle. */
 export function localeFromPath(pathname = '/') {
-  return pathname === '/zh' || pathname.startsWith('/zh/') ? 'zh' : 'en';
+  for (const locale of LOCALES) {
+    const base = localeBase(locale);
+    if (!base) continue;
+    if (pathname === base || pathname.startsWith(`${base}/`)) return locale;
+  }
+  return DEFAULT_LOCALE;
 }

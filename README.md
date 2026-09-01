@@ -64,20 +64,27 @@ public/
 testimonials and the comparison table are data, change them there and every
 page updates.
 
-## Two languages, two URL trees
+## Three languages, three URL trees
 
-English is served from the root and Chinese from `/zh`, and both are statically
-generated in their own language. The locale is a property of the URL, not of the
-browser: `/zh/products/dashboards` is Chinese for everyone, which is what makes it
-indexable. Every page carries a canonical URL plus an `hreflang` set pointing at
-its twin, and the sitemap lists both with the same alternates.
+English is served from the root, Chinese from `/zh` and Malay from `/ms`, each
+statically generated in its own language. The locale is a property of the URL,
+not of the browser: `/zh/products/dashboards` is Chinese for everyone, which is
+what makes it indexable. Every page carries a canonical URL plus an `hreflang`
+set pointing at its counterparts, and the sitemap lists all three with the same
+alternates.
+
+Adding a locale is: its code in `LOCALES` (`src/lib/routes.js`), a tag in
+`HTML_LANG` and `HREFLANG_TAG`, entries in `LOCALE_META` and `OG_LOCALE`, a
+`site.<code>.js` and `legal.<code>.js`, a block in `ui.js` and `meta.js`, a route
+tree under `src/app/<code>/` copied from `zh/`, and the prefix map in the
+`LANG_BOOT` string in `Splash.jsx`. Everything else derives from `LOCALES`.
 
 - Add a page by writing it once in `src/app/_pages/`, then mounting it from a
-  two-line route file in `(en)/` and another in `zh/`.
+  two-line route file in `(en)/`, `zh/` and `ms/`.
 - Write internal links against the English path (`/contact`) and import `Link`
   from `@/components/Link`, which adds the prefix for the tree it renders in.
 - The language toggle is a navigation between the trees, and it stores the
-  choice so the homepage stops redirecting Chinese-preferring browsers.
+  choice so the homepage stops redirecting on the browser’s language.
 
 ## Typeface
 

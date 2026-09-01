@@ -7,8 +7,10 @@
 /* -------------------------------------------------------------------------- */
 
 import * as enLegal from '@/lib/legal';
+import * as msLegal from '@/lib/legal.ms';
 import * as zhLegal from '@/lib/legal.zh';
 import * as enSite from '@/lib/site';
+import * as msSite from '@/lib/site.ms';
 import * as zhSite from '@/lib/site.zh';
 
 const build = (site, legal) => ({
@@ -38,6 +40,7 @@ const build = (site, legal) => ({
 const CONTENT = {
   en: build(enSite, enLegal),
   zh: build(zhSite, zhLegal),
+  ms: build(msSite, msLegal),
 };
 
 export function getContent(locale) {

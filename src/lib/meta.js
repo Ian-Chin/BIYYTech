@@ -2,12 +2,12 @@
 /*  Page metadata, per locale                                                  */
 /*                                                                             */
 /*  Titles and descriptions are the part of a page a search result actually     */
-/*  shows, so the Chinese tree needs its own rather than inheriting English     */
-/*  ones. Body copy lives in site.js / site.zh.js; this file holds only what    */
+/*  shows, so each translated tree needs its own rather than inheriting the     */
+/*  English ones. Body copy lives in site.js / site.zh.js / site.ms.js; this    */
 /*  goes in <head>, for the pages whose copy is not derived from content.       */
 /*                                                                             */
 /*  Product and post metadata is not here: it is generated from the translated  */
-/*  entries in site.zh.js so the two can never disagree.                        */
+/*  entries in the per-locale site files so they can never disagree.            */
 /* -------------------------------------------------------------------------- */
 
 export const PAGE_META = {
@@ -22,6 +22,11 @@ export const PAGE_META = {
       description:
         'BIYY Tech 把中小企业赖以运转的表格，换成一个真正的数据库，加一块为其行业打造的仪表板：零售、分销、诊所、美容、补习与房产。按门店固定月费，两周上线。',
     },
+    ms: {
+      title: 'BIYY Tech: dashboard dan database untuk PKS',
+      description:
+        'BIYY Tech menggantikan spreadsheet yang menjalankan sebuah PKS dengan database sebenar dan dashboard yang dibina untuk industrinya: peruncitan, pengedaran, klinik, salun, tuisyen dan hartanah. Harga bulanan tetap setiap cawangan, hidup dalam dua minggu.',
+    },
   },
   contact: {
     en: {
@@ -33,6 +38,11 @@ export const PAGE_META = {
       title: '预约实地走访',
       description:
         '三十分钟，在你的卖场或前台，把你自己的表格打开。我们把「什么被记下来、之后去了哪里」画出来，然后直接告诉你 BIYY Tech 对你值不值。',
+    },
+    ms: {
+      title: 'Tempah lawatan',
+      description:
+        'Tiga puluh minit di lantai atau kaunter depan anda dengan spreadsheet anda sendiri dibuka. Kami petakan apa yang direkod dan ke mana ia pergi, dan beritahu terus terang sama ada BIYY Tech berbaloi untuk anda.',
     },
   },
   industries: {
@@ -46,6 +56,11 @@ export const PAGE_META = {
       description:
         'BIYY Tech 已经做过的仪表板布局：理发店、诊所、餐厅、零售、分销、电商、维修厂、机器人、数据团队、补习中心、房产中介与多分店集团。底下是同一个数据库，不同的只是第一屏。',
     },
+    ms: {
+      title: 'Industri',
+      description:
+        'Susunan dashboard yang sudah dibina BIYY Tech: kedai gunting, klinik, restoran, peruncitan, pengedaran, e-dagang, bengkel, robotik, pasukan data, pusat tuisyen, agensi hartanah dan kumpulan berbilang cawangan. Database yang sama di bawahnya, skrin pertama yang berbeza.',
+    },
   },
   careers: {
     en: {
@@ -56,6 +71,11 @@ export const PAGE_META = {
     zh: {
       title: '招聘',
       description: 'BIYY Tech 团队怎么工作，以及将来有职位时怎么联系我们。目前没有空缺。',
+    },
+    ms: {
+      title: 'Kerjaya',
+      description:
+        'Cara pasukan BIYY Tech bekerja, dan cara menghubungi kami tentang jawatan pada masa depan. Tiada kekosongan buat masa ini.',
     },
   },
   blog: {
@@ -69,6 +89,11 @@ export const PAGE_META = {
       description:
         '关于离开表格、设计运营数据库，以及把软件推进那些经不起停摆的小企业时的现场笔记。由真正做实施的人来写。',
     },
+    ms: {
+      title: 'Blog',
+      description:
+        'Nota lapangan tentang meninggalkan spreadsheet, mereka bentuk database operasi dan melaksanakan perisian dalam perniagaan kecil yang tidak mampu berhenti beroperasi. Ditulis oleh orang yang menjalankan pelaksanaan itu sendiri.',
+    },
   },
   privacy: {
     en: {
@@ -80,6 +105,11 @@ export const PAGE_META = {
       title: '隐私',
       description:
         'yiy.tech 收集什么——几乎什么都不收：没有 cookie，没有分析工具，没有第三方脚本。走访询问怎么处理，以及你在马来西亚 PDPA 下的权利。',
+    },
+    ms: {
+      title: 'Privasi',
+      description:
+        'Apa yang yiy.tech kumpulkan, iaitu hampir tiada apa-apa: tiada cookie, tiada analitik, tiada skrip pihak ketiga. Cara pertanyaan lawatan dikendalikan, dan hak anda di bawah PDPA Malaysia.',
     },
   },
   terms: {
@@ -93,6 +123,11 @@ export const PAGE_META = {
       description:
         'yiy.tech 的使用条款、本站引用的数字该怎么读，以及一个营销页面所能承诺的边界。软件本身由另一份服务协议约束。',
     },
+    ms: {
+      title: 'Terma',
+      description:
+        'Terma penggunaan yiy.tech, cara membaca angka yang dipetik di laman ini, dan had apa yang boleh dijanjikan oleh satu halaman pemasaran. Perisiannya sendiri ditadbir oleh perjanjian perkhidmatan berasingan.',
+    },
   },
   cookies: {
     en: {
@@ -105,6 +140,11 @@ export const PAGE_META = {
       description:
         'yiy.tech 不设 cookie，也不加载第三方脚本。同意横幅存了什么、分析与营销这两类会涵盖什么，以及怎么改变你的选择。',
     },
+    ms: {
+      title: 'Cookie',
+      description:
+        'yiy.tech tidak menetapkan cookie dan tidak memuatkan skrip pihak ketiga. Apa yang disimpan sepanduk persetujuan, apa yang kategori analitik dan pemasaran akan liputi, dan cara mengubah jawapan anda.',
+    },
   },
 };
 
@@ -112,6 +152,7 @@ export const PAGE_META = {
 export const CRUMBS = {
   en: { home: 'Home', products: 'Products', industries: 'Industries', blog: 'Blog' },
   zh: { home: '首页', products: '产品', industries: '行业', blog: '博客' },
+  ms: { home: 'Utama', products: 'Produk', industries: 'Industri', blog: 'Blog' },
 };
 
 export const pageCopy = (key, locale) => PAGE_META[key][locale] ?? PAGE_META[key].en;

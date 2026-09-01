@@ -5,14 +5,17 @@ import { LOCALES, LOCALE_KEY, LOCALE_META, useLocale } from '@/lib/i18n';
 import { localePath, stripLocale } from '@/lib/routes';
 
 /**
- * Two-state segmented control rather than a dropdown: with exactly two locales
- * a select is a click more expensive and hides the alternative until opened.
- * The pressed state is carried by aria-pressed as well as by weight, so it
- * reads correctly without colour.
+ * Segmented control rather than a dropdown: at this many locales a select is a
+ * click more expensive and hides the alternatives until opened. It renders one
+ * button per entry in LOCALES, so adding a language needs nothing here. The
+ * pressed state is carried by aria-pressed as well as by weight, so it reads
+ * correctly without colour.
  *
- * Switching language is a navigation now, not a state change: each language is
- * a real URL, so the toggle moves the same page across trees (/blog/x ⇄
- * /zh/blog/x) and records the choice so the homepage stops guessing.
+ * Switching language is a navigation, not a state change: each language is a
+ * real URL, so the toggle moves the same page across trees (/blog/x ⇄
+ * /zh/blog/x ⇄ /ms/blog/x) and records the choice so the homepage stops
+ * guessing. Watch the width if a fourth locale is ever added — the labels are
+ * short codes (EN / 中文 / BM) precisely so the row still fits a phone.
  */
 export default function LanguageToggle({ tone = 'light', className = '' }) {
   const { locale, t } = useLocale();

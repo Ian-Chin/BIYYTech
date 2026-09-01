@@ -27,6 +27,7 @@ export const LOCALE_KEY = 'yiy.locale';
 export const LOCALE_META = {
   en: { short: 'EN', name: 'English', htmlLang: htmlLang('en') },
   zh: { short: '中文', name: '中文', htmlLang: htmlLang('zh') },
+  ms: { short: 'BM', name: 'Bahasa Melayu', htmlLang: htmlLang('ms') },
 };
 
 const LocaleContext = createContext(null);
@@ -69,8 +70,10 @@ export function useLocale() {
  * Dates are the one piece of content that is generated rather than authored,
  * so they get their own helper instead of a dictionary entry.
  */
+const DATE_TAG = { zh: 'zh-CN', ms: 'ms-MY', en: 'en-GB' };
+
 export function formatDate(iso, locale, { long = false } = {}) {
-  const tag = locale === 'zh' ? 'zh-CN' : 'en-GB';
+  const tag = DATE_TAG[locale] ?? DATE_TAG.en;
   return new Date(iso).toLocaleDateString(tag, {
     day: 'numeric',
     month: long ? 'long' : 'short',

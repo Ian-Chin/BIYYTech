@@ -6,8 +6,8 @@
  * rule below and it is live.
  *
  * Every rule exists once per locale. Chinese keywords are matched as plain
- * substrings because the language has no spaces to anchor on; English keeps
- * the word-boundary check so a stray "long" cannot beat "how long".
+ * substrings because the language has no spaces to anchor on; English and Malay
+ * keep the word-boundary check so a stray "long" cannot beat "how long".
  */
 
 const GREETINGS = {
@@ -23,6 +23,10 @@ const GREETINGS = {
   zh: {
     text: '你好，我是 BIYY 小助手。关于 BIYY Tech 的问题都可以问我：产品能做什么、实施是怎么走的、要多少钱。',
     chips: ['你们做什么产品？', '要多少钱？', '多久能上线？', '预约实地走访'],
+  },
+  ms: {
+    text: 'Hai, saya BIYY Bot. Saya jawab soalan tentang BIYY Tech: apa yang produknya buat, bagaimana pelaksanaan berjalan, dan berapa kosnya.',
+    chips: ['Apa yang anda bina?', 'Berapa kosnya?', 'Berapa lama nak hidup?', 'Tempah lawatan'],
   },
 };
 
@@ -490,6 +494,186 @@ const RULES = {
       },
     },
   ],
+  ms: [
+    {
+      id: 'greet',
+      keywords: ['hai', 'helo', 'hello', 'hi', 'salam', 'selamat pagi', 'selamat petang', 'apa khabar'],
+      answer: {
+        text: 'Helo. Tanya saya tentang dashboard, database, berpindah daripada spreadsheet, harga atau pelaksanaan, atau tekan salah satu di bawah.',
+        chips: ['Apa yang anda bina?', 'Dashboard', 'Macam mana dengan spreadsheet kami?', 'Berapa lama nak hidup?'],
+      },
+    },
+    {
+      id: 'overview',
+      keywords: [
+        'apa yang anda bina',
+        'apa yang korang buat',
+        'produk',
+        'perkhidmatan',
+        'apa itu biyy',
+        // The old spelling still matches: visitors who knew the company as YiY
+        // will type it for a while yet.
+        'apa itu yiy',
+        'tentang',
+        'gambaran',
+        'siapa anda',
+      ],
+      answer: {
+        text: 'Tiga perkara, sudah tersedia hari ini. Dashboard & Database menggantikan spreadsheet yang menjalankan perniagaan anda dengan database sebenar dan dashboard yang dibina untuk industri anda. Laman Web & Integrasi membina laman anda dan menyambungkannya ke data yang sama. Pembangunan AI menghalakan model ke data itu sebaik ada sesuatu yang berbaloi dihalakan kepadanya.',
+        chips: ['Dashboard', 'Laman web', 'AI', 'Berapa kosnya?'],
+        links: [
+          { label: 'Dashboard & Database', href: '/products/dashboards' },
+          { label: 'Laman Web & Integrasi', href: '/products/website' },
+          { label: 'Pembangunan AI', href: '/products/ai-development' },
+        ],
+      },
+    },
+    {
+      id: 'dashboards',
+      keywords: ['dashboard', 'papan pemuka', 'database', 'pangkalan data', 'sql', 'skema', 'jadual', 'laporan', 'kpi', 'satu sumber kebenaran'],
+      answer: {
+        text: 'Dashboard & Database ialah produk terasnya. Kami reka database yang betul mengikut cara perniagaan anda merekod kerja, pindahkan apa yang ada dalam spreadsheet anda hari ini, dan bina dashboard yang dibuka pasukan anda setiap pagi. Skrinnya disusun untuk industri anda, bukan template umum, dan setiap angka hidup.',
+        chips: ['Macam mana dengan spreadsheet kami?', 'Apa bezanya dengan alat BI?', 'Berapa kosnya?'],
+        links: [{ label: 'Terokai Dashboard', href: '/products/dashboards' }],
+      },
+    },
+    {
+      id: 'spreadsheets',
+      keywords: ['spreadsheet', 'excel', 'google sheets', 'sheet', 'csv', 'fail kami', 'buku kerja', 'makro', 'formula'],
+      answer: {
+        text: 'Kami baca spreadsheet anda, kenal pasti struktur yang tersembunyi di dalamnya, dan reka jadual yang sepadan. Kemudian kami pindahkan isinya. Rekod berulang, tiga ejaan untuk pembekal yang sama dan lajur yang bertukar maksud di pertengahan akan ditanda untuk anda putuskan, bukan diteka. Anda kekal guna Excel untuk analisis sekali sekala; ia cuma berhenti jadi tempat data tinggal.',
+        chips: ['Berapa lama nak hidup?', 'Boleh saya eksport data?', 'Tempah lawatan'],
+      },
+    },
+    {
+      id: 'bi',
+      keywords: ['alat bi', 'power bi', 'tableau', 'looker', 'metabase', 'carta', 'visualisasi', 'apa bezanya'],
+      answer: {
+        text: 'Alat BI melukis carta atas apa sahaja yang anda suapkan, jadi ia mewarisi setiap rekod berulang dan setiap eksport lapuk. Kami ganti sumbernya: data masuk ke database sebenar dengan kekangan, dan dashboard membaca daripada situ. Cartanya bahagian yang senang.',
+        chips: ['Dashboard', 'Macam mana dengan spreadsheet kami?'],
+      },
+    },
+    {
+      id: 'industry',
+      keywords: ['industri', 'disesuaikan', 'tersuai', 'klinik', 'salun', 'tuisyen', 'hartanah', 'peruncitan', 'borong', 'pengedaran', 'e-dagang', 'restoran', 'bengkel'],
+      answer: {
+        text: 'Dashboard disusun untuk industri anda, sebab keputusan mingguannya berbeza. Pengedar membuka umur stok, lead time dan margin selepas penghantaran. Klinik membuka kadar penggunaan dan senarai panggil semula. Pusat tuisyen membuka pendaftaran dan kehadiran. Itu perbezaan skema, bukan soal menyusun semula carta.',
+        chips: ['Dashboard', 'Tempah lawatan'],
+        links: [{ label: 'Lihat semua industri', href: '/industries' }],
+      },
+    },
+    {
+      id: 'website',
+      keywords: ['laman web', 'website', 'laman', 'wordpress', 'shopify', 'wix', 'squarespace', 'halaman pendaratan'],
+      answer: {
+        text: 'Laman Web & Integrasi mereka dan membina laman baharu anda, kemudian menyambungkannya ke database BIYY anda. Harga dan ketersediaan dibaca secara langsung, pesanan dan pertanyaan mendarat sebagai rekod atas dashboard anda, dan domain, repositori serta hosting atas nama anda dari hari pertama. Tiga minggu, satu yuran projek tetap.',
+        chips: ['Berapa kosnya?', 'Kami sudah ada laman web', 'Tempah lawatan'],
+        links: [{ label: 'Terokai Laman Web', href: '/products/website' }],
+      },
+    },
+    {
+      id: 'ai',
+      keywords: ['ai', 'kecerdasan buatan', 'model', 'automasi', 'automatik', 'ramalan', 'baca invois', 'pintar'],
+      answer: {
+        text: 'Pembangunan AI dibina atas database yang anda sudah guna: tanya data anda dalam bahasa biasa, invois dan nota penghantaran dibaca terus jadi rekod, laporan dirangka mengikut jadual, dan perkara luar biasa serta pertanyaan masuk dihalakan sendiri. Setiap jawapan menunjukkan rekod asalnya, dan apa yang model tidak pasti diserahkan kepada manusia, bukan dimasukkan ke dalam database.',
+        chips: ['Berapa kosnya?', 'Macam mana dengan spreadsheet kami?', 'Tempah lawatan'],
+        links: [{ label: 'Terokai Pembangunan AI', href: '/products/ai-development' }],
+      },
+    },
+    {
+      id: 'pricing',
+      keywords: ['harga', 'kos', 'berapa', 'yuran', 'langganan', 'mahal', 'bajet', 'sebut harga', 'sebulan'],
+      answer: {
+        text: 'Bulanan tetap setiap cawangan. Tiada potongan setiap transaksi, tiada yuran pelaksanaan mengejut, dan tiada ikatan tahunan untuk ditandatangan pada hari pertama. Angka tepatnya bergantung pada bilangan cawangan dan produk yang anda guna. Kami sebut harga semasa lawatan, sebelum anda komit kepada apa-apa.',
+        chips: ['Tempah lawatan', 'Kalau kami membesar melepasinya?'],
+        links: [{ label: 'Dapatkan sebut harga', href: '/contact' }],
+      },
+    },
+    {
+      id: 'timeline',
+      keywords: ['berapa lama', 'tempoh', 'nak hidup', 'mula hidup', 'pemasangan', 'onboarding', 'pelaksanaan', 'dua minggu', 'berapa cepat'],
+      answer: {
+        text: 'Dua minggu adalah biasa: lawatan pada hari 0, skema dan migrasi hari 1–4, satu pasukan hidup hari 5–10, yang selebihnya dan serah tugas hari 11–14. Spreadsheet sumber yang bertahun-tahun tidak konsisten mengambil tiga hingga empat minggu. Kami beritahu anda yang mana satu sebelum anda bayar.',
+        chips: ['Macam mana dengan spreadsheet kami?', 'Tempah lawatan'],
+        links: [{ label: 'Lihat pelaksanaannya', href: '/#process' }],
+      },
+    },
+    {
+      id: 'migration',
+      keywords: ['migrasi', 'pindah data', 'import', 'data sedia ada', 'data saya', 'pemindahan', 'bersihkan', 'data berulang'],
+      answer: {
+        text: 'Kami pindahkan. Setiap helaian, tab dan lajur yang anda betul-betul guna. Apa sahaja yang tidak boleh dipetakan dengan bersih akan ditanda untuk anda putuskan, tidak pernah digugurkan secara senyap. Pembersihan biasanya mengambil kira-kira separuh usaha migrasi, dan kami skop dengan jujur pada hari 0, bukan menemuinya pada minggu ketiga.',
+        chips: ['Berapa lama nak hidup?', 'Boleh saya eksport data?'],
+      },
+    },
+    {
+      id: 'export',
+      keywords: ['eksport', 'terikat', 'keluar', 'batal', 'data milik saya', 'membesar melepasi', 'kontrak'],
+      answer: {
+        text: 'Eksport data penuh bila-bila masa, termasuk skema, dalam format yang akauntan anda kenal, tanpa yuran keluar. Kami lebih rela anda pergi dengan bersih daripada tinggal dengan rasa tidak puas hati, dan itu memaksa kami jujur dalam usaha mendapatkan pembaharuan.',
+        chips: ['Berapa kosnya?', 'Tempah lawatan'],
+      },
+    },
+    {
+      id: 'integrations',
+      keywords: ['integrasi', 'sambung', 'perakaunan', 'sql accounting', 'autocount', 'xero', 'quickbooks', 'api', 'segerak'],
+      answer: {
+        text: 'Kami eksport dalam format yang diterima pakej perakaunan PKS standard, dan integrasi terus untuk sistem Malaysia dan Singapura yang biasa ada dalam pelan hala tuju. Beritahu kami sistem mana yang anda guna semasa lawatan dan kami akan sahkan kedudukannya.',
+        chips: ['Tempah lawatan', 'Boleh guna tanpa internet?'],
+      },
+    },
+    {
+      id: 'offline',
+      keywords: ['luar talian', 'offline', 'tiada internet', 'sambungan', 'wifi', 'talian putus'],
+      answer: {
+        text: 'Borang mudah alih menyimpan kemasukan dalam baris gilir bila sambungan terputus, kemudian menyegerakkannya bila sambungan pulih. Dashboard itu sendiri perlukan sambungan, sebab satu angka kena hidup untuk ada nilainya.',
+        chips: ['Dashboard', 'Tempah lawatan'],
+      },
+    },
+    {
+      id: 'permissions',
+      keywords: ['kebenaran', 'peranan', 'akses', 'capaian', 'siapa boleh lihat', 'pengurus cawangan', 'audit', 'sejarah'],
+      answer: {
+        text: 'Peranan dan kebenaran adalah standard: pengurus cawangan nampak cawangannya, pemilik nampak semuanya. Setiap rekod membawa sejarah penuh dan jejak audit, jadi angka yang nampak pelik boleh dijejak kepada siapa yang mengubahnya dan bila, bukan dibandingkan merentas empat salinan satu fail.',
+        chips: ['Dashboard', 'Tempah lawatan'],
+      },
+    },
+    {
+      id: 'contact',
+      keywords: ['lawatan', 'demo', 'hubungi', 'berbual', 'panggil', 'e-mel', 'jualan', 'manusia', 'mesyuarat', 'daftar'],
+      answer: {
+        text: 'Tiga puluh minit di lantai atau kaunter depan anda dengan spreadsheet anda sendiri dibuka, dan jawapan terus terang sama ada BIYY berbaloi. Tiada slaid pembentangan. Hubungi kami di hello@yiy.tech atau guna borang itu.',
+        chips: ['Berapa kosnya?', 'Berapa lama nak hidup?'],
+        links: [{ label: 'Tempah lawatan', href: '/contact' }],
+      },
+    },
+    {
+      id: 'support',
+      keywords: ['sokongan', 'bantuan', 'latihan', 'tersekat', 'masalah', 'pepijat'],
+      answer: {
+        text: 'Staf dilatih atas peranti mereka sendiri semasa pelaksanaan, dan anda kekal ada talian WhatsApp terus kepada kami untuk bulan pertama selepas mula hidup. Selepas itu, sokongan berjalan melalui hello@yiy.tech.',
+        chips: ['Berapa lama nak hidup?', 'Tempah lawatan'],
+      },
+    },
+    {
+      id: 'thanks',
+      keywords: ['terima kasih', 'thanks', 'bagus', 'ok', 'baik', 'hebat'],
+      answer: {
+        text: 'Bila-bila masa. Ada apa-apa lagi yang anda nak cungkil?',
+        chips: ['Berapa kosnya?', 'Dashboard', 'Laman web'],
+        mood: 'happy',
+      },
+    },
+    {
+      id: 'bye',
+      keywords: ['bye', 'selamat tinggal', 'jumpa lagi', 'nanti'],
+      answer: {
+        text: 'Jumpa lagi. Borang lawatan sentiasa ada kalau anda mahu perbualan sebenar.',
+        chips: ['Tempah lawatan'],
+        mood: 'happy',
+      },
+    },
+  ],
 };
 
 const FALLBACKS = {
@@ -505,6 +689,10 @@ const FALLBACKS = {
   zh: {
     text: '这句我没听懂。我知道的是产品、表格与数据迁移、价格、实施、集成和支持。试试下面这些。',
     chips: ['你们做什么产品？', '要多少钱？', '多久能上线？', '预约实地走访'],
+  },
+  ms: {
+    text: 'Itu saya kurang faham. Saya tahu tentang produknya, spreadsheet dan migrasi, harga, pelaksanaan, integrasi dan sokongan. Cuba salah satu di bawah.',
+    chips: ['Apa yang anda bina?', 'Berapa kosnya?', 'Berapa lama nak hidup?', 'Tempah lawatan'],
   },
 };
 
