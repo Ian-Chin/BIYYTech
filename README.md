@@ -1,5 +1,5 @@
 # BIYY Tech marketing site
-
+ 
 Next.js 15 (App Router) marketing site for BIYY Tech. Business-professional
 minimalist layout modelled on the section rhythm of sudu.ai, with parallax,
 scroll-reveal, split-word headlines, count-up stats and a dependency-free
