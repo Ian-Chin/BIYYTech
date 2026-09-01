@@ -12,7 +12,7 @@ with somebody else's operations spreadsheet open.
 
 ## Product purpose
 
-BYIY Tech sells to small and medium businesses in Malaysia and Singapore that
+BIYY Tech sells to small and medium businesses in Malaysia and Singapore that
 are still running on spreadsheets:
 
 - **Dashboards & Databases** — the core product. A real database designed

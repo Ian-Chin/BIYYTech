@@ -12,7 +12,7 @@
 
 const GREETINGS = {
   en: {
-    text: "Hi, I'm BYIY Bot. I answer questions about BYIY Tech: what the products do, what rollout looks like, what it costs.",
+    text: "Hi, I'm BIYY Bot. I answer questions about BIYY Tech: what the products do, what rollout looks like, what it costs.",
     chips: [
       'What do you build?',
       'How much does it cost?',
@@ -21,7 +21,7 @@ const GREETINGS = {
     ],
   },
   zh: {
-    text: '你好，我是 BYIY 小助手。关于 BYIY Tech 的问题都可以问我：产品能做什么、实施是怎么走的、要多少钱。',
+    text: '你好，我是 BIYY 小助手。关于 BIYY Tech 的问题都可以问我：产品能做什么、实施是怎么走的、要多少钱。',
     chips: ['你们做什么产品？', '要多少钱？', '多久能上线？', '预约实地走访'],
   },
 };
@@ -40,7 +40,7 @@ const RULES = {
       id: 'overview',
       keywords: [
         'what do you build',
-        'what is byiy',
+        'what is biyy',
         // The old spelling still matches: visitors who knew the company as YiY
         // will type it for a while yet.
         'what is yiy',
@@ -156,7 +156,7 @@ const RULES = {
       id: 'website',
       keywords: ['website', 'web site', 'site', 'wordpress', 'shopify', 'wix', 'squarespace', 'landing page'],
       answer: {
-        text: 'Website & Integrations designs and builds your new site, then wires it into your BYIY database. Prices and availability are read live, orders and enquiries land as records on your dashboard, and the domain, repository and hosting are in your name from day one. Three weeks, one flat project fee.',
+        text: 'Website & Integrations designs and builds your new site, then wires it into your BIYY database. Prices and availability are read live, orders and enquiries land as records on your dashboard, and the domain, repository and hosting are in your name from day one. Three weeks, one flat project fee.',
         chips: ['How much does it cost?', 'We already have a site', 'Book a walkthrough'],
         links: [{ label: 'Explore Website', href: '/products/website' }],
       },
@@ -271,7 +271,7 @@ const RULES = {
         'sign up',
       ],
       answer: {
-        text: 'Thirty minutes on your floor or front desk with your own spreadsheets open, and a straight answer on whether BYIY is worth it. No slide deck. Reach us at hello@yiy.tech or use the form.',
+        text: 'Thirty minutes on your floor or front desk with your own spreadsheets open, and a straight answer on whether BIYY is worth it. No slide deck. Reach us at hello@yiy.tech or use the form.',
         chips: ['How much does it cost?', 'How long to go live?'],
         links: [{ label: 'Book a walkthrough', href: '/contact' }],
       },
@@ -371,7 +371,7 @@ const RULES = {
       id: 'website',
       keywords: ['网站', '官网', '建站', 'wordpress', 'shopify', 'wix', 'squarespace', '落地页'],
       answer: {
-        text: '网站与集成会设计并搭建你的新站，然后把它接进你的 BYIY 数据库。价格与可用情况实时读取，订单和询问作为记录落到仪表板上，域名、代码仓库和主机从第一天起就在你名下。三周，一笔固定项目费。',
+        text: '网站与集成会设计并搭建你的新站，然后把它接进你的 BIYY 数据库。价格与可用情况实时读取，订单和询问作为记录落到仪表板上，域名、代码仓库和主机从第一天起就在你名下。三周，一笔固定项目费。',
         chips: ['要多少钱？', '我们已经有网站了', '预约实地走访'],
         links: [{ label: '了解网站', href: '/products/website' }],
       },
@@ -438,7 +438,7 @@ const RULES = {
       id: 'contact',
       keywords: ['走访', '演示', '联系', '聊聊', '打电话', '邮件', '销售', '真人', '开会', '内测名单', '报名'],
       answer: {
-        text: '在你的卖场或前台待三十分钟，把你自己的表格打开，直接告诉你 BYIY 值不值。没有幻灯片。写信到 hello@yiy.tech，或者用表单联系我们。',
+        text: '在你的卖场或前台待三十分钟，把你自己的表格打开，直接告诉你 BIYY 值不值。没有幻灯片。写信到 hello@yiy.tech，或者用表单联系我们。',
         chips: ['要多少钱？', '多久能上线？'],
         links: [{ label: '预约实地走访', href: '/contact' }],
       },

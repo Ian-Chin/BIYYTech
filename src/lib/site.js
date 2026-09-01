@@ -1,6 +1,6 @@
 export const company = {
-  name: 'BYIY Tech',
-  legal: 'BYIY Technologies',
+  name: 'BIYY Tech',
+  legal: 'BIYY Technologies',
   tagline: 'Dashboards and databases for the businesses still running on spreadsheets.',
   email: 'hello@yiy.tech',
   // Set this to the real number and it reappears on the contact page and in the
@@ -184,7 +184,7 @@ export const products = [
     menuImage: '/media/img/web-listing.jpg',
     headline: 'A new website that sells, answers and stays right without anyone touching it.',
     summary:
-      'We design and build your new website, then wire it into your BYIY database so it stops being a brochure. Customers see real prices and real availability, they order and enquire while you are closed, and what they send lands on your dashboard instead of an inbox nobody owns. Three weeks from the first conversation, one flat project fee, and the domain, repository and hosting in your name from the first day.',
+      'We design and build your new website, then wire it into your BIYY database so it stops being a brochure. Customers see real prices and real availability, they order and enquire while you are closed, and what they send lands on your dashboard instead of an inbox nobody owns. Three weeks from the first conversation, one flat project fee, and the domain, repository and hosting in your name from the first day.',
     href: '/products/website',
     /* Photographed for this product rather than borrowed from another: a
        counter with the shop's own site open on it, a listing being shot for
@@ -242,7 +242,7 @@ export const products = [
       },
       {
         title: 'A site that cannot go stale',
-        body: 'Prices, staff, availability and holiday hours come out of BYIY. Nobody has to remember to update the website, because nobody updates the website.',
+        body: 'Prices, staff, availability and holiday hours come out of BIYY. Nobody has to remember to update the website, because nobody updates the website.',
       },
       {
         title: 'Found by the people already looking for you',
@@ -339,7 +339,7 @@ export const products = [
         step: '03',
         when: 'Week 2',
         title: 'Wiring',
-        body: 'Prices, availability and forms connect to your BYIY database. We test by breaking it: orders for something that changed an hour ago, forms submitted twice.',
+        body: 'Prices, availability and forms connect to your BIYY database. We test by breaking it: orders for something that changed an hour ago, forms submitted twice.',
         owner: 'Us, on your data',
       },
       {
@@ -354,14 +354,14 @@ export const products = [
     limits: [
       'Marketing retainers, ad management or monthly SEO reports. We build the structural half once and hand it over.',
       'Logos, brand identity and social accounts. We will work alongside your designer, or name one who is better at this than we are.',
-      'Cross-border storefronts with multi-currency tax rules and six-figure catalogues. Buy Shopify for that and let us wire BYIY into it.',
+      'Cross-border storefronts with multi-currency tax rules and six-figure catalogues. Buy Shopify for that and let us wire BIYY into it.',
       'Any percentage of what the site sells. A project fee, and hosting inside the monthly outlet price you already pay.',
       'Rebuilding a site that works. If yours is sound we integrate with it, quote less, and say so on the first call.',
     ],
 
     faqs: [
       {
-        q: 'Do I need to be a BYIY customer to get a website?',
+        q: 'Do I need to be a BIYY customer to get a website?',
         a: 'Effectively yes. We take website work where there is a database to wire it into, either one you already run or one going live in the same quarter. A brochure site with nothing behind it is not something we do better than a local studio, and we would rather tell you that than take the work.',
       },
       {
@@ -374,14 +374,14 @@ export const products = [
       },
       {
         q: 'Can we edit the site ourselves?',
-        a: 'The things that change weekly, prices, availability, staff and opening hours, change in BYIY and the site follows within a minute. Prose lives in one file per page and we show you how to edit it. There is no CMS, because a CMS is one more system to patch and one more password to lose.',
+        a: 'The things that change weekly, prices, availability, staff and opening hours, change in BIYY and the site follows within a minute. Prose lives in one file per page and we show you how to edit it. There is no CMS, because a CMS is one more system to patch and one more password to lose.',
       },
       {
         q: 'Who owns the site when it is finished?',
         a: 'You do. Domain, DNS, repository and hosting account are in your name from the first day of the build rather than transferred at the end. Leaving costs nothing and moves nothing.',
       },
       {
-        q: 'We already have a website we like. Can it still connect to BYIY?',
+        q: 'We already have a website we like. Can it still connect to BIYY?',
         a: 'Usually. How deeply depends on what it is built on. Custom sites and WordPress integrate fully, Shopify syncs two ways, and hosted builders such as Wix accept an embed and nothing deeper. We check before quoting rather than after.',
       },
       {
@@ -459,7 +459,7 @@ export const industries = [
     faqs: [
       {
         q: 'Does this replace our booking app?',
-        a: 'It can sit alongside one. We import from most booking tools, and if you would rather book inside BYIY we build that as part of the database. What we will not do is leave the diary in one system and the money in another.',
+        a: 'It can sit alongside one. We import from most booking tools, and if you would rather book inside BIYY we build that as part of the database. What we will not do is leave the diary in one system and the money in another.',
       },
       {
         q: 'We have two shops. Does the owner see both?',
@@ -675,7 +675,7 @@ export const industries = [
       },
       {
         q: 'Does it do purchase ordering?',
-        a: 'Purchasing lives in the database with the rest, so a reorder suggestion carries the lead-time evidence behind it. Whether you approve inside BYIY or in your accounting package is your call.',
+        a: 'Purchasing lives in the database with the rest, so a reorder suggestion carries the lead-time evidence behind it. Whether you approve inside BIYY or in your accounting package is your call.',
       },
     ],
   }),
@@ -775,7 +775,7 @@ export const industries = [
       },
       {
         q: 'Can it produce invoices?',
-        a: 'It produces the priced job. Whether the invoice is raised in BYIY or handed to your accounting package depends on which one you run, and we confirm that on the walkthrough.',
+        a: 'It produces the priced job. Whether the invoice is raised in BIYY or handed to your accounting package depends on which one you run, and we confirm that on the walkthrough.',
       },
       {
         q: 'We do fleet contracts as well as retail work. Does that fit?',
@@ -1056,7 +1056,7 @@ export const pillars = [
   },
   {
     title: 'Runs on a phone',
-    body: 'Entering a record at the counter, the bay or the front desk. If your team can use WhatsApp, they can use BYIY. No training week required.',
+    body: 'Entering a record at the counter, the bay or the front desk. If your team can use WhatsApp, they can use BIYY. No training week required.',
   },
   {
     title: 'Honest pricing',
@@ -1099,7 +1099,7 @@ export const comparison = [
     verdict: 'Built for enterprise. You pay for 90% of modules you will never open.',
   },
   {
-    option: 'BYIY Tech',
+    option: 'BIYY Tech',
     cost: 'Flat monthly per outlet',
     speed: '2 weeks',
     verdict: 'A real database and a dashboard built for your industry, sized for an SME.',
@@ -1214,27 +1214,27 @@ export const faqs = [
 export const authors = {
   ianChin: {
     name: 'Ian Chin',
-    role: 'Co-Founder of BYIY Tech',
+    role: 'Co-Founder of BIYY Tech',
     credential:
-      'Co-founded BYIY Tech and still runs rollouts on site. Has sat with the owner’s own spreadsheets open at retail, wholesale and clinic groups across Malaysia and Singapore since 2021.',
+      'Co-founded BIYY Tech and still runs rollouts on site. Has sat with the owner’s own spreadsheets open at retail, wholesale and clinic groups across Malaysia and Singapore since 2021.',
   },
   yeWen: {
     name: 'Ye Wen',
-    role: 'Co-Founder of BYIY Tech',
+    role: 'Co-Founder of BIYY Tech',
     credential:
-      'Co-founded BYIY Tech after a decade building operations software, including the data platform behind a 40-outlet grocery chain.',
+      'Co-founded BIYY Tech after a decade building operations software, including the data platform behind a 40-outlet grocery chain.',
   },
   yongHan: {
     name: 'Yong Han',
-    role: 'Co-Founder of BYIY Tech',
+    role: 'Co-Founder of BIYY Tech',
     credential:
-      'Co-founded BYIY Tech and owns the schema design and migration work. Spends most weeks reconciling spreadsheets that stopped agreeing with each other.',
+      'Co-founded BIYY Tech and owns the schema design and migration work. Spends most weeks reconciling spreadsheets that stopped agreeing with each other.',
   },
 };
 
 export const editorialPolicy = {
   summary:
-    'Every figure on this site comes from anonymised, aggregated data across BYIY Tech deployments, or it is labelled as an estimate. Posts name their author, carry a review date, and state the sample behind any claim.',
+    'Every figure on this site comes from anonymised, aggregated data across BIYY Tech deployments, or it is labelled as an estimate. Posts name their author, carry a review date, and state the sample behind any claim.',
   contact: 'corrections@yiy.tech',
 };
 
@@ -1302,7 +1302,7 @@ export const posts = [
       {
         heading: 'How we measured this',
         paragraphs: [
-          'The observations above come from migration notes taken across 23 BYIY Tech deployments between January 2024 and June 2026, all SMEs with two to twelve sites in Malaysia and Singapore, every one of them arriving from spreadsheets.',
+          'The observations above come from migration notes taken across 23 BIYY Tech deployments between January 2024 and June 2026, all SMEs with two to twelve sites in Malaysia and Singapore, every one of them arriving from spreadsheets.',
           'For each, we recorded the number of source files, how many people wrote to them, and how long the data cleanup took as a share of total project time. Cleanup averaged just under half the migration effort, and it correlated with how long the business had been past the concurrency wall, not with company size.',
           'This is descriptive data from our own customers, who are self-selected by having decided to leave spreadsheets. It is not a random sample of SMEs.',
         ],
@@ -1332,7 +1332,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech migration notes, 2024 to 2026',
+        label: 'BIYY Tech migration notes, 2024 to 2026',
         note: '23 SME deployments in Malaysia and Singapore, all migrating from spreadsheets. Anonymised and aggregated.',
       },
       {
@@ -1392,7 +1392,7 @@ export const posts = [
       {
         heading: 'What we measured, and what we did not',
         paragraphs: [
-          'Across 23 BYIY Tech deployments between January 2024 and June 2026, customers reported a median of six hours a week spent assembling recurring reports before migration, with a range of two to sixteen.',
+          'Across 23 BIYY Tech deployments between January 2024 and June 2026, customers reported a median of six hours a week spent assembling recurring reports before migration, with a range of two to sixteen.',
           'The figure is self-reported at the walkthrough and again at the one-month debrief, so it carries the usual bias of people estimating their own time. We did not observe and time the work directly.',
           'We also did not attempt to measure the cost of decisions made on stale figures. Too many variables, and any number we produced would have been a guess wearing a decimal point.',
         ],
@@ -1421,7 +1421,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech deployment data, 2024 to 2026',
+        label: 'BIYY Tech deployment data, 2024 to 2026',
         note: '23 SME deployments, Malaysia and Singapore. Self-reported report-assembly time at walkthrough and one-month debrief.',
       },
       {
@@ -1444,7 +1444,7 @@ export const posts = [
     author: authors.ianChin,
     reviewer: authors.yeWen,
     answer:
-      'Per-transaction pricing charges customers more as they grow, for software that has not changed. Worse, it gives them a reason to route records around the system to manage the bill, which makes the database unreliable. BYIY Tech charges a flat monthly fee per outlet so that the price tracks how much of the business the system covers, not how busy the business happens to be.',
+      'Per-transaction pricing charges customers more as they grow, for software that has not changed. Worse, it gives them a reason to route records around the system to manage the bill, which makes the database unreliable. BIYY Tech charges a flat monthly fee per outlet so that the price tracks how much of the business the system covers, not how busy the business happens to be.',
     takeaways: [
       'Usage pricing creates an incentive to keep records out of your system of record. That is fatal for a database.',
       'Flat per-outlet pricing is duller and easier to forecast, which is what finance teams at SMEs actually want.',
@@ -1491,7 +1491,7 @@ export const posts = [
     ],
     faq: [
       {
-        q: 'How does BYIY Tech charge for its software?',
+        q: 'How does BIYY Tech charge for its software?',
         a: 'A flat monthly fee per outlet, with no per-transaction charge, no implementation fee and no annual lock-in required to start. The exact figure depends on site count and which products you run, and is quoted during the walkthrough.',
       },
       {
@@ -1501,7 +1501,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech pricing policy',
+        label: 'BIYY Tech pricing policy',
         note: 'Published terms, flat monthly per outlet, effective 2024 to present.',
       },
     ],
@@ -1583,7 +1583,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech project notes, 2024 to 2026',
+        label: 'BIYY Tech project notes, 2024 to 2026',
         note: 'First-screen panel selection and three-month usage across SME deployments in Malaysia and Singapore.',
       },
       {
@@ -1656,7 +1656,7 @@ export const posts = [
       {
         heading: 'Basis for these timings',
         paragraphs: [
-          'These stages describe the standard BYIY Tech rollout as run across deployments from 2024 to 2026 for SMEs with two to twelve sites in Malaysia and Singapore.',
+          'These stages describe the standard BIYY Tech rollout as run across deployments from 2024 to 2026 for SMEs with two to twelve sites in Malaysia and Singapore.',
           'Two weeks is the typical case for reasonably consistent source data. It is not a guarantee, and it does not describe businesses arriving from several unrelated systems at once.',
         ],
       },
@@ -1677,7 +1677,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech rollout records, 2024 to 2026',
+        label: 'BIYY Tech rollout records, 2024 to 2026',
         note: 'Stage durations across SME deployments in Malaysia and Singapore.',
       },
       {
@@ -1747,7 +1747,7 @@ export const posts = [
         heading: 'Why the database has to come first',
         paragraphs: [
           'All four answers depend on records being captured completely and honestly. A forecast built on a table that misses whatever people kept in a side spreadsheet is precise and wrong.',
-          'This is why BYIY Tech Data & Intelligence sits on top of Dashboards & Databases rather than beside it, and why it is in limited beta with existing customers rather than sold as a standalone product. We would rather ship it late than ship it over data we do not trust.',
+          'This is why BIYY Tech Data & Intelligence sits on top of Dashboards & Databases rather than beside it, and why it is in limited beta with existing customers rather than sold as a standalone product. We would rather ship it late than ship it over data we do not trust.',
         ],
       },
     ],
@@ -1761,13 +1761,13 @@ export const posts = [
         a: 'Because forecasts and alerts are only as good as the underlying records. If work is captured incompletely, or partly in a side spreadsheet, the analysis will be confidently wrong.',
       },
       {
-        q: 'When is BYIY Tech Data & Intelligence available?',
+        q: 'When is BIYY Tech Data & Intelligence available?',
         a: 'It is in limited beta with existing Dashboards & Databases customers. Customers running that product today will be invited before general release.',
       },
     ],
     sources: [
       {
-        label: 'BYIY Tech customer interviews, 2025 to 2026',
+        label: 'BIYY Tech customer interviews, 2025 to 2026',
         note: 'Reported weekly operating decisions across retail, wholesale and service customers.',
       },
       {

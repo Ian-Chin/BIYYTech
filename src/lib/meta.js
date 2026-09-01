@@ -13,49 +13,49 @@
 export const PAGE_META = {
   home: {
     en: {
-      title: 'BYIY Tech: dashboards and databases for SMEs',
+      title: 'BIYY Tech: dashboards and databases for SMEs',
       description:
-        'BYIY Tech replaces the spreadsheets an SME runs on with a real database and a dashboard built for its industry: retail, distribution, clinics, salons, tuition and property. Flat monthly pricing per outlet, live in two weeks.',
+        'BIYY Tech replaces the spreadsheets an SME runs on with a real database and a dashboard built for its industry: retail, distribution, clinics, salons, tuition and property. Flat monthly pricing per outlet, live in two weeks.',
     },
     zh: {
-      title: 'BYIY Tech：为中小企业打造的仪表板与数据库',
+      title: 'BIYY Tech：为中小企业打造的仪表板与数据库',
       description:
-        'BYIY Tech 把中小企业赖以运转的表格，换成一个真正的数据库，加一块为其行业打造的仪表板：零售、分销、诊所、美容、补习与房产。按门店固定月费，两周上线。',
+        'BIYY Tech 把中小企业赖以运转的表格，换成一个真正的数据库，加一块为其行业打造的仪表板：零售、分销、诊所、美容、补习与房产。按门店固定月费，两周上线。',
     },
   },
   contact: {
     en: {
       title: 'Book a walkthrough',
       description:
-        'Thirty minutes on your floor or front desk with your own spreadsheets open. We map what gets recorded and where it goes, and tell you straight whether BYIY Tech is worth it.',
+        'Thirty minutes on your floor or front desk with your own spreadsheets open. We map what gets recorded and where it goes, and tell you straight whether BIYY Tech is worth it.',
     },
     zh: {
       title: '预约实地走访',
       description:
-        '三十分钟，在你的卖场或前台，把你自己的表格打开。我们把「什么被记下来、之后去了哪里」画出来，然后直接告诉你 BYIY Tech 对你值不值。',
+        '三十分钟，在你的卖场或前台，把你自己的表格打开。我们把「什么被记下来、之后去了哪里」画出来，然后直接告诉你 BIYY Tech 对你值不值。',
     },
   },
   industries: {
     en: {
       title: 'Industries',
       description:
-        'The dashboard layouts BYIY Tech has already built: barbershops, clinics, restaurants, retail, distribution, e-commerce, workshops, robotics, data teams, tuition centres, property agencies and multi-branch groups. Same database underneath, different first screen.',
+        'The dashboard layouts BIYY Tech has already built: barbershops, clinics, restaurants, retail, distribution, e-commerce, workshops, robotics, data teams, tuition centres, property agencies and multi-branch groups. Same database underneath, different first screen.',
     },
     zh: {
       title: '行业',
       description:
-        'BYIY Tech 已经做过的仪表板布局：理发店、诊所、餐厅、零售、分销、电商、维修厂、机器人、数据团队、补习中心、房产中介与多分店集团。底下是同一个数据库，不同的只是第一屏。',
+        'BIYY Tech 已经做过的仪表板布局：理发店、诊所、餐厅、零售、分销、电商、维修厂、机器人、数据团队、补习中心、房产中介与多分店集团。底下是同一个数据库，不同的只是第一屏。',
     },
   },
   careers: {
     en: {
       title: 'Careers',
       description:
-        'How the BYIY Tech team works, and how to reach us about future roles. No vacancies are open at the moment.',
+        'How the BIYY Tech team works, and how to reach us about future roles. No vacancies are open at the moment.',
     },
     zh: {
       title: '招聘',
-      description: 'BYIY Tech 团队怎么工作，以及将来有职位时怎么联系我们。目前没有空缺。',
+      description: 'BIYY Tech 团队怎么工作，以及将来有职位时怎么联系我们。目前没有空缺。',
     },
   },
   blog: {

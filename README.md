@@ -1,6 +1,6 @@
-# BYIY Tech marketing site
+# BIYY Tech marketing site
 
-Next.js 15 (App Router) marketing site for BYIY Tech. Business-professional
+Next.js 15 (App Router) marketing site for BIYY Tech. Business-professional
 minimalist layout modelled on the section rhythm of sudu.ai, with parallax,
 scroll-reveal, split-word headlines, count-up stats and a dependency-free
 scroll-snap carousel.
@@ -28,7 +28,7 @@ src/
     (en)/                   English tree, served from / (route group, no prefix)
     zh/                     Chinese tree, served from /zh
     globals.css             Tailwind layers, @font-face, motion primitives
-    icon.png                favicon (BYIY mark)
+    icon.png                favicon (BIYY mark)
   components/
     Shell.jsx               nav, footer, assistant and consent, in one locale
     motion.jsx              shared scroll engine: Reveal, Parallax, SplitWords,
@@ -38,7 +38,7 @@ src/
     Nav.jsx                 sticky nav, full-width product mega-menu, mobile sheet
     BackToTop.jsx           scroll-to-top with a progress ring
     Chatbot.jsx             rule-based assistant (launcher + panel)
-    Mascot.jsx              the BYIY Bot blob, in pure CSS
+    Mascot.jsx              the BIYY Bot blob, in pure CSS
     JsonLd.jsx              server-rendered structured-data block
     ProductSection.jsx      alternating product block with parallax visual
     Sections.jsx            stats, pillars, industries, testimonials,
@@ -126,7 +126,7 @@ ffmpeg -i input.mp4 -vf scale=1280:-2 -c:v libx264 -crf 28 -an -movflags +fastst
 
 and add a WebM sibling for smaller payloads.
 
-## Assistant (BYIY Bot)
+## Assistant (BIYY Bot)
 
 `Chatbot.jsx` is a rule-based assistant with no model, no network call, nothing to
 bill. `lib/chat.js` holds an array of rules; each has a keyword list and an

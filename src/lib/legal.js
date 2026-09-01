@@ -43,7 +43,7 @@ export const privacy = {
       paragraphs: [
         'The form on the contact page does not submit to a server. It assembles what you typed into a draft email and opens your own mail client with it. Nothing is transmitted until you press send in your mail application, and if you close the draft instead, we never see it.',
         'When you do send it, we receive an ordinary email containing your name, business name, email address, optionally a phone number, which product you are interested in, your business size, and whatever you wrote in the message box. It lands in our inbox and is stored there and in our CRM for as long as we are in contact, and afterwards for as long as we need it for our own records.',
-        'We reply once, from a person. We do not add you to a newsletter, a drip sequence, or an advertising audience, and we do not sell, rent or share the enquiry with anyone outside BYIY Tech.',
+        'We reply once, from a person. We do not add you to a newsletter, a drip sequence, or an advertising audience, and we do not sell, rent or share the enquiry with anyone outside BIYY Tech.',
       ],
     },
     {
@@ -84,7 +84,7 @@ export const terms = {
     {
       heading: 'The numbers on this site',
       paragraphs: [
-        'Figures quoted here, including admin hours returned, report-assembly time and rollout duration, come from anonymised and aggregated data across BYIY Tech deployments. Each blog post states its own sample size, measurement window and method, and names the limits of the comparison.',
+        'Figures quoted here, including admin hours returned, report-assembly time and rollout duration, come from anonymised and aggregated data across BIYY Tech deployments. Each blog post states its own sample size, measurement window and method, and names the limits of the comparison.',
         'They are directional results from small samples, not guarantees, and they are not a promise of what your business will achieve. Your starting point determines most of it. We will give you a specific estimate during the walkthrough, before you pay anything.',
         'If you think a figure here is wrong, write to corrections@yiy.tech. We will check it, correct it if you are right, and note the change.',
       ],
@@ -105,7 +105,7 @@ export const terms = {
     {
       heading: 'Content and marks',
       paragraphs: [
-        'The writing, layout and code on this site belong to BYIY Technologies. The BYIY Tech name and mark are ours. Photography is licensed via Pexels under their licence.',
+        'The writing, layout and code on this site belong to BIYY Technologies. The BIYY Tech name and mark are ours. Photography is licensed via Pexels under their licence.',
         'You are welcome to quote from the blog with attribution and a link.',
       ],
     },

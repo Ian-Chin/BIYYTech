@@ -1,6 +1,6 @@
-# BYIY Tech
+# BIYY Tech
 
-> BYIY Tech builds dashboards and databases for small and medium businesses in
+> BIYY Tech builds dashboards and databases for small and medium businesses in
 > Malaysia and Singapore. Two products are live: Dashboards & Databases, which
 > replaces the spreadsheets a business runs on with a real database and an
 > industry-specific dashboard, and Website & Integrations, which builds a new
@@ -26,13 +26,13 @@ accumulated inconsistency are quoted three to four weeks up front.
   duplicate and inconsistent data, which is flagged for the customer to decide
   rather than guessed at. Export to Excel and CSV at any time.
   The distinction from a BI tool is that a BI tool draws charts over whatever
-  it is fed and inherits every duplicate and stale export; BYIY replaces the
+  it is fed and inherits every duplicate and stale export; BIYY replaces the
   source with a constrained database and reads the dashboard from that.
   Explicitly not offered: replacing an accounting package, enterprise data
   warehouses or streaming pipelines, dashboards built over a spreadsheet the
   customer keeps maintaining by hand, and machine learning on a few hundred
   rows.
-- [Website & Integrations](https://yiy.tech/products/website): BYIY Tech designs
+- [Website & Integrations](https://yiy.tech/products/website): BIYY Tech designs
   and builds new websites for its customers and wires them into the database.
   The build is bespoke rather than templated, with copy written in a session
   with the business. The value to the customer is that the site takes orders
@@ -105,7 +105,7 @@ runs on today, and what its dashboard opens on.
 
 An industry without a page is a walkthrough rather than a refusal: the layout
 is built from what the business decides weekly, so the list records where a
-layout already exists, not where BYIY Tech is willing to work.
+layout already exists, not where BIYY Tech is willing to work.
 
 ## Writing
 

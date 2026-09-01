@@ -37,7 +37,7 @@ export const ui = {
       builtFor: 'Built for',
       contents: 'Contents',
       home: 'Home',
-      logoHome: 'BYIY Tech home',
+      logoHome: 'BIYY Tech home',
     },
     nav: {
       openMenu: 'Open menu',
@@ -52,7 +52,7 @@ export const ui = {
       line1: 'Retire the',
       line2: 'spreadsheet.',
       line3: 'Keep the business.',
-      body: 'BYIY Tech replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. One version of the truth, updating as work happens, live in two weeks.',
+      body: 'BIYY Tech replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. One version of the truth, updating as work happens, live in two weeks.',
       sceneLabel: 'Show background {n}',
     },
     home: {
@@ -62,15 +62,15 @@ export const ui = {
         'The dashboard and the database your business runs on, a website wired into the same data, and one account behind both.',
     },
     stats: {
-      note: 'Figures reflect typical results reported by BYIY Tech pilot customers across retail, wholesale and service businesses. Your numbers will depend on your starting point. We will tell you what to expect during the walkthrough.',
+      note: 'Figures reflect typical results reported by BIYY Tech pilot customers across retail, wholesale and service businesses. Your numbers will depend on your starting point. We will tell you what to expect during the walkthrough.',
     },
     pillars: {
-      eyebrow: 'Why BYIY',
+      eyebrow: 'Why BIYY',
       title: 'Enterprise discipline, sized for a business that still knows every customer.',
       body: 'Most SME software is either a toy or a cut-down ERP. We build the middle: rigorous where it matters (schema design, audit trails, permissions) and ruthlessly simple everywhere else.',
     },
     industries: {
-      eyebrow: 'Who runs on BYIY',
+      eyebrow: 'Who runs on BIYY',
       title: 'Different floors. Same spreadsheet.',
       body: 'The dashboard changes by industry because the weekly decisions do. The file everyone is currently emailing each other does not.',
       carouselLabel: 'Industries served',
@@ -105,7 +105,7 @@ export const ui = {
     },
     cta: {
       title: 'Ready to stop rebuilding the same report every Monday?',
-      body: 'Thirty minutes, your actual spreadsheets open, and a straight answer on whether BYIY is worth it for your business. No slide deck.',
+      body: 'Thirty minutes, your actual spreadsheets open, and a straight answer on whether BIYY is worth it for your business. No slide deck.',
     },
     carousel: {
       previous: 'Previous',
@@ -116,7 +116,7 @@ export const ui = {
     footer: {
       companyTitle: 'Company',
       resourcesTitle: 'Resources',
-      whyYiy: 'Why BYIY',
+      whyYiy: 'Why BIYY',
       results: 'Results',
       rollout: 'How rollout works',
       faqLink: 'FAQ',
@@ -149,8 +149,8 @@ export const ui = {
         'Advertising and remarketing tags belonging to other companies. We do not run any, and we would rather keep it that way.',
     },
     chat: {
-      dialogLabel: 'BYIY assistant',
-      name: 'BYIY Bot',
+      dialogLabel: 'BIYY assistant',
+      name: 'BIYY Bot',
       status: 'rule-based assistant',
       typing: 'typing…',
       open: 'Open the assistant',
@@ -163,7 +163,7 @@ export const ui = {
     contact: {
       eyebrow: 'Book a walkthrough',
       title: 'Thirty minutes. Your spreadsheets. A straight answer.',
-      body: 'We will walk your floor or your front desk with your own files open, map what gets recorded and where it goes, and tell you whether BYIY is worth it for your business. If it is not, we will say so.',
+      body: 'We will walk your floor or your front desk with your own files open, map what gets recorded and where it goes, and tell you whether BIYY is worth it for your business. If it is not, we will say so.',
       sentTitle: 'We opened a draft in your mail client.',
       sentBody:
         'Nothing has reached us yet. Press send on that draft and we will reply within one working day.',
@@ -238,7 +238,7 @@ export const ui = {
       notifyMe: 'Tell me when a role opens',
       speculativeSubject: 'Speculative application',
       applicationSubject: 'Application: {role}',
-      teamAlt: 'The BYIY Tech team at work',
+      teamAlt: 'The BIYY Tech team at work',
       perks: [
         {
           title: 'Four-day onboarding',
@@ -316,8 +316,8 @@ export const ui = {
       connectBody:
         'This is the half a web studio cannot do and a software vendor will not. Every surface below is one account away, not a spreadsheet somebody exports on Friday.',
       headSurface: 'Surface',
-      headReads: 'Reads from BYIY',
-      headWrites: 'Writes back to BYIY',
+      headReads: 'Reads from BIYY',
+      headWrites: 'Writes back to BIYY',
       none: '—',
       platformsEyebrow: 'Already have a site',
       platformsTitle: 'If yours is worth keeping, we wire it instead of rebuilding it.',
@@ -365,7 +365,7 @@ export const ui = {
       whatBody:
         'Built for {audience}, configured to your outlets, roles and approval rules during onboarding.',
       seeAll: 'See all products',
-      crossEyebrow: 'Also from BYIY',
+      crossEyebrow: 'Also from BIYY',
       crossTitle: 'The rest of the operations layer.',
       heroAlt: '{name} in a working environment',
       inUseAlt: '{name} in use',
@@ -406,7 +406,7 @@ export const ui = {
       builtFor: '为谁而建',
       contents: '目录',
       home: '首页',
-      logoHome: 'BYIY Tech 首页',
+      logoHome: 'BIYY Tech 首页',
     },
     nav: {
       openMenu: '打开菜单',
@@ -420,7 +420,7 @@ export const ui = {
       line1: '让表格退休，',
       line2: '生意',
       line3: '照常运转。',
-      body: 'BYIY Tech 把你生意赖以运转的那些表格，换成一个真正的数据库，加一块为你的行业做的仪表板。只有一份真数，随着工作发生而更新，两周上线。',
+      body: 'BIYY Tech 把你生意赖以运转的那些表格，换成一个真正的数据库，加一块为你的行业做的仪表板。只有一份真数，随着工作发生而更新，两周上线。',
       sceneLabel: '显示第 {n} 个背景',
     },
     home: {
@@ -430,15 +430,15 @@ export const ui = {
         '你的生意每天要看的那块仪表板和它底下的数据库，一个接进同一批数据的网站，背后共用一个账户。',
     },
     stats: {
-      note: '这些数字反映 BYIY Tech 试点客户在零售、批发与服务行业中报告的典型结果。你的数字取决于你的起点。我们会在走访时告诉你该期待什么。',
+      note: '这些数字反映 BIYY Tech 试点客户在零售、批发与服务行业中报告的典型结果。你的数字取决于你的起点。我们会在走访时告诉你该期待什么。',
     },
     pillars: {
-      eyebrow: '为什么选 BYIY',
+      eyebrow: '为什么选 BIYY',
       title: '大企业级的严谨，尺寸却适合一家还认得每位客户的公司。',
       body: '多数中小企业软件不是玩具，就是删减版 ERP。我们做中间那一档：在重要的地方严谨（表结构设计、审计轨迹、权限），在其余所有地方简单到底。',
     },
     industries: {
-      eyebrow: '谁在用 BYIY',
+      eyebrow: '谁在用 BIYY',
       title: '不同的场地，同一张表格。',
       body: '仪表板因行业而不同，因为每周要做的决定不同。而大家现在互相转发的那个文件，各行各业都一样。',
       carouselLabel: '服务的行业',
@@ -473,7 +473,7 @@ export const ui = {
     },
     cta: {
       title: '准备好不用每个周一都重做同一张报表了吗？',
-      body: '三十分钟，把你真实的表格打开，直接告诉你 BYIY 对你的生意值不值。没有幻灯片。',
+      body: '三十分钟，把你真实的表格打开，直接告诉你 BIYY 对你的生意值不值。没有幻灯片。',
     },
     carousel: {
       previous: '上一个',
@@ -484,7 +484,7 @@ export const ui = {
     footer: {
       companyTitle: '公司',
       resourcesTitle: '资源',
-      whyYiy: '为什么选 BYIY',
+      whyYiy: '为什么选 BIYY',
       results: '成效',
       rollout: '实施流程',
       faqLink: '常见问题',
@@ -517,8 +517,8 @@ export const ui = {
         '属于其他公司的广告与再营销代码。我们一个都不跑，也希望一直这样。',
     },
     chat: {
-      dialogLabel: 'BYIY 助手',
-      name: 'BYIY 小助手',
+      dialogLabel: 'BIYY 助手',
+      name: 'BIYY 小助手',
       status: '基于规则的助手',
       typing: '正在输入…',
       open: '打开助手',
@@ -531,7 +531,7 @@ export const ui = {
     contact: {
       eyebrow: '预约实地走访',
       title: '三十分钟。你的表格。一个直接的答案。',
-      body: '我们会带着你自己的文件走一遍你的卖场或前台，把「什么被记下来、之后去了哪里」画出来，然后告诉你 BYIY 对你的生意值不值。如果不值，我们会直说。',
+      body: '我们会带着你自己的文件走一遍你的卖场或前台，把「什么被记下来、之后去了哪里」画出来，然后告诉你 BIYY 对你的生意值不值。如果不值，我们会直说。',
       sentTitle: '我们已经在你的邮件客户端里打开了一封草稿。',
       sentBody: '目前还没有任何东西到达我们这里。在那封草稿上按发送，我们会在一个工作日内回复。',
       noDraftTitle: '如果没有出现草稿',
@@ -595,7 +595,7 @@ export const ui = {
       notifyMe: '有职位时通知我',
       speculativeSubject: '自荐申请',
       applicationSubject: '应聘：{role}',
-      teamAlt: '工作中的 BYIY Tech 团队',
+      teamAlt: '工作中的 BIYY Tech 团队',
       perks: [
         {
           title: '四天入职',
@@ -661,8 +661,8 @@ export const ui = {
       connectBody:
         '这一半，网页工作室做不了，软件供应商不愿做。下面每一个位置都只隔着一个账户，而不是谁在周五导出的一张表。',
       headSurface: '位置',
-      headReads: '从 BYIY 读取',
-      headWrites: '写回 BYIY',
+      headReads: '从 BIYY 读取',
+      headWrites: '写回 BIYY',
       none: '—',
       platformsEyebrow: '已经有网站',
       platformsTitle: '如果你现在的站值得留，我们就接上去，而不是重做。',
@@ -707,7 +707,7 @@ export const ui = {
       whatTitle: '{name}在第一天就能做的一切。',
       whatBody: '为{audience}打造，在导入期间按你的门店、角色与审批规则完成配置。',
       seeAll: '查看所有产品',
-      crossEyebrow: 'BYIY 的其他产品',
+      crossEyebrow: 'BIYY 的其他产品',
       crossTitle: '运营底座的其余部分。',
       heroAlt: '工作环境中的{name}',
       inUseAlt: '使用中的{name}',
