@@ -28,6 +28,7 @@ export const metadata = {
     'BIYY Tech',
   ],
   alternates: { canonical: SITE_URL, languages: hreflang('/') },
+  verification: { google: 'ActlpOrwMMBHiVILbLWf4zDAkoZjjrbg_t94-w0lPME' },
   robots: {
     index: true,
     follow: true,
