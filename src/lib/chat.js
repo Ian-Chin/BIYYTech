@@ -12,7 +12,7 @@
 
 const GREETINGS = {
   en: {
-    text: "Hi, I'm BYIY Bot. I answer questions about BYIY Tech: what the products do, what rollout looks like, what it costs.",
+    text: "Hi, I'm BIYY Bot. I answer questions about BIYY Tech: what the products do, what rollout looks like, what it costs.",
     chips: [
       'What do you build?',
       'How much does it cost?',
@@ -21,7 +21,7 @@ const GREETINGS = {
     ],
   },
   zh: {
-    text: '你好，我是 BYIY 小助手。关于 BYIY Tech 的问题都可以问我：产品能做什么、实施是怎么走的、要多少钱。',
+    text: '你好，我是 BIYY 小助手。关于 BIYY Tech 的问题都可以问我：产品能做什么、实施是怎么走的、要多少钱。',
     chips: ['你们做什么产品？', '要多少钱？', '多久能上线？', '预约实地走访'],
   },
 };
@@ -40,7 +40,7 @@ const RULES = {
       id: 'overview',
       keywords: [
         'what do you build',
-        'what is byiy',
+        'what is biyy',
         // The old spelling still matches: visitors who knew the company as YiY
         // will type it for a while yet.
         'what is yiy',
@@ -51,11 +51,12 @@ const RULES = {
         'who are you',
       ],
       answer: {
-        text: 'Two things, live today. Dashboards & Databases replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. Website & Integrations builds your website and wires it into the same data.',
-        chips: ['Dashboards', 'Website', 'How much does it cost?'],
+        text: 'Three things, live today. Dashboards & Databases replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. Website & Integrations builds your website and wires it into the same data. AI Development points a model at that data once there is something worth pointing it at.',
+        chips: ['Dashboards', 'Website', 'AI', 'How much does it cost?'],
         links: [
           { label: 'Dashboards & Databases', href: '/products/dashboards' },
           { label: 'Website & Integrations', href: '/products/website' },
+          { label: 'AI Development', href: '/products/ai-development' },
         ],
       },
     },
@@ -156,9 +157,18 @@ const RULES = {
       id: 'website',
       keywords: ['website', 'web site', 'site', 'wordpress', 'shopify', 'wix', 'squarespace', 'landing page'],
       answer: {
-        text: 'Website & Integrations designs and builds your new site, then wires it into your BYIY database. Prices and availability are read live, orders and enquiries land as records on your dashboard, and the domain, repository and hosting are in your name from day one. Three weeks, one flat project fee.',
+        text: 'Website & Integrations designs and builds your new site, then wires it into your BIYY database. Prices and availability are read live, orders and enquiries land as records on your dashboard, and the domain, repository and hosting are in your name from day one. Three weeks, one flat project fee.',
         chips: ['How much does it cost?', 'We already have a site', 'Book a walkthrough'],
         links: [{ label: 'Explore Website', href: '/products/website' }],
+      },
+    },
+    {
+      id: 'ai',
+      keywords: ['ai', 'artificial intelligence', 'machine learning', 'llm', 'model', 'automate', 'automation', 'ocr', 'forecast', 'predict'],
+      answer: {
+        text: 'AI Development sits on top of the database you already run: ask your data a question in plain language, have invoices and delivery orders read into records, get reports drafted on a schedule, and have exceptions and incoming enquiries routed. Every answer shows the records it came from, and anything the model is unsure of goes to a person rather than into the database.',
+        chips: ['How much does it cost?', 'What about our spreadsheets?', 'Book a walkthrough'],
+        links: [{ label: 'Explore AI Development', href: '/products/ai-development' }],
       },
     },
     {
@@ -271,7 +281,7 @@ const RULES = {
         'sign up',
       ],
       answer: {
-        text: 'Thirty minutes on your floor or front desk with your own spreadsheets open, and a straight answer on whether BYIY is worth it. No slide deck. Reach us at hello@yiy.tech or use the form.',
+        text: 'Thirty minutes on your floor or front desk with your own spreadsheets open, and a straight answer on whether BIYY is worth it. No slide deck. Reach us at hello@yiy.tech or use the form.',
         chips: ['How much does it cost?', 'How long to go live?'],
         links: [{ label: 'Book a walkthrough', href: '/contact' }],
       },
@@ -317,11 +327,12 @@ const RULES = {
       id: 'overview',
       keywords: ['做什么产品', '什么产品', '你们是做什么的', '介绍', '产品', '概览', '你是谁'],
       answer: {
-        text: '两样东西，今天已经上线。仪表板与数据库，把你生意赖以运转的表格换成一个真正的数据库，加一块为你的行业做的仪表板。网站与集成，做你的网站并把它接进同一批数据。',
-        chips: ['仪表板', '网站', '要多少钱？'],
+        text: '三样东西，今天已经上线。仪表板与数据库，把你生意赖以运转的表格换成一个真正的数据库，加一块为你的行业做的仪表板。网站与集成，做你的网站并把它接进同一批数据。AI 开发，等这批数据真的值得被指着看时，把模型指过去。',
+        chips: ['仪表板', '网站', 'AI', '要多少钱？'],
         links: [
           { label: '仪表板与数据库', href: '/products/dashboards' },
           { label: '网站与集成', href: '/products/website' },
+          { label: 'AI 开发', href: '/products/ai-development' },
         ],
       },
     },
@@ -371,9 +382,18 @@ const RULES = {
       id: 'website',
       keywords: ['网站', '官网', '建站', 'wordpress', 'shopify', 'wix', 'squarespace', '落地页'],
       answer: {
-        text: '网站与集成会设计并搭建你的新站，然后把它接进你的 BYIY 数据库。价格与可用情况实时读取，订单和询问作为记录落到仪表板上，域名、代码仓库和主机从第一天起就在你名下。三周，一笔固定项目费。',
+        text: '网站与集成会设计并搭建你的新站，然后把它接进你的 BIYY 数据库。价格与可用情况实时读取，订单和询问作为记录落到仪表板上，域名、代码仓库和主机从第一天起就在你名下。三周，一笔固定项目费。',
         chips: ['要多少钱？', '我们已经有网站了', '预约实地走访'],
         links: [{ label: '了解网站', href: '/products/website' }],
+      },
+    },
+    {
+      id: 'ai',
+      keywords: ['ai', '人工智能', '大模型', '模型', '自动化', '识别发票', '预测', '智能'],
+      answer: {
+        text: 'AI 开发建在你已经在用的数据库之上：用大白话问自己的数据、把发票和送货单读成记录、按时把报表拟好、把异常和进来的询问分派掉。每个答案都亮出它依据的记录，没把握的交给人，而不是写进数据库。',
+        chips: ['要多少钱？', '我们的表格怎么办？', '预约实地走访'],
+        links: [{ label: '了解 AI 开发', href: '/products/ai-development' }],
       },
     },
     {
@@ -438,7 +458,7 @@ const RULES = {
       id: 'contact',
       keywords: ['走访', '演示', '联系', '聊聊', '打电话', '邮件', '销售', '真人', '开会', '内测名单', '报名'],
       answer: {
-        text: '在你的卖场或前台待三十分钟，把你自己的表格打开，直接告诉你 BYIY 值不值。没有幻灯片。写信到 hello@yiy.tech，或者用表单联系我们。',
+        text: '在你的卖场或前台待三十分钟，把你自己的表格打开，直接告诉你 BIYY 值不值。没有幻灯片。写信到 hello@yiy.tech，或者用表单联系我们。',
         chips: ['要多少钱？', '多久能上线？'],
         links: [{ label: '预约实地走访', href: '/contact' }],
       },

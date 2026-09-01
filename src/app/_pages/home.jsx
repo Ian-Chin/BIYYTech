@@ -38,7 +38,7 @@ export function meta(locale) {
 }
 
 export function Page({ locale }) {
-  const [dash, web] = products;
+  const [dash, web, ai] = products;
 
   return (
     <>
@@ -54,6 +54,9 @@ export function Page({ locale }) {
 
       <ProductSection slug={web.slug} flip />
       <FeatureStrip slug={web.slug} tone="dark" />
+
+      <ProductSection slug={ai.slug} />
+      <FeatureStrip slug={ai.slug} />
 
       <StatsBand />
       <Pillars />

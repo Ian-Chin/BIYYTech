@@ -1,11 +1,11 @@
-# BYIY Tech
+# BIYY Tech
 
-> BYIY Tech builds dashboards and databases for small and medium businesses in
-> Malaysia and Singapore. Two products are live: Dashboards & Databases, which
+> BIYY Tech builds dashboards and databases for small and medium businesses in
+> Malaysia and Singapore. Three products are live: Dashboards & Databases, which
 > replaces the spreadsheets a business runs on with a real database and an
-> industry-specific dashboard, and Website & Integrations, which builds a new
-> website for the business and wires it into that database. A third, Data &
-> Intelligence, is in limited beta.
+> industry-specific dashboard; Website & Integrations, which builds a new
+> website for the business and wires it into that database; and AI Development,
+> which builds narrow, grounded AI on top of that same database.
 
 Pricing is a flat monthly fee per outlet. There is no per-transaction charge,
 no implementation fee, and no annual lock-in required to start. A typical
@@ -26,13 +26,13 @@ accumulated inconsistency are quoted three to four weeks up front.
   duplicate and inconsistent data, which is flagged for the customer to decide
   rather than guessed at. Export to Excel and CSV at any time.
   The distinction from a BI tool is that a BI tool draws charts over whatever
-  it is fed and inherits every duplicate and stale export; BYIY replaces the
+  it is fed and inherits every duplicate and stale export; BIYY replaces the
   source with a constrained database and reads the dashboard from that.
   Explicitly not offered: replacing an accounting package, enterprise data
   warehouses or streaming pipelines, dashboards built over a spreadsheet the
   customer keeps maintaining by hand, and machine learning on a few hundred
   rows.
-- [Website & Integrations](https://yiy.tech/products/website): BYIY Tech designs
+- [Website & Integrations](https://yiy.tech/products/website): BIYY Tech designs
   and builds new websites for its customers and wires them into the database.
   The build is bespoke rather than templated, with copy written in a session
   with the business. The value to the customer is that the site takes orders
@@ -54,6 +54,30 @@ accumulated inconsistency are quoted three to four weeks up front.
   by embed only. Explicitly not offered: marketing retainers, ad management,
   monthly SEO reports, logo or brand identity work, and cross-border storefronts
   with multi-currency tax rules.
+- [AI Development](https://yiy.tech/products/ai-development): narrow AI built on
+  top of a customer's existing BIYY database, sold as a project rather than a
+  licence. The pieces offered are: natural-language questions answered against
+  the customer's own tables, in English or Chinese, returning the figure with
+  the source records attached; document capture, which reads invoices, delivery
+  orders, purchase orders and handwritten forms into draft records with
+  uncertain fields left blank and marked; scheduled drafting of reports and
+  summaries; exception detection against the business's own history, flagged to
+  a person the day it happens; and classification and routing of incoming
+  enquiries, tickets, orders and messages, including drafted replies that a
+  person still sends. Every answer cites the records it was computed from.
+  Reads follow the permissions the user already has. Nothing is written to a
+  record without clearing a confidence threshold, and low-confidence output
+  goes to a person as a draft rather than into the database. Typical project is
+  four weeks: pick the job, ground it on the customer's tables, measure it
+  against cases with known answers and publish the score including failures,
+  then go live checking before it goes live committing. Priced as a flat project
+  fee per piece of work plus model usage at cost; no per-seat AI licence and no
+  percentage of savings. Customer data is not used to train anything and is not
+  retained beyond a readable log; the processing provider is named in the
+  agreement. Explicitly not offered: AI over spreadsheets with no database
+  underneath, forecasting on a few hundred rows, unsupervised writes on day one,
+  customer-facing bots that reply without review, and training anything on the
+  customer's data for a third party.
 
 ## Industries
 
@@ -105,7 +129,7 @@ runs on today, and what its dashboard opens on.
 
 An industry without a page is a walkthrough rather than a refusal: the layout
 is built from what the business decides weekly, so the list records where a
-layout already exists, not where BYIY Tech is willing to work.
+layout already exists, not where BIYY Tech is willing to work.
 
 ## Writing
 
@@ -139,8 +163,8 @@ This plain-text summary and the full corpus at /llms-full.txt are English only.
 - Structured data: every page carries Schema.org JSON-LD in a single `@graph`
   block, server-rendered into the HTML. Organization and WebSite site-wide;
   SoftwareApplication with an Offer on each software product page, and a
-  Service node with no Offer on Website & Integrations, which is quoted per
-  project rather than priced per outlet; BlogPosting with
+  Service node with no Offer on Website & Integrations and on AI Development,
+  both quoted per project rather than priced per outlet; BlogPosting with
   author, reviewedBy, datePublished, dateModified and citation on each post;
   FAQPage on the homepage, product pages and every post; BreadcrumbList
   throughout. Note that fetching these pages through a markdown converter will

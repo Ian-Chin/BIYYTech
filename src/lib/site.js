@@ -1,6 +1,6 @@
 export const company = {
-  name: 'BYIY Tech',
-  legal: 'BYIY Technologies',
+  name: 'BIYY Tech',
+  legal: 'BIYY Technologies',
   tagline: 'Dashboards and databases for the businesses still running on spreadsheets.',
   email: 'hello@yiy.tech',
   // Set this to the real number and it reappears on the contact page and in the
@@ -184,7 +184,7 @@ export const products = [
     menuImage: '/media/img/web-listing.jpg',
     headline: 'A new website that sells, answers and stays right without anyone touching it.',
     summary:
-      'We design and build your new website, then wire it into your BYIY database so it stops being a brochure. Customers see real prices and real availability, they order and enquire while you are closed, and what they send lands on your dashboard instead of an inbox nobody owns. Three weeks from the first conversation, one flat project fee, and the domain, repository and hosting in your name from the first day.',
+      'We design and build your new website, then wire it into your BIYY database so it stops being a brochure. Customers see real prices and real availability, they order and enquire while you are closed, and what they send lands on your dashboard instead of an inbox nobody owns. Three weeks from the first conversation, one flat project fee, and the domain, repository and hosting in your name from the first day.',
     href: '/products/website',
     /* Photographed for this product rather than borrowed from another: a
        counter with the shop's own site open on it, a listing being shot for
@@ -242,7 +242,7 @@ export const products = [
       },
       {
         title: 'A site that cannot go stale',
-        body: 'Prices, staff, availability and holiday hours come out of BYIY. Nobody has to remember to update the website, because nobody updates the website.',
+        body: 'Prices, staff, availability and holiday hours come out of BIYY. Nobody has to remember to update the website, because nobody updates the website.',
       },
       {
         title: 'Found by the people already looking for you',
@@ -339,7 +339,7 @@ export const products = [
         step: '03',
         when: 'Week 2',
         title: 'Wiring',
-        body: 'Prices, availability and forms connect to your BYIY database. We test by breaking it: orders for something that changed an hour ago, forms submitted twice.',
+        body: 'Prices, availability and forms connect to your BIYY database. We test by breaking it: orders for something that changed an hour ago, forms submitted twice.',
         owner: 'Us, on your data',
       },
       {
@@ -354,14 +354,14 @@ export const products = [
     limits: [
       'Marketing retainers, ad management or monthly SEO reports. We build the structural half once and hand it over.',
       'Logos, brand identity and social accounts. We will work alongside your designer, or name one who is better at this than we are.',
-      'Cross-border storefronts with multi-currency tax rules and six-figure catalogues. Buy Shopify for that and let us wire BYIY into it.',
+      'Cross-border storefronts with multi-currency tax rules and six-figure catalogues. Buy Shopify for that and let us wire BIYY into it.',
       'Any percentage of what the site sells. A project fee, and hosting inside the monthly outlet price you already pay.',
       'Rebuilding a site that works. If yours is sound we integrate with it, quote less, and say so on the first call.',
     ],
 
     faqs: [
       {
-        q: 'Do I need to be a BYIY customer to get a website?',
+        q: 'Do I need to be a BIYY customer to get a website?',
         a: 'Effectively yes. We take website work where there is a database to wire it into, either one you already run or one going live in the same quarter. A brochure site with nothing behind it is not something we do better than a local studio, and we would rather tell you that than take the work.',
       },
       {
@@ -374,19 +374,228 @@ export const products = [
       },
       {
         q: 'Can we edit the site ourselves?',
-        a: 'The things that change weekly, prices, availability, staff and opening hours, change in BYIY and the site follows within a minute. Prose lives in one file per page and we show you how to edit it. There is no CMS, because a CMS is one more system to patch and one more password to lose.',
+        a: 'The things that change weekly, prices, availability, staff and opening hours, change in BIYY and the site follows within a minute. Prose lives in one file per page and we show you how to edit it. There is no CMS, because a CMS is one more system to patch and one more password to lose.',
       },
       {
         q: 'Who owns the site when it is finished?',
         a: 'You do. Domain, DNS, repository and hosting account are in your name from the first day of the build rather than transferred at the end. Leaving costs nothing and moves nothing.',
       },
       {
-        q: 'We already have a website we like. Can it still connect to BYIY?',
+        q: 'We already have a website we like. Can it still connect to BIYY?',
         a: 'Usually. How deeply depends on what it is built on. Custom sites and WordPress integrate fully, Shopify syncs two ways, and hosted builders such as Wix accept an embed and nothing deeper. We check before quoting rather than after.',
       },
       {
         q: 'Do you build in Chinese as well as English?',
         a: 'Yes. English and Chinese as standard, Malay on request. One translation file per language, so an opening time or a price is written once and stays correct in all of them.',
+      },
+    ],
+  },
+  /* ------------------------------------------------------------------------ */
+  /*  AI Development                                                           */
+  /*                                                                           */
+  /*  Sold as a project like the website build, so `service: true` again keeps  */
+  /*  it a Service node with no published Offer. It carries `value`,            */
+  /*  `connections`, `stages`, `limits` and `faqs`, rendered by ProductExtras   */
+  /*  under the `ai` copy namespace named in `extrasKey`. No `platforms`: the   */
+  /*  question this product gets asked is what the model may touch, not which   */
+  /*  website builder it can reach.                                            */
+  /*                                                                           */
+  /*  Photography gap: the library has no AI-specific footage, so this reuses   */
+  /*  the data set. Replace before it is shown to a customer.                   */
+  /* ------------------------------------------------------------------------ */
+  {
+    slug: 'ai-development',
+    index: '03',
+    status: 'Available now',
+    service: true,
+    extrasKey: 'ai',
+    name: 'AI Development',
+    serviceType: 'Applied AI development and workflow automation over an operational database',
+    short: 'AI',
+    tagline: 'AI built on the database your business already runs on',
+    audience: 'SMEs with a working database and a job worth automating',
+    menuImage: '/media/img/data-graph.jpg',
+    headline: 'AI that answers from your own records, and shows you where the answer came from.',
+    summary:
+      'Once your work is in a real database, a model can be pointed at it. We build the narrow, checkable pieces that earn their keep: ask a question of your own data in plain language, have the week’s report drafted before anyone sits down, get an invoice or a delivery order read into a record instead of retyped, and see the exceptions surface without anyone running a report to find them. Every answer carries the records it came from, and anything the model is unsure of goes to a person rather than into the database.',
+    href: '/products/ai-development',
+    hero: '/media/img/data-graph.jpg',
+    /* No footage of an AI, and a stock server-room clip would be a lie about
+       what this is, so the poster carries the hero on its own. */
+    video: null,
+    poster: '/media/img/data-closeup.jpg',
+    band: '/media/img/data-office.jpg',
+    bullets: [
+      'Ask your data a question in plain English or Chinese and get the figure with the records behind it',
+      'Documents read into records: invoices, delivery orders, purchase orders and handwritten forms',
+      'Reports and summaries drafted on a schedule, in the wording your business already uses',
+      'Exceptions found and flagged, so the unusual order reaches a person the day it happens',
+      'Classification and routing on what arrives all day: enquiries, tickets, orders, messages',
+      'Forecasts only where there is enough history to support one, and a straight answer when there is not',
+      'Every output shows its source records, so a figure can be checked instead of trusted',
+      'Confidence thresholds and a human step on anything that writes, so nothing is committed silently',
+    ],
+    features: [
+      {
+        title: 'A question, not a report request',
+        body: '“Which customers ordered less this quarter than last” answered against your own tables, with the list of customers underneath it. The answer is a query the model wrote and you can read, not a number it produced from memory.',
+        image: '/media/img/data-graph.jpg',
+      },
+      {
+        title: 'Paper stops being typed twice',
+        body: 'A supplier invoice photographed at the counter arrives as a draft record with lines, quantities and totals filled in. Anything the model is not sure of is left blank and marked, rather than guessed and buried.',
+        image: '/media/img/inventory-scan.jpg',
+      },
+      {
+        title: 'The exception finds you',
+        body: 'A price that moved, an order three times the usual size, a customer who has gone quiet. Checked continuously against your own history and sent to the person who can act on it, instead of waiting to be noticed at month end.',
+        image: '/media/img/data-dashboard.jpg',
+      },
+      {
+        title: 'Grounded, and auditable',
+        body: 'Answers are drawn from your records and cite them. Nothing is written back without passing a confidence threshold and, where it matters, a person. When it does not know, it says so and hands over.',
+        image: '/media/img/data-office.jpg',
+      },
+    ],
+    metrics: [],
+
+    /* Written as what changes in the working week, like the rest of the site,
+       and deliberately unnumbered: we have no measured AI deployments to quote
+       yet, and a percentage invented here would contradict every other figure
+       we publish. */
+    value: [
+      {
+        title: 'The question gets asked, because asking is cheap',
+        body: 'Most questions in an SME never get answered, not because the data is missing but because somebody would have to spend an afternoon on it. When the answer takes a sentence, people ask the second and the third one too.',
+      },
+      {
+        title: 'Retyping stops',
+        body: 'Invoices, delivery orders and forms arrive as drafts instead of as a stack somebody keys in after hours. The person still checks it. They no longer type it.',
+      },
+      {
+        title: 'You hear about it on the day',
+        body: 'A margin that slipped or a customer who stopped ordering is a problem while it is small and a write-off when it surfaces at year end. Continuous checking is the whole difference.',
+      },
+      {
+        title: 'The answer can be checked',
+        body: 'Every figure comes with the records it was computed from. That is what separates something you can run a business on from a confident sentence that happens to be wrong.',
+      },
+      {
+        title: 'It is narrow on purpose',
+        body: 'We build the three or four things that are worth the money and refuse the rest. An assistant that does everything badly is abandoned within a month, and you have paid for it either way.',
+      },
+      {
+        title: 'Nothing writes without permission',
+        body: 'Low confidence goes to a person, not into the database. Your records keep the property that made them worth building: when the dashboard says something, it is true.',
+      },
+    ],
+
+    /* The same table as the website build, asked of the model instead of the
+       site: what it may read, and what it is allowed to write. It is the first
+       question on every one of these calls. */
+    connections: [
+      {
+        surface: 'Ask your data',
+        reads: 'Whatever tables that person is already permitted to see, and nothing else',
+        writes: null,
+      },
+      {
+        surface: 'Document capture',
+        reads: 'Suppliers, price lists and open orders, to match what it is reading against',
+        writes: 'Creates a draft record and marks every field it was unsure of',
+      },
+      {
+        surface: 'Scheduled reports',
+        reads: 'The same tables the dashboard reads, at the moment it is scheduled to run',
+        writes: null,
+      },
+      {
+        surface: 'Exception watch',
+        reads: 'Your own history, so normal means normal for your business',
+        writes: 'Raises a flagged item with the records that triggered it attached',
+      },
+      {
+        surface: 'Enquiry routing',
+        reads: 'Existing customers and open jobs, to place what has just arrived',
+        writes: 'Files the message against the right record and assigns it',
+      },
+      {
+        surface: 'Drafted replies',
+        reads: 'The order or the job the message is about',
+        writes: 'Leaves a draft for a person to send. It does not send.',
+      },
+    ],
+
+    /* Four weeks on its own timeline, so this product replaces the shared
+       two-week rollout section rather than contradicting it. */
+    stages: [
+      {
+        step: '01',
+        when: 'Week 0',
+        title: 'Pick the job',
+        body: 'Half a day finding the repetitive work actually worth automating, and saying out loud which parts are not. We would rather cut two of your four ideas now than deliver four mediocre ones.',
+        owner: 'You + us, on site',
+      },
+      {
+        step: '02',
+        when: 'Week 1',
+        title: 'Ground it',
+        body: 'The model is wired to your tables under the permissions you already have, and the evaluation set is built from your real documents and real questions, including the awkward ones.',
+        owner: 'Us, on your data',
+      },
+      {
+        step: '03',
+        when: 'Weeks 2–3',
+        title: 'Measure',
+        body: 'We run it against cases where the answer is already known and show you the score, including where it fails. Thresholds come from that number rather than from optimism, and anything below one routes to a person.',
+        owner: 'Us, reviewed with you',
+      },
+      {
+        step: '04',
+        when: 'Week 4',
+        title: 'Live, with a person in the loop',
+        body: 'It goes live checking rather than committing. Once a month of output has been reviewed and holds up, we widen what it may do on its own, one step at a time.',
+        owner: 'Your team, our support',
+      },
+    ],
+
+    limits: [
+      'AI on top of spreadsheets. Without the database underneath, a model inherits every duplicate and every stale export, and a confident wrong answer is worse than no answer. The database comes first.',
+      'Forecasting on a few hundred rows. Prediction needs history, and where you do not have it we will say so rather than sell it.',
+      'Anything that writes to your records unsupervised on day one. The confidence threshold and the human step are not a phase we quietly remove later.',
+      'Bots that answer your customers without review. We build the draft and the routing; a person still presses send.',
+      'Training anything on your data for anyone else, or moving your records somewhere you have not approved in writing.',
+      'Replacing your team. Where the honest answer is that the job needs a person, that is the answer you get on the first call.',
+    ],
+
+    faqs: [
+      {
+        q: 'Do we need to be on your database first?',
+        a: 'Effectively yes. Every useful part of this is grounded in structured records: without them the model is guessing over exports, and it will guess fluently. If you are already live on Dashboards & Databases we can start immediately. If you are not, that build comes first, and we will say so rather than take the work.',
+      },
+      {
+        q: 'How do we know the answers are right?',
+        a: 'Two ways. Every answer shows the records it came from, so it can be checked in one click instead of trusted. And before anything goes live we score it against cases where you already know the answer, show you the result including the failures, and set the confidence threshold from that number.',
+      },
+      {
+        q: 'Where does our data go?',
+        a: 'Into the model call for that one question, and nowhere else. It trains nothing, we retain nothing beyond a log you can read, and the provider that processes it is named in the agreement rather than left vague. If a workload has to stay in the country or on your own hardware, say so on the walkthrough and we will either scope it that way or tell you it is not economic.',
+      },
+      {
+        q: 'What happens when it gets something wrong?',
+        a: 'For anything that writes, low confidence never reaches your records: it arrives as a draft with the uncertain fields marked. For answers, the citation is the safety net, and wrong answers go back into the evaluation set so the same class of mistake is caught the next time rather than repeated.',
+      },
+      {
+        q: 'Is this just a chatbot on our website?',
+        a: 'No. A site assistant is a separate and much smaller thing. This is automation of internal work: reading documents into records, drafting the report somebody assembles by hand, watching for exceptions, routing what arrives. It is measured in hours returned, not conversations held.',
+      },
+      {
+        q: 'What does it cost?',
+        a: 'A flat project fee per piece of work, quoted after the half day where we pick the job, plus model usage at cost with the month’s figure shown to you. There is no per-seat AI licence and no percentage of what it saves you.',
+      },
+      {
+        q: 'What if the model we are on stops being the best one?',
+        a: 'The prompts, the evaluation set and the grounding are yours; the model is a supplier. We keep the same evaluation set and swap the model when a better one exists, which is a configuration change rather than a rebuild.',
       },
     ],
   },
@@ -408,12 +617,13 @@ export const products = [
 /*  `video` is null wherever we have no footage of that floor. BackgroundVideo  */
 /*  renders the poster alone in that case, so adding a clip later is one line.  */
 /*                                                                             */
-/*  Photography gaps, to be replaced before this is shown to a customer in      */
-/*  either trade: `restaurants` is using the retail-counter shot because the    */
-/*  library has no kitchen or dining room, and `robotics` is using warehouse    */
-/*  automation because it has no machine or robot. Note also that               */
-/*  retail-counter.jpg is misnamed — it is a distribution aisle, not a          */
-/*  counter — so check the file before reusing it by name.                      */
+/*  Photography. Every `image` below was checked against the actual file rather*/
+/*  than its name, because several names lie: retail-counter.jpg is a         */
+/*  distribution aisle, not a counter. The three trades the Pexels library never*/
+/*  covered — restaurants, retail and robotics — now carry CC0 photographs added*/
+/*  for them (restaurant-service, retail-rail, robotics-unit), which is why those*/
+/*  three are 960x640 where the rest are larger: they are served at their native*/
+/*  resolution rather than upscaled to match.                                 */
 /* -------------------------------------------------------------------------- */
 
 const industry = (entry) => ({ ...entry, href: `/industries/${entry.slug}` });
@@ -424,7 +634,7 @@ export const industries = [
     name: 'Barbershops & salons',
     short: 'Barbershops',
     product: 'Salon dashboard',
-    image: '/media/img/salon-manicure.jpg',
+    image: '/media/img/salon-consult.jpg',
     hero: '/media/img/salon-interior.jpg',
     video: '/media/video/salon-color.mp4',
     poster: '/media/img/salon-interior.jpg',
@@ -459,7 +669,7 @@ export const industries = [
     faqs: [
       {
         q: 'Does this replace our booking app?',
-        a: 'It can sit alongside one. We import from most booking tools, and if you would rather book inside BYIY we build that as part of the database. What we will not do is leave the diary in one system and the money in another.',
+        a: 'It can sit alongside one. We import from most booking tools, and if you would rather book inside BIYY we build that as part of the database. What we will not do is leave the diary in one system and the money in another.',
       },
       {
         q: 'We have two shops. Does the owner see both?',
@@ -528,10 +738,10 @@ export const industries = [
     name: 'Restaurants & cafés',
     short: 'Restaurants',
     product: 'Kitchen dashboard',
-    image: '/media/img/web-counter.jpg',
-    hero: '/media/img/web-counter.jpg',
+    image: '/media/img/restaurant-service.jpg',
+    hero: '/media/img/restaurant-service.jpg',
     video: null,
-    poster: '/media/img/web-counter.jpg',
+    poster: '/media/img/restaurant-service.jpg',
     headline: 'Food cost, waste and labour on the same screen as the covers that caused them.',
     summary:
       'Restaurants measure the sales and guess the rest. The POS knows what was sold, a supplier folder knows what was bought, and the gap between them is where the margin went. We model recipes, purchases and covers in one database so that gap is a number rather than a feeling.',
@@ -580,7 +790,7 @@ export const industries = [
     name: 'Retail chains',
     short: 'Retail',
     product: 'Retail dashboard',
-    image: '/media/img/retail-counter.jpg',
+    image: '/media/img/retail-rail.jpg',
     hero: '/media/img/inventory-stock.jpg',
     video: '/media/video/warehouse-work.mp4',
     poster: '/media/img/inventory-shelves.jpg',
@@ -675,7 +885,7 @@ export const industries = [
       },
       {
         q: 'Does it do purchase ordering?',
-        a: 'Purchasing lives in the database with the rest, so a reorder suggestion carries the lead-time evidence behind it. Whether you approve inside BYIY or in your accounting package is your call.',
+        a: 'Purchasing lives in the database with the rest, so a reorder suggestion carries the lead-time evidence behind it. Whether you approve inside BIYY or in your accounting package is your call.',
       },
     ],
   }),
@@ -736,7 +946,7 @@ export const industries = [
     name: 'Workshops & garages',
     short: 'Workshops',
     product: 'Workshop dashboard',
-    image: '/media/img/web-workshop.jpg',
+    image: '/media/img/inventory-picking.jpg',
     hero: '/media/img/web-workshop.jpg',
     video: null,
     poster: '/media/img/web-workshop.jpg',
@@ -775,7 +985,7 @@ export const industries = [
       },
       {
         q: 'Can it produce invoices?',
-        a: 'It produces the priced job. Whether the invoice is raised in BYIY or handed to your accounting package depends on which one you run, and we confirm that on the walkthrough.',
+        a: 'It produces the priced job. Whether the invoice is raised in BIYY or handed to your accounting package depends on which one you run, and we confirm that on the walkthrough.',
       },
       {
         q: 'We do fleet contracts as well as retail work. Does that fit?',
@@ -788,10 +998,10 @@ export const industries = [
     name: 'Robotics & automation',
     short: 'Robotics',
     product: 'Fleet dashboard',
-    image: '/media/img/inventory-pallets.jpg',
-    hero: '/media/img/inventory-picking.jpg',
+    image: '/media/img/robotics-unit.jpg',
+    hero: '/media/img/robotics-unit.jpg',
     video: null,
-    poster: '/media/img/inventory-picking.jpg',
+    poster: '/media/img/robotics-unit.jpg',
     headline: 'Uptime, service intervals and spares for a fleet you deployed, not a lab.',
     summary:
       'Robotics companies build excellent telemetry and then run the commercial side of the fleet on a spreadsheet: which unit is at which customer, what is under warranty, what spares are committed, and which model line is eating the service budget. That half deserves a database too.',
@@ -996,7 +1206,7 @@ export const industries = [
     name: 'Multi-branch groups',
     short: 'Multi-branch',
     product: 'Group dashboard',
-    image: '/media/img/team-office.jpg',
+    image: '/media/img/team-meeting.jpg',
     hero: '/media/img/team-meeting.jpg',
     video: null,
     poster: '/media/img/team-office.jpg',
@@ -1056,7 +1266,7 @@ export const pillars = [
   },
   {
     title: 'Runs on a phone',
-    body: 'Entering a record at the counter, the bay or the front desk. If your team can use WhatsApp, they can use BYIY. No training week required.',
+    body: 'Entering a record at the counter, the bay or the front desk. If your team can use WhatsApp, they can use BIYY. No training week required.',
   },
   {
     title: 'Honest pricing',
@@ -1099,7 +1309,7 @@ export const comparison = [
     verdict: 'Built for enterprise. You pay for 90% of modules you will never open.',
   },
   {
-    option: 'BYIY Tech',
+    option: 'BIYY Tech',
     cost: 'Flat monthly per outlet',
     speed: '2 weeks',
     verdict: 'A real database and a dashboard built for your industry, sized for an SME.',
@@ -1214,27 +1424,27 @@ export const faqs = [
 export const authors = {
   ianChin: {
     name: 'Ian Chin',
-    role: 'Co-Founder of BYIY Tech',
+    role: 'Co-Founder of BIYY Tech',
     credential:
-      'Co-founded BYIY Tech and still runs rollouts on site. Has sat with the owner’s own spreadsheets open at retail, wholesale and clinic groups across Malaysia and Singapore since 2021.',
+      'Co-founded BIYY Tech and still runs rollouts on site. Has sat with the owner’s own spreadsheets open at retail, wholesale and clinic groups across Malaysia and Singapore since 2021.',
   },
   yeWen: {
     name: 'Ye Wen',
-    role: 'Co-Founder of BYIY Tech',
+    role: 'Co-Founder of BIYY Tech',
     credential:
-      'Co-founded BYIY Tech after a decade building operations software, including the data platform behind a 40-outlet grocery chain.',
+      'Co-founded BIYY Tech after a decade building operations software, including the data platform behind a 40-outlet grocery chain.',
   },
   yongHan: {
     name: 'Yong Han',
-    role: 'Co-Founder of BYIY Tech',
+    role: 'Co-Founder of BIYY Tech',
     credential:
-      'Co-founded BYIY Tech and owns the schema design and migration work. Spends most weeks reconciling spreadsheets that stopped agreeing with each other.',
+      'Co-founded BIYY Tech and owns the schema design and migration work. Spends most weeks reconciling spreadsheets that stopped agreeing with each other.',
   },
 };
 
 export const editorialPolicy = {
   summary:
-    'Every figure on this site comes from anonymised, aggregated data across BYIY Tech deployments, or it is labelled as an estimate. Posts name their author, carry a review date, and state the sample behind any claim.',
+    'Every figure on this site comes from anonymised, aggregated data across BIYY Tech deployments, or it is labelled as an estimate. Posts name their author, carry a review date, and state the sample behind any claim.',
   contact: 'corrections@yiy.tech',
 };
 
@@ -1302,7 +1512,7 @@ export const posts = [
       {
         heading: 'How we measured this',
         paragraphs: [
-          'The observations above come from migration notes taken across 23 BYIY Tech deployments between January 2024 and June 2026, all SMEs with two to twelve sites in Malaysia and Singapore, every one of them arriving from spreadsheets.',
+          'The observations above come from migration notes taken across 23 BIYY Tech deployments between January 2024 and June 2026, all SMEs with two to twelve sites in Malaysia and Singapore, every one of them arriving from spreadsheets.',
           'For each, we recorded the number of source files, how many people wrote to them, and how long the data cleanup took as a share of total project time. Cleanup averaged just under half the migration effort, and it correlated with how long the business had been past the concurrency wall, not with company size.',
           'This is descriptive data from our own customers, who are self-selected by having decided to leave spreadsheets. It is not a random sample of SMEs.',
         ],
@@ -1332,7 +1542,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech migration notes, 2024 to 2026',
+        label: 'BIYY Tech migration notes, 2024 to 2026',
         note: '23 SME deployments in Malaysia and Singapore, all migrating from spreadsheets. Anonymised and aggregated.',
       },
       {
@@ -1392,7 +1602,7 @@ export const posts = [
       {
         heading: 'What we measured, and what we did not',
         paragraphs: [
-          'Across 23 BYIY Tech deployments between January 2024 and June 2026, customers reported a median of six hours a week spent assembling recurring reports before migration, with a range of two to sixteen.',
+          'Across 23 BIYY Tech deployments between January 2024 and June 2026, customers reported a median of six hours a week spent assembling recurring reports before migration, with a range of two to sixteen.',
           'The figure is self-reported at the walkthrough and again at the one-month debrief, so it carries the usual bias of people estimating their own time. We did not observe and time the work directly.',
           'We also did not attempt to measure the cost of decisions made on stale figures. Too many variables, and any number we produced would have been a guess wearing a decimal point.',
         ],
@@ -1421,7 +1631,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech deployment data, 2024 to 2026',
+        label: 'BIYY Tech deployment data, 2024 to 2026',
         note: '23 SME deployments, Malaysia and Singapore. Self-reported report-assembly time at walkthrough and one-month debrief.',
       },
       {
@@ -1444,7 +1654,7 @@ export const posts = [
     author: authors.ianChin,
     reviewer: authors.yeWen,
     answer:
-      'Per-transaction pricing charges customers more as they grow, for software that has not changed. Worse, it gives them a reason to route records around the system to manage the bill, which makes the database unreliable. BYIY Tech charges a flat monthly fee per outlet so that the price tracks how much of the business the system covers, not how busy the business happens to be.',
+      'Per-transaction pricing charges customers more as they grow, for software that has not changed. Worse, it gives them a reason to route records around the system to manage the bill, which makes the database unreliable. BIYY Tech charges a flat monthly fee per outlet so that the price tracks how much of the business the system covers, not how busy the business happens to be.',
     takeaways: [
       'Usage pricing creates an incentive to keep records out of your system of record. That is fatal for a database.',
       'Flat per-outlet pricing is duller and easier to forecast, which is what finance teams at SMEs actually want.',
@@ -1491,7 +1701,7 @@ export const posts = [
     ],
     faq: [
       {
-        q: 'How does BYIY Tech charge for its software?',
+        q: 'How does BIYY Tech charge for its software?',
         a: 'A flat monthly fee per outlet, with no per-transaction charge, no implementation fee and no annual lock-in required to start. The exact figure depends on site count and which products you run, and is quoted during the walkthrough.',
       },
       {
@@ -1501,7 +1711,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech pricing policy',
+        label: 'BIYY Tech pricing policy',
         note: 'Published terms, flat monthly per outlet, effective 2024 to present.',
       },
     ],
@@ -1583,7 +1793,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech project notes, 2024 to 2026',
+        label: 'BIYY Tech project notes, 2024 to 2026',
         note: 'First-screen panel selection and three-month usage across SME deployments in Malaysia and Singapore.',
       },
       {
@@ -1656,7 +1866,7 @@ export const posts = [
       {
         heading: 'Basis for these timings',
         paragraphs: [
-          'These stages describe the standard BYIY Tech rollout as run across deployments from 2024 to 2026 for SMEs with two to twelve sites in Malaysia and Singapore.',
+          'These stages describe the standard BIYY Tech rollout as run across deployments from 2024 to 2026 for SMEs with two to twelve sites in Malaysia and Singapore.',
           'Two weeks is the typical case for reasonably consistent source data. It is not a guarantee, and it does not describe businesses arriving from several unrelated systems at once.',
         ],
       },
@@ -1677,7 +1887,7 @@ export const posts = [
     ],
     sources: [
       {
-        label: 'BYIY Tech rollout records, 2024 to 2026',
+        label: 'BIYY Tech rollout records, 2024 to 2026',
         note: 'Stage durations across SME deployments in Malaysia and Singapore.',
       },
       {
@@ -1747,7 +1957,7 @@ export const posts = [
         heading: 'Why the database has to come first',
         paragraphs: [
           'All four answers depend on records being captured completely and honestly. A forecast built on a table that misses whatever people kept in a side spreadsheet is precise and wrong.',
-          'This is why BYIY Tech Data & Intelligence sits on top of Dashboards & Databases rather than beside it, and why it is in limited beta with existing customers rather than sold as a standalone product. We would rather ship it late than ship it over data we do not trust.',
+          'This is why BIYY Tech Data & Intelligence sits on top of Dashboards & Databases rather than beside it, and why it is in limited beta with existing customers rather than sold as a standalone product. We would rather ship it late than ship it over data we do not trust.',
         ],
       },
     ],
@@ -1761,13 +1971,13 @@ export const posts = [
         a: 'Because forecasts and alerts are only as good as the underlying records. If work is captured incompletely, or partly in a side spreadsheet, the analysis will be confidently wrong.',
       },
       {
-        q: 'When is BYIY Tech Data & Intelligence available?',
+        q: 'When is BIYY Tech Data & Intelligence available?',
         a: 'It is in limited beta with existing Dashboards & Databases customers. Customers running that product today will be invited before general release.',
       },
     ],
     sources: [
       {
-        label: 'BYIY Tech customer interviews, 2025 to 2026',
+        label: 'BIYY Tech customer interviews, 2025 to 2026',
         note: 'Reported weekly operating decisions across retail, wholesale and service customers.',
       },
       {

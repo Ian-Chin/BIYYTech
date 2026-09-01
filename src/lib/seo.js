@@ -168,14 +168,16 @@ export const productLd = (product, locale = 'en') => {
    * per seat, so it is a `Service` and not a `SoftwareApplication`. It also
    * carries no Offer node: the fee is quoted per project after the content
    * session, and inventing a price here would put a number on the page that
-   * nobody at BYIY has agreed to.
+   * nobody at BIYY has agreed to.
    */
   if (product.service) {
     return {
       '@type': 'Service',
       '@id': `${url}#service`,
       name: `${company.name} ${product.name}`,
-      serviceType: 'Website design, development and operations-database integration',
+      serviceType:
+        product.serviceType ??
+        'Website design, development and operations-database integration',
       url,
       description: product.summary,
       provider: { '@id': `${SITE_URL}/#organization` },

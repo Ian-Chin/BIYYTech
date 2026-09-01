@@ -12,7 +12,7 @@ with somebody else's operations spreadsheet open.
 
 ## Product purpose
 
-BYIY Tech sells to small and medium businesses in Malaysia and Singapore that
+BIYY Tech sells to small and medium businesses in Malaysia and Singapore that
 are still running on spreadsheets:
 
 - **Dashboards & Databases** — the core product. A real database designed
@@ -22,10 +22,14 @@ are still running on spreadsheets:
   multi-branch groups.
 - **Website & Integrations** — a bespoke website build, wired into the same
   database. Sold as a project, not a seat.
+- **AI Development** — narrow, grounded AI over the same database: questions
+  answered against the customer’s own tables, documents read into records,
+  reports drafted, exceptions flagged, enquiries routed. Sold as a project, not
+  a seat.
 
-A third, **Data & Intelligence**, is in limited beta and sits on top of
-Dashboards & Databases. It is deliberately not sold standalone, because its
-output is only as good as the database beneath it.
+AI Development is deliberately not sold standalone. Its output is only as good
+as the database beneath it, so a customer without one is quoted the database
+first.
 
 **Industries** (`/industries`, twelve pages) are not extra products. They are
 the same database sold to one trade, and the page exists to prove we know what

@@ -9,7 +9,7 @@ const { title: TITLE, description: DESCRIPTION } = pageCopy('home', 'en');
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
-  title: { default: TITLE, template: '%s | BYIY Tech' },
+  title: { default: TITLE, template: '%s | BIYY Tech' },
   description: DESCRIPTION,
   applicationName: company.name,
   authors: [{ name: company.legal, url: SITE_URL }],
@@ -25,7 +25,7 @@ export const metadata = {
     'industry-specific dashboards',
     'business intelligence for SMEs',
     'multi-outlet reporting software',
-    'BYIY Tech',
+    'BIYY Tech',
   ],
   alternates: { canonical: SITE_URL, languages: hreflang('/') },
   robots: {

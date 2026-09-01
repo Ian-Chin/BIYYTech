@@ -45,16 +45,16 @@ function productBlock(p) {
       ? `\nReported results:\n${list(p.metrics.map((m) => `${m.value}${m.suffix} — ${m.label}`))}`
       : '\nNo results are published for this product yet.',
 
-    /* Only the website product carries the blocks below. They are the answers
-       people ask for by name, so they belong in the corpus rather than only in
-       the rendered page. */
+    /* Only the project-priced products carry the blocks below. They are the
+       answers people ask for by name, so they belong in the corpus rather than
+       only in the rendered page. */
     p.value
       ? `\nWhat it changes for the customer:\n${p.value
           .map((v) => `- ${v.title}: ${v.body}`)
           .join('\n')}`
       : null,
     p.connections
-      ? `\nWhat the site reads from BYIY, and what it writes back:\n${p.connections
+      ? `\nWhat it reads from BIYY, and what it writes back:\n${p.connections
           .map(
             (c) =>
               `- ${c.surface}\n  Reads: ${c.reads || 'nothing'}\n  Writes back: ${c.writes || 'nothing'}`,
@@ -147,10 +147,10 @@ export function GET() {
     'The database and the rollout are identical across these. What changes is the first screen of the dashboard, because the weekly decisions differ by trade and those decisions need different underlying tables rather than different charts. An industry without a page below is a walkthrough rather than a refusal.',
     industries.map(industryBlock).join('\n\n'),
 
-    rule('WHY BYIY'),
+    rule('WHY BIYY'),
     pillars.map((p) => `- ${p.title}: ${p.body}`).join('\n'),
 
-    rule('HOW BYIY COMPARES'),
+    rule('HOW BIYY COMPARES'),
     comparison
       .map(
         (c) =>
