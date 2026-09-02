@@ -1,4 +1,5 @@
 import './globals.css';
+import Script from 'next/script';
 import JsonLd from '@/components/JsonLd';
 import Splash, { LangBoot, SplashBoot } from '@/components/Splash';
 import { pageCopy } from '@/lib/meta';
@@ -104,6 +105,19 @@ export default function RootLayout({ children }) {
           than here, because it has to be rendered in the page's own language
           on the server. */}
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EL0RN1R673"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-EL0RN1R673');
+          `}
+        </Script>
         <Splash />
         {children}
       </body>
