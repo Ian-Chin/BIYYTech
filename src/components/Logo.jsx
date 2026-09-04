@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from '@/components/Link';
 
 const MARKS = {
-  dark: '/brand/yiy-mark-white-512.png',
-  light: '/brand/yiy-mark-black-512.png',
+  dark: '/brand/biyy-mark-white-512.png',
+  light: '/brand/biyy-mark-black-512.png',
 };
 
 export function Mark({ variant = 'light', size = 30, className = '', priority = false }) {

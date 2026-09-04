@@ -36,11 +36,11 @@ export const metadata = {
   // requests gets an exact match below; see scripts/generate-icons.mjs.
   icons: {
     icon: [
-      { url: '/brand/yiy-icon-16.png', type: 'image/png', sizes: '16x16' },
-      { url: '/brand/yiy-icon-24.png', type: 'image/png', sizes: '24x24' },
-      { url: '/brand/yiy-icon-32.png', type: 'image/png', sizes: '32x32' },
-      { url: '/brand/yiy-icon-48.png', type: 'image/png', sizes: '48x48' },
-      { url: '/brand/yiy-icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/brand/biyy-icon-16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/brand/biyy-icon-24.png', type: 'image/png', sizes: '24x24' },
+      { url: '/brand/biyy-icon-32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/brand/biyy-icon-48.png', type: 'image/png', sizes: '48x48' },
+      { url: '/brand/biyy-icon-192.png', type: 'image/png', sizes: '192x192' },
       { url: '/favicon.ico', type: 'image/x-icon', sizes: '16x16 24x24 32x32 48x48 64x64' },
     ],
     apple: [{ url: '/brand/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],

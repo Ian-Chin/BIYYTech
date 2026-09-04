@@ -99,10 +99,10 @@ export const organizationLd = () => ({
     '@type': 'ImageObject',
     // White mark, per brand. Note it is transparent-background RGBA, so it
     // disappears against the white surfaces some consumers composite onto
-    // (Google's knowledge panel among them). Swap to yiy-mark-black-512.png,
+    // (Google's knowledge panel among them). Swap to biyy-mark-black-512.png,
     // or ship a white mark on an ink plate, if that matters more than brand
     // consistency.
-    url: abs('/brand/yiy-mark-white-512.png'),
+    url: abs('/brand/biyy-mark-white-512.png'),
     width: 512,
     height: 512,
   },

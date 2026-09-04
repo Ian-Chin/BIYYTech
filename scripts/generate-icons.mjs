@@ -1,19 +1,20 @@
 /**
  * Regenerates every favicon / app-icon asset from the master brand mark.
  *
- * The mark is drawn with hairline strokes (~12px on a 1621px canvas, i.e. 0.74%
- * of the width). A plain downscale therefore renders each stroke at a fraction
- * of a pixel — 0.24px at 32x32 — which no resampler can show as a line, so the
- * icon reads as grey mush. Blurring to "fix" it only spreads the mush.
+ * The mark is drawn with thin strokes (~25px on a 1387px canvas, i.e. 1.8% of
+ * the width). A plain downscale therefore renders each stroke at a fraction of
+ * a pixel — 0.6px at 32x32 — which no resampler can show as a line, so the icon
+ * reads as grey mush. Blurring to "fix" it only spreads the mush.
  *
  * The fix is optical sizing: dilate the glyph geometrically at high resolution
  * so that after a single high-quality downscale each stroke lands near 1.5-2px,
  * then encode. Small sizes need more dilation than large ones, so every target
- * gets its own radius. Below 32px the mark's ~9 parallel strokes cannot coexist
- * as lines at any weight, so 16 and 24 use the filled silhouette instead — the
+ * gets its own radius. At 16px the mark's ~9 parallel strokes cannot coexist as
+ * lines at any weight, so that size uses the filled silhouette instead — the
  * outline is what carries recognition at that scale, and a solid shape stays
- * crisp where line art can only turn to mush. 150% Windows scaling asks for
- * 24px, so that size matters as much as 16 and 32 in practice.
+ * crisp where line art can only turn to mush. 24px still holds the two eye
+ * diamonds as counters, so it keeps the line art at a heavy radius; 150%
+ * Windows scaling asks for 24px, so that size matters as much as 16 and 32.
  *
  * Requires sharp, which ships with Next.js:
  *   node scripts/generate-icons.mjs
@@ -22,11 +23,20 @@ import sharp from 'sharp';
 import { Buffer } from 'node:buffer';
 import { writeFile } from 'node:fs/promises';
 
-/** Near-black tile behind the mark; matches manifest background_color. */
-const BG = { r: 0x0b, g: 0x0b, b: 0x0c, alpha: 1 };
-const SRC = 'public/brand/yiy-mark-white.png';
-/** Tight bounding box of the ink in SRC, so no target wastes pixels on padding. */
-const BOX = { left: 124, top: 47, width: 1375, height: 1529 };
+/**
+ * Accent tile behind the mark, with the mark itself in ink. A near-black tile
+ * with a white mark is what this used to ship, and it disappeared in a crowded
+ * tab strip: at 16px the tile reads as one more dark square. A saturated block
+ * of the brand accent is the part that survives that size, so the colour went
+ * to the tile and the line art went dark. Value is colors.accent.DEFAULT from
+ * tailwind.config; the in-page mark stays mono, so this is the only surface
+ * that carries the accent.
+ */
+const BG = { r: 0x1b, g: 0x4d, b: 0xe4, alpha: 1 };
+/** The mark itself, on that tile. White, so the line art reads as the figure. */
+const INK = { r: 0xff, g: 0xff, b: 0xff };
+/** Alpha source. Ink colour comes from INK; only this file's alpha is read. */
+const SRC = 'public/brand/biyy-mark-white.png';
 /** Resolution the dilation runs at. Radii below are in these pixels. */
 const WORK = 512;
 
@@ -93,10 +103,12 @@ function silhouette(mask, size, threshold = 90) {
   return out;
 }
 
-/** Alpha channel of the tightly-cropped mark, squared off at WORK resolution. */
+/**
+ * Alpha channel of the mark, squared off at WORK resolution. SRC is already
+ * cropped to the ink, so no target wastes pixels on padding.
+ */
 async function loadMask() {
   const { data } = await sharp(SRC)
-    .extract(BOX)
     .resize(WORK, WORK, {
       fit: 'contain',
       background: { r: 0, g: 0, b: 0, alpha: 0 },
@@ -112,16 +124,16 @@ async function loadMask() {
 }
 
 /**
- * White mask over the near-black tile at `size`, with `padding` as a fraction
- * of the tile so the glyph is not flush against the edges at larger sizes.
+ * White mask over the accent tile at `size`, with `padding` as a fraction of
+ * the tile so the glyph is not flush against the edges at larger sizes.
  */
 async function tile(mask, size, padding = 0) {
   const inner = Math.max(1, Math.round(size * (1 - 2 * padding)));
   const rgba = Buffer.alloc(WORK * WORK * 4);
   for (let i = 0; i < WORK * WORK; i++) {
-    rgba[i * 4] = 255;
-    rgba[i * 4 + 1] = 255;
-    rgba[i * 4 + 2] = 255;
+    rgba[i * 4] = INK.r;
+    rgba[i * 4 + 1] = INK.g;
+    rgba[i * 4 + 2] = INK.b;
     rgba[i * 4 + 3] = mask[i];
   }
   const glyph = await sharp(rgba, { raw: { width: WORK, height: WORK, channels: 4 } })
@@ -167,10 +179,10 @@ function ico(entries) {
  */
 const ICO_SIZES = [
   { size: 16, solid: true },
-  { size: 24, solid: true },
-  { size: 32, radius: 11 },
-  { size: 48, radius: 6 },
-  { size: 64, radius: 4 },
+  { size: 24, radius: 10 },
+  { size: 32, radius: 8 },
+  { size: 48, radius: 4 },
+  { size: 64, radius: 2 },
 ];
 
 /**
@@ -181,13 +193,13 @@ const ICO_SIZES = [
  * is the same hairline mush this script exists to avoid.
  */
 const PNG_TARGETS = [
-  { path: 'public/brand/yiy-icon-16.png', size: 16, solid: true, padding: 0 },
-  { path: 'public/brand/yiy-icon-24.png', size: 24, solid: true, padding: 0 },
-  { path: 'public/brand/yiy-icon-32.png', size: 32, radius: 11, padding: 0 },
-  { path: 'public/brand/yiy-icon-48.png', size: 48, radius: 6, padding: 0 },
-  { path: 'public/brand/yiy-icon-192.png', size: 192, radius: 1, padding: 0.04 },
-  { path: 'public/brand/yiy-icon-512.png', size: 512, radius: 0, padding: 0.06 },
-  { path: 'public/brand/apple-touch-icon.png', size: 180, radius: 1, padding: 0.08 },
+  { path: 'public/brand/biyy-icon-16.png', size: 16, solid: true, padding: 0 },
+  { path: 'public/brand/biyy-icon-24.png', size: 24, radius: 10, padding: 0 },
+  { path: 'public/brand/biyy-icon-32.png', size: 32, radius: 8, padding: 0 },
+  { path: 'public/brand/biyy-icon-48.png', size: 48, radius: 4, padding: 0 },
+  { path: 'public/brand/biyy-icon-192.png', size: 192, radius: 0, padding: 0.04 },
+  { path: 'public/brand/biyy-icon-512.png', size: 512, radius: 0, padding: 0.06 },
+  { path: 'public/brand/apple-touch-icon.png', size: 180, radius: 0, padding: 0.08 },
 ];
 
 const base = await loadMask();
