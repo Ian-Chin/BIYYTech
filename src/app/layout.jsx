@@ -29,6 +29,22 @@ export const metadata = {
     'BIYY Tech',
   ],
   alternates: { canonical: SITE_URL, languages: hreflang('/') },
+  // Declared here rather than through app/icon.png and app/favicon.ico, because
+  // the file conventions advertise a .ico as `sizes="16x16"` and leave the 192px
+  // art as the only other candidate — so a browser asking for 32px downscales
+  // the big one and the hairline mark turns to mush. Every size a tab actually
+  // requests gets an exact match below; see scripts/generate-icons.mjs.
+  icons: {
+    icon: [
+      { url: '/brand/yiy-icon-16.png', type: 'image/png', sizes: '16x16' },
+      { url: '/brand/yiy-icon-24.png', type: 'image/png', sizes: '24x24' },
+      { url: '/brand/yiy-icon-32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/brand/yiy-icon-48.png', type: 'image/png', sizes: '48x48' },
+      { url: '/brand/yiy-icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/favicon.ico', type: 'image/x-icon', sizes: '16x16 24x24 32x32 48x48 64x64' },
+    ],
+    apple: [{ url: '/brand/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
+  },
   verification: { google: 'ActlpOrwMMBHiVILbLWf4zDAkoZjjrbg_t94-w0lPME' },
   robots: {
     index: true,
