@@ -614,8 +614,9 @@ export const products = [
 /*  deliberate: the argument is that the layout changes and the method does     */
 /*  not.                                                                        */
 /*                                                                             */
-/*  `video` is null wherever we have no footage of that floor. BackgroundVideo  */
-/*  renders the poster alone in that case, so adding a clip later is one line.  */
+/*  Every industry now carries its own hero clip, and `poster` is a frame cut   */
+/*  from that same clip so the fade from still to footage does not jump. The    */
+/*  field still accepts null: BackgroundVideo renders the poster alone then.    */
 /*                                                                             */
 /*  Photography. Every `image` below was checked against the actual file rather*/
 /*  than its name, because several names lie: retail-counter.jpg is a         */
@@ -688,8 +689,8 @@ export const industries = [
     product: 'Clinic dashboard',
     image: '/media/img/clinic-consult.jpg',
     hero: '/media/img/clinic-lobby.jpg',
-    video: null,
-    poster: '/media/img/clinic-reception.jpg',
+    video: '/media/video/clinic-room.mp4',
+    poster: '/media/img/clinic-room-still.jpg',
     headline: 'Utilisation, recalls and receivables, without the Friday spreadsheet.',
     summary:
       'A clinic already records almost everything it needs. It is spread across a practice system, an Excel file for claims, a printed recall list and the front desk’s own notes. We put those into one database and build the screen a practice manager can run the week from.',
@@ -740,8 +741,8 @@ export const industries = [
     product: 'Kitchen dashboard',
     image: '/media/img/restaurant-service.jpg',
     hero: '/media/img/restaurant-service.jpg',
-    video: null,
-    poster: '/media/img/restaurant-service.jpg',
+    video: '/media/video/restaurant-kitchen.mp4',
+    poster: '/media/img/restaurant-kitchen-still.jpg',
     headline: 'Food cost, waste and labour on the same screen as the covers that caused them.',
     summary:
       'Restaurants measure the sales and guess the rest. The POS knows what was sold, a supplier folder knows what was bought, and the gap between them is where the margin went. We model recipes, purchases and covers in one database so that gap is a number rather than a feeling.',
@@ -896,8 +897,8 @@ export const industries = [
     product: 'Commerce dashboard',
     image: '/media/img/web-listing.jpg',
     hero: '/media/img/inventory-packing.jpg',
-    video: null,
-    poster: '/media/img/inventory-packing.jpg',
+    video: '/media/video/inventory-packing.mp4',
+    poster: '/media/img/inventory-packing-still.jpg',
     headline: 'Marketplace, storefront and warehouse reading from the same table.',
     summary:
       'Selling across a storefront and two marketplaces means three dashboards, three fee structures and one very tired person exporting CSVs on Sunday. We consolidate the channels into one database so contribution per order is a column rather than a project.',
@@ -948,8 +949,8 @@ export const industries = [
     product: 'Workshop dashboard',
     image: '/media/img/inventory-picking.jpg',
     hero: '/media/img/web-workshop.jpg',
-    video: null,
-    poster: '/media/img/web-workshop.jpg',
+    video: '/media/video/workshop-repair.mp4',
+    poster: '/media/img/workshop-repair-still.jpg',
     headline: 'Jobs, bays and parts, tracked from the floor rather than from a clipboard.',
     summary:
       'A workshop knows what came in and what went out. What it rarely knows is how long each job actually took, which quotes turned into work, and whether the parts markup survived contact with reality. All three are recoverable from what the floor already writes down.',
@@ -1000,8 +1001,8 @@ export const industries = [
     product: 'Fleet dashboard',
     image: '/media/img/robotics-unit.jpg',
     hero: '/media/img/robotics-unit.jpg',
-    video: null,
-    poster: '/media/img/robotics-unit.jpg',
+    video: '/media/video/robotics-arm.mp4',
+    poster: '/media/img/robotics-arm-still.jpg',
     headline: 'Uptime, service intervals and spares for a fleet you deployed, not a lab.',
     summary:
       'Robotics companies build excellent telemetry and then run the commercial side of the fleet on a spreadsheet: which unit is at which customer, what is under warranty, what spares are committed, and which model line is eating the service budget. That half deserves a database too.',
@@ -1052,8 +1053,8 @@ export const industries = [
     product: 'Operations dashboard',
     image: '/media/img/data-closeup.jpg',
     hero: '/media/img/data-dashboard.jpg',
-    video: null,
-    poster: '/media/img/data-office.jpg',
+    video: '/media/video/data-analytics.mp4',
+    poster: '/media/img/data-analytics-still.jpg',
     headline: 'For the analyst who is currently the database.',
     summary:
       'Some businesses already have someone doing this: one capable person holding a model together with formulas, exports and a weekly ritual. This is the version where that person stops being the single point of failure and starts doing the analysis they were hired for.',
@@ -1104,8 +1105,8 @@ export const industries = [
     product: 'Tuition dashboard',
     image: '/media/img/tuition-class.jpg',
     hero: '/media/img/tuition-desk.jpg',
-    video: null,
-    poster: '/media/img/tuition-tutor.jpg',
+    video: '/media/video/tuition-class.mp4',
+    poster: '/media/img/tuition-class-still.jpg',
     headline: 'Enrolment, attendance and fees, class by class, term by term.',
     summary:
       'A centre’s whole economics sit in three numbers per class: how many enrolled, how many still turn up, and how many have paid. Those live in a register, a WhatsApp group and a fees workbook. One database makes the term visible while it is still running.',
@@ -1156,8 +1157,8 @@ export const industries = [
     product: 'Agency dashboard',
     image: '/media/img/property-agent.jpg',
     hero: '/media/img/property-tour.jpg',
-    video: null,
-    poster: '/media/img/property-keys.jpg',
+    video: '/media/video/property-viewing.mp4',
+    poster: '/media/img/property-viewing-still.jpg',
     headline: 'Listing age, viewing conversion and commission, without a shared drive.',
     summary:
       'Agencies run on a pipeline that lives in each agent’s phone. The office sees the closings and very little of what led to them. One database turns listings, viewings and offers into a pipeline the principal can actually manage.',
@@ -1208,8 +1209,8 @@ export const industries = [
     product: 'Group dashboard',
     image: '/media/img/team-meeting.jpg',
     hero: '/media/img/team-meeting.jpg',
-    video: null,
-    poster: '/media/img/team-office.jpg',
+    video: '/media/video/team-meeting.mp4',
+    poster: '/media/img/team-meeting-still.jpg',
     headline: 'One group view, real permissions, and no branch keeping its own copy.',
     summary:
       'Whatever the trade, the multi-branch problem is the same: every location keeps a private version of the truth, and head office assembles a group picture by hand each week. This is the layout for the person who has to answer for all of them.',
