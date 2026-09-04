@@ -24,16 +24,21 @@ import { Buffer } from 'node:buffer';
 import { writeFile } from 'node:fs/promises';
 
 /**
- * Accent tile behind the mark, with the mark itself in ink. A near-black tile
- * with a white mark is what this used to ship, and it disappeared in a crowded
- * tab strip: at 16px the tile reads as one more dark square. A saturated block
- * of the brand accent is the part that survives that size, so the colour went
- * to the tile and the line art went dark. Value is colors.accent.DEFAULT from
- * tailwind.config; the in-page mark stays mono, so this is the only surface
- * that carries the accent.
+ * The browser favicon is a bare white mark on transparency — no tile. Note the
+ * consequence: a white glyph on alpha is invisible wherever the consumer paints
+ * it onto a light surface, which includes the Chrome tab strip in its light
+ * theme. It reads only against dark chrome.
+ *
+ * The installed-app icons do not follow it. Android draws a manifest icon over
+ * the user's wallpaper and the Play/launcher surfaces behind it, so those keep
+ * an opaque tile; without one the mark disappears on any light wallpaper. iOS
+ * flattens alpha to black, which would work, but apple-touch-icon is kept on
+ * the same tile so the two installed surfaces match.
  */
-const BG = { r: 0x1b, g: 0x4d, b: 0xe4, alpha: 1 };
-/** The mark itself, on that tile. White, so the line art reads as the figure. */
+const TRANSPARENT = { r: 0, g: 0, b: 0, alpha: 0 };
+/** Opaque tile for the installed-app icons. Matches manifest background_color. */
+const TILE = { r: 0x0b, g: 0x0b, b: 0x0c, alpha: 1 };
+/** The mark itself. White, so the line art reads as the figure. */
 const INK = { r: 0xff, g: 0xff, b: 0xff };
 /** Alpha source. Ink colour comes from INK; only this file's alpha is read. */
 const SRC = 'public/brand/biyy-mark-white.png';
@@ -127,7 +132,7 @@ async function loadMask() {
  * White mask over the accent tile at `size`, with `padding` as a fraction of
  * the tile so the glyph is not flush against the edges at larger sizes.
  */
-async function tile(mask, size, padding = 0) {
+async function tile(mask, size, padding = 0, background = TRANSPARENT) {
   const inner = Math.max(1, Math.round(size * (1 - 2 * padding)));
   const rgba = Buffer.alloc(WORK * WORK * 4);
   for (let i = 0; i < WORK * WORK; i++) {
@@ -142,7 +147,7 @@ async function tile(mask, size, padding = 0) {
     .toBuffer();
 
   const offset = Math.round((size - inner) / 2);
-  return sharp({ create: { width: size, height: size, channels: 4, background: BG } })
+  return sharp({ create: { width: size, height: size, channels: 4, background } })
     .composite([{ input: glyph, left: offset, top: offset }])
     .png({ compressionLevel: 9, palette: false })
     .toBuffer();
@@ -197,9 +202,10 @@ const PNG_TARGETS = [
   { path: 'public/brand/biyy-icon-24.png', size: 24, radius: 10, padding: 0 },
   { path: 'public/brand/biyy-icon-32.png', size: 32, radius: 8, padding: 0 },
   { path: 'public/brand/biyy-icon-48.png', size: 48, radius: 4, padding: 0 },
-  { path: 'public/brand/biyy-icon-192.png', size: 192, radius: 0, padding: 0.04 },
-  { path: 'public/brand/biyy-icon-512.png', size: 512, radius: 0, padding: 0.06 },
-  { path: 'public/brand/apple-touch-icon.png', size: 180, radius: 0, padding: 0.08 },
+  // The three installed-app surfaces, on an opaque tile. See TILE above.
+  { path: 'public/brand/biyy-icon-192.png', size: 192, radius: 0, padding: 0.1, bg: TILE },
+  { path: 'public/brand/biyy-icon-512.png', size: 512, radius: 0, padding: 0.12, bg: TILE },
+  { path: 'public/brand/apple-touch-icon.png', size: 180, radius: 0, padding: 0.14, bg: TILE },
 ];
 
 const base = await loadMask();
@@ -216,8 +222,8 @@ for (const { size, radius, solid: useSolid } of ICO_SIZES) {
 await writeFile('public/favicon.ico', ico(entries));
 console.log(`public/favicon.ico  ${ICO_SIZES.map((s) => s.size).join('/')}`);
 
-for (const { path, size, radius, padding, solid: useSolid } of PNG_TARGETS) {
+for (const { path, size, radius, padding, bg, solid: useSolid } of PNG_TARGETS) {
   const mask = useSolid ? solid : dilate(base, WORK, radius);
-  await writeFile(path, await tile(mask, size, padding));
+  await writeFile(path, await tile(mask, size, padding, bg));
   console.log(`${path}  ${size}x${size}`);
 }
