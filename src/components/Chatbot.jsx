@@ -134,7 +134,11 @@ export default function Chatbot() {
   return (
     <>
       {/* Launcher ---------------------------------------------------- */}
-      <div className="consent-offset fixed bottom-5 right-5 z-[70] flex flex-col items-end gap-3 md:bottom-7 md:right-7">
+      {/* pointer-events-none on the column: the hidden nudge bubble still takes
+          up layout space, so this wrapper is roughly 240x148 and sits on top of
+          the back-to-top button (z-65). Transparent to the pointer, the two
+          real controls below take their clicks back. */}
+      <div className="consent-offset pointer-events-none fixed bottom-5 right-5 z-[70] flex flex-col items-end gap-3 md:bottom-7 md:right-7">
         <div
           inert={!nudge || open}
           className={`origin-bottom-right transition-all duration-500 ease-smooth ${
@@ -157,7 +161,7 @@ export default function Chatbot() {
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? t('chat.close') : t('chat.open')}
           aria-expanded={open}
-          className="group relative flex h-14 w-14 items-center justify-center border border-ink/10 bg-white shadow-[0_18px_44px_-22px_rgba(11,11,12,0.65)] transition-all duration-500 ease-smooth hover:-translate-y-1 active:scale-95"
+          className="group pointer-events-auto relative flex h-14 w-14 items-center justify-center border border-ink/10 bg-white shadow-[0_18px_44px_-22px_rgba(11,11,12,0.65)] transition-all duration-500 ease-smooth hover:-translate-y-1 active:scale-95"
         >
           <span
             className={`absolute inset-0 -z-10 border border-ink/20 transition-all duration-700 ease-smooth ${
