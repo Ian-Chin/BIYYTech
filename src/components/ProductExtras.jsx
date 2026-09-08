@@ -8,9 +8,9 @@ import { useLocale } from '@/lib/i18n';
 /**
  * The sections a product only gets if it carries the data for them.
  *
- * Dashboards & Databases and Website & Integrations both do, and they are
+ * Dashboards & Databases and Website Integration both do, and they are
  * asked different questions: one about schema, migration and what a screen is
- * for, the other about what the site reads and how deep Shopify goes. So the
+ * for, the other about ranking and how far the work reaches on Shopify. So the
  * headings are looked up under the namespace the product names in `extrasKey`
  * (`web` by default) rather than hard-coded. Each block below returns null
  * when its field is missing, so a product without them renders nothing.

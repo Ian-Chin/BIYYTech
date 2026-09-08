@@ -99,7 +99,7 @@ export const terms = merge(enTerms, {
     {
       heading: 'Ketersediaan',
       paragraphs: [
-        'Ciri yang diterangkan untuk Dashboard & Database serta Laman Web & Integrasi mencerminkan apa yang produk itu buat sekarang. Di mana sesuatu masih dalam pelan dan belum dihantar, kami nyatakan pada halaman berkenaan.',
+        'Ciri yang diterangkan untuk Dashboard & Database serta Integrasi Laman Web mencerminkan apa yang produk itu buat sekarang. Di mana sesuatu masih dalam pelan dan belum dihantar, kami nyatakan pada halaman berkenaan.',
       ],
     },
     {

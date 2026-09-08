@@ -164,27 +164,31 @@ export const products = [
     ],
   },
   /* ------------------------------------------------------------------------ */
-  /*  Website & integrations                                                   */
+  /*  Website Integration                                                      */
   /*                                                                           */
   /*  Sold as a project rather than a licensed seat, so `service: true` moves   */
   /*  its structured data from SoftwareApplication-with-an-Offer to a plain     */
   /*  Service node: nothing here has a list price to publish. The extra keys    */
-  /*  below (connections, platforms, stages, limits, faqs) are rendered by      */
-  /*  ProductExtras and skipped by every product that does not carry them.      */
+  /*  below (platforms, stages, limits, faqs) are rendered by ProductExtras     */
+  /*  and skipped by every product that does not carry them. It deliberately    */
+  /*  carries no `connections` table: this product is a website built around a  */
+  /*  business and ranked, not a database wiring job. Connecting the site to a  */
+  /*  BIYY dashboard is available and answered in one FAQ, not sold as the      */
+  /*  spine of the page.                                                        */
   /* ------------------------------------------------------------------------ */
   {
     slug: 'website',
     index: '02',
     status: 'Available now',
     service: true,
-    name: 'Website & Integrations',
+    name: 'Website Integration',
     short: 'Website',
-    tagline: 'A new website for your business, wired into the database that runs it',
-    audience: 'SMEs launching or replacing a website',
+    tagline: 'A website built around your business, and ranked where your customers are looking',
+    audience: 'Businesses launching or replacing a website',
     menuImage: '/media/img/web-listing.jpg',
-    headline: 'A new website that sells, answers and stays right without anyone touching it.',
+    headline: 'A website built for your business, on the first page, ahead of your competitors.',
     summary:
-      'We design and build your new website, then wire it into your BIYY database so it stops being a brochure. Customers see real prices and real availability, they order and enquire while you are closed, and what they send lands on your dashboard instead of an inbox nobody owns. Three weeks from the first conversation, one flat project fee, and the domain, repository and hosting in your name from the first day.',
+      'We design and build your website around what you actually sell and how your customers actually ask for it, in your words rather than a template. SEO, GEO and AEO go into every page as it is built, so you come up on the first page of Google, win the answer box, and get named by ChatGPT, Gemini and AI Overviews instead of the shop down the road. Three weeks from the first conversation, one flat project fee, and the domain, repository and hosting in your name from the first day.',
     href: '/products/website',
     /* Photographed for this product rather than borrowed from another: a
        counter with the shop's own site open on it, a listing being shot for
@@ -194,13 +198,12 @@ export const products = [
     poster: '/media/img/inventory-shelves.jpg',
     band: '/media/img/web-listing.jpg',
     bullets: [
-      'A new site designed and built for your business, not a template with your logo dropped in',
+      'Designed and built around your business, not a template with your logo dropped in',
       'Copy written with you in one session, out of what customers actually ask you',
-      'Every page a customer needs: what you sell, where you are, and how to reach you',
+      'SEO, GEO and AEO built into every page, so you rank on Google and get quoted by ChatGPT, Gemini and AI Overviews',
+      'Structured data, a sitemap, clean URLs and a real page per outlet with its own address and hours',
+      'Written for the searches your trade gets in your area, not generic industry filler',
       'Static pages served from a CDN, with no CMS and no plugins to patch',
-      'Tested on a mid-range Android over mobile data, because that is what your customers hold',
-      'Prices, availability, staff and opening hours come from your database and change when your operations do',
-      'Structured data, a sitemap, clean URLs and a real page per outlet with its own hours',
       'Domain, DNS, repository and hosting in your name from the first day of the build',
     ],
     features: [
@@ -210,18 +213,18 @@ export const products = [
         image: '/media/img/web-counter.jpg',
       },
       {
-        title: 'Pages that read the live database',
-        body: 'Price, availability and lead time per line and per outlet, read from the same tables your dashboard runs on. The site cannot advertise something that changed this morning.',
+        title: 'Every page a customer actually needs',
+        body: 'What you sell and what it costs, where each outlet is and when it opens, who you are and how to reach you. Written out as pages a customer can finish rather than a scroll of stock photography with a contact form at the bottom.',
         image: '/media/img/web-listing.jpg',
       },
       {
-        title: 'Forms that write records, not emails',
-        body: 'An order or an enquiry arrives as a row in your database with the page it came from attached, ready on the dashboard, instead of as one more message in a shared inbox.',
+        title: 'Enquiries that reach a person',
+        body: 'A form that lands where someone will see it, with the page it came from attached, so you know whether they were reading about a price, a service or an outlet before they wrote to you.',
         image: '/media/img/data-dashboard.jpg',
       },
       {
-        title: 'A site that cannot drift',
-        body: 'Opening hours, prices and outlet details are read at build time from your own data. Nobody has to remember to update the website, because nobody updates the website.',
+        title: 'Built to rank, and to be quoted by AI',
+        body: 'SEO, GEO and AEO on every page: schema markup, clean URLs, an outlet page per location, pages that load fast on a cheap phone, and answers written the way customers ask the question. That is what puts you on the first page of Google, and what gets your name returned when someone asks ChatGPT, Gemini or an AI Overview who to use.',
         image: '/media/img/web-workshop.jpg',
       },
     ],
@@ -233,87 +236,49 @@ export const products = [
        would contradict every figure on the rest of the site. */
     value: [
       {
-        title: 'Customers can buy and ask at 11pm',
-        body: 'The site takes the order or the enquiry while you are closed, and it is waiting as a record in the same system your team opens in the morning. No voicemail to work through, nothing retyped.',
+        title: 'First page, ahead of your competitors',
+        body: 'SEO for Google, AEO for the answer box and voice search, GEO for ChatGPT, Gemini and AI Overviews. All three are built into the site itself — schema, structure, speed and answers — so when someone searches your trade in your area, the business they find and the name the AI reads back is yours, not the one down the road.',
+      },
+      {
+        title: 'Written the way your customers ask',
+        body: 'Answer engines quote pages that answer the question. So the copy comes out of two hours with whoever takes your calls, in the words customers use rather than the words your industry uses, and every page carries the question it exists to settle.',
       },
       {
         title: 'The phone stops ringing for the same six questions',
-        body: 'Opening hours, price, whether you have it, whether you take walk-ins. Answered on the page and drawn from your own database, so the answer is right today rather than right in 2023.',
-      },
-      {
-        title: 'A site that cannot go stale',
-        body: 'Prices, staff, availability and holiday hours come out of BIYY. Nobody has to remember to update the website, because nobody updates the website.',
-      },
-      {
-        title: 'Found by the people already looking for you',
-        body: 'Structured data, clean URLs and a real page per outlet with its own address and hours. The structural half of search, done once and handed over rather than rented back to you monthly.',
+        body: 'Opening hours, price, whether you have it, whether you take walk-ins, where to park. Answered on the page, so a customer who would have called reads it instead and a customer who would have given up does not.',
       },
       {
         title: 'Fast on a cheap phone',
-        body: 'Tested on a mid-range Android over mobile data. A site that takes eight seconds to load has already lost the customer standing outside your shop deciding whether to come in.',
+        body: 'Tested on a mid-range Android over mobile data, which is also how Google measures you. A site that takes eight seconds to load has already lost the customer standing outside your shop deciding whether to come in.',
       },
       {
         title: 'No retainer, and no landlord',
-        body: 'A flat project fee, hosting inside the per-outlet price you already pay, and the domain, repository and hosting account in your name from day one. Nothing to renegotiate later.',
+        body: 'A flat project fee, and the domain, repository and hosting account in your name from day one. The search work is built in and handed over rather than billed monthly, so there is nothing to renegotiate later.',
       },
     ],
 
-    /* The half a web studio cannot do and a software vendor will not. */
-    connections: [
-      {
-        surface: 'Catalogue pages',
-        reads: 'Live price, availability and lead time, per line and per outlet',
-        writes: null,
-      },
-      {
-        surface: 'Online orders',
-        reads: 'Availability, so the site cannot sell what changed this morning',
-        writes: 'Creates the order record and opens the job at the right outlet',
-      },
-      {
-        surface: 'Enquiry form',
-        reads: null,
-        writes: 'Lands as a record on the dashboard with the page it came from attached',
-      },
-      {
-        surface: 'Customer portal',
-        reads: 'That customer’s own records, and nothing belonging to anyone else',
-        writes: 'Logs what they changed, with a timestamp and their name on it',
-      },
-      {
-        surface: 'Outlet pages',
-        reads: 'Address, trading hours and holiday closures from your own tables',
-        writes: null,
-      },
-      {
-        surface: 'WhatsApp',
-        reads: 'Order and enquiry status',
-        writes: 'Logs the message and the customer’s reply against the record',
-      },
-    ],
-
-    /* What an integration can actually reach, by platform. Asked on every call,
-       so it is answered here rather than in a quote three weeks later. */
+    /* Where the work lands, by platform. Asked on every call, so it is answered
+       here rather than in a quote three weeks later. */
     platforms: [
       {
-        name: 'Custom build',
-        depth: 'Full',
-        body: 'Prices and availability render on the server, the way they do on this site. Nothing loads twice and nothing flashes stale.',
+        name: 'New custom build',
+        depth: 'Recommended',
+        body: 'Pages rendered ahead of time and served from a CDN, the way this site is. Fastest, cheapest to run, and the only option where the search work reaches every part of the page.',
       },
       {
         name: 'WordPress',
         depth: 'Full',
-        body: 'A plugin written against your theme. We will also tell you honestly whether the theme is worth keeping before we write it.',
+        body: 'We work on your theme directly: schema, structure, speed and copy. We will also tell you honestly whether the theme is worth keeping before we start.',
       },
       {
         name: 'Shopify',
-        depth: 'Two-way',
-        body: 'Catalogue and availability sync both directions. Checkout stays in Shopify, which is where it belongs.',
+        depth: 'Full',
+        body: 'Product, collection and outlet pages restructured and marked up. Checkout stays in Shopify, which is where it belongs.',
       },
       {
         name: 'Wix, Squarespace, GoDaddy',
-        depth: 'Embed only',
-        body: 'A form and a live badge. The rest of the page cannot be reached from outside, and no amount of work on our side changes that.',
+        depth: 'Limited',
+        body: 'We can fix the copy, the headings and what little markup they expose. The rest of the page is out of reach, and no amount of work on our side changes that. Usually the point where rebuilding costs less than fighting it.',
       },
     ],
 
@@ -338,55 +303,64 @@ export const products = [
       {
         step: '03',
         when: 'Week 2',
-        title: 'Wiring',
-        body: 'Prices, availability and forms connect to your BIYY database. We test by breaking it: orders for something that changed an hour ago, forms submitted twice.',
-        owner: 'Us, on your data',
+        title: 'Search and answers',
+        body: 'The SEO, GEO and AEO pass: schema on every page, a page per outlet, titles and headings written against the searches your trade actually gets in your area, and answer blocks written the way customers ask the question. Speed measured on a mid-range Android, not on our laptops.',
+        owner: 'Us, against real searches',
       },
       {
         step: '04',
         when: 'Week 3',
         title: 'Launch',
-        body: 'DNS cuts over outside trading hours. The old site stays reachable for a fortnight, and the repository is handed to you on the day.',
+        body: 'DNS cuts over outside trading hours. Schema and sitemap validated, Search Console and Bing connected, AI crawlers let in. The old site stays reachable for a fortnight, and the repository is handed to you on the day.',
         owner: 'Your domain, your repo',
       },
     ],
 
     limits: [
-      'Marketing retainers, ad management or monthly SEO reports. We build the structural half once and hand it over.',
+      'Paid ads, social media management and monthly retainer reports. SEO, GEO and AEO are built into the site and handed over, not rented back to you every month.',
       'Logos, brand identity and social accounts. We will work alongside your designer, or name one who is better at this than we are.',
-      'Cross-border storefronts with multi-currency tax rules and six-figure catalogues. Buy Shopify for that and let us wire BIYY into it.',
-      'Any percentage of what the site sells. A project fee, and hosting inside the monthly outlet price you already pay.',
-      'Rebuilding a site that works. If yours is sound we integrate with it, quote less, and say so on the first call.',
+      'Cross-border storefronts with multi-currency tax rules and six-figure catalogues. Buy Shopify for that and let us do the search work on top of it.',
+      'Any percentage of what the site sells. A flat project fee, and hosting quoted with it.',
+      'Rebuilding a site that works. If yours is sound we improve the one you have, quote less, and say so on the first call.',
+      'Guarantees of a specific position by a specific date. Anyone promising you rank one in thirty days is selling you something. We build the site the way the engines reward and we tell you what we changed.',
     ],
 
     faqs: [
       {
-        q: 'Do I need to be a BIYY customer to get a website?',
-        a: 'Effectively yes. We take website work where there is a database to wire it into, either one you already run or one going live in the same quarter. A brochure site with nothing behind it is not something we do better than a local studio, and we would rather tell you that than take the work.',
+        q: 'Do we need to be a BIYY customer to get a website?',
+        a: 'No. This is a website project on its own terms: your business, your pages, your ranking. If you already run a BIYY dashboard the site can read from it, and if you do not, nothing on this page depends on that.',
       },
       {
         q: 'What does a website build cost?',
-        a: 'A flat project fee, quoted after the content session once the page count and the number of wired surfaces are known, plus hosting folded into your existing monthly per-outlet price. There is no per-transaction charge and no fee tied to what the site sells.',
+        a: 'A flat project fee, quoted after the content session once the page count and the number of outlets are known, with hosting quoted alongside it. There is no per-transaction charge, no fee tied to what the site sells, and no monthly search retainer.',
+      },
+      {
+        q: 'Do you do SEO?',
+        a: 'Yes, and the two things that now sit beside it: GEO, so generative engines such as ChatGPT and Gemini can read and cite you, and AEO, so you win the answer box and voice results. All three are built into the site rather than sold as a monthly retainer — schema markup, clean URLs, a real page per outlet, fast pages on a cheap phone, and answers written the way your customers ask the question. That is what gets you onto the first page and ahead of the competitor two doors down. What we do not do is buy ads or post a report every month.',
       },
       {
         q: 'Why not just build it ourselves on Wix or Squarespace?',
-        a: 'For a pure brochure site, do. It will be cheaper and it will be fine. The reason to have us build it is the half those builders cannot reach: prices and availability that are live rather than typed in, orders and enquiries that land in the system your team already runs the day from, and pages that keep themselves current after everyone has stopped caring about the website. If none of that applies to your business, we will say so on the first call.',
+        a: 'If all you need is an address and a phone number online, do. It will be cheaper and it will be fine. The reason to have us build it is everything those builders leave you to do yourself and most people never do: pages written around what you actually sell, structure and schema the engines can read, speed on a cheap phone, and answers written so Google, ChatGPT and Gemini can quote them. A template site that nobody can find is not a cheap website, it is a website that does not work.',
       },
       {
         q: 'Can we edit the site ourselves?',
-        a: 'The things that change weekly, prices, availability, staff and opening hours, change in BIYY and the site follows within a minute. Prose lives in one file per page and we show you how to edit it. There is no CMS, because a CMS is one more system to patch and one more password to lose.',
+        a: 'Yes. Prose lives in one file per page and we show you how to edit it, and we tell you which parts — page titles, headings, outlet details, the answer blocks — carry the ranking, so an edit does not quietly undo the search work. There is no CMS, because a CMS is one more system to patch and one more password to lose.',
       },
       {
         q: 'Who owns the site when it is finished?',
         a: 'You do. Domain, DNS, repository and hosting account are in your name from the first day of the build rather than transferred at the end. Leaving costs nothing and moves nothing.',
       },
       {
-        q: 'We already have a website we like. Can it still connect to BIYY?',
-        a: 'Usually. How deeply depends on what it is built on. Custom sites and WordPress integrate fully, Shopify syncs two ways, and hosted builders such as Wix accept an embed and nothing deeper. We check before quoting rather than after.',
+        q: 'We already have a website we like. Can you just get it ranking?',
+        a: 'Often, and how far we can get depends on what it was built on. WordPress and Shopify we work on directly and fully. Hosted builders such as Wix expose so little that we can fix the copy and the headings and little else, and at that point rebuilding usually costs less than fighting the platform. We check before quoting rather than after.',
       },
       {
         q: 'Do you build in Chinese as well as English?',
-        a: 'Yes. English and Chinese as standard, Malay on request. One translation file per language, so an opening time or a price is written once and stays correct in all of them.',
+        a: 'Yes. English and Chinese as standard, Malay on request. Each language gets its own pages and its own search work, because the phrase a customer types in Malay is not a translation of the phrase they type in English.',
+      },
+      {
+        q: 'How long before we see results in search?',
+        a: 'The structural half — schema, speed, sitemap, indexing — lands the week the site goes live. Positions move over the following weeks as the engines recrawl and settle, faster on searches with your town in them, slower on the broad ones your national competitors are also paying for. Anyone who gives you a date is guessing.',
       },
     ],
   },

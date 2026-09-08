@@ -30,7 +30,7 @@ export const PAGE_META = {
   },
   contact: {
     en: {
-      title: 'Book a walkthrough',
+      title: 'Book a free demo',
       description:
         'Thirty minutes on your floor or front desk with your own spreadsheets open. We map what gets recorded and where it goes, and tell you straight whether BIYY Tech is worth it.',
     },

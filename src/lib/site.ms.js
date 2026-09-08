@@ -174,27 +174,25 @@ const msProducts = [
       },
     ],
   },
-  /* `connections` carries nulls in the English source, and `zip` merges by index
-     with spread, so a translated row must repeat `reads: null` / `writes: null`
-     rather than omit it. Omitting the key would let the English string survive
-     the merge and print inside a Malay table. */
+  /* Website Integration. No `connections` block in the English source any more,
+     so none here either: this product is a site built around the business and
+     ranked, not a database wiring job. */
   {
     status: 'Sudah tersedia',
-    name: 'Laman Web & Integrasi',
+    name: 'Integrasi Laman Web',
     short: 'Laman Web',
-    tagline: 'Laman web baharu untuk perniagaan anda, disambung terus ke database yang menjalankannya',
-    audience: 'PKS yang melancarkan atau menggantikan laman web',
-    headline: 'Laman web baharu yang menjual, menjawab dan kekal betul tanpa disentuh sesiapa.',
+    tagline: 'Laman web dibina mengelilingi perniagaan anda, dan diletakkan di tempat pelanggan anda sedang mencari',
+    audience: 'Perniagaan yang melancarkan atau menggantikan laman web',
+    headline: 'Laman web dibina untuk perniagaan anda, atas muka surat pertama, di depan pesaing anda.',
     summary:
-      'Kami reka dan bina laman web baharu anda, kemudian sambungkannya ke database BIYY anda supaya ia berhenti jadi risalah. Pelanggan nampak harga sebenar dan ketersediaan sebenar, mereka memesan dan bertanya semasa anda tutup, dan apa yang mereka hantar mendarat pada dashboard anda, bukan dalam peti masuk yang tiada tuan. Tiga minggu dari perbualan pertama, satu yuran projek tetap, dan domain, repositori serta hosting atas nama anda dari hari pertama.',
+      'Kami reka dan bina laman web anda mengelilingi apa yang anda betul-betul jual dan cara pelanggan betul-betul bertanya, dalam ayat anda sendiri dan bukan template. SEO, GEO dan AEO dimasukkan ke dalam setiap halaman semasa ia dibina, jadi anda naik ke muka surat pertama Google, menang kotak jawapan, dan nama anda yang disebut oleh ChatGPT, Gemini dan AI Overviews, bukan kedai sebelah. Tiga minggu dari perbualan pertama, satu yuran projek tetap, dan domain, repositori serta hosting atas nama anda dari hari pertama.',
     bullets: [
-      'Laman baharu direka dan dibina untuk perniagaan anda, bukan template dengan logo anda dilekatkan',
+      'Direka dan dibina mengelilingi perniagaan anda, bukan template dengan logo anda dilekatkan',
       'Teks ditulis bersama anda dalam satu sesi, daripada apa yang pelanggan betul-betul tanya',
-      'Setiap halaman yang pelanggan perlukan: apa yang anda jual, di mana anda berada, dan bagaimana hendak hubungi anda',
+      'SEO, GEO dan AEO dibina ke dalam setiap halaman, jadi anda naik ranking di Google dan dipetik oleh ChatGPT, Gemini serta AI Overviews',
+      'Data berstruktur, peta laman, URL bersih dan satu halaman sebenar bagi setiap cawangan dengan alamat dan waktunya',
+      'Ditulis untuk carian yang bidang anda betul-betul terima di kawasan anda, bukan ayat industri generik',
       'Halaman statik dihidang daripada CDN, tanpa CMS dan tanpa plugin untuk ditampal',
-      'Diuji atas telefon Android pertengahan pada data mudah alih, sebab itulah yang dipegang pelanggan anda',
-      'Harga, ketersediaan, staf dan waktu buka datang daripada database anda dan berubah bila operasi anda berubah',
-      'Data berstruktur, peta laman, URL bersih dan satu halaman sebenar bagi setiap cawangan dengan waktunya sendiri',
       'Domain, DNS, repositori dan akaun hosting atas nama anda dari hari pertama pembinaan',
     ],
     features: [
@@ -203,96 +201,60 @@ const msProducts = [
         body: 'Kami reka halaman mengelilingi apa yang anda betul-betul jual dan cara pelanggan betul-betul bertanya. Ayatnya datang daripada dua jam bersama sesiapa yang menjawab telefon anda, jadi laman itu berbunyi seperti jurujual terbaik anda pada hari terbaiknya.',
       },
       {
-        title: 'Halaman yang membaca database hidup',
-        body: 'Harga, ketersediaan dan lead time setiap barisan dan setiap cawangan, dibaca daripada jadual yang sama dengan dashboard anda. Laman itu tidak boleh mengiklankan sesuatu yang berubah pagi tadi.',
+        title: 'Setiap halaman yang pelanggan betul-betul perlukan',
+        body: 'Apa yang anda jual dan berapa harganya, di mana setiap cawangan dan bila ia buka, siapa anda dan bagaimana hendak hubungi anda. Ditulis sebagai halaman yang pelanggan boleh habiskan, bukan skrol gambar stok dengan borang hubungi di bawahnya.',
       },
       {
-        title: 'Borang yang menulis rekod, bukan e-mel',
-        body: 'Pesanan atau pertanyaan tiba sebagai satu baris dalam database anda berserta halaman asalnya, sedia atas dashboard, bukan sebagai satu lagi mesej dalam peti masuk kongsi.',
+        title: 'Pertanyaan yang sampai kepada seorang manusia',
+        body: 'Borang yang mendarat di tempat seseorang akan nampak, berserta halaman asalnya, jadi anda tahu sama ada mereka sedang membaca tentang harga, perkhidmatan atau cawangan sebelum mereka menulis kepada anda.',
       },
       {
-        title: 'Laman yang tidak boleh hanyut',
-        body: 'Waktu buka, harga dan butiran cawangan dibaca semasa binaan daripada data anda sendiri. Tiada siapa perlu ingat untuk kemas kini laman web, sebab tiada siapa mengemas kini laman web.',
+        title: 'Dibina untuk naik ranking, dan untuk dipetik AI',
+        body: 'SEO, GEO dan AEO pada setiap halaman: penandaan schema, URL bersih, satu halaman bagi setiap cawangan, halaman yang laju atas telefon murah, dan jawapan ditulis mengikut cara pelanggan bertanya. Itulah yang membawa anda ke muka surat pertama Google, dan yang membuat nama anda dikeluarkan bila seseorang tanya ChatGPT, Gemini atau AI Overview siapa yang patut digunakan.',
       },
     ],
     value: [
       {
-        title: 'Pelanggan boleh beli dan bertanya pada pukul 11 malam',
-        body: 'Laman itu menerima pesanan atau pertanyaan semasa anda tutup, dan ia menunggu sebagai rekod dalam sistem yang sama yang dibuka pasukan anda pada waktu pagi. Tiada pesanan suara untuk diselak, tiada apa yang ditaip semula.',
+        title: 'Muka surat pertama, di depan pesaing anda',
+        body: 'SEO untuk Google, AEO untuk kotak jawapan dan carian suara, GEO untuk ChatGPT, Gemini dan AI Overviews. Ketiga-tiganya dibina ke dalam laman itu sendiri — schema, struktur, kelajuan dan jawapan — jadi bila seseorang mencari bidang anda di kawasan anda, perniagaan yang mereka jumpa dan nama yang dibacakan AI ialah nama anda, bukan kedai sebelah.',
+      },
+      {
+        title: 'Ditulis mengikut cara pelanggan anda bertanya',
+        body: 'Enjin jawapan memetik halaman yang betul-betul menjawab soalan. Jadi teksnya datang daripada dua jam bersama sesiapa yang menjawab telefon anda, dalam perkataan yang pelanggan guna dan bukan perkataan industri anda, dan setiap halaman membawa satu soalan yang ia wujud untuk selesaikan.',
       },
       {
         title: 'Telefon berhenti berdering untuk enam soalan yang sama',
-        body: 'Waktu buka, harga, ada stok atau tidak, terima walk-in atau tidak. Dijawab atas halaman dan diambil daripada database anda sendiri, jadi jawapannya betul hari ini, bukan betul pada 2023.',
-      },
-      {
-        title: 'Laman yang tidak boleh jadi basi',
-        body: 'Harga, staf, ketersediaan dan waktu cuti datang daripada BIYY. Tiada siapa perlu ingat untuk kemas kini laman web, sebab tiada siapa mengemas kini laman web.',
-      },
-      {
-        title: 'Dijumpai oleh orang yang memang sedang mencari anda',
-        body: 'Data berstruktur, URL bersih dan satu halaman sebenar bagi setiap cawangan dengan alamat dan waktunya. Separuh struktur dalam carian, disiapkan sekali dan diserahkan kepada anda, bukan disewakan balik bulanan.',
+        body: 'Waktu buka, harga, ada stok atau tidak, terima walk-in atau tidak, tempat letak kereta. Dijawab atas halaman, jadi pelanggan yang sepatutnya menelefon membacanya, dan pelanggan yang sepatutnya berputus asa tidak jadi berputus asa.',
       },
       {
         title: 'Laju atas telefon murah',
-        body: 'Diuji atas Android pertengahan pada data mudah alih. Laman yang mengambil lapan saat untuk dimuatkan sudah pun kehilangan pelanggan yang berdiri di luar kedai anda menimbang sama ada hendak masuk.',
+        body: 'Diuji atas Android pertengahan pada data mudah alih, dan itu juga cara Google mengukur anda. Laman yang mengambil lapan saat untuk dimuatkan sudah pun kehilangan pelanggan yang berdiri di luar kedai anda menimbang sama ada hendak masuk.',
       },
       {
         title: 'Tiada bayaran bulanan, dan tiada tuan tanah',
-        body: 'Satu yuran projek tetap, hosting termasuk dalam harga bulanan setiap cawangan yang anda sudah bayar, dan domain, repositori serta akaun hosting atas nama anda dari hari pertama. Tiada apa untuk dirunding semula kemudian.',
-      },
-    ],
-    connections: [
-      {
-        surface: 'Halaman katalog',
-        reads: 'Harga, ketersediaan dan lead time secara langsung, setiap barisan dan setiap cawangan',
-        writes: null,
-      },
-      {
-        surface: 'Pesanan dalam talian',
-        reads: 'Ketersediaan, supaya laman tidak boleh menjual apa yang berubah pagi tadi',
-        writes: 'Mencipta rekod pesanan dan membuka kerja di cawangan yang betul',
-      },
-      {
-        surface: 'Borang pertanyaan',
-        reads: null,
-        writes: 'Mendarat sebagai rekod atas dashboard berserta halaman asalnya',
-      },
-      {
-        surface: 'Portal pelanggan',
-        reads: 'Rekod pelanggan itu sendiri, dan tiada apa milik orang lain',
-        writes: 'Merekod apa yang mereka ubah, dengan cap masa dan nama mereka',
-      },
-      {
-        surface: 'Halaman cawangan',
-        reads: 'Alamat, waktu urus niaga dan penutupan cuti daripada jadual anda sendiri',
-        writes: null,
-      },
-      {
-        surface: 'WhatsApp',
-        reads: 'Status pesanan dan pertanyaan',
-        writes: 'Merekod mesej dan balasan pelanggan pada rekod berkenaan',
+        body: 'Satu yuran projek tetap, dan domain, repositori serta akaun hosting atas nama anda dari hari pertama. Kerja carian dibina ke dalam laman dan diserahkan kepada anda, bukan dibil setiap bulan, jadi tiada apa untuk dirunding semula kemudian.',
       },
     ],
     platforms: [
       {
-        name: 'Binaan tersuai',
-        depth: 'Penuh',
-        body: 'Harga dan ketersediaan dipaparkan di server, sama seperti laman ini. Tiada apa dimuatkan dua kali dan tiada apa berkelip dengan data lapuk.',
+        name: 'Binaan tersuai baharu',
+        depth: 'Disyorkan',
+        body: 'Halaman dijana lebih awal dan dihidang daripada CDN, sama seperti laman ini. Paling laju, paling murah untuk dijalankan, dan satu-satunya pilihan di mana kerja carian menjangkau setiap bahagian halaman.',
       },
       {
         name: 'WordPress',
         depth: 'Penuh',
-        body: 'Satu plugin ditulis khusus untuk tema anda. Kami juga akan beritahu terus terang sama ada tema itu berbaloi dikekalkan sebelum kami menulisnya.',
+        body: 'Kami bekerja terus atas tema anda: schema, struktur, kelajuan dan teks. Kami juga akan beritahu terus terang sama ada tema itu berbaloi dikekalkan sebelum kami mula.',
       },
       {
         name: 'Shopify',
-        depth: 'Dua hala',
-        body: 'Katalog dan ketersediaan disegerakkan dua hala. Pembayaran kekal dalam Shopify, dan di situlah tempatnya.',
+        depth: 'Penuh',
+        body: 'Halaman produk, koleksi dan cawangan distruktur semula dan ditanda. Pembayaran kekal dalam Shopify, dan di situlah tempatnya.',
       },
       {
         name: 'Wix, Squarespace, GoDaddy',
-        depth: 'Benam sahaja',
-        body: 'Satu borang dan satu penanda langsung. Selebihnya halaman itu tidak boleh dicapai dari luar, dan berapa banyak kerja pun di pihak kami tidak mengubahnya.',
+        depth: 'Terhad',
+        body: 'Kami boleh betulkan teks, tajuk dan sedikit penandaan yang mereka dedahkan. Selebihnya halaman itu di luar jangkauan, dan berapa banyak kerja pun di pihak kami tidak mengubahnya. Biasanya inilah titik di mana membina semula lebih murah daripada melawan platform itu.',
       },
     ],
     stages: [
@@ -310,52 +272,61 @@ const msProducts = [
       },
       {
         when: 'Minggu 2',
-        title: 'Penyambungan',
-        body: 'Harga, ketersediaan dan borang disambung ke database BIYY anda. Kami uji dengan cara merosakkannya: pesanan untuk barang yang berubah sejam lalu, borang dihantar dua kali.',
-        owner: 'Kami, atas data anda',
+        title: 'Carian dan jawapan',
+        body: 'Pusingan SEO, GEO dan AEO: schema pada setiap halaman, satu halaman bagi setiap cawangan, tajuk dan pengepala ditulis terhadap carian yang bidang anda betul-betul terima di kawasan anda, dan blok jawapan ditulis mengikut cara pelanggan bertanya. Kelajuan diukur atas Android pertengahan, bukan atas komputer riba kami.',
+        owner: 'Kami, terhadap carian sebenar',
       },
       {
         when: 'Minggu 3',
         title: 'Pelancaran',
-        body: 'DNS bertukar di luar waktu urus niaga. Laman lama kekal boleh dicapai selama dua minggu, dan repositori diserahkan kepada anda pada hari itu.',
+        body: 'DNS bertukar di luar waktu urus niaga. Schema dan peta laman disahkan, Search Console dan Bing disambung, perayap AI dibenarkan masuk. Laman lama kekal boleh dicapai selama dua minggu, dan repositori diserahkan kepada anda pada hari itu.',
         owner: 'Domain anda, repo anda',
       },
     ],
     limits: [
-      'Khidmat pemasaran bulanan, pengurusan iklan atau laporan SEO bulanan. Kami bina separuh strukturnya sekali dan serahkan kepada anda.',
+      'Iklan berbayar, pengurusan media sosial dan laporan bulanan. SEO, GEO dan AEO dibina ke dalam laman dan diserahkan kepada anda, bukan disewakan balik setiap bulan.',
       'Logo, identiti jenama dan akaun media sosial. Kami boleh bekerjasama dengan pereka anda, atau namakan seseorang yang lebih mahir daripada kami.',
-      'Kedai rentas sempadan dengan peraturan cukai berbilang mata wang dan katalog enam angka. Beli Shopify untuk itu dan biar kami sambungkan BIYY ke dalamnya.',
-      'Sebarang peratusan daripada jualan laman itu. Satu yuran projek, dan hosting dalam harga bulanan setiap cawangan yang anda sudah bayar.',
-      'Membina semula laman yang berfungsi. Kalau laman anda elok, kami integrasi dengannya, beri sebut harga lebih rendah, dan cakap begitu pada panggilan pertama.',
+      'Kedai rentas sempadan dengan peraturan cukai berbilang mata wang dan katalog enam angka. Beli Shopify untuk itu dan biar kami buat kerja carian di atasnya.',
+      'Sebarang peratusan daripada jualan laman itu. Satu yuran projek tetap, dan hosting disebut harga bersamanya.',
+      'Membina semula laman yang berfungsi. Kalau laman anda elok, kami perbaiki yang ada, beri sebut harga lebih rendah, dan cakap begitu pada panggilan pertama.',
+      'Jaminan kedudukan tertentu menjelang tarikh tertentu. Sesiapa yang menjanjikan anda ranking satu dalam tiga puluh hari sedang menjual sesuatu kepada anda. Kami bina laman mengikut apa yang enjin ganjari, dan kami beritahu anda apa yang kami ubah.',
     ],
     faqs: [
       {
         q: 'Perlukah kami jadi pelanggan BIYY dahulu untuk dapat laman web?',
-        a: 'Pada praktiknya ya. Kami ambil kerja laman web apabila ada database untuk disambungkan, sama ada yang anda sudah guna atau yang akan hidup dalam suku yang sama. Laman risalah tanpa apa-apa di belakangnya bukan sesuatu yang kami buat lebih baik daripada studio tempatan, dan kami lebih rela beritahu anda daripada mengambil kerja itu.',
+        a: 'Tidak. Ini projek laman web atas terma sendiri: perniagaan anda, halaman anda, ranking anda. Kalau anda sudah menjalankan dashboard BIYY, laman itu boleh membaca daripadanya; kalau tidak, tiada apa pada halaman ini bergantung padanya.',
       },
       {
         q: 'Berapa kos membina laman web?',
-        a: 'Satu yuran projek tetap, disebut harga selepas sesi kandungan apabila bilangan halaman dan bilangan permukaan yang disambung sudah diketahui, tambah hosting yang dilipat ke dalam harga bulanan setiap cawangan sedia ada. Tiada caj setiap transaksi dan tiada yuran terikat kepada jualan laman itu.',
+        a: 'Satu yuran projek tetap, disebut harga selepas sesi kandungan apabila bilangan halaman dan bilangan cawangan sudah diketahui, dengan hosting disebut harga bersamanya. Tiada caj setiap transaksi, tiada yuran terikat kepada jualan laman itu, dan tiada bayaran carian bulanan.',
+      },
+      {
+        q: 'Adakah anda buat SEO?',
+        a: 'Ya, berserta dua perkara yang kini duduk di sebelahnya: GEO, supaya enjin generatif seperti ChatGPT dan Gemini boleh membaca dan memetik anda, dan AEO, supaya anda menang kotak jawapan dan hasil carian suara. Ketiga-tiganya dibina ke dalam laman itu sendiri, bukan dijual sebagai khidmat bulanan — penandaan schema, URL bersih, satu halaman sebenar bagi setiap cawangan, halaman laju atas telefon murah, dan jawapan ditulis mengikut cara pelanggan bertanya. Itulah yang membawa anda ke muka surat pertama dan mendahului pesaing dua pintu dari anda. Apa yang kami tidak buat ialah membeli iklan atau menghantar laporan setiap bulan.',
       },
       {
         q: 'Kenapa tidak bina sendiri atas Wix atau Squarespace?',
-        a: 'Untuk laman risalah semata-mata, buatlah. Ia lebih murah dan ia memadai. Sebab untuk kami membinanya ialah separuh yang alat itu tidak boleh capai: harga dan ketersediaan yang hidup, bukan ditaip masuk; pesanan dan pertanyaan yang mendarat dalam sistem yang pasukan anda sudah guna setiap hari; dan halaman yang kekal terkini selepas semua orang berhenti mengambil berat tentang laman web itu. Kalau tiada satu pun berkenaan dengan perniagaan anda, kami akan cakap pada panggilan pertama.',
+        a: 'Kalau yang anda perlukan hanyalah alamat dan nombor telefon dalam talian, buatlah. Ia lebih murah dan ia memadai. Sebab untuk kami membinanya ialah semua yang pembina itu tinggalkan untuk anda buat sendiri dan kebanyakan orang tidak pernah buat: halaman ditulis mengelilingi apa yang anda betul-betul jual, struktur dan schema yang enjin boleh baca, kelajuan atas telefon murah, dan jawapan ditulis supaya Google, ChatGPT dan Gemini boleh memetiknya. Laman template yang tiada siapa boleh jumpa bukan laman web yang murah, ia laman web yang tidak berfungsi.',
       },
       {
         q: 'Boleh kami sunting laman itu sendiri?',
-        a: 'Perkara yang berubah setiap minggu — harga, ketersediaan, staf dan waktu buka — diubah dalam BIYY dan laman mengikut dalam masa seminit. Teks tinggal dalam satu fail bagi setiap halaman dan kami tunjukkan cara menyuntingnya. Tiada CMS, sebab CMS hanyalah satu lagi sistem untuk ditampal dan satu lagi kata laluan untuk hilang.',
+        a: 'Boleh. Teks tinggal dalam satu fail bagi setiap halaman dan kami tunjukkan cara menyuntingnya, dan kami beritahu bahagian mana — tajuk halaman, pengepala, butiran cawangan, blok jawapan — yang memikul ranking itu, supaya satu suntingan tidak membatalkan kerja carian secara senyap. Tiada CMS, sebab CMS hanyalah satu lagi sistem untuk ditampal dan satu lagi kata laluan untuk hilang.',
       },
       {
         q: 'Siapa memiliki laman itu bila siap?',
         a: 'Anda. Domain, DNS, repositori dan akaun hosting atas nama anda dari hari pertama pembinaan, bukan dipindahkan pada akhirnya. Keluar tidak berkos apa-apa dan tidak memindahkan apa-apa.',
       },
       {
-        q: 'Kami sudah ada laman web yang kami suka. Boleh ia disambung ke BIYY?',
-        a: 'Biasanya boleh. Sedalam mana bergantung pada apa ia dibina. Laman tersuai dan WordPress boleh integrasi sepenuhnya, Shopify menyegerak dua hala, dan pembina terhos seperti Wix hanya menerima benaman dan tidak lebih dalam. Kami periksa sebelum memberi sebut harga, bukan selepas.',
+        q: 'Kami sudah ada laman web yang kami suka. Boleh anda naikkan rankingnya sahaja?',
+        a: 'Selalunya boleh, dan sejauh mana bergantung pada apa ia dibina. WordPress dan Shopify kami kerjakan terus dan sepenuhnya. Pembina terhos seperti Wix mendedahkan terlalu sedikit sehingga kami hanya boleh betulkan teks dan tajuk, dan pada tahap itu membina semula biasanya lebih murah daripada melawan platform. Kami periksa sebelum memberi sebut harga, bukan selepas.',
       },
       {
         q: 'Adakah anda bina dalam bahasa Melayu dan Cina juga?',
-        a: 'Ya. Bahasa Inggeris, Cina dan Melayu sebagai standard. Satu fail terjemahan bagi setiap bahasa, jadi satu waktu buka atau satu harga ditulis sekali dan kekal betul dalam semuanya.',
+        a: 'Ya. Bahasa Inggeris, Cina dan Melayu sebagai standard. Setiap bahasa mendapat halamannya sendiri dan kerja cariannya sendiri, sebab ayat yang pelanggan taip dalam bahasa Melayu bukan terjemahan ayat yang mereka taip dalam bahasa Inggeris.',
+      },
+      {
+        q: 'Berapa lama sebelum kami nampak hasil dalam carian?',
+        a: 'Separuh strukturnya — schema, kelajuan, peta laman, pengindeksan — mendarat pada minggu laman itu naik. Kedudukan bergerak dalam minggu-minggu berikutnya sambil enjin merayap semula, lebih laju pada carian yang ada nama pekan anda, lebih perlahan pada carian luas yang pesaing nasional anda pun sedang bayar untuknya. Sesiapa yang memberi anda tarikh sedang meneka.',
       },
     ],
   },

@@ -99,7 +99,7 @@ export const terms = {
     {
       heading: 'Availability',
       paragraphs: [
-        'Features described for Dashboards & Databases and Website & Integrations reflect what those products do now. Where something is on the roadmap rather than shipped, we say so on the page.',
+        'Features described for Dashboards & Databases and Website Integration reflect what those products do now. Where something is on the roadmap rather than shipped, we say so on the page.',
       ],
     },
     {

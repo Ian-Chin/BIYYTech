@@ -17,7 +17,7 @@ const GREETINGS = {
       'What do you build?',
       'How much does it cost?',
       'How long to go live?',
-      'Book a walkthrough',
+      'Book a free demo',
     ],
   },
   zh: {
@@ -55,11 +55,11 @@ const RULES = {
         'who are you',
       ],
       answer: {
-        text: 'Three things, live today. Dashboards & Databases replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. Website & Integrations builds your website and wires it into the same data. AI Development points a model at that data once there is something worth pointing it at.',
+        text: 'Three things, live today. Dashboards & Databases replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. Website Integration builds a website around your business and ranks it, with SEO, GEO and AEO in every page. AI Development points a model at that data once there is something worth pointing it at.',
         chips: ['Dashboards', 'Website', 'AI', 'How much does it cost?'],
         links: [
           { label: 'Dashboards & Databases', href: '/products/dashboards' },
-          { label: 'Website & Integrations', href: '/products/website' },
+          { label: 'Website Integration', href: '/products/website' },
           { label: 'AI Development', href: '/products/ai-development' },
         ],
       },
@@ -105,7 +105,7 @@ const RULES = {
       ],
       answer: {
         text: 'We read your spreadsheets, work out the structure hiding inside them, and design tables to match. Then we migrate the contents. Duplicates, three spellings of the same supplier and columns that changed meaning halfway down get flagged for you to decide rather than guessed at. You keep Excel for one-off analysis; it just stops being where the data lives.',
-        chips: ['How long to go live?', 'Can I export my data?', 'Book a walkthrough'],
+        chips: ['How long to go live?', 'Can I export my data?', 'Book a free demo'],
         links: [{ label: 'When a spreadsheet stops being enough', href: '/blog/when-a-spreadsheet-stops-being-enough' }],
       },
     },
@@ -148,7 +148,7 @@ const RULES = {
       ],
       answer: {
         text: 'The dashboard is laid out for your industry, because the weekly decisions differ. A distributor opens ageing, lead times and margin after freight. A clinic opens utilisation and recall lists. A tuition centre opens enrolment and attendance. That is a schema difference, not a matter of rearranging charts.',
-        chips: ['Dashboards', 'Book a walkthrough'],
+        chips: ['Dashboards', 'Book a free demo'],
         links: [
           {
             label: 'Why generic dashboards get ignored',
@@ -161,8 +161,8 @@ const RULES = {
       id: 'website',
       keywords: ['website', 'web site', 'site', 'wordpress', 'shopify', 'wix', 'squarespace', 'landing page'],
       answer: {
-        text: 'Website & Integrations designs and builds your new site, then wires it into your BIYY database. Prices and availability are read live, orders and enquiries land as records on your dashboard, and the domain, repository and hosting are in your name from day one. Three weeks, one flat project fee.',
-        chips: ['How much does it cost?', 'We already have a site', 'Book a walkthrough'],
+        text: 'Website Integration designs and builds a website around your business: your pages, your words, written out of what customers actually ask you. SEO, GEO and AEO go into every page as it is built, so you come up on the first page of Google and get quoted by ChatGPT, Gemini and AI Overviews rather than the shop down the road. Three weeks, one flat project fee, and the domain, repository and hosting in your name from day one.',
+        chips: ['How much does it cost?', 'We already have a site', 'Book a free demo'],
         links: [{ label: 'Explore Website', href: '/products/website' }],
       },
     },
@@ -171,7 +171,7 @@ const RULES = {
       keywords: ['ai', 'artificial intelligence', 'machine learning', 'llm', 'model', 'automate', 'automation', 'ocr', 'forecast', 'predict'],
       answer: {
         text: 'AI Development sits on top of the database you already run: ask your data a question in plain language, have invoices and delivery orders read into records, get reports drafted on a schedule, and have exceptions and incoming enquiries routed. Every answer shows the records it came from, and anything the model is unsure of goes to a person rather than into the database.',
-        chips: ['How much does it cost?', 'What about our spreadsheets?', 'Book a walkthrough'],
+        chips: ['How much does it cost?', 'What about our spreadsheets?', 'Book a free demo'],
         links: [{ label: 'Explore AI Development', href: '/products/ai-development' }],
       },
     },
@@ -191,7 +191,7 @@ const RULES = {
       ],
       answer: {
         text: 'Flat monthly per outlet. No per-transaction skim, no surprise implementation fee, and no annual lock-in to sign on day one. The exact number depends on sites and which products you run. We quote it on the walkthrough, before you commit to anything.',
-        chips: ['Book a walkthrough', 'What if we outgrow it?'],
+        chips: ['Book a free demo', 'What if we outgrow it?'],
         links: [{ label: 'Get a quote', href: '/contact' }],
       },
     },
@@ -214,7 +214,7 @@ const RULES = {
       ],
       answer: {
         text: 'Two weeks is typical: walkthrough on day 0, schema and migration days 1–4, one team live days 5–10, everyone else and handover days 11–14. Source spreadsheets with years of accumulated inconsistency run three to four weeks. We tell you which one you are before you pay.',
-        chips: ['What about our spreadsheets?', 'Book a walkthrough'],
+        chips: ['What about our spreadsheets?', 'Book a free demo'],
         links: [{ label: 'See the rollout', href: '/#process' }],
       },
     },
@@ -231,7 +231,7 @@ const RULES = {
       keywords: ['export', 'lock in', 'lock-in', 'leave', 'cancel', 'own my data', 'outgrow', 'contract'],
       answer: {
         text: 'Full data export any time, schema included, in a format your accountant recognises, with no exit fee. We would rather you leave cleanly than stay unhappy, and it keeps us honest about earning the renewal.',
-        chips: ['How much does it cost?', 'Book a walkthrough'],
+        chips: ['How much does it cost?', 'Book a free demo'],
       },
     },
     {
@@ -250,7 +250,7 @@ const RULES = {
       ],
       answer: {
         text: 'We export in the formats standard SME accounting packages accept, and direct integrations for the common Malaysian and Singaporean systems are on the roadmap. Tell us which one you run on the walkthrough and we will confirm where it stands.',
-        chips: ['Book a walkthrough', 'Does it work offline?'],
+        chips: ['Book a free demo', 'Does it work offline?'],
       },
     },
     {
@@ -258,7 +258,7 @@ const RULES = {
       keywords: ['offline', 'no internet', 'connection', 'wifi', 'signal drop'],
       answer: {
         text: 'The mobile forms queue entries when the connection drops, then sync when it returns. The dashboard itself needs connectivity, because a figure has to be live to be worth anything.',
-        chips: ['Dashboards', 'Book a walkthrough'],
+        chips: ['Dashboards', 'Book a free demo'],
       },
     },
     {
@@ -266,7 +266,7 @@ const RULES = {
       keywords: ['permission', 'permissions', 'roles', 'access', 'who can see', 'branch manager', 'audit', 'history'],
       answer: {
         text: 'Roles and permissions come as standard: a branch manager sees their branch, the owner sees all of it. Every record carries full history and an audit trail, so a figure that looks wrong can be traced to who changed it and when instead of compared across four copies of a file.',
-        chips: ['Dashboards', 'Book a walkthrough'],
+        chips: ['Dashboards', 'Book a free demo'],
       },
     },
     {
@@ -287,7 +287,7 @@ const RULES = {
       answer: {
         text: 'Thirty minutes on your floor or front desk with your own spreadsheets open, and a straight answer on whether BIYY is worth it. No slide deck. Reach us at hello@yiy.tech or use the form.',
         chips: ['How much does it cost?', 'How long to go live?'],
-        links: [{ label: 'Book a walkthrough', href: '/contact' }],
+        links: [{ label: 'Book a free demo', href: '/contact' }],
       },
     },
     {
@@ -295,7 +295,7 @@ const RULES = {
       keywords: ['support', 'help', 'training', 'train', 'stuck', 'problem', 'bug'],
       answer: {
         text: 'Staff are trained on their own devices during rollout, and you keep a direct WhatsApp line to us for the first month after go-live. After that, support runs through hello@yiy.tech.',
-        chips: ['How long to go live?', 'Book a walkthrough'],
+        chips: ['How long to go live?', 'Book a free demo'],
       },
     },
     {
@@ -312,7 +312,7 @@ const RULES = {
       keywords: ['bye', 'goodbye', 'see you', 'later'],
       answer: {
         text: 'See you. The walkthrough form is always there if you want a real conversation.',
-        chips: ['Book a walkthrough'],
+        chips: ['Book a free demo'],
         mood: 'happy',
       },
     },
@@ -331,11 +331,11 @@ const RULES = {
       id: 'overview',
       keywords: ['做什么产品', '什么产品', '你们是做什么的', '介绍', '产品', '概览', '你是谁'],
       answer: {
-        text: '三样东西，今天已经上线。仪表板与数据库，把你生意赖以运转的表格换成一个真正的数据库，加一块为你的行业做的仪表板。网站与集成，做你的网站并把它接进同一批数据。AI 开发，等这批数据真的值得被指着看时，把模型指过去。',
+        text: '三样东西，今天已经上线。仪表板与数据库，把你生意赖以运转的表格换成一个真正的数据库，加一块为你的行业做的仪表板。网站集成，围绕你这门生意做一个网站，并且每一页都做 SEO、GEO 与 AEO，让它排得上去。AI 开发，等这批数据真的值得被指着看时，把模型指过去。',
         chips: ['仪表板', '网站', 'AI', '要多少钱？'],
         links: [
           { label: '仪表板与数据库', href: '/products/dashboards' },
-          { label: '网站与集成', href: '/products/website' },
+          { label: '网站集成', href: '/products/website' },
           { label: 'AI 开发', href: '/products/ai-development' },
         ],
       },
@@ -386,7 +386,7 @@ const RULES = {
       id: 'website',
       keywords: ['网站', '官网', '建站', 'wordpress', 'shopify', 'wix', 'squarespace', '落地页'],
       answer: {
-        text: '网站与集成会设计并搭建你的新站，然后把它接进你的 BIYY 数据库。价格与可用情况实时读取，订单和询问作为记录落到仪表板上，域名、代码仓库和主机从第一天起就在你名下。三周，一笔固定项目费。',
+        text: '网站集成会围绕你这门生意设计并搭建网站：你的页面、你的说法，素材来自客户平常问你的那些问题。每一页在做的时候就把 SEO、GEO 与 AEO 做进去，所以你出现在 Google 第一页，被 ChatGPT、Gemini 和 AI 概览点名的是你，不是隔壁那家。三周，一笔固定项目费，域名、代码仓库和主机从第一天起就在你名下。',
         chips: ['要多少钱？', '我们已经有网站了', '预约实地走访'],
         links: [{ label: '了解网站', href: '/products/website' }],
       },
@@ -519,11 +519,11 @@ const RULES = {
         'siapa anda',
       ],
       answer: {
-        text: 'Tiga perkara, sudah tersedia hari ini. Dashboard & Database menggantikan spreadsheet yang menjalankan perniagaan anda dengan database sebenar dan dashboard yang dibina untuk industri anda. Laman Web & Integrasi membina laman anda dan menyambungkannya ke data yang sama. Pembangunan AI menghalakan model ke data itu sebaik ada sesuatu yang berbaloi dihalakan kepadanya.',
+        text: 'Tiga perkara, sudah tersedia hari ini. Dashboard & Database menggantikan spreadsheet yang menjalankan perniagaan anda dengan database sebenar dan dashboard yang dibina untuk industri anda. Integrasi Laman Web membina laman mengelilingi perniagaan anda dan menaikkan rankingnya, dengan SEO, GEO dan AEO dalam setiap halaman. Pembangunan AI menghalakan model ke data itu sebaik ada sesuatu yang berbaloi dihalakan kepadanya.',
         chips: ['Dashboard', 'Laman web', 'AI', 'Berapa kosnya?'],
         links: [
           { label: 'Dashboard & Database', href: '/products/dashboards' },
-          { label: 'Laman Web & Integrasi', href: '/products/website' },
+          { label: 'Integrasi Laman Web', href: '/products/website' },
           { label: 'Pembangunan AI', href: '/products/ai-development' },
         ],
       },
@@ -566,7 +566,7 @@ const RULES = {
       id: 'website',
       keywords: ['laman web', 'website', 'laman', 'wordpress', 'shopify', 'wix', 'squarespace', 'halaman pendaratan'],
       answer: {
-        text: 'Laman Web & Integrasi mereka dan membina laman baharu anda, kemudian menyambungkannya ke database BIYY anda. Harga dan ketersediaan dibaca secara langsung, pesanan dan pertanyaan mendarat sebagai rekod atas dashboard anda, dan domain, repositori serta hosting atas nama anda dari hari pertama. Tiga minggu, satu yuran projek tetap.',
+        text: 'Integrasi Laman Web mereka dan membina laman mengelilingi perniagaan anda: halaman anda, ayat anda, daripada apa yang pelanggan betul-betul tanya. SEO, GEO dan AEO dimasukkan ke dalam setiap halaman semasa ia dibina, jadi anda naik ke muka surat pertama Google dan dipetik oleh ChatGPT, Gemini serta AI Overviews, bukan kedai sebelah. Tiga minggu, satu yuran projek tetap, dan domain, repositori serta hosting atas nama anda dari hari pertama.',
         chips: ['Berapa kosnya?', 'Kami sudah ada laman web', 'Tempah lawatan'],
         links: [{ label: 'Terokai Laman Web', href: '/products/website' }],
       },
@@ -683,7 +683,7 @@ const FALLBACKS = {
       'What do you build?',
       'How much does it cost?',
       'How long to go live?',
-      'Book a walkthrough',
+      'Book a free demo',
     ],
   },
   zh: {

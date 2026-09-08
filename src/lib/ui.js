@@ -28,7 +28,7 @@ export const ui = {
       careers: 'Careers',
       contact: 'Contact',
       soon: 'Soon',
-      walkthrough: 'Book a walkthrough',
+      walkthrough: 'Book a free demo',
       exploreProduct: 'Explore {name}',
       seeProducts: 'See the products',
       compareProducts: 'Compare the products',
@@ -59,7 +59,7 @@ export const ui = {
       productsEyebrow: 'Products',
       productsTitle: 'Three products, one account, one database underneath.',
       productsBody:
-        'The dashboard and the database your business runs on, a website wired into the same data, and AI pointed at that data once there is something worth pointing it at.',
+        'The dashboard and the database your business runs on, a website built around that business and ranked where customers are searching, and AI pointed at that data once there is something worth pointing it at.',
     },
     stats: {
       note: 'Figures reflect typical results reported by BIYY Tech pilot customers across retail, wholesale and service businesses. Your numbers will depend on your starting point. We will tell you what to expect during the walkthrough.',
@@ -161,7 +161,7 @@ export const ui = {
       send: 'Send',
     },
     contact: {
-      eyebrow: 'Book a walkthrough',
+      eyebrow: 'Book a free demo',
       title: 'Thirty minutes. Your spreadsheets. A straight answer.',
       body: 'We will walk your floor or your front desk with your own files open, map what gets recorded and where it goes, and tell you whether BIYY is worth it for your business. If it is not, we will say so.',
       sentTitle: 'We opened a draft in your mail client.',
@@ -198,7 +198,7 @@ export const ui = {
       roadmapSuffix: ' (roadmap)',
       interests: [
         'Dashboards & Databases',
-        'Website & Integrations',
+        'Website Integration',
         'More than one',
         'Not sure yet',
       ],
@@ -308,21 +308,13 @@ export const ui = {
     web: {
       bandAlt: 'A product being photographed for an online listing beside a laptop',
       valueEyebrow: 'What it is worth',
-      valueTitle: 'What a new site actually changes for the business.',
+      valueTitle: 'What a site built around your business actually changes.',
       valueBody:
-        'Not impressions and bounce rate. What is different on the floor once the site and the system behind it are the same system.',
-      connectEyebrow: 'The wiring',
-      connectTitle: 'What the site reads, and what it writes back.',
-      connectBody:
-        'This is the half a web studio cannot do and a software vendor will not. Every surface below is one account away, not a spreadsheet somebody exports on Friday.',
-      headSurface: 'Surface',
-      headReads: 'Reads from BIYY',
-      headWrites: 'Writes back to BIYY',
-      none: '—',
+        'Not impressions and bounce rate. What is different once the customer searching for what you sell finds you first and finishes the page.',
       platformsEyebrow: 'Already have a site',
-      platformsTitle: 'If yours is worth keeping, we wire it instead of rebuilding it.',
+      platformsTitle: 'What we can do depends on what yours was built on.',
       platformsBody:
-        'Most of this work is a new build. When a site is genuinely sound we integrate with the one you have and quote less, and how deep that can go is decided by what it was built on rather than by what you spend.',
+        'Most of this work is a new build. When a site is genuinely sound we improve the one you have and quote less, and how far the search work can reach is decided by the platform rather than by what you spend.',
       stagesEyebrow: 'How the build runs',
       stagesTitle: 'Three weeks, four stages, one staging link you can share.',
       stagesBody: 'Every stage has an owner and something you can look at by the end of it.',
@@ -453,7 +445,7 @@ export const ui = {
       productsEyebrow: '产品',
       productsTitle: '三个产品，一个账户，底下是同一个数据库。',
       productsBody:
-        '你的生意每天要看的那块仪表板和它底下的数据库，一个接进同一批数据的网站，以及当这批数据真的值得被指着看时，指过去的 AI。',
+        '你的生意每天要看的那块仪表板和它底下的数据库，一个围绕这门生意做、并且排在客户正在搜的地方的网站，以及当这批数据真的值得被指着看时，指过去的 AI。',
     },
     stats: {
       note: '这些数字反映 BIYY Tech 试点客户在零售、批发与服务行业中报告的典型结果。你的数字取决于你的起点。我们会在走访时告诉你该期待什么。',
@@ -588,7 +580,7 @@ export const ui = {
       direct: '直接联系',
       coverTitle: '走访会聊什么',
       roadmapSuffix: '（路线图）',
-      interests: ['仪表板与数据库', '网站与集成', '不止一个', '还不确定'],
+      interests: ['仪表板与数据库', '网站集成', '不止一个', '还不确定'],
       sizes: ['1 家门店', '2 至 5 家门店', '6 至 20 家门店', '20 家以上'],
       errName: '告诉我们你是谁。',
       errBusiness: '这是为哪家企业问的？',
@@ -680,20 +672,12 @@ export const ui = {
     web: {
       bandAlt: '在笔记本电脑旁给商品拍照，准备上架',
       valueEyebrow: '它值在哪里',
-      valueTitle: '一个新网站到底给这门生意带来什么改变。',
-      valueBody: '不是曝光量和跳出率，而是当网站和它背后的系统合成一套之后，店里实际发生的变化。',
-      connectEyebrow: '接线',
-      connectTitle: '网站读什么，又写回去什么。',
-      connectBody:
-        '这一半，网页工作室做不了，软件供应商不愿做。下面每一个位置都只隔着一个账户，而不是谁在周五导出的一张表。',
-      headSurface: '位置',
-      headReads: '从 BIYY 读取',
-      headWrites: '写回 BIYY',
-      none: '—',
+      valueTitle: '一个围绕你这门生意做的网站，到底改变了什么。',
+      valueBody: '不是曝光量和跳出率，而是当在搜你这一行的人先找到你、并且把这一页读完之后，实际发生的变化。',
       platformsEyebrow: '已经有网站',
-      platformsTitle: '如果你现在的站值得留，我们就接上去，而不是重做。',
+      platformsTitle: '能做到哪一步，取决于你现在这个站是用什么做的。',
       platformsBody:
-        '这类项目多数是从头做一个新站。只有当现有网站确实没问题时，我们才直接接上去，报价也更低；能接多深取决于它是用什么做的，而不是你花了多少钱。',
+        '这类项目多数是从头做一个新站。只有当现有网站确实没问题时，我们才在它上面改，报价也更低；搜索这块能做多深，取决于它用的是什么平台，而不是你花了多少钱。',
       stagesEyebrow: '建站怎么推进',
       stagesTitle: '三周，四个阶段，一个可以随便转发的预览链接。',
       stagesBody: '每个阶段都有负责人，结束时都有你可以亲眼看的东西。',
@@ -818,7 +802,7 @@ export const ui = {
       productsEyebrow: 'Produk',
       productsTitle: 'Tiga produk, satu akaun, satu database di bawahnya.',
       productsBody:
-        'Dashboard dan database yang menjalankan perniagaan anda, laman web yang disambung ke data yang sama, dan AI yang dihalakan ke data itu sebaik ada sesuatu yang berbaloi dihalakan kepadanya.',
+        'Dashboard dan database yang menjalankan perniagaan anda, laman web yang dibina mengelilingi perniagaan itu dan diletakkan di tempat pelanggan sedang mencari, dan AI yang dihalakan ke data itu sebaik ada sesuatu yang berbaloi dihalakan kepadanya.',
     },
     stats: {
       note: 'Angka ini mencerminkan keputusan biasa yang dilaporkan pelanggan perintis BIYY Tech dalam perniagaan peruncitan, borong dan perkhidmatan. Angka anda bergantung pada titik permulaan anda. Kami akan beritahu apa yang boleh dijangka semasa lawatan.',
@@ -957,7 +941,7 @@ export const ui = {
       roadmapSuffix: ' (pelan hala tuju)',
       interests: [
         'Dashboard & Database',
-        'Laman Web & Integrasi',
+        'Integrasi Laman Web',
         'Lebih daripada satu',
         'Belum pasti',
       ],
@@ -1060,21 +1044,13 @@ export const ui = {
     web: {
       bandAlt: 'Produk sedang difoto untuk penyenaraian dalam talian di sebelah komputer riba',
       valueEyebrow: 'Apa nilainya',
-      valueTitle: 'Apa yang laman baharu betul-betul ubah untuk perniagaan itu.',
+      valueTitle: 'Apa yang laman dibina mengelilingi perniagaan anda betul-betul ubah.',
       valueBody:
-        'Bukan tera tayang dan kadar lantunan. Apa yang berbeza di lantai sebaik laman itu dan sistem di belakangnya menjadi satu sistem yang sama.',
-      connectEyebrow: 'Sambungannya',
-      connectTitle: 'Apa yang laman itu baca, dan apa yang ia tulis balik.',
-      connectBody:
-        'Inilah separuh yang studio web tidak boleh buat dan vendor perisian tidak mahu buat. Setiap permukaan di bawah hanya berjarak satu akaun, bukan satu spreadsheet yang seseorang eksport pada hari Jumaat.',
-      headSurface: 'Permukaan',
-      headReads: 'Baca daripada BIYY',
-      headWrites: 'Tulis balik ke BIYY',
-      none: '—',
+        'Bukan tera tayang dan kadar lantunan. Apa yang berbeza sebaik pelanggan yang mencari apa yang anda jual menjumpai anda dahulu dan menghabiskan halaman itu.',
       platformsEyebrow: 'Sudah ada laman',
-      platformsTitle: 'Kalau laman anda berbaloi dikekalkan, kami sambungkannya dan bukan membinanya semula.',
+      platformsTitle: 'Sejauh mana kami boleh pergi bergantung pada apa laman anda dibina.',
       platformsBody:
-        'Kebanyakan kerja ini ialah binaan baharu. Bila satu laman memang elok, kami integrasi dengan yang ada dan beri sebut harga lebih rendah, dan sedalam mana ia boleh pergi ditentukan oleh apa ia dibina, bukan oleh berapa anda belanja.',
+        'Kebanyakan kerja ini ialah binaan baharu. Bila satu laman memang elok, kami perbaiki yang ada dan beri sebut harga lebih rendah, dan sejauh mana kerja carian boleh menjangkau ditentukan oleh platformnya, bukan oleh berapa anda belanja.',
       stagesEyebrow: 'Cara pembinaan berjalan',
       stagesTitle: 'Tiga minggu, empat peringkat, satu pautan pratonton yang boleh anda kongsi.',
       stagesBody: 'Setiap peringkat ada pemiliknya dan ada sesuatu yang boleh anda lihat pada penghujungnya.',
