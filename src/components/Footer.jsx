@@ -57,7 +57,11 @@ export default function Footer() {
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/55">
               {company.tagline}
             </p>
-            <div className="mt-7 space-y-1.5 text-sm text-white/45">
+            {/* <address> rather than a <div> of <p>s: it is the element a
+                parser looks for when asking where a site's owner is, and the
+                country is spelled out in the line under it so the answer does
+                not depend on knowing that Kuala Lumpur is in Malaysia. */}
+            <address className="mt-7 space-y-1.5 text-sm not-italic text-white/45">
               <p>{company.location}</p>
               <a
                 href={`mailto:${company.email}`}
@@ -65,7 +69,10 @@ export default function Footer() {
               >
                 {company.email}
               </a>
-            </div>
+            </address>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/35">
+              {t('footer.serving')}
+            </p>
             {/* Repeated here because the masthead toggle scrolls away, and the
                 footer is where visitors look for site-wide settings. */}
             <LanguageToggle tone="dark" className="mt-7" />

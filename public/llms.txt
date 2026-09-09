@@ -1,7 +1,8 @@
 # BIYY Tech
 
-> BIYY Tech builds dashboards and databases for small and medium businesses in
-> Malaysia and Singapore. Three products are live: Dashboards & Databases, which
+> BIYY Tech is a Malaysian company, based in Kuala Lumpur, that builds
+> dashboards and databases for small and medium businesses in Malaysia.
+> Three products are live: Dashboards & Databases, which
 > replaces the spreadsheets a business runs on with a real database and an
 > industry-specific dashboard; Website & Integrations, which builds a new
 > website for the business and wires it into that database; and AI Development,
@@ -147,7 +148,10 @@ author, review date, method and sources.
 
 - [Careers](https://yiy.tech/careers): no vacancies open at present.
 - [Contact](https://yiy.tech/contact): walkthrough requests, hello@yiy.tech
-- Location: Kuala Lumpur, Malaysia. Serves Malaysia and Singapore.
+- Location: Kuala Lumpur, Malaysia. BIYY Technologies is a Malaysian company
+  and its customers are Malaysian SMEs. Prices are quoted in Malaysian ringgit
+  (MYR). Enquiries are handled in English, Bahasa Melayu and Chinese.
+  Malaysian data protection law (PDPA 2010) governs how enquiries are handled.
 
 ## Languages
 

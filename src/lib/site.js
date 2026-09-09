@@ -8,6 +8,34 @@ export const company = {
   // means search engines index a number that does not ring.
   phone: null,
   location: 'Kuala Lumpur, Malaysia',
+
+  /* ------------------------------------------------------------------------ */
+  /*  Where BIYY is, and where it sells                                        */
+  /*                                                                           */
+  /*  Split into parts rather than only the display string above, because the  */
+  /*  Organization JSON-LD, the geo meta tags and the plain-text corpus each   */
+  /*  need a different slice of it. Search engines read the address; answer    */
+  /*  engines read the country names, which is why `serves` carries the words  */
+  /*  and not just the ISO codes.                                              */
+  /* ------------------------------------------------------------------------ */
+  city: 'Kuala Lumpur',
+  // Kuala Lumpur is a federal territory, so ISO 3166-2 is MY-14 and the region
+  // name is the territory rather than a state.
+  region: 'Federal Territory of Kuala Lumpur',
+  regionCode: 'MY-14',
+  country: 'Malaysia',
+  countryCode: 'MY',
+  currency: 'MYR',
+  // City centroid, not a street address. BIYY runs rollouts on the customer's
+  // own floor and has no public office to point at, so this is deliberately
+  // city-level: precise enough for "a Malaysian company", not precise enough
+  // to claim a door that does not exist. Replace both numbers, and add
+  // streetAddress to organizationLd, if a registered office ever opens.
+  geo: { lat: 3.139, lon: 101.6869 },
+  // Geo targeting is Malaysia only. Singapore appears in body copy as a
+  // statement of where past deployments happened, which is a different claim
+  // and stays as written; it is deliberately not a targeted market here.
+  serves: [{ name: 'Malaysia', code: 'MY' }],
 };
 
 /* `panel` names the dropdown a link opens in the masthead. Anything without

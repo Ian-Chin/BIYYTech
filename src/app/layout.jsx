@@ -3,7 +3,15 @@ import Script from 'next/script';
 import JsonLd from '@/components/JsonLd';
 import Splash, { LangBoot, SplashBoot } from '@/components/Splash';
 import { pageCopy } from '@/lib/meta';
-import { OG_IMAGE, SITE_URL, graph, hreflang, organizationLd, websiteLd } from '@/lib/seo';
+import {
+  OG_IMAGE,
+  SITE_URL,
+  geoMeta,
+  graph,
+  hreflang,
+  organizationLd,
+  websiteLd,
+} from '@/lib/seo';
 import { company } from '@/lib/site';
 
 const { title: TITLE, description: DESCRIPTION } = pageCopy('home', 'en');
@@ -21,14 +29,24 @@ export const metadata = {
     'operations dashboard for small business',
     'replace spreadsheets with a database',
     'custom business dashboard Malaysia',
-    'SME database design',
+    'SME database design Malaysia',
     'spreadsheet to database migration',
     'industry-specific dashboards',
     'business intelligence for SMEs',
     'multi-outlet reporting software',
+    'software company Kuala Lumpur',
+    'SME software Malaysia',
     'BIYY Tech',
   ],
   alternates: { canonical: SITE_URL, languages: hreflang('/') },
+  /* Where the company is. `other` is how Next emits raw <meta name> pairs; the
+     geo set is legacy but still read outside Google, and the two below are what
+     a scraper looks at when it has no structured data to fall back on. */
+  other: {
+    ...geoMeta,
+    'og:country-name': company.country,
+    'og:locality': company.city,
+  },
   // Declared here rather than through app/icon.png and app/favicon.ico, because
   // the file conventions advertise a .ico as `sizes="16x16"` and leave the 192px
   // art as the only other candidate — so a browser asking for 32px downscales

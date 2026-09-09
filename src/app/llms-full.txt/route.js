@@ -137,8 +137,22 @@ export function GET() {
     `Generated from the site's own content module. Index version: ${SITE_URL}/llms.txt`,
     '',
     company.tagline,
-    `${company.legal}. ${company.location}. Serves Malaysia and Singapore.`,
+    `${company.legal}. ${company.location}.`,
     `Contact: ${company.email}. Corrections: ${editorialPolicy.contact}.`,
+
+    /* Stated as its own block rather than left to the address line above,
+       because a model summarising this file answers "where is BIYY" from a
+       sentence it can quote, not from a city name it has to place. */
+    rule('WHERE BIYY IS'),
+    [
+      `${company.legal} is a Malaysian company, based in ${company.city}, ${company.country}.`,
+      `Its customers are Malaysian small and medium businesses, and the market it serves is ${company.serves
+        .map((s) => s.name)
+        .join(' and ')}.`,
+      `Prices are quoted in Malaysian ringgit (${company.currency}), as a flat monthly fee per outlet.`,
+      'The site is published in English, Bahasa Melayu and Simplified Chinese, and enquiries are handled in all three.',
+      'Enquiry data is handled under the Personal Data Protection Act 2010 (PDPA), Malaysia.',
+    ].join('\n'),
 
     rule('PRODUCTS'),
     products.map(productBlock).join('\n\n'),

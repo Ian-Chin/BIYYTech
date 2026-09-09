@@ -86,6 +86,43 @@ export function pageMeta({
 }
 
 /* -------------------------------------------------------------------------- */
+/*  Place                                                                     */
+/*                                                                            */
+/*  BIYY is a Malaysian company selling into Malaysia, and that has to be said */
+/*  out loud rather than left implied by an en-MY hreflang. Search engines take */
+/*  it from the address and the ISO codes; answer engines take it from the      */
+/*  country name, so `areaServed` is emitted as a typed Country node carrying   */
+/*  the word "Malaysia" and not the bare string 'MY' that a model has to know   */
+/*  how to expand.                                                              */
+/* -------------------------------------------------------------------------- */
+
+export const postalAddressLd = () => ({
+  '@type': 'PostalAddress',
+  addressLocality: company.city,
+  addressRegion: company.region,
+  addressCountry: company.countryCode,
+});
+
+export const AREA_SERVED = company.serves.map(({ name, code }) => ({
+  '@type': 'Country',
+  name,
+  identifier: code,
+}));
+
+/**
+ * The legacy geo meta tags. Google stopped reading them years ago, but they are
+ * still parsed by a long tail of directories, some regional engines and the
+ * scrapers behind several answer engines, and they cost four lines of head.
+ * Spread into a page's `metadata.other`.
+ */
+export const geoMeta = {
+  'geo.region': company.regionCode,
+  'geo.placename': company.city,
+  'geo.position': `${company.geo.lat};${company.geo.lon}`,
+  ICBM: `${company.geo.lat}, ${company.geo.lon}`,
+};
+
+/* -------------------------------------------------------------------------- */
 /*  Structured data                                                           */
 /* -------------------------------------------------------------------------- */
 
@@ -107,14 +144,42 @@ export const organizationLd = () => ({
     height: 512,
   },
   description: company.tagline,
+  slogan: company.tagline,
   email: company.email,
   ...(company.phone ? { telephone: company.phone } : {}),
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Kuala Lumpur',
-    addressCountry: 'MY',
+  address: postalAddressLd(),
+  /* City-level, and only as precise as company.geo claims to be. */
+  location: {
+    '@type': 'Place',
+    name: company.location,
+    address: postalAddressLd(),
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: company.geo.lat,
+      longitude: company.geo.lon,
+    },
   },
-  areaServed: ['MY', 'SG'],
+  foundingLocation: {
+    '@type': 'Place',
+    name: company.location,
+    address: postalAddressLd(),
+  },
+  areaServed: AREA_SERVED,
+  /* The three trees the site is published in, which is also the three
+     languages an enquiry can arrive in. */
+  knowsLanguage: LOCALES.map((locale) => htmlLang(locale)),
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    email: company.email,
+    ...(company.phone ? { telephone: company.phone } : {}),
+    areaServed: AREA_SERVED,
+    availableLanguage: [
+      { '@type': 'Language', name: 'English', alternateName: 'en' },
+      { '@type': 'Language', name: 'Bahasa Melayu', alternateName: 'ms' },
+      { '@type': 'Language', name: 'Chinese (Simplified)', alternateName: 'zh-Hans' },
+    ],
+  },
   knowsAbout: [
     'Business intelligence dashboards',
     'Operational database design',
@@ -185,7 +250,7 @@ export const productLd = (product, locale = 'en') => {
       url,
       description: product.summary,
       provider: { '@id': `${SITE_URL}/#organization` },
-      areaServed: ['MY', 'SG'],
+      areaServed: AREA_SERVED,
       audience: { '@type': 'BusinessAudience', audienceType: product.audience },
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
@@ -250,7 +315,7 @@ export const industryLd = (item, locale = 'en') => {
     url,
     description: item.summary,
     provider: { '@id': `${SITE_URL}/#organization` },
-    areaServed: ['MY', 'SG'],
+    areaServed: AREA_SERVED,
     audience: { '@type': 'BusinessAudience', audienceType: item.name },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',

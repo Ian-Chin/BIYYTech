@@ -115,6 +115,10 @@ export const ui = {
     backToTop: 'Back to top',
     footer: {
       companyTitle: 'Company',
+      /* Says in plain page text what the structured data says in JSON-LD. An
+         answer engine asked "who builds SME dashboards in Malaysia" reads the
+         rendered sentence, not the schema block. */
+      serving: 'A Malaysian company, serving small and medium businesses across Malaysia.',
       resourcesTitle: 'Resources',
       whyYiy: 'Why BIYY',
       results: 'Results',
@@ -501,6 +505,7 @@ export const ui = {
     backToTop: '回到顶部',
     footer: {
       companyTitle: '公司',
+      serving: '一家马来西亚公司，服务马来西亚各地的中小企业。',
       resourcesTitle: '资源',
       whyYiy: '为什么选 BIYY',
       results: '成效',
@@ -858,6 +863,8 @@ export const ui = {
     backToTop: 'Kembali ke atas',
     footer: {
       companyTitle: 'Syarikat',
+      serving:
+        'Sebuah syarikat Malaysia, berkhidmat untuk perniagaan kecil dan sederhana di seluruh Malaysia.',
       resourcesTitle: 'Sumber',
       whyYiy: 'Kenapa BIYY',
       results: 'Keputusan',
