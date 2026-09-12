@@ -32,7 +32,7 @@ export default function IndustriesView() {
           priority
           imageClassName="scale-105 opacity-45"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40" />
+        <div className="absolute inset-0 bg-ink/85" />
         <div className="noise absolute inset-0" />
 
         <div className="shell relative flex min-h-[inherit] flex-col justify-end py-14 md:py-16">
@@ -88,8 +88,8 @@ export default function IndustriesView() {
                       sizes="(min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw"
                       className="object-cover transition-transform duration-[1400ms] ease-smooth group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/55 to-transparent" />
-                    <p className="absolute inset-x-0 bottom-0 p-5 text-[10px] uppercase tracking-[0.18em] text-white/70">
+                    <div className="absolute inset-0 bg-ink/45" />
+                    <p className="absolute inset-x-0 bottom-0 p-5 text-[10px] tracking-[0.01em] text-white/70">
                       {item.product}
                     </p>
                   </div>

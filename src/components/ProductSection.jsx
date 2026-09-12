@@ -29,15 +29,7 @@ export default function ProductSection({ slug, flip = false }) {
           <div>
             <Reveal className="flex items-center gap-4">
               <span
-                className={`font-mono text-xs tracking-[0.2em] ${
-                  soon ? 'text-white/35' : 'text-ink-faint'
-                }`}
-              >
-                {product.index}
-              </span>
-              <span className={`h-px w-10 ${soon ? 'bg-white/20' : 'bg-ink/15'}`} />
-              <span
-                className={`rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.16em] ${
+                className={`rounded-full border px-3 py-1 text-[11px] tracking-[0.01em] ${
                   soon
                     ? 'border-white/20 text-white/55'
                     : 'border-ink/15 bg-white text-ink-mute'
@@ -49,7 +41,7 @@ export default function ProductSection({ slug, flip = false }) {
 
             <Reveal delay={80} className="mt-7">
               <p
-                className={`text-sm font-medium uppercase tracking-[0.16em] ${
+                className={`text-sm font-medium tracking-[0.01em] ${
                   soon ? 'text-white/45' : 'text-ink-mute'
                 }`}
               >
@@ -125,11 +117,11 @@ export default function ProductSection({ slug, flip = false }) {
                     sizes="(min-width: 1024px) 46vw, 92vw"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/45 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-ink/30" />
                 </div>
               </Parallax>
 
-              {/* Floating stat / caption card */}
+              {/* Floating caption card */}
               <Parallax
                 speed={62}
                 className={`absolute -bottom-8 ${
@@ -137,14 +129,14 @@ export default function ProductSection({ slug, flip = false }) {
                 } w-[min(78%,300px)]`}
               >
                 <div
-                  className={`rounded-2xl border p-5 backdrop-blur-xl ${
+                  className={`rounded-2xl border p-5 ${
                     soon
                       ? 'border-white/15 bg-white/[0.07]'
                       : 'border-ink/10 bg-white/90 shadow-[0_30px_70px_-45px_rgba(11,11,12,0.6)]'
                   }`}
                 >
                   <p
-                    className={`text-[10px] uppercase tracking-[0.18em] ${
+                    className={`text-[11px] tracking-[0.01em] ${
                       soon ? 'text-white/40' : 'text-ink-faint'
                     }`}
                   >
@@ -157,25 +149,6 @@ export default function ProductSection({ slug, flip = false }) {
                   >
                     {product.audience}
                   </p>
-                  {product.metrics.length ? (
-                    <div
-                      className={`mt-4 flex items-baseline gap-2 border-t pt-4 ${
-                        soon ? 'border-white/10' : 'border-ink/10'
-                      }`}
-                    >
-                      <span className="display text-3xl">
-                        {product.metrics[0].value}
-                        {product.metrics[0].suffix}
-                      </span>
-                      <span
-                        className={`text-[11px] leading-tight ${
-                          soon ? 'text-white/45' : 'text-ink-mute'
-                        }`}
-                      >
-                        {product.metrics[0].label}
-                      </span>
-                    </div>
-                  ) : null}
                 </div>
               </Parallax>
             </Reveal>

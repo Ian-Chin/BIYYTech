@@ -98,7 +98,7 @@ export default function CookieConsent() {
       <div className="shell py-6 md:py-7">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
-            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/35">
+            <p className="text-[11px] font-medium tracking-[0.01em] text-white/35">
               {t('consent.eyebrow')}
             </p>
             <p className="mt-3 text-sm leading-relaxed text-white/70">

@@ -26,7 +26,7 @@ export default function CareersView() {
             className="scale-105 object-cover opacity-30"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/80 to-ink" />
+        <div className="absolute inset-0 bg-ink/85" />
         <div className="noise absolute inset-0" />
 
         <div className="shell relative py-20 md:py-28">
@@ -101,7 +101,7 @@ export default function CareersView() {
                   <div className="grid gap-6 py-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.4fr)_auto] lg:items-start">
                     <div>
                       <h3 className="text-xl font-semibold tracking-tighter">{role.title}</h3>
-                      <p className="mt-3 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-white/40">
+                      <p className="mt-3 flex flex-wrap items-center gap-2 text-[10px] tracking-[0.01em] text-white/40">
                         <span className="border border-white/20 px-2 py-0.5">{role.team}</span>
                         <span className="border border-white/20 px-2 py-0.5">{role.type}</span>
                         <span>{role.location}</span>

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import BackgroundVideo from '@/components/BackgroundVideo';
 import Carousel from '@/components/Carousel';
 import { Mark } from '@/components/Logo';
-import { CountUp, Parallax, Reveal, SplitWords, onScrollFrame } from '@/components/motion';
+import { Parallax, Reveal, SplitWords, onScrollFrame } from '@/components/motion';
 import { bySlug } from '@/lib/content';
 import { useLocale } from '@/lib/i18n';
 
@@ -69,45 +69,6 @@ export function ProductsIntro() {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Stats band                                                                */
-/* -------------------------------------------------------------------------- */
-
-export function StatsBand() {
-  const { t, content } = useLocale();
-  const { stats } = content;
-
-  return (
-    <section id="results" className="relative overflow-hidden bg-ink py-20 text-white md:py-24">
-      <Parallax speed={70} className="pointer-events-none absolute -right-24 -top-24 opacity-[0.06]">
-        <Mark variant="dark" size={420} />
-      </Parallax>
-
-      <div className="shell relative">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 110}>
-              <div className="border-t border-white/15 pt-6">
-                <p className="display text-[clamp(2.6rem,5vw,4rem)]">
-                  <CountUp value={s.value} suffix={s.suffix} />
-                </p>
-                <p className="mt-3 max-w-[22ch] text-sm leading-relaxed text-white/50">
-                  {s.label}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={520}>
-          <p className="mt-12 max-w-2xl text-xs leading-relaxed text-white/30">
-            {t('stats.note')}
-          </p>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
 /*  Why BIYY pillar grid                                                     */
 /* -------------------------------------------------------------------------- */
 
@@ -124,25 +85,20 @@ export function Pillars() {
           body={t('pillars.body')}
         />
 
-        {/* Numbered editorial list, not a card grid. Six boxes of identical
-            weight said nothing about which of these matters most; hairlines and
-            a large numeral give the eye somewhere to start. */}
+        {/* Editorial list, not a card grid. Six boxes of identical weight said
+            nothing about which of these matters most; the hairline rules carry
+            the separation on their own. */}
         <div className="mt-16 grid md:grid-cols-2 md:gap-x-16">
           {pillars.map((p, i) => (
             <Reveal
               key={p.title}
               delay={i * 70}
-              className="group grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-6 border-t border-ink/[0.12] py-7"
+              className="border-t border-ink/[0.12] py-7"
             >
-              <span className="display text-[clamp(1.5rem,2.2vw,2rem)] text-ink-faint transition-colors duration-700 ease-smooth group-hover:text-ink">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <span>
-                <h3 className="text-lg font-semibold tracking-tighter">{p.title}</h3>
-                <p className="mt-2.5 max-w-[46ch] text-sm leading-relaxed text-ink-mute">
-                  {p.body}
-                </p>
-              </span>
+              <h3 className="text-lg font-semibold tracking-tighter">{p.title}</h3>
+              <p className="mt-2.5 max-w-[46ch] text-sm leading-relaxed text-ink-mute">
+                {p.body}
+              </p>
             </Reveal>
           ))}
         </div>
@@ -212,9 +168,9 @@ export function Industries() {
                 sizes="(min-width: 1024px) 300px, 74vw"
                 className="object-cover transition-transform duration-[1400ms] ease-smooth group-hover:scale-[1.07]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent opacity-85" />
+              <div className="absolute inset-0 bg-ink/55" />
               <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                <p className="text-[10px] uppercase tracking-[0.18em] text-white/50">
+                <p className="text-[10px] tracking-[0.01em] text-white/50">
                   {item.product}
                 </p>
                 <p className="mt-2 text-lg font-semibold tracking-tighter">{item.name}</p>
@@ -241,7 +197,6 @@ export function FeatureStrip({ slug, tone = 'light' }) {
   if (!lead) return null;
   const shell = dark ? 'border-white/10 bg-white/[0.03]' : 'border-ink/10 bg-white';
   const body = dark ? 'text-white/55' : 'text-ink-mute';
-  const index = dark ? 'text-white/35' : 'text-ink-faint';
 
   return (
     <section
@@ -270,14 +225,13 @@ export function FeatureStrip({ slug, tone = 'light' }) {
               <div
                 className={`absolute inset-0 ${
                   dark
-                    ? 'bg-gradient-to-t from-ink/70 to-transparent'
-                    : 'bg-gradient-to-t from-white/25 to-transparent'
+                    ? 'bg-ink/45'
+                    : 'bg-white/15'
                 }`}
               />
             </div>
             <div className="flex flex-col justify-center p-8 md:p-11">
-              <span className={`font-mono text-[10px] tracking-[0.2em] ${index}`}>01</span>
-              <h3 className="display mt-5 text-[clamp(1.35rem,2.2vw,1.9rem)]">{lead.title}</h3>
+              <h3 className="display text-[clamp(1.35rem,2.2vw,1.9rem)]">{lead.title}</h3>
               <p className={`mt-4 max-w-[42ch] text-base leading-relaxed ${body}`}>{lead.body}</p>
             </div>
           </div>
@@ -306,16 +260,13 @@ export function FeatureStrip({ slug, tone = 'light' }) {
                   <div
                     className={`absolute inset-0 ${
                       dark
-                        ? 'bg-gradient-to-t from-ink/80 to-transparent'
-                        : 'bg-gradient-to-t from-white/25 to-transparent'
+                        ? 'bg-ink/45'
+                        : 'bg-white/15'
                     }`}
                   />
                 </div>
                 <div className="p-7">
-                  <span className={`font-mono text-[10px] tracking-[0.2em] ${index}`}>
-                    {String(i + 2).padStart(2, '0')}
-                  </span>
-                  <h3 className="mt-4 text-base font-semibold tracking-tighter">{f.title}</h3>
+                  <h3 className="text-base font-semibold tracking-tighter">{f.title}</h3>
                   <p className={`mt-2.5 text-sm leading-relaxed ${body}`}>{f.body}</p>
                 </div>
               </div>
@@ -408,7 +359,7 @@ export function Comparison() {
                   <th
                     key={h}
                     scope="col"
-                    className="pb-4 text-[11px] font-medium uppercase tracking-[0.16em] text-ink-faint"
+                    className="pb-4 text-[11px] font-medium tracking-[0.01em] text-ink-faint"
                   >
                     {h}
                   </th>
@@ -486,23 +437,12 @@ export function Process() {
   return (
     <section id="process" className="relative overflow-hidden bg-ink py-24 text-white md:py-32">
       <div className="shell relative">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHead
-            eyebrow={t('process.eyebrow')}
-            title={t('process.title')}
-            body={t('process.body')}
-            tone="dark"
-          />
-
-          <Reveal delay={200} className="shrink-0">
-            <div className="flex items-baseline gap-3 border border-white/15 px-6 py-4">
-              <span className="display text-4xl">14</span>
-              <span className="max-w-[12ch] text-xs leading-tight text-white/45">
-                {t('process.badge')}
-              </span>
-            </div>
-          </Reveal>
-        </div>
+        <SectionHead
+          eyebrow={t('process.eyebrow')}
+          title={t('process.title')}
+          body={t('process.body')}
+          tone="dark"
+        />
 
         {/* Scroll-filled rail */}
         <div
@@ -548,11 +488,8 @@ export function Process() {
                   <span className="absolute inset-0 bg-white/[0.05]" />
                 </span>
 
-                <span className="relative flex items-center justify-between">
-                  <span className="font-mono text-[10px] tracking-[0.2em] text-white/40">
-                    {p.step}
-                  </span>
-                  <span className="border border-white/15 px-2 py-0.5 text-[9px] uppercase tracking-[0.16em] text-white/50">
+                <span className="relative flex items-center">
+                  <span className="border border-white/15 px-2 py-0.5 text-[11px] tracking-[0.01em] text-white/50">
                     {p.when}
                   </span>
                 </span>
@@ -565,7 +502,7 @@ export function Process() {
 
                 <h3 className="relative mt-6 text-lg font-semibold tracking-tighter">{p.title}</h3>
                 <p className="relative mt-3 text-sm leading-relaxed text-white/55">{p.body}</p>
-                <p className="relative mt-6 border-t border-white/10 pt-4 text-[11px] uppercase tracking-[0.14em] text-white/35">
+                <p className="relative mt-6 border-t border-white/10 pt-4 text-[11px] tracking-[0.01em] text-white/35">
                   {p.owner}
                 </p>
               </Reveal>
@@ -659,7 +596,7 @@ export function ClosingCta() {
         poster="/media/img/inventory-aisle.jpg"
         imageClassName="opacity-30"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/80 to-ink" />
+      <div className="absolute inset-0 bg-ink/85" />
       <div className="noise absolute inset-0" />
 
       <div className="shell relative py-28 text-center md:py-36">

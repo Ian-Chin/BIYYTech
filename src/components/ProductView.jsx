@@ -42,27 +42,27 @@ export default function ProductView({ slug }) {
           priority
           imageClassName={`scale-105 ${product.video ? 'opacity-45' : 'opacity-40'}`}
         />
-        {/* Weighted to the bottom now that the copy is, so the type keeps its
-            contrast and the top of the footage stays visible. */}
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40" />
+        {/* One flat scrim rather than a ramp: the copy sits low in the box and
+            an even veil holds its contrast wherever the footage is bright. */}
+        <div className="absolute inset-0 bg-ink/85" />
         <div className="noise absolute inset-0" />
 
         <div className="shell relative flex min-h-[inherit] flex-col justify-end py-14 md:py-16">
           <Reveal className="flex items-center gap-4">
             <Link
               href="/#products"
-              className="text-xs uppercase tracking-[0.16em] text-white/45 transition-colors hover:text-white"
+              className="text-xs tracking-[0.01em] text-white/45 transition-colors hover:text-white"
             >
               {t('common.products')}
             </Link>
             <span className="h-px w-8 bg-white/25" />
-            <span className="rounded-full border border-white/20 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white/60">
+            <span className="rounded-full border border-white/20 px-3 py-1 text-[10px] tracking-[0.01em] text-white/60">
               {product.status}
             </span>
           </Reveal>
 
           <Reveal delay={80} className="mt-8">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-white/45">
+            <p className="text-sm font-medium tracking-[0.01em] text-white/45">
               {product.name}
             </p>
           </Reveal>
@@ -113,11 +113,8 @@ export default function ProductView({ slug }) {
                   as="li"
                   key={b}
                   delay={i * 70}
-                  className="flex items-baseline gap-5 border-b border-ink/[0.12] py-4"
+                  className="border-b border-ink/[0.12] py-4"
                 >
-                  <span className="font-mono text-[10px] tracking-[0.2em] text-ink-faint">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
                   <span className="text-sm leading-relaxed text-ink-soft">{b}</span>
                 </Reveal>
               ))}
@@ -133,7 +130,7 @@ export default function ProductView({ slug }) {
                 sizes="(min-width: 1024px) 46vw, 92vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
+              <div className="absolute inset-0 bg-ink/35" />
             </Parallax>
           </Reveal>
         </div>
@@ -173,10 +170,7 @@ export default function ProductView({ slug }) {
                   </div>
                   <div className="p-7">
                     <div className="flex items-center gap-3">
-                      <span className="font-mono text-[10px] tracking-[0.2em] text-ink-faint">
-                        {other.index}
-                      </span>
-                      <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[9px] uppercase tracking-[0.16em] text-ink-mute">
+                      <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[11px] tracking-[0.01em] text-ink-mute">
                         {other.status}
                       </span>
                     </div>

@@ -11,7 +11,6 @@ import {
   Pillars,
   Process,
   ProductsIntro,
-  StatsBand,
   Testimonials,
 } from '@/components/Sections';
 import { pageCopy } from '@/lib/meta';
@@ -58,7 +57,6 @@ export function Page({ locale }) {
       <ProductSection slug={ai.slug} />
       <FeatureStrip slug={ai.slug} />
 
-      <StatsBand />
       <Pillars />
       <Industries />
       <Testimonials />

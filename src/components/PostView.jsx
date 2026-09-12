@@ -31,19 +31,19 @@ export default function PostView({ slug }) {
             className="scale-105 object-cover opacity-30"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/80 to-ink" />
+        <div className="absolute inset-0 bg-ink/85" />
         <div className="noise absolute inset-0" />
 
         <div className="shell relative py-20 md:py-28">
           <Reveal className="flex flex-wrap items-center gap-4">
             <Link
               href="/blog"
-              className="text-xs uppercase tracking-[0.16em] text-white/45 transition-colors hover:text-white"
+              className="text-xs tracking-[0.01em] text-white/45 transition-colors hover:text-white"
             >
               {t('common.blog')}
             </Link>
             <span className="h-px w-8 bg-white/25" />
-            <span className="border border-white/20 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white/60">
+            <span className="border border-white/20 px-3 py-1 text-[10px] tracking-[0.01em] text-white/60">
               {post.category}
             </span>
           </Reveal>
@@ -85,14 +85,14 @@ export default function PostView({ slug }) {
       <section className="relative overflow-hidden bg-paper pt-16 md:pt-20">
         <div className="shell grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
           <Reveal className="border-l-2 border-ink pl-6 md:pl-8">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+            <p className="text-[11px] tracking-[0.01em] text-ink-faint">
               {t('post.shortAnswer')}
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">{post.answer}</p>
           </Reveal>
 
           <Reveal delay={140} className="border border-ink/[0.12] bg-white p-7">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+            <p className="text-[11px] tracking-[0.01em] text-ink-faint">
               {t('post.takeaways')}
             </p>
             <ul className="mt-5 space-y-3">
@@ -113,7 +113,7 @@ export default function PostView({ slug }) {
           {/* Contents + author */}
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                 {t('common.contents')}
               </p>
               <ol className="mt-5 space-y-2.5">
@@ -131,7 +131,7 @@ export default function PostView({ slug }) {
             </Reveal>
 
             <Reveal delay={160} className="mt-10 border-t border-ink/[0.12] pt-7">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                 {t('post.aboutAuthor')}
               </p>
               <div className="mt-5">
@@ -183,7 +183,7 @@ export default function PostView({ slug }) {
 
             {/* Sources */}
             <Reveal className="mt-14 border border-ink/[0.12] bg-paper-warm p-7">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                 {t('post.sources')}
               </p>
               <ul className="mt-4 space-y-3">
@@ -230,7 +230,7 @@ export default function PostView({ slug }) {
                     />
                   </span>
                   <span className="flex flex-1 flex-col p-6">
-                    <span className="text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+                    <span className="text-[10px] tracking-[0.01em] text-ink-faint">
                       {p.category}
                     </span>
                     <span className="mt-3 block text-base font-semibold leading-snug tracking-tighter">

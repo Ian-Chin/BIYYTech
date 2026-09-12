@@ -57,7 +57,7 @@ export default function LegalPage({ slug }) {
         <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,2fr)]">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <Reveal>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                 {t('common.contents')}
               </p>
               <ol className="mt-5 space-y-2.5">
@@ -75,7 +75,7 @@ export default function LegalPage({ slug }) {
             </Reveal>
 
             <Reveal delay={160} className="mt-10 border-t border-ink/[0.12] pt-7">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                 {t('legal.askUs')}
               </p>
               <div className="mt-4 space-y-1.5 text-sm">

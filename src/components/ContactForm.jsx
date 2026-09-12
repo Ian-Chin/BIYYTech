@@ -137,7 +137,7 @@ export default function ContactForm() {
             className="scale-105 object-cover opacity-30"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/80 to-ink" />
+        <div className="absolute inset-0 bg-ink/85" />
 
         <div className="shell relative py-20 md:py-28">
           <Reveal>
@@ -176,7 +176,7 @@ export default function ContactForm() {
                 </p>
 
                 <div className="mt-8 border-t border-ink/[0.12] pt-7">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+                  <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                     {t('contact.noDraftTitle')}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-ink-mute">
@@ -263,7 +263,7 @@ export default function ContactForm() {
                 />
 
                 <label className="grid gap-2 text-sm" htmlFor={`${uid}-interest`}>
-                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
+                  <span className="text-xs tracking-[0.01em] text-ink-mute">
                     {t('contact.interest')}
                   </span>
                   <select
@@ -282,7 +282,7 @@ export default function ContactForm() {
                 </label>
 
                 <label className="grid gap-2 text-sm" htmlFor={`${uid}-size`}>
-                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
+                  <span className="text-xs tracking-[0.01em] text-ink-mute">
                     {t('contact.size')}
                   </span>
                   <select
@@ -301,7 +301,7 @@ export default function ContactForm() {
                 </label>
 
                 <label className="grid gap-2 text-sm sm:col-span-2" htmlFor={`${uid}-message`}>
-                  <span className="text-xs uppercase tracking-[0.14em] text-ink-mute">
+                  <span className="text-xs tracking-[0.01em] text-ink-mute">
                     {t('contact.message')}
                   </span>
                   <textarea
@@ -363,7 +363,7 @@ export default function ContactForm() {
             </Reveal>
 
             <Reveal delay={200} className="rounded-2xl border border-ink/[0.12] bg-white p-7">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                 {t('contact.direct')}
               </p>
               <div className="mt-4 space-y-2 text-sm">
@@ -379,7 +379,7 @@ export default function ContactForm() {
             </Reveal>
 
             <Reveal delay={280} className="rounded-2xl border border-ink/[0.12] bg-white p-7">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                 {t('contact.coverTitle')}
               </p>
               <ul className="mt-4 space-y-3 text-sm text-ink-mute">
@@ -407,7 +407,7 @@ function Field({ uid, name, label, required = false, requiredLabel, error, ...re
 
   return (
     <label className="grid gap-2 text-sm" htmlFor={id}>
-      <span className="flex items-baseline gap-2 text-xs uppercase tracking-[0.14em] text-ink-mute">
+      <span className="flex items-baseline gap-2 text-xs tracking-[0.01em] text-ink-mute">
         {label}
         {required ? (
           <span className="text-[10px] normal-case tracking-normal text-ink-faint">

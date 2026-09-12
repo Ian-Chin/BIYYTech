@@ -130,7 +130,7 @@ export default function Nav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ease-smooth ${
         solid
-          ? 'border-b border-ink/10 bg-white/95 backdrop-blur-xl'
+          ? 'border-b border-ink/10 bg-white'
           : 'border-b border-transparent bg-transparent'
       }`}
       onMouseLeave={closePanel}
@@ -226,7 +226,7 @@ export default function Nav() {
         <div className="grid w-full grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] gap-16 px-10 py-14 md:px-14 xl:px-20 xl:gap-20">
           {/* Product list */}
           <div>
-            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+            <p className="text-[11px] tracking-[0.01em] text-ink-faint">
               {t('common.products')}
             </p>
             <ul className="mt-5">
@@ -240,18 +240,11 @@ export default function Nav() {
                       active === i ? 'text-ink' : 'text-ink-mute'
                     }`}
                   >
-                    <span
-                      className={`mt-1 font-mono text-[10px] tracking-[0.2em] transition-colors duration-300 ${
-                        active === i ? 'text-ink' : 'text-ink-faint'
-                      }`}
-                    >
-                      {p.index}
-                    </span>
                     <span className="min-w-0 flex-1">
                       <span className="flex items-center gap-3">
                         <span className="text-lg font-semibold tracking-tighter">{p.name}</span>
                         {p.soon ? (
-                          <span className="border border-ink/15 px-1.5 py-px text-[9px] uppercase tracking-[0.16em] text-ink-faint">
+                          <span className="border border-ink/15 px-1.5 py-px text-[9px] tracking-[0.01em] text-ink-faint">
                             {t('common.soon')}
                           </span>
                         ) : null}
@@ -302,7 +295,7 @@ export default function Nav() {
             <div className="flex flex-col justify-between py-1">
               <div>
                 <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <span className="border border-ink/15 px-2 py-0.5 text-[9px] uppercase tracking-[0.16em] text-ink-mute">
+                  <span className="border border-ink/15 px-2 py-0.5 text-[9px] tracking-[0.01em] text-ink-mute">
                     {product.status}
                   </span>
                   <span className="text-xs text-ink-faint">{product.audience}</span>
@@ -370,7 +363,7 @@ export default function Nav() {
           </div>
 
           <div className="flex flex-col">
-            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+            <p className="text-[11px] tracking-[0.01em] text-ink-faint">
               {t('common.industries')}
             </p>
             <p className="mt-4 text-lg font-semibold leading-snug tracking-tighter">
@@ -409,7 +402,7 @@ export default function Nav() {
                 >
                   <span className="min-w-0 flex-1">
                     <span className="block text-sm font-medium tracking-tight">{item.name}</span>
-                    <span className="mt-0.5 block text-[11px] uppercase tracking-[0.14em] text-ink-faint">
+                    <span className="mt-0.5 block text-[11px] tracking-[0.01em] text-ink-faint">
                       {item.product}
                     </span>
                   </span>
@@ -452,7 +445,7 @@ export default function Nav() {
               >
                 <span className="flex items-baseline justify-between gap-4">
                   <span className="display text-2xl">{p.name}</span>
-                  <span className="shrink-0 text-[10px] uppercase tracking-widest text-ink-faint">
+                  <span className="shrink-0 text-[10px] tracking-[0.01em] text-ink-faint">
                     {p.status}
                   </span>
                 </span>
@@ -477,7 +470,7 @@ export default function Nav() {
                 className="flex items-baseline justify-between gap-4 text-ink"
               >
                 <span className="display text-2xl">{t('common.industries')}</span>
-                <span className="shrink-0 text-[10px] uppercase tracking-widest text-ink-faint">
+                <span className="shrink-0 text-[10px] tracking-[0.01em] text-ink-faint">
                   {industries.length}
                 </span>
               </Link>

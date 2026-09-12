@@ -26,7 +26,7 @@ export default function BlogIndex() {
             className="scale-105 object-cover opacity-30"
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/80 to-ink" />
+        <div className="absolute inset-0 bg-ink/85" />
         <div className="noise absolute inset-0" />
 
         <div className="shell relative py-20 md:py-28">
@@ -82,7 +82,7 @@ export default function BlogIndex() {
               </span>
 
               <span className="block">
-                <span className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.16em] text-ink-faint">
+                <span className="flex flex-wrap items-center gap-3 text-[11px] tracking-[0.01em] text-ink-faint">
                   <span className="border border-ink/15 px-2 py-0.5">{lead.category}</span>
                   {formatDate(lead.date, locale)}
                   <span className="h-1 w-1 bg-ink/25" />
@@ -139,7 +139,7 @@ export default function BlogIndex() {
                     />
                   </span>
                   <span className="flex flex-1 flex-col p-7">
-                    <span className="flex flex-wrap items-center gap-3 text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+                    <span className="flex flex-wrap items-center gap-3 text-[10px] tracking-[0.01em] text-ink-faint">
                       <span className="border border-ink/15 px-2 py-0.5">{post.category}</span>
                       {formatDate(post.date, locale)}
                     </span>
@@ -149,7 +149,7 @@ export default function BlogIndex() {
                     <span className="mt-3 block flex-1 text-sm leading-relaxed text-ink-mute">
                       {post.excerpt}
                     </span>
-                    <span className="mt-6 flex items-center justify-between text-[11px] uppercase tracking-[0.14em] text-ink-faint">
+                    <span className="mt-6 flex items-center justify-between text-[11px] tracking-[0.01em] text-ink-faint">
                       {post.readingTime}
                       <svg
                         width="14"
@@ -180,7 +180,7 @@ export default function BlogIndex() {
             delay={200}
             className="mt-16 scroll-mt-28 border border-ink/[0.12] bg-white p-8 md:p-10"
           >
-            <p className="text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+            <p className="text-[11px] tracking-[0.01em] text-ink-faint">
               {t('blog.policyTitle')}
             </p>
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ink-soft">

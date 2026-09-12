@@ -43,8 +43,12 @@ Semibold preloaded.
   `padding-bottom: 0.06em` so descenders clear clipping ancestors.
 - Headings — Semibold, `tracking-tighter` (-0.03em), `text-wrap: balance`.
 - Body — Regular, `leading-relaxed`, `text-wrap: pretty`.
-- `.eyebrow` — 11px, uppercase, `tracking-[0.18em]`, preceded by a 24px rule.
-- Numerals and indices — `font-mono`, 10px, `tracking-[0.2em]`.
+- `.eyebrow` — 11px, sentence case, `tracking-[0.01em]`, preceded by a 24px rule.
+
+**Nothing is set in all caps.** Labels, eyebrows, table headers, badges and
+metadata all read in sentence case at their normal tracking. There are no
+`01 / 02 / 03` index numerals anywhere either: lists and step sequences are
+separated by hairline rules, not by counters.
 
 Sizing is fluid `clamp()` throughout. Display headlines run
 `clamp(1.9rem, 4.2vw, 3.25rem)` at section level and up to
@@ -72,6 +76,11 @@ even split.
 Hairline grids are built with `gap-px` over a `bg-ink/10` parent so the cells
 themselves draw the rules.
 
+Every overlay on photography or video is a **flat** `bg-ink/NN` scrim — `/85` on
+heroes, `/45`–`/55` where a caption sits on a card, `/30`–`/35` where the image
+is only being tinted toward the section. There are no `bg-gradient-*` ramps and
+no `backdrop-blur` anywhere in the system.
+
 `HeroFrame` is the signature: every hero opens as an inset card on a paper
 surround (26px padding, 10px radius) and unfolds to full bleed as you scroll.
 
@@ -88,7 +97,8 @@ document independently.
 - `Parallax` — translate3d only, ±26 to ±62px of travel.
 - Hover transitions run 500–700ms; image scale on hover runs 1400ms.
 - `prefers-reduced-motion` is honoured in CSS *and* in JS (`prefersReducedMotion()`
-  short-circuits Parallax, CountUp and HeroFrame).
+  short-circuits Parallax, CountUp and HeroFrame). `CountUp` is still exported by
+  `motion.jsx` but nothing renders it — no page shows an animated figure.
 
 ## Components
 
@@ -125,3 +135,6 @@ document independently.
 - Never animate layout properties. Transform and opacity only.
 - Never add a third-party script, font CDN, or analytics tag.
 - Dark sections get `.noise`; light sections never do.
+- Never set type in all caps, and never number a list `01 / 02 / 03`.
+- Never use a CSS gradient or `backdrop-blur`. Overlays are flat `bg-ink/NN`.
+- Never open a section on an oversized figure. There is no stat banner.

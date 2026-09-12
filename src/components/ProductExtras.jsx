@@ -16,7 +16,7 @@ import { useLocale } from '@/lib/i18n';
  * when its field is missing, so a product without them renders nothing.
  *
  * Each section is deliberately given a different treatment — a three-column
- * table, a hairline grid, a numbered rail, a dark list — because this is one
+ * table, a hairline grid, a four-up timeline, a dark list — because this is one
  * argument told four ways and four identical card grids would flatten it.
  */
 export default function ProductExtras({ product }) {
@@ -29,8 +29,8 @@ export default function ProductExtras({ product }) {
   return (
     <>
       {/* What it is worth --------------------------------------------------
-          Oversized numerals carrying the text rather than boxing it: this is
-          the argument for buying, and a grid of bordered cards would file it
+          Hairline rules carrying the text rather than boxing it: this is the
+          argument for buying, and a grid of bordered cards would file it
           alongside the spec tables further down. */}
       {value ? (
         <section className="relative overflow-hidden bg-paper py-24 md:py-32">
@@ -47,17 +47,12 @@ export default function ProductExtras({ product }) {
                   as="li"
                   key={item.title}
                   delay={i * 80}
-                  className="grid grid-cols-[auto_minmax(0,1fr)] gap-6 border-t border-ink/[0.12] pt-6"
+                  className="border-t border-ink/[0.12] pt-6"
                 >
-                  <span className="display text-[clamp(1.6rem,2.4vw,2.1rem)] leading-none text-ink-faint">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-tighter">{item.title}</h3>
-                    <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-ink-mute">
-                      {item.body}
-                    </p>
-                  </div>
+                  <h3 className="text-lg font-semibold tracking-tighter">{item.title}</h3>
+                  <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-ink-mute">
+                    {item.body}
+                  </p>
                 </Reveal>
               ))}
             </ol>
@@ -86,7 +81,7 @@ export default function ProductExtras({ product }) {
                       <th
                         key={h}
                         scope="col"
-                        className="pb-4 text-[11px] font-medium uppercase tracking-[0.16em] text-white/40"
+                        className="pb-4 text-[11px] font-medium tracking-[0.01em] text-white/40"
                       >
                         {h}
                       </th>
@@ -100,12 +95,7 @@ export default function ProductExtras({ product }) {
                       className="group border-b border-white/10 transition-colors duration-500 hover:bg-white/[0.04]"
                     >
                       <th scope="row" className="py-5 pr-6 align-top">
-                        <span className="flex items-baseline gap-3">
-                          <span className="font-mono text-[10px] tracking-[0.2em] text-white/30">
-                            {String(i + 1).padStart(2, '0')}
-                          </span>
-                          <span className="text-sm font-semibold tracking-tight">{row.surface}</span>
-                        </span>
+                        <span className="text-sm font-semibold tracking-tight">{row.surface}</span>
                       </th>
                       <td
                         className={`py-5 pr-6 align-top text-sm leading-relaxed ${
@@ -147,7 +137,7 @@ export default function ProductExtras({ product }) {
                 <div key={p.name} className="bg-paper-warm p-8 md:p-10">
                   <div className="flex flex-wrap items-center gap-3">
                     <h3 className="text-lg font-semibold tracking-tighter">{p.name}</h3>
-                    <span className="border border-ink/15 px-2 py-0.5 text-[9px] uppercase tracking-[0.16em] text-ink-mute">
+                    <span className="border border-ink/15 px-2 py-0.5 text-[9px] tracking-[0.01em] text-ink-mute">
                       {p.depth}
                     </span>
                   </div>
@@ -169,7 +159,7 @@ export default function ProductExtras({ product }) {
           <Parallax speed={52} className="absolute -bottom-16 -top-16 left-0 right-0">
             <Image src={band} alt={copy('bandAlt')} fill sizes="100vw" className="object-cover" />
           </Parallax>
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-ink/35" />
         </section>
       ) : null}
 
@@ -188,17 +178,14 @@ export default function ProductExtras({ product }) {
             <ol className="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
               {stages.map((s, i) => (
                 <Reveal as="li" key={s.step} delay={i * 100} className="border-t border-ink/[0.12] pt-6">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <span className="display text-[clamp(1.6rem,2.4vw,2.1rem)] text-ink-faint">
-                      {s.step}
-                    </span>
-                    <span className="border border-ink/15 px-2 py-0.5 text-[9px] uppercase tracking-[0.16em] text-ink-mute">
+                  <div className="flex items-baseline gap-4">
+                    <span className="border border-ink/15 px-2 py-0.5 text-[11px] tracking-[0.01em] text-ink-mute">
                       {s.when}
                     </span>
                   </div>
                   <h3 className="mt-6 text-lg font-semibold tracking-tighter">{s.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-ink-mute">{s.body}</p>
-                  <p className="mt-6 border-t border-ink/[0.12] pt-4 text-[11px] uppercase tracking-[0.14em] text-ink-faint">
+                  <p className="mt-6 border-t border-ink/[0.12] pt-4 text-[11px] tracking-[0.01em] text-ink-faint">
                     {s.owner}
                   </p>
                 </Reveal>
@@ -227,11 +214,8 @@ export default function ProductExtras({ product }) {
                   as="li"
                   key={item}
                   delay={i * 80}
-                  className="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-5 border-b border-white/15 py-6"
+                  className="border-b border-white/15 py-6"
                 >
-                  <span className="font-mono text-[10px] tracking-[0.2em] text-white/30">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
                   <span className="text-sm leading-relaxed text-white/60">{item}</span>
                 </Reveal>
               ))}

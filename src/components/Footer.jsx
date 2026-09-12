@@ -15,7 +15,6 @@ export default function Footer() {
       title: t('common.products'),
       links: [
         ...products.map((p) => ({ label: p.name, href: p.href })),
-        { label: t('footer.results'), href: '/#results' },
         { label: t('footer.rollout'), href: '/#process' },
         { label: t('footer.faqLink'), href: '/#faq' },
       ],
@@ -80,7 +79,7 @@ export default function Footer() {
 
           {columns.map((col) => (
             <div key={col.title}>
-              <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-white/35">
+              <p className="text-[11px] font-medium tracking-[0.01em] text-white/35">
                 {col.title}
               </p>
               <ul className="mt-5 space-y-3">

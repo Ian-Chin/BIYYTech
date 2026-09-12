@@ -37,25 +37,25 @@ export default function IndustryView({ slug }) {
           priority
           imageClassName={`scale-105 ${item.video ? 'opacity-45' : 'opacity-40'}`}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/40" />
+        <div className="absolute inset-0 bg-ink/85" />
         <div className="noise absolute inset-0" />
 
         <div className="shell relative flex min-h-[inherit] flex-col justify-end py-14 md:py-16">
           <Reveal className="flex items-center gap-4">
             <Link
               href="/industries"
-              className="text-xs uppercase tracking-[0.16em] text-white/45 transition-colors hover:text-white"
+              className="text-xs tracking-[0.01em] text-white/45 transition-colors hover:text-white"
             >
               {t('common.industries')}
             </Link>
             <span className="h-px w-8 bg-white/25" />
-            <span className="rounded-full border border-white/20 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-white/60">
+            <span className="rounded-full border border-white/20 px-3 py-1 text-[10px] tracking-[0.01em] text-white/60">
               {item.product}
             </span>
           </Reveal>
 
           <Reveal delay={80} className="mt-8">
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-white/45">
+            <p className="text-sm font-medium tracking-[0.01em] text-white/45">
               {item.name}
             </p>
           </Reveal>
@@ -89,7 +89,7 @@ export default function IndustryView({ slug }) {
       </HeroFrame>
 
       {/* What it replaces ----------------------------------------------
-          A dark numbered list, because this is the uncomfortable half and it
+          A dark hairline list, because this is the uncomfortable half and it
           should not be dressed up as a feature grid. */}
       <section className="relative overflow-hidden bg-ink py-20 text-white md:py-28">
         <div className="noise absolute inset-0" />
@@ -107,11 +107,8 @@ export default function IndustryView({ slug }) {
                 as="li"
                 key={pain}
                 delay={i * 80}
-                className="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-5 border-b border-white/15 py-6"
+                className="border-b border-white/15 py-6"
               >
-                <span className="font-mono text-[10px] tracking-[0.2em] text-white/30">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
                 <span className="text-sm leading-relaxed text-white/60">{pain}</span>
               </Reveal>
             ))}
@@ -135,17 +132,12 @@ export default function IndustryView({ slug }) {
                   as="li"
                   key={panel.title}
                   delay={i * 80}
-                  className="grid grid-cols-[auto_minmax(0,1fr)] gap-6 border-b border-ink/[0.12] py-7"
+                  className="border-b border-ink/[0.12] py-7"
                 >
-                  <span className="display text-[clamp(1.4rem,2.2vw,1.9rem)] leading-none text-ink-faint">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-tighter">{panel.title}</h3>
-                    <p className="mt-2.5 max-w-[52ch] text-sm leading-relaxed text-ink-mute">
-                      {panel.body}
-                    </p>
-                  </div>
+                  <h3 className="text-lg font-semibold tracking-tighter">{panel.title}</h3>
+                  <p className="mt-2.5 max-w-[52ch] text-sm leading-relaxed text-ink-mute">
+                    {panel.body}
+                  </p>
                 </Reveal>
               ))}
             </ol>
@@ -160,7 +152,7 @@ export default function IndustryView({ slug }) {
                 sizes="(min-width: 1024px) 44vw, 92vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent" />
+              <div className="absolute inset-0 bg-ink/35" />
             </Parallax>
           </Reveal>
         </div>
@@ -210,7 +202,7 @@ export default function IndustryView({ slug }) {
                     />
                   </div>
                   <div className="p-7">
-                    <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[9px] uppercase tracking-[0.16em] text-ink-mute">
+                    <span className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[9px] tracking-[0.01em] text-ink-mute">
                       {other.product}
                     </span>
                     <h3 className="mt-4 text-xl font-semibold tracking-tighter">{other.name}</h3>

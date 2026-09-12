@@ -48,7 +48,7 @@ export default function Logo({
       {withWordmark ? (
         <span className="flex items-baseline gap-1.5 text-[17px] font-semibold tracking-tighter">
           BIYY
-          <span className="text-[11px] font-medium uppercase tracking-[0.22em] opacity-55">
+          <span className="text-[11px] font-medium tracking-[0.01em] opacity-55">
             Tech
           </span>
         </span>

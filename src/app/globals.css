@@ -114,7 +114,7 @@
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-ink-mute;
+    @apply inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.01em] text-ink-mute;
   }
 
   /* leading-[1.02] + the padding keep descenders (g, y, p) off the edge of any
@@ -179,11 +179,11 @@
   }
 
   .btn-ghost {
-    @apply btn border border-ink/15 bg-white/60 text-ink backdrop-blur hover:border-ink/35 hover:-translate-y-0.5;
+    @apply btn border border-ink/15 bg-white text-ink hover:border-ink/35 hover:-translate-y-0.5;
   }
 
   .btn-invert {
-    @apply btn border border-white/25 bg-white/5 text-white backdrop-blur hover:bg-white/15 hover:-translate-y-0.5;
+    @apply btn border border-white/25 bg-white/10 text-white hover:bg-white/20 hover:-translate-y-0.5;
   }
 
   /* Cards ---------------------------------------------------------------- */
@@ -877,8 +877,7 @@ html[data-splash='run'] .splash {
 .splash__word-sub {
   font-size: 11px;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.01em;
   opacity: 0.5;
 }
 

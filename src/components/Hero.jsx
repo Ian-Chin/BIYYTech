@@ -67,7 +67,7 @@ export default function Hero() {
   useEffect(() => {
     return onScrollFrame((vh) => {
       const p = Math.min(1, Math.max(0, window.scrollY / vh));
-      if (veilRef.current) veilRef.current.style.opacity = String(0.76 + p * 0.24);
+      if (veilRef.current) veilRef.current.style.opacity = String(0.84 + p * 0.16);
       if (contentRef.current) {
         contentRef.current.style.transform = `translate3d(0, ${p * -60}px, 0)`;
         contentRef.current.style.opacity = String(Math.max(0, 1 - p * 1.25));
@@ -112,10 +112,9 @@ export default function Hero() {
       {/* Veils */}
       <div
         ref={veilRef}
-        className="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/80 to-ink"
-        style={{ opacity: 0.76 }}
+        className="absolute inset-0 bg-ink"
+        style={{ opacity: 0.84 }}
       />
-      <div className="absolute inset-0 bg-[radial-gradient(120%_85%_at_60%_10%,rgba(11,11,12,0.2),rgba(11,11,12,0.88))]" />
       <div className="noise absolute inset-0" />
 
       {/* Content */}
