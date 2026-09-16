@@ -147,7 +147,7 @@ author, review date, method and sources.
 ## Company
 
 - [Careers](https://yiy.tech/careers): no vacancies open at present.
-- [Contact](https://yiy.tech/contact): walkthrough requests, hello@yiy.tech
+- [Contact](https://yiy.tech/contact): walkthrough requests, biyytech@gmail.com
 - Location: Kuala Lumpur, Malaysia. BIYY Technologies is a Malaysian company
   and its customers are Malaysian SMEs. Prices are quoted in Malaysian ringgit
   (MYR). Enquiries are handled in English, Bahasa Melayu and Chinese.
@@ -187,7 +187,7 @@ This plain-text summary and the full corpus at /llms-full.txt are English only.
   `mailto:` draft in the visitor's own mail client, so there is no POST target
   and no server-side validation path. Field names are `name`, `company`,
   `email`, `phone`, `interest`, `size`, `message`. To contact the company
-  programmatically, send email to hello@yiy.tech directly.
+  programmatically, send email to biyytech@gmail.com directly.
 - There is no public API, OpenAPI document or developer portal. Requests for
   `/api/openapi.json` and `/.well-known/ai-plugin.json` will 404. This page is
   the machine-readable surface.

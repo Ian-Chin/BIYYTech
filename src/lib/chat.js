@@ -285,7 +285,7 @@ const RULES = {
         'sign up',
       ],
       answer: {
-        text: 'Thirty minutes on your floor or front desk with your own spreadsheets open, and a straight answer on whether BIYY is worth it. No slide deck. Reach us at hello@yiy.tech or use the form.',
+        text: 'Thirty minutes on your floor or front desk with your own spreadsheets open, and a straight answer on whether BIYY is worth it. No slide deck. Reach us at biyytech@gmail.com or use the form.',
         chips: ['How much does it cost?', 'How long to go live?'],
         links: [{ label: 'Book a free demo', href: '/contact' }],
       },
@@ -294,7 +294,7 @@ const RULES = {
       id: 'support',
       keywords: ['support', 'help', 'training', 'train', 'stuck', 'problem', 'bug'],
       answer: {
-        text: 'Staff are trained on their own devices during rollout, and you keep a direct WhatsApp line to us for the first month after go-live. After that, support runs through hello@yiy.tech.',
+        text: 'Staff are trained on their own devices during rollout, and you keep a direct WhatsApp line to us for the first month after go-live. After that, support runs through biyytech@gmail.com.',
         chips: ['How long to go live?', 'Book a free demo'],
       },
     },
@@ -462,7 +462,7 @@ const RULES = {
       id: 'contact',
       keywords: ['走访', '演示', '联系', '聊聊', '打电话', '邮件', '销售', '真人', '开会', '内测名单', '报名'],
       answer: {
-        text: '在你的卖场或前台待三十分钟，把你自己的表格打开，直接告诉你 BIYY 值不值。没有幻灯片。写信到 hello@yiy.tech，或者用表单联系我们。',
+        text: '在你的卖场或前台待三十分钟，把你自己的表格打开，直接告诉你 BIYY 值不值。没有幻灯片。写信到 biyytech@gmail.com，或者用表单联系我们。',
         chips: ['要多少钱？', '多久能上线？'],
         links: [{ label: '预约实地走访', href: '/contact' }],
       },
@@ -471,7 +471,7 @@ const RULES = {
       id: 'support',
       keywords: ['支持', '帮助', '培训', '卡住', '问题', '故障', 'bug'],
       answer: {
-        text: '实施期间员工在自己的设备上受训，上线后头一个月你还留着一条直通我们的 WhatsApp。之后支持走 hello@yiy.tech。',
+        text: '实施期间员工在自己的设备上受训，上线后头一个月你还留着一条直通我们的 WhatsApp。之后支持走 biyytech@gmail.com。',
         chips: ['多久能上线？', '预约实地走访'],
       },
     },
@@ -642,7 +642,7 @@ const RULES = {
       id: 'contact',
       keywords: ['lawatan', 'demo', 'hubungi', 'berbual', 'panggil', 'e-mel', 'jualan', 'manusia', 'mesyuarat', 'daftar'],
       answer: {
-        text: 'Tiga puluh minit di lantai atau kaunter depan anda dengan spreadsheet anda sendiri dibuka, dan jawapan terus terang sama ada BIYY berbaloi. Tiada slaid pembentangan. Hubungi kami di hello@yiy.tech atau guna borang itu.',
+        text: 'Tiga puluh minit di lantai atau kaunter depan anda dengan spreadsheet anda sendiri dibuka, dan jawapan terus terang sama ada BIYY berbaloi. Tiada slaid pembentangan. Hubungi kami di biyytech@gmail.com atau guna borang itu.',
         chips: ['Berapa kosnya?', 'Berapa lama nak hidup?'],
         links: [{ label: 'Tempah lawatan', href: '/contact' }],
       },
@@ -651,7 +651,7 @@ const RULES = {
       id: 'support',
       keywords: ['sokongan', 'bantuan', 'latihan', 'tersekat', 'masalah', 'pepijat'],
       answer: {
-        text: 'Staf dilatih atas peranti mereka sendiri semasa pelaksanaan, dan anda kekal ada talian WhatsApp terus kepada kami untuk bulan pertama selepas mula hidup. Selepas itu, sokongan berjalan melalui hello@yiy.tech.',
+        text: 'Staf dilatih atas peranti mereka sendiri semasa pelaksanaan, dan anda kekal ada talian WhatsApp terus kepada kami untuk bulan pertama selepas mula hidup. Selepas itu, sokongan berjalan melalui biyytech@gmail.com.',
         chips: ['Berapa lama nak hidup?', 'Tempah lawatan'],
       },
     },

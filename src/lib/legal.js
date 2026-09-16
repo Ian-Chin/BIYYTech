@@ -86,7 +86,7 @@ export const terms = {
       paragraphs: [
         'Figures quoted here, including admin hours returned, report-assembly time and rollout duration, come from anonymised and aggregated data across BIYY Tech deployments. Each blog post states its own sample size, measurement window and method, and names the limits of the comparison.',
         'They are directional results from small samples, not guarantees, and they are not a promise of what your business will achieve. Your starting point determines most of it. We will give you a specific estimate during the walkthrough, before you pay anything.',
-        'If you think a figure here is wrong, write to corrections@yiy.tech. We will check it, correct it if you are right, and note the change.',
+        'If you think a figure here is wrong, write to biyytech@gmail.com. We will check it, correct it if you are right, and note the change.',
       ],
     },
     {

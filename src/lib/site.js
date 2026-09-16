@@ -2,7 +2,7 @@ export const company = {
   name: 'BIYY Tech',
   legal: 'BIYY Technologies',
   tagline: 'Dashboards and databases for the businesses still running on spreadsheets.',
-  email: 'hello@yiy.tech',
+  email: 'biyytech@gmail.com',
   // Set this to the real number and it reappears on the contact page and in the
   // Organization JSON-LD. Left null on purpose: shipping a placeholder number
   // means search engines index a number that does not ring.
@@ -1448,7 +1448,7 @@ export const authors = {
 export const editorialPolicy = {
   summary:
     'Every figure on this site comes from anonymised, aggregated data across BIYY Tech deployments, or it is labelled as an estimate. Posts name their author, carry a review date, and state the sample behind any claim.',
-  contact: 'corrections@yiy.tech',
+  contact: 'biyytech@gmail.com',
 };
 
 export const posts = [

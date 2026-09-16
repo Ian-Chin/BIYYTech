@@ -86,7 +86,7 @@ export const terms = merge(enTerms, {
       paragraphs: [
         'Angka yang dipetik di sini, termasuk jam pentadbiran yang pulang, masa menghimpun laporan dan tempoh pelaksanaan, datang daripada data tanpa nama yang dikumpul merentas pelaksanaan BIYY Tech. Setiap artikel blog menyatakan saiz sampel, tetingkap pengukuran dan kaedahnya sendiri, serta menamakan had perbandingannya.',
         'Ia keputusan berarah daripada sampel kecil, bukan jaminan, dan bukan janji tentang apa yang perniagaan anda akan capai. Titik permulaan anda menentukan sebahagian besarnya. Kami akan beri anggaran khusus semasa lawatan, sebelum anda bayar apa-apa.',
-        'Kalau anda rasa satu angka di sini salah, tulis kepada corrections@yiy.tech. Kami akan semak, betulkan kalau anda betul, dan catat perubahannya.',
+        'Kalau anda rasa satu angka di sini salah, tulis kepada biyytech@gmail.com. Kami akan semak, betulkan kalau anda betul, dan catat perubahannya.',
       ],
     },
     {
