@@ -145,6 +145,11 @@ export const organizationLd = () => ({
   },
   description: company.tagline,
   slogan: company.tagline,
+  /* The accounts that are the same entity as this Organization. Google and the
+     answer engines use these to merge the profiles into one company rather
+     than three strangers with the same name, so the URLs must match the ones
+     the footer links to exactly. */
+  sameAs: company.social.map((s) => s.href),
   email: company.email,
   ...(company.phone ? { telephone: company.phone } : {}),
   address: postalAddressLd(),

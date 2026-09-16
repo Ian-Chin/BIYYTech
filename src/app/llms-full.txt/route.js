@@ -139,6 +139,10 @@ export function GET() {
     company.tagline,
     `${company.legal}. ${company.location}.`,
     `Contact: ${company.email}. Corrections: ${editorialPolicy.contact}.`,
+    /* The same accounts the Organization JSON-LD lists under sameAs. Stated as
+       one line of plain text because a model answering "where can I follow
+       BIYY" quotes prose, not a schema block. */
+    `Social: ${company.social.map((s) => `${s.name} ${s.handle} (${s.href})`).join('; ')}.`,
 
     /* Stated as its own block rather than left to the address line above,
        because a model summarising this file answers "where is BIYY" from a

@@ -152,6 +152,11 @@ author, review date, method and sources.
   and its customers are Malaysian SMEs. Prices are quoted in Malaysian ringgit
   (MYR). Enquiries are handled in English, Bahasa Melayu and Chinese.
   Malaysian data protection law (PDPA 2010) governs how enquiries are handled.
+- Social profiles, all operated by BIYY Technologies and declared as `sameAs`
+  in the site's Organization JSON-LD:
+  Instagram [@biyytechmy](https://www.instagram.com/biyytechmy/),
+  TikTok [@biyytechnologies](https://www.tiktok.com/@biyytechnologies),
+  X [@BIYYTech](https://x.com/BIYYTech).
 
 ## Languages
 

@@ -36,6 +36,22 @@ export const company = {
   // statement of where past deployments happened, which is a different claim
   // and stays as written; it is deliberately not a targeted market here.
   serves: [{ name: 'Malaysia', code: 'MY' }],
+
+  /* ------------------------------------------------------------------------ */
+  /*  Public profiles                                                          */
+  /*                                                                           */
+  /*  Array order is the footer's display order, and the same list feeds       */
+  /*  `sameAs` in the Organization JSON-LD, which is how a search engine ties  */
+  /*  these accounts to the company rather than treating them as unrelated     */
+  /*  pages that happen to share a name. Canonical URLs only: no `?hl=`, no    */
+  /*  tracking parameters, no share links, because a sameAs entry that         */
+  /*  redirects is a weaker signal than one that resolves directly.            */
+  /* ------------------------------------------------------------------------ */
+  social: [
+    { name: 'Instagram', handle: '@biyytechmy', href: 'https://www.instagram.com/biyytechmy/' },
+    { name: 'TikTok', handle: '@biyytechnologies', href: 'https://www.tiktok.com/@biyytechnologies' },
+    { name: 'X', handle: '@BIYYTech', href: 'https://x.com/BIYYTech' },
+  ],
 };
 
 /* `panel` names the dropdown a link opens in the masthead. Anything without
