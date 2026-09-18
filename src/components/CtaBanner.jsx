@@ -32,7 +32,7 @@ export default function CtaBanner() {
   return (
     <Link
       href="/contact"
-      className="group flex w-full items-center justify-center gap-2 bg-accent px-5 text-white md:gap-3"
+      className="group flex w-full items-center justify-center gap-2 bg-ink px-5 text-white md:gap-3"
       style={{ height: 'var(--banner-h)' }}
     >
       <span className="text-[12px] font-medium leading-none tracking-tight md:text-[13px]">
