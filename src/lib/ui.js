@@ -47,6 +47,11 @@ export const ui = {
       industriesPanelNote:
         'Same database underneath. The screen is laid out for the decisions your trade makes weekly.',
     },
+    banner: {
+      text: 'Free demo of your dashboard and your website.',
+      note: 'Thirty minutes, no slides.',
+      cta: 'Book a demo',
+    },
     hero: {
       eyebrow: 'Dashboards and databases for SMEs',
       line1: 'Retire the',
@@ -438,6 +443,11 @@ export const ui = {
       industriesPanelLabel: '行业',
       industriesPanelNote: '底下是同一个数据库。变的是屏幕的排布，按你这一行每周要做的决定来排。',
     },
+    banner: {
+      text: '免费演示：你的仪表板，还有你的网站。',
+      note: '三十分钟，不放幻灯片。',
+      cta: '预约演示',
+    },
     hero: {
       eyebrow: '为中小企业做的仪表板与数据库',
       line1: '让表格退休，',
@@ -796,6 +806,11 @@ export const ui = {
       industriesPanelLabel: 'Industri',
       industriesPanelNote:
         'Database yang sama di bawahnya. Skrinnya disusun untuk keputusan yang bidang anda buat setiap minggu.',
+    },
+    banner: {
+      text: 'Demo percuma untuk dashboard dan laman web anda.',
+      note: 'Tiga puluh minit, tanpa slaid.',
+      cta: 'Tempah demo',
     },
     hero: {
       eyebrow: 'Dashboard dan database untuk PKS',

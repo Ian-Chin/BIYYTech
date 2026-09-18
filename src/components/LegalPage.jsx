@@ -55,7 +55,7 @@ export default function LegalPage({ slug }) {
 
       <section className="relative overflow-hidden bg-paper py-16 md:py-24">
         <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,2fr)]">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="lg:sticky lg:top-36 lg:self-start">
             <Reveal>
               <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                 {t('common.contents')}
@@ -98,7 +98,7 @@ export default function LegalPage({ slug }) {
               <section
                 key={section.heading}
                 id={`s${si + 1}`}
-                className="scroll-mt-28 border-t border-ink/[0.12] pt-8 first:border-t-0 first:pt-0"
+                className="scroll-mt-36 border-t border-ink/[0.12] pt-8 first:border-t-0 first:pt-0"
               >
                 <Reveal className="flex items-baseline gap-5">
                   <span className="font-mono text-[10px] tracking-[0.2em] text-ink-faint">

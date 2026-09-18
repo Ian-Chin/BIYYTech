@@ -4,6 +4,10 @@ import { useEffect, useRef } from 'react';
 import { onScrollFrame, prefersReducedMotion } from '@/components/motion';
 
 const NAV_H = 72;
+// Mirrors --banner-h in globals.css. The card has to start below the offer
+// strip as well as the bar, or the first line of the hero opens under it.
+const BANNER_H = 40;
+const CHROME_H = NAV_H + BANNER_H;
 const RADIUS = 10;
 
 /**
@@ -41,7 +45,7 @@ export default function HeroFrame({
       const p = Math.min(1, Math.max(0, window.scrollY / (vh * range)));
       const eased = 1 - Math.pow(1 - p, 3);
       const side = (1 - eased) * (window.innerWidth < 768 ? 10 : 26);
-      const top = (1 - eased) * (NAV_H + (window.innerWidth < 768 ? 6 : 14));
+      const top = (1 - eased) * (CHROME_H + (window.innerWidth < 768 ? 6 : 14));
 
       outer.style.paddingLeft = `${side}px`;
       outer.style.paddingRight = `${side}px`;
@@ -56,12 +60,12 @@ export default function HeroFrame({
   return (
     <section
       ref={outerRef}
-      className={`relative bg-paper pb-[10px] pl-[10px] pr-[10px] pt-[78px] md:pb-[26px] md:pl-[26px] md:pr-[26px] md:pt-[86px] ${className}`}
+      className={`relative bg-paper pb-[10px] pl-[10px] pr-[10px] pt-[118px] md:pb-[26px] md:pl-[26px] md:pr-[26px] md:pt-[126px] ${className}`}
     >
       <div
         ref={innerRef}
         className={`relative isolate overflow-hidden bg-ink text-white ${
-          fullHeight ? 'min-h-[calc(100svh-88px)] md:min-h-[calc(100svh-112px)]' : ''
+          fullHeight ? 'min-h-[calc(100svh-128px)] md:min-h-[calc(100svh-152px)]' : ''
         } ${innerClassName}`}
         style={{ borderRadius: `${RADIUS}px` }}
       >

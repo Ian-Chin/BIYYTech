@@ -56,6 +56,11 @@
      deliberately not duplicated here: the stale 1240px copy that used to sit
      in this block matched nothing and misled anyone sizing an image. */
   --nav-h: 72px;
+  /* The offer strip sits above the bar inside the same fixed header, so
+     anything clearing the chrome has to clear both. HeroFrame keeps a JS copy
+     of this number (BANNER_H) for the scroll collapse; change them together. */
+  --banner-h: 40px;
+  --chrome-h: calc(var(--nav-h) + var(--banner-h));
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -67,7 +72,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--nav-h) + 24px);
+    scroll-padding-top: calc(var(--chrome-h) + 24px);
   }
 
   body {

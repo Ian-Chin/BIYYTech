@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from '@/components/Link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import CtaBanner from '@/components/CtaBanner';
 import LanguageToggle from '@/components/LanguageToggle';
 import Logo from '@/components/Logo';
 import { useLocale } from '@/lib/i18n';
@@ -135,6 +136,10 @@ export default function Nav() {
       }`}
       onMouseLeave={closePanel}
     >
+      {/* Above the bar and inside the same fixed box, so the strip cannot
+          scroll out from under the nav. */}
+      <CtaBanner />
+
       <div
         className="shell-edge flex items-center justify-between gap-6"
         style={{ height: 'var(--nav-h)' }}

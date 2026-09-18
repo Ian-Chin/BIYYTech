@@ -111,7 +111,7 @@ export default function PostView({ slug }) {
       <article className="relative overflow-hidden bg-paper py-16 md:py-24">
         <div className="shell grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.1fr)]">
           {/* Contents + author */}
-          <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="lg:sticky lg:top-36 lg:self-start">
             <Reveal>
               <p className="text-[11px] tracking-[0.01em] text-ink-faint">
                 {t('common.contents')}
@@ -153,7 +153,7 @@ export default function PostView({ slug }) {
               <section
                 key={section.heading}
                 id={`s${si + 1}`}
-                className="scroll-mt-28 pt-10 first:pt-0"
+                className="scroll-mt-36 pt-10 first:pt-0"
               >
                 <Reveal>
                   <h2 className="display text-[clamp(1.25rem,2vw,1.65rem)]">{section.heading}</h2>
@@ -167,7 +167,7 @@ export default function PostView({ slug }) {
             ))}
 
             {/* Post FAQ */}
-            <section className="scroll-mt-28 pt-14">
+            <section className="scroll-mt-36 pt-14">
               <Reveal>
                 <h2 className="display text-[clamp(1.25rem,2vw,1.65rem)]">{t('post.faqHeading')}</h2>
               </Reveal>

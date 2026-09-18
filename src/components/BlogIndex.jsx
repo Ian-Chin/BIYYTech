@@ -178,7 +178,7 @@ export default function BlogIndex() {
           <Reveal
             id="editorial"
             delay={200}
-            className="mt-16 scroll-mt-28 border border-ink/[0.12] bg-white p-8 md:p-10"
+            className="mt-16 scroll-mt-36 border border-ink/[0.12] bg-white p-8 md:p-10"
           >
             <p className="text-[11px] tracking-[0.01em] text-ink-faint">
               {t('blog.policyTitle')}

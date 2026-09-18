@@ -143,7 +143,7 @@ export default function IndustryView({ slug }) {
             </ol>
           </div>
 
-          <Reveal blur delay={140} className="lg:sticky lg:top-28">
+          <Reveal blur delay={140} className="lg:sticky lg:top-36">
             <Parallax speed={-32} className="relative aspect-[4/5] overflow-hidden rounded-3xl">
               <Image
                 src={item.hero}
