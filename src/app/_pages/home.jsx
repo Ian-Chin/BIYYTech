@@ -7,6 +7,7 @@ import {
   Comparison,
   Faq,
   FeatureStrip,
+  Film,
   Industries,
   Pillars,
   Process,
@@ -14,7 +15,7 @@ import {
   Testimonials,
 } from '@/components/Sections';
 import { pageCopy } from '@/lib/meta';
-import { graph, homeFaqLd, pageMeta, productListLd } from '@/lib/seo';
+import { filmLd, graph, homeFaqLd, pageMeta, productListLd } from '@/lib/seo';
 import { products } from '@/lib/site';
 
 /* -------------------------------------------------------------------------- */
@@ -41,10 +42,14 @@ export function Page({ locale }) {
 
   return (
     <>
-      <JsonLd data={graph(productListLd(locale), homeFaqLd(locale))} />
+      <JsonLd data={graph(productListLd(locale), filmLd(locale), homeFaqLd(locale))} />
       {locale === 'en' ? <LocaleNudge /> : null}
 
       <Hero />
+
+      {/* The whole offer in twenty three seconds, before the page asks anyone
+          to read three product sections. */}
+      <Film />
 
       <ProductsIntro />
 

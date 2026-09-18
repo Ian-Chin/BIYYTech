@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>BIYY Tech — Retire the spreadsheet</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: 'General Sans';
+        src: url('assets/fonts/GeneralSans-Regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'General Sans';
+        src: url('assets/fonts/GeneralSans-Medium.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'General Sans';
+        src: url('assets/fonts/GeneralSans-Semibold.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+        font-display: block;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: 'General Sans', system-ui, sans-serif;
+        font-variant-numeric: tabular-nums;
+        color: #0b0b0c;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .inner {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* ---------------------------------------------------------------- */
+      /*  Scene 1 — the spreadsheet                                        */
+      /* ---------------------------------------------------------------- */
+      #sheet-scene {
+        background: #ffffff;
+        z-index: 1;
+      }
+      #sheet-stage {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #sheet {
+        width: 1500px;
+        border: 1px solid #e5e7eb;
+        border-radius: 2px;
+        background: #ffffff;
+      }
+      #sheet .sheet-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 24px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      #sheet .sheet-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #e5e7eb;
+      }
+      #sheet .sheet-name {
+        margin-left: 12px;
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: #0b0b0c;
+      }
+      /* Laid out as a grid rather than a <table> so every cell box keeps a
+         real gap from its neighbour: touching cell rects read as overlapping
+         text blocks to the layout audit. */
+      .srow {
+        display: grid;
+        grid-template-columns: 320px 230px repeat(5, 1fr);
+        column-gap: 26px;
+        padding: 15px 26px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .srow.head {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+      .srow.head > div {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #0b0b0c;
+      }
+      .srow > div {
+        font-size: 24px;
+        font-weight: 400;
+        color: #0b0b0c;
+        white-space: nowrap;
+      }
+      .srow > div.num {
+        text-align: right;
+      }
+      .srow > div.ref {
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+      #sheet-tabs {
+        display: flex;
+        gap: 10px;
+        padding: 18px 24px;
+      }
+      #sheet-tabs span {
+        font-size: 19px;
+        font-weight: 500;
+        color: #0b0b0c;
+        padding: 9px 20px;
+        border: 1px solid #e5e7eb;
+        border-radius: 999px;
+      }
+      #sheet-tabs span.on {
+        border-color: #0b0b0c;
+      }
+      #sheet-veil {
+        position: absolute;
+        inset: 0;
+        background: #0b0b0c;
+      }
+      #hook {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .display {
+        font-size: 104px;
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        line-height: 1.04;
+        color: #ffffff;
+      }
+      .display-dim {
+        color: #9ca3af;
+      }
+
+      /* ---------------------------------------------------------------- */
+      /*  Scenes 2-4 — the Costwise dashboard                              */
+      /* ---------------------------------------------------------------- */
+      #dash-scene {
+        background: #f6f7f9;
+        z-index: 2;
+      }
+      #dash-shell {
+        position: absolute;
+        inset: 0;
+        display: flex;
+      }
+      #sidebar {
+        width: 300px;
+        flex: none;
+        background: #0f1319;
+        padding: 30px 24px;
+      }
+      #sidebar .mark {
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: #ffffff;
+        padding: 0 12px 26px;
+      }
+      #sidebar .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      #sidebar .nav span {
+        font-size: 21px;
+        font-weight: 500;
+        color: #9aa4b2;
+        padding: 13px 12px;
+        border-radius: 8px;
+      }
+      #sidebar .nav span.on {
+        color: #ffffff;
+        background: #1b222c;
+      }
+      #main {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      #topbar {
+        height: 92px;
+        flex: none;
+        background: #ffffff;
+        border-bottom: 1px solid #eceef2;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 36px;
+      }
+      #topbar .title {
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        color: #1b212a;
+        margin-right: auto;
+      }
+      #topbar .pill {
+        font-size: 19px;
+        font-weight: 500;
+        color: #4d5a6e;
+        border: 1px solid #d5dae2;
+        border-radius: 999px;
+        padding: 10px 20px;
+      }
+      #topbar .pill.meta {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        color: #64748b;
+      }
+      #content {
+        flex: 1;
+        padding: 18px 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .card {
+        background: #ffffff;
+        border: 1px solid #dde2e9;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(11, 11, 12, 0.05);
+      }
+
+      /* Verdict */
+      #verdict .top {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+        padding: 22px 32px;
+      }
+      #verdict .ring {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        flex: none;
+      }
+      #verdict .ring .score {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      #verdict .ring .score b {
+        font-size: 44px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: #1b212a;
+      }
+      #verdict .ring .score i {
+        font-style: normal;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: #64748b;
+        margin-top: 3px;
+      }
+      #verdict h2 {
+        font-size: 48px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: #1b212a;
+      }
+      #verdict p {
+        font-size: 24px;
+        font-weight: 400;
+        color: #4d5a6e;
+        margin-top: 10px;
+      }
+      #verdict .cta {
+        flex: none;
+        font-size: 21px;
+        font-weight: 500;
+        color: #ffffff;
+        background: #1b212a;
+        border-radius: 8px;
+        padding: 15px 26px;
+      }
+      #verdict .pillars {
+        display: flex;
+        gap: 44px;
+        border-top: 1px solid #eceef2;
+        padding: 16px 32px 18px;
+      }
+      #verdict .pillars > div {
+        flex: 1;
+      }
+      #verdict .pillars .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: 20px;
+        font-weight: 500;
+        color: #4d5a6e;
+      }
+      .track {
+        height: 9px;
+        border-radius: 999px;
+        background: #eceef2;
+        margin-top: 10px;
+        overflow: hidden;
+      }
+      .track i {
+        display: block;
+        height: 100%;
+        width: 100%;
+        border-radius: 999px;
+      }
+
+      /* KPI row */
+      #kpis {
+        display: flex;
+        gap: 18px;
+      }
+      #kpis .kpi {
+        flex: 1;
+        padding: 18px 24px;
+      }
+      #kpis .label {
+        font-size: 20px;
+        font-weight: 500;
+        color: #64748b;
+      }
+      #kpis .value {
+        font-size: 42px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: #1b212a;
+        margin-top: 8px;
+      }
+      #kpis .foot {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 12px;
+        font-size: 19px;
+        font-weight: 500;
+        color: #64748b;
+      }
+      #kpis .up {
+        color: #12825b;
+      }
+      #kpis .down {
+        color: #b91c1c;
+      }
+      #kpis .badge {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        border-radius: 999px;
+        padding: 6px 14px;
+      }
+      #kpis .badge.warn {
+        color: #92400e;
+        background: #fef3c7;
+      }
+      #kpis .badge.bad {
+        color: #991b1b;
+        background: #fee2e2;
+      }
+
+      /* Alerts */
+      #alerts .head {
+        padding: 18px 32px;
+        border-bottom: 1px solid #eceef2;
+      }
+      #alerts .head h3 {
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        color: #1b212a;
+      }
+      #alerts .head p {
+        font-size: 20px;
+        font-weight: 500;
+        color: #64748b;
+        margin-top: 6px;
+      }
+      #alerts .row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 16px 32px;
+        border-bottom: 1px solid #eceef2;
+      }
+      #alerts .row:last-child {
+        border-bottom: none;
+      }
+      #alerts .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        flex: none;
+      }
+      #alerts .copy {
+        min-width: 0;
+        flex: 1;
+      }
+      #alerts .copy b {
+        display: block;
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: #1b212a;
+      }
+      #alerts .copy span {
+        display: block;
+        font-size: 20px;
+        font-weight: 400;
+        color: #64748b;
+        margin-top: 5px;
+      }
+      #alerts .money {
+        flex: none;
+        text-align: right;
+      }
+      #alerts .money b {
+        display: block;
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: #1b212a;
+      }
+      #alerts .money span {
+        display: block;
+        font-size: 18px;
+        font-weight: 500;
+        color: #64748b;
+        margin-top: 4px;
+      }
+
+      /* Scene 4 — trade cards on ink */
+      #trades-scene {
+        background: #0b0b0c;
+        z-index: 3;
+      }
+      #trades-stage {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 56px;
+      }
+      #trades-scene h2 {
+        font-size: 86px;
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        color: #ffffff;
+      }
+      #trade-cards {
+        display: flex;
+        gap: 34px;
+      }
+      #trade-cards .t {
+        width: 460px;
+        background: #ffffff;
+        border-radius: 2px;
+        padding: 36px 34px 38px;
+      }
+      #trade-cards .idx {
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        color: #1b4de4;
+      }
+      #trade-cards h3 {
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: #0b0b0c;
+        margin-top: 16px;
+      }
+      #trade-cards p {
+        font-size: 23px;
+        font-weight: 400;
+        line-height: 1.35;
+        color: #0b0b0c;
+        margin-top: 14px;
+      }
+
+      /* ---------------------------------------------------------------- */
+      /*  Scene 5 — website integration                                    */
+      /* ---------------------------------------------------------------- */
+      #web-scene {
+        background: #ffffff;
+        z-index: 4;
+      }
+      #web-stage {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 34px;
+      }
+      #web-eyebrow {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        color: #0b0b0c;
+      }
+      #search {
+        width: 1080px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        border: 1px solid #e5e7eb;
+        border-radius: 999px;
+        padding: 24px 40px;
+      }
+      #search-text {
+        font-size: 32px;
+        font-weight: 400;
+        color: #0b0b0c;
+        letter-spacing: -0.01em;
+      }
+      #search-text span {
+        display: inline-block;
+      }
+      #caret {
+        width: 2px;
+        height: 36px;
+        background: #1b4de4;
+      }
+      #listing {
+        width: 1080px;
+        border-top: 1px solid #e5e7eb;
+        padding-top: 30px;
+      }
+      #listing .url {
+        font-size: 20px;
+        font-weight: 500;
+        color: #0b0b0c;
+      }
+      #listing h3 {
+        font-size: 40px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: #1b4de4;
+        margin-top: 10px;
+      }
+      #listing p {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.4;
+        color: #0b0b0c;
+        margin-top: 12px;
+        max-width: 900px;
+      }
+      #tags {
+        display: flex;
+        gap: 14px;
+      }
+      #tags span {
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        color: #1b4de4;
+        border: 1px solid #1b4de4;
+        border-radius: 999px;
+        padding: 12px 28px;
+      }
+      #web-line {
+        font-size: 64px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        color: #0b0b0c;
+      }
+
+      /* ---------------------------------------------------------------- */
+      /*  Scene 6 — the ask                                                */
+      /* ---------------------------------------------------------------- */
+      #outro-scene {
+        background: #0b0b0c;
+        z-index: 5;
+      }
+      #outro-stage {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+      }
+      #outro-mark {
+        width: 132px;
+        height: 132px;
+        display: block;
+      }
+      #outro-line {
+        font-size: 96px;
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        color: #ffffff;
+      }
+      #outro-meta {
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        color: #9ca3af;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="23"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+    >
+      <!-- Scene 1 — the spreadsheet the business is on today -->
+      <section id="sheet-scene" class="clip" data-start="0" data-duration="3.4" data-track-index="0">
+        <div class="inner">
+          <div id="sheet-stage">
+            <div id="sheet">
+              <div class="sheet-bar">
+                <i class="sheet-dot"></i>
+                <i class="sheet-dot"></i>
+                <i class="sheet-dot"></i>
+                <span class="sheet-name">stock_FINAL_use_this(2).xlsx</span>
+              </div>
+              <div class="srow head" id="sheet-head"></div>
+              <div id="sheet-body"></div>
+              <div id="sheet-tabs">
+                <span class="on">stock_final</span>
+                <span>stock_final_v2</span>
+                <span>stock_FINAL_use_this</span>
+                <span>stock_FINAL_use_this(2)</span>
+              </div>
+            </div>
+          </div>
+          <div id="sheet-veil"></div>
+          <div id="hook">
+            <!-- The hook deliberately sits over the veiled spreadsheet: the veil
+                 is at 0.93 ink, so the grid reads as texture behind the line. -->
+            <p id="hook-1" class="display" data-layout-allow-overlap>Retire the spreadsheet.</p>
+            <p id="hook-2" class="display display-dim" data-layout-allow-overlap>Keep the business.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scenes 2-4 — the dashboard that replaced it -->
+      <section id="dash-scene" class="clip" data-start="3.3" data-duration="8.75" data-track-index="1">
+        <div class="inner" id="dash-inner">
+          <div id="dash-shell">
+            <aside id="sidebar">
+              <div class="mark">costwise</div>
+              <div class="nav">
+                <span class="on">Dashboard</span>
+                <span>Inventory</span>
+                <span>Menu</span>
+                <span>Labour</span>
+                <span>Profitability</span>
+                <span>Reports</span>
+              </div>
+            </aside>
+            <div id="main">
+              <header id="topbar">
+                <div class="title">Dashboard</div>
+                <div class="pill">All outlets</div>
+                <div class="pill">Last 30 days</div>
+                <div class="pill meta">SAMPLE DATA</div>
+              </header>
+              <div id="content">
+                <section id="verdict" class="card">
+                  <div class="top">
+                    <div class="ring">
+                      <svg viewBox="0 0 150 150" width="150" height="150">
+                        <circle cx="75" cy="75" r="66" fill="none" stroke="#eceef2" stroke-width="13" />
+                        <circle
+                          id="ring-arc"
+                          cx="75"
+                          cy="75"
+                          r="66"
+                          fill="none"
+                          stroke="#d97706"
+                          stroke-width="13"
+                          stroke-linecap="round"
+                          stroke-dasharray="414.7"
+                          stroke-dashoffset="414.7"
+                          transform="rotate(-90 75 75)"
+                        />
+                      </svg>
+                      <div class="score">
+                        <b id="ring-score">68</b>
+                        <i>ATTENTION</i>
+                      </div>
+                    </div>
+                    <div>
+                      <h2 id="verdict-head">RM 12,480 a month is recoverable</h2>
+                      <p id="verdict-sub">
+                        3 open issues. Biggest leak: chicken breast usage, 8.2% above recipe.
+                      </p>
+                    </div>
+                    <div class="cta">Open inventory</div>
+                  </div>
+                  <div class="pillars" id="pillars"></div>
+                </section>
+
+                <section id="kpis"></section>
+
+                <section id="alerts" class="card">
+                  <div class="head" id="alerts-head">
+                    <h3>Needs attention</h3>
+                    <p>3 issues, ranked by severity then money at stake</p>
+                  </div>
+                  <div id="alert-rows"></div>
+                </section>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Scene 4 — the same product, laid out per trade -->
+      <section id="trades-scene" class="clip" data-start="11.9" data-duration="3.6" data-track-index="2">
+        <div class="inner" id="trades-inner">
+          <div id="trades-stage">
+            <h2 id="trades-head">Laid out for your industry.</h2>
+            <div id="trade-cards"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 5 — the site that gets the business found -->
+      <section id="web-scene" class="clip" data-start="15.4" data-duration="4.2" data-track-index="2">
+        <div class="inner" id="web-inner">
+          <div id="web-stage">
+            <div id="web-eyebrow">WEBSITE INTEGRATION</div>
+            <div id="search">
+              <div id="search-text"></div>
+              <div id="caret"></div>
+            </div>
+            <div id="listing">
+              <div class="url">yourshop.my/booking</div>
+              <h3>Barbershop in KLCC, walk-ins and online booking</h3>
+              <p>
+                Open 10am to 9pm daily, five chairs, cut and beard from RM 35. Book the next free slot
+                from this page.
+              </p>
+            </div>
+            <div id="tags">
+              <span>SEO</span>
+              <span>GEO</span>
+              <span>AEO</span>
+            </div>
+            <div id="web-line">Built into every page.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scene 6 — the ask -->
+      <section id="outro-scene" class="clip" data-start="19.5" data-duration="3.5" data-track-index="3">
+        <div class="inner" id="outro-inner">
+          <div id="outro-stage">
+            <img id="outro-mark" src="assets/img/biyy-mark-white-512.png" alt="BIYY Tech" />
+            <div id="outro-line">Book a free demo.</div>
+            <div id="outro-meta">THIRTY MINUTES, NO SLIDES &middot; KUALA LUMPUR</div>
+          </div>
+        </div>
+      </section>
+
+      <audio
+        id="bgm"
+        data-start="0"
+        data-duration="23"
+        data-track-index="10"
+        data-volume="0.32"
+        src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3"
+      ></audio>
+      <audio
+        id="sfx-ref"
+        data-start="1.45"
+        data-duration="0.05"
+        data-track-index="11"
+        data-volume="0.45"
+        src="assets/sfx/interface/click_003.ogg"
+      ></audio>
+      <audio
+        id="sfx-swap"
+        data-start="3.8"
+        data-duration="0.18"
+        data-track-index="12"
+        data-volume="0.55"
+        src="assets/sfx/impact/impactSoft_medium_001.ogg"
+      ></audio>
+      <audio
+        id="sfx-alert-1"
+        data-start="8.74"
+        data-duration="0.05"
+        data-track-index="13"
+        data-volume="0.38"
+        src="assets/sfx/interface/click_005.ogg"
+      ></audio>
+      <audio
+        id="sfx-alert-2"
+        data-start="9.83"
+        data-duration="0.05"
+        data-track-index="14"
+        data-volume="0.38"
+        src="assets/sfx/interface/click_005.ogg"
+      ></audio>
+      <audio
+        id="sfx-alert-3"
+        data-start="10.93"
+        data-duration="0.05"
+        data-track-index="15"
+        data-volume="0.38"
+        src="assets/sfx/interface/click_005.ogg"
+      ></audio>
+      <audio
+        id="sfx-trade-1"
+        data-start="12.55"
+        data-duration="0.6"
+        data-track-index="16"
+        data-volume="0.42"
+        src="assets/sfx/casino/card-slide-1.ogg"
+      ></audio>
+      <audio
+        id="sfx-trade-2"
+        data-start="13.11"
+        data-duration="0.6"
+        data-track-index="17"
+        data-volume="0.42"
+        src="assets/sfx/casino/card-slide-1.ogg"
+      ></audio>
+      <audio
+        id="sfx-trade-3"
+        data-start="13.64"
+        data-duration="0.6"
+        data-track-index="18"
+        data-volume="0.42"
+        src="assets/sfx/casino/card-slide-1.ogg"
+      ></audio>
+      <audio
+        id="sfx-outro"
+        data-start="19.64"
+        data-duration="0.65"
+        data-track-index="19"
+        data-volume="0.5"
+        src="assets/sfx/impact/impactBell_heavy_003.ogg"
+      ></audio>
+    </div>
+
+    <script>
+      /* ------------------------------------------------------------------ */
+      /*  Content                                                            */
+      /*                                                                     */
+      /*  Every figure below is Costwise demo data, which is why the          */
+      /*  dashboard carries a SAMPLE DATA pill for its whole time window.     */
+      /*  The alert titles and actions are the rule book's own strings.       */
+      /* ------------------------------------------------------------------ */
+      const SHEET_COLS = ['Item', 'Outlet', 'Opening', 'In', 'Out', 'Closing', 'Value RM'];
+      const SHEET_ROWS = [
+        ['Chicken breast', 'KLCC', '128.0', '240.0', '286.4', '81.6', '1,876.80'],
+        ['Beef short rib', 'KLCC', '64.5', '120.0', '141.2', '43.3', '2,208.30'],
+        ['Salmon fillet', 'Bangsar', '38.0', '90.0', '96.7', '31.3', '1,565.00'],
+        ['Cooking oil 20L', 'Bangsar', '12.0', '18.0', '21.0', '9.0', '742.50'],
+        ['Rice 25kg', 'Mid Valley', '22.0', '30.0', '34.0', '18.0', '1,044.00'],
+        ['Mozzarella', 'Mid Valley', '41.2', '60.0', '72.8', '28.4', '937.20'],
+        ['Coffee beans', 'All outlets', '56.0', '80.0', '91.5', '44.5', '2,403.00'],
+        ['Total', '', '361.7', '638.0', '743.6', '256.1', '#REF!'],
+      ];
+
+      const PILLARS = [
+        { label: 'Cost control', score: 62, tone: '#d97706' },
+        { label: 'Inventory', score: 55, tone: '#d97706' },
+        { label: 'Labour', score: 74, tone: '#1fa270' },
+      ];
+
+      const KPIS = [
+        { label: 'Net revenue', value: 'RM 412,860', foot: '<span class="up">+4.1%</span> vs previous period' },
+        { label: 'Operating profit', value: 'RM 58,240', foot: '<span class="up">+2.6%</span> 14.1% margin' },
+        { label: 'Food cost', value: '33.8%', foot: '<span class="badge warn">OVER TARGET</span> target 31%' },
+        { label: 'Labour cost', value: '28.1%', foot: '<span class="badge warn">AT LIMIT</span> target 27%' },
+      ];
+
+      const ALERTS = [
+        {
+          tone: '#dc2626',
+          title: 'Chicken breast usage 8.2% above recipe',
+          action: 'Weigh portions for two services and confirm the delivery quantities received.',
+          money: 'RM 2,140',
+        },
+        {
+          tone: '#b45309',
+          title: 'Labour cost 1.1 pts above target',
+          action: 'Trim the lowest sales-per-hour blocks from next week’s roster.',
+          money: 'RM 1,890',
+        },
+        {
+          tone: '#b45309',
+          title: 'Chicken thigh price up 6.2%',
+          action: 'Request a contract price or switch to the cheaper quote.',
+          money: 'RM 980',
+        },
+      ];
+
+      const TRADES = [
+        { idx: '01', name: 'Restaurants', body: 'Food and labour cost, waste and purchasing.' },
+        { idx: '02', name: 'E-commerce', body: 'Contribution margin per order and per SKU.' },
+        { idx: '03', name: 'Property', body: 'Rent, arrears, occupancy and NOI.' },
+      ];
+
+      const QUERY = 'barber shop near KLCC';
+
+      /* ------------------------------------------------------------------ */
+      /*  Build the DOM                                                      */
+      /* ------------------------------------------------------------------ */
+      const head = document.getElementById('sheet-head');
+      SHEET_COLS.forEach((c, i) => {
+        const th = document.createElement('div');
+        th.textContent = c;
+        if (i >= 2) th.classList.add('num');
+        head.appendChild(th);
+      });
+
+      const body = document.getElementById('sheet-body');
+      SHEET_ROWS.forEach((row) => {
+        const tr = document.createElement('div');
+        tr.className = 'srow';
+        row.forEach((cell, c) => {
+          const td = document.createElement('div');
+          td.textContent = cell;
+          if (c >= 2) td.classList.add('num');
+          if (cell === '#REF!') {
+            td.classList.add('ref');
+            td.id = 'ref-cell';
+          } else {
+            td.classList.add('fill');
+          }
+          tr.appendChild(td);
+        });
+        body.appendChild(tr);
+      });
+
+      const pillars = document.getElementById('pillars');
+      PILLARS.forEach((p, i) => {
+        const wrap = document.createElement('div');
+        wrap.innerHTML =
+          '<div class="row"><span>' +
+          p.label +
+          '</span><span>' +
+          p.score +
+          '</span></div><div class="track"><i id="pillar-' +
+          i +
+          '" style="background:' +
+          p.tone +
+          '"></i></div>';
+        pillars.appendChild(wrap);
+      });
+
+      const kpis = document.getElementById('kpis');
+      KPIS.forEach((k, i) => {
+        const el = document.createElement('div');
+        el.className = 'kpi card';
+        el.id = 'kpi-' + i;
+        el.innerHTML =
+          '<div class="label">' +
+          k.label +
+          '</div><div class="value">' +
+          k.value +
+          '</div><div class="foot">' +
+          k.foot +
+          '</div>';
+        kpis.appendChild(el);
+      });
+
+      const rows = document.getElementById('alert-rows');
+      ALERTS.forEach((a, i) => {
+        const el = document.createElement('div');
+        el.className = 'row';
+        el.id = 'alert-' + i;
+        el.innerHTML =
+          '<i class="dot" style="background:' +
+          a.tone +
+          '"></i><div class="copy"><b>' +
+          a.title +
+          '</b><span>' +
+          a.action +
+          '</span></div><div class="money"><b>' +
+          a.money +
+          '</b><span>a month</span></div>';
+        rows.appendChild(el);
+      });
+
+      const tradeCards = document.getElementById('trade-cards');
+      TRADES.forEach((t, i) => {
+        const el = document.createElement('div');
+        el.className = 't';
+        el.id = 'trade-' + i;
+        el.innerHTML =
+          '<div class="idx">' +
+          t.idx +
+          '</div><h3>' +
+          t.name +
+          '</h3><p>' +
+          t.body +
+          '</p>';
+        tradeCards.appendChild(el);
+      });
+
+      const searchText = document.getElementById('search-text');
+      QUERY.split('').forEach((ch) => {
+        const s = document.createElement('span');
+        s.textContent = ch === ' ' ? ' ' : ch;
+        s.className = 'q';
+        searchText.appendChild(s);
+      });
+
+      /* ------------------------------------------------------------------ */
+      /*  Timeline                                                           */
+      /*                                                                     */
+      /*  Beat grid: 109.96 BPM, roughly 0.545s apart.                        */
+      /*  Two strong-cue locks only, marked below.                            */
+      /* ------------------------------------------------------------------ */
+      const tl = gsap.timeline({ paused: true });
+
+      /* --- Scene 1 --------------------------------------------------- */
+      tl.fromTo('#sheet', { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, 0);
+      tl.fromTo(
+        '#sheet .fill',
+        { opacity: 0 },
+        { opacity: 1, duration: 0.3, ease: 'none', stagger: 0.016 },
+        0.2,
+      );
+      tl.fromTo('#ref-cell', { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'none' }, 1.45);
+      tl.fromTo('#sheet-veil', { opacity: 0 }, { opacity: 0.93, duration: 0.35, ease: 'power2.inOut' }, 1.45);
+      tl.fromTo('#hook-1', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, 1.64);
+      tl.fromTo('#hook-2', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, 2.19);
+      tl.to('#hook', { opacity: 0, duration: 0.25, ease: 'power2.in' }, 3.05);
+      tl.to('#sheet-stage', { y: 70, opacity: 0, duration: 0.35, ease: 'power2.in' }, 3.0);
+
+      /* --- Scenes 2-4 ------------------------------------------------ */
+      tl.fromTo('#dash-inner', { opacity: 0 }, { opacity: 1, duration: 0.25, ease: 'none' }, 3.3);
+      tl.fromTo('#sidebar', { x: -40 }, { x: 0, duration: 0.45, ease: 'power3.out' }, 3.35);
+      tl.fromTo('#topbar', { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }, 3.4);
+      // beat-locked: 3.82s
+      tl.fromTo('#verdict', { y: 44, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, 3.82);
+      tl.fromTo(
+        '#ring-arc',
+        { attr: { 'stroke-dashoffset': 414.7 } },
+        { attr: { 'stroke-dashoffset': 132.7 }, duration: 0.8, ease: 'power2.out' },
+        4.0,
+      );
+      tl.fromTo('#ring-score', { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'none' }, 4.0);
+      tl.fromTo('#verdict-head', { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }, 4.05);
+      tl.fromTo('#verdict-sub', { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }, 4.35);
+      PILLARS.forEach((p, i) => {
+        tl.fromTo(
+          '#pillar-' + i,
+          { scaleX: 0 },
+          { scaleX: p.score / 100, duration: 0.55, ease: 'power2.out', transformOrigin: 'left center' },
+          4.6 + i * 0.15,
+        );
+      });
+
+      // beat-grid: kpi tiles at 7.64s, 7.82s, 8.00s, 8.18s
+      KPIS.forEach((k, i) => {
+        tl.fromTo(
+          '#kpi-' + i,
+          { y: 26, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' },
+          7.64 + i * 0.18,
+        );
+      });
+      tl.fromTo('#alerts', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, 8.4);
+      // beat-grid: alert rows at 8.74s, 9.83s, 10.93s (every other beat, so each line holds its read)
+      [8.74, 9.83, 10.93].forEach((t, i) => {
+        tl.fromTo(
+          '#alert-' + i,
+          { x: 26, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.42, ease: 'power3.out' },
+          t,
+        );
+      });
+
+      tl.to('#dash-inner', { opacity: 0, duration: 0.3, ease: 'power2.in' }, 11.72);
+
+      /* --- Scene 4 --------------------------------------------------- */
+      tl.fromTo('#trades-inner', { opacity: 0 }, { opacity: 1, duration: 0.25, ease: 'none' }, 11.9);
+      tl.fromTo('#trades-head', { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, 12.15);
+      // beat-grid: trade cards at 12.55s, 13.11s, 13.64s, then all three hold together
+      [12.55, 13.11, 13.64].forEach((t, i) => {
+        tl.fromTo(
+          '#trade-' + i,
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.42, ease: 'power3.out' },
+          t,
+        );
+      });
+      tl.to('#trades-inner', { opacity: 0, duration: 0.3, ease: 'power2.in' }, 15.18);
+
+      /* --- Scene 5 --------------------------------------------------- */
+      tl.fromTo('#web-inner', { opacity: 0 }, { opacity: 1, duration: 0.25, ease: 'none' }, 15.4);
+      tl.fromTo('#web-eyebrow', { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'none' }, 15.5);
+      tl.fromTo('#search', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }, 15.55);
+      tl.fromTo(
+        '#search-text .q',
+        { opacity: 0 },
+        { opacity: 1, duration: 0.05, ease: 'none', stagger: 0.036 },
+        15.78,
+      );
+      tl.fromTo('#listing', { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, 16.93);
+      tl.fromTo('#web-line', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, 17.47);
+      // beat-grid: SEO / GEO / AEO at 18.02s, 18.29s, 18.56s
+      tl.fromTo(
+        '#tags span',
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.35, ease: 'power3.out', stagger: 0.27 },
+        18.02,
+      );
+      tl.to('#web-inner', { opacity: 0, duration: 0.28, ease: 'power2.in' }, 19.28);
+
+      /* --- Scene 6 --------------------------------------------------- */
+      tl.fromTo('#outro-inner', { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'none' }, 19.5);
+      // beat-locked: 19.66s
+      tl.fromTo('#outro-mark', { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, 19.66);
+      tl.fromTo('#outro-line', { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, 20.19);
+      tl.fromTo('#outro-meta', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'none' }, 20.75);
+
+      /* --- Music fade under the ask ---------------------------------- */
+      tl.fromTo('#bgm', { volume: 0.32 }, { volume: 0.04, duration: 2.6, ease: 'power1.in' }, 19.6);
+
+      window.__timelines['main'] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

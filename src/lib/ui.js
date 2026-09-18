@@ -60,6 +60,14 @@ export const ui = {
       body: 'BIYY Tech replaces the spreadsheets your business runs on with a real database and a dashboard built for your industry. One version of the truth, updating as work happens, live in two weeks.',
       sceneLabel: 'Show background {n}',
     },
+    film: {
+      eyebrow: 'The film',
+      title: 'Watch a spreadsheet become the screen the business runs on.',
+      body: 'Twenty three seconds: the file you keep today, the dashboard that replaces it, the same screen laid out for three different trades, and the website that gets you found.',
+      play: 'Play the film, 23 seconds with sound',
+      meta: '23 seconds. Sound on. The figures on the dashboard are sample data.',
+      unsupported: 'Your browser cannot play this video.',
+    },
     home: {
       productsEyebrow: 'Products',
       productsTitle: 'Three products, one account, one database underneath.',
@@ -456,6 +464,14 @@ export const ui = {
       body: 'BIYY Tech 把你生意赖以运转的那些表格，换成一个真正的数据库，加一块为你的行业做的仪表板。只有一份真数，随着工作发生而更新，两周上线。',
       sceneLabel: '显示第 {n} 个背景',
     },
+    film: {
+      eyebrow: '影片',
+      title: '看一份表格，变成生意每天在用的那块屏。',
+      body: '二十三秒：你今天还在用的那个文件，取代它的仪表板，同一块屏为三个不同行业排的版，以及让客户找得到你的网站。',
+      play: '播放影片，23 秒，有声音',
+      meta: '23 秒。记得开声音。仪表板上的数字是示例数据。',
+      unsupported: '你的浏览器无法播放这个视频。',
+    },
     home: {
       productsEyebrow: '产品',
       productsTitle: '三个产品，一个账户，底下是同一个数据库。',
@@ -819,6 +835,14 @@ export const ui = {
       line3: 'Kekalkan perniagaan.',
       body: 'BIYY Tech menggantikan spreadsheet yang menjalankan perniagaan anda dengan database sebenar dan dashboard yang dibina untuk industri anda. Satu versi kebenaran, dikemas kini semasa kerja berlaku, hidup dalam dua minggu.',
       sceneLabel: 'Tunjuk latar {n}',
+    },
+    film: {
+      eyebrow: 'Filem',
+      title: 'Tengok spreadsheet bertukar jadi skrin yang menjalankan perniagaan.',
+      body: 'Dua puluh tiga saat: fail yang anda guna hari ini, dashboard yang menggantikannya, skrin yang sama disusun untuk tiga jenis perniagaan, dan laman web yang membuat pelanggan jumpa anda.',
+      play: 'Main filem, 23 saat dengan bunyi',
+      meta: '23 saat. Pasang bunyi. Angka pada dashboard ialah data contoh.',
+      unsupported: 'Pelayar anda tidak boleh memainkan video ini.',
     },
     home: {
       productsEyebrow: 'Produk',

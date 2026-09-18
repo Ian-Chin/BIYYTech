@@ -1,6 +1,7 @@
 import { getContent } from '@/lib/content';
 import { LOCALES, htmlLang, localePath } from '@/lib/routes';
 import { company, editorialPolicy, faqs, products } from '@/lib/site';
+import { ui } from '@/lib/ui';
 
 /**
  * The canonical origin. Single source of truth: robots.js and sitemap.js import
@@ -346,6 +347,28 @@ export const industryListLd = (locale = 'en') => ({
     description: item.summary,
   })),
 });
+
+/* The home page film. Answer engines read VideoObject to decide whether a page
+   holds a video worth returning, so the three locale-specific titles matter as
+   much here as they do on screen. `uploadDate` is the render date, not the
+   deploy date: re-cut the film and this moves with it. */
+export const filmLd = (locale = 'en') => {
+  const copy = (ui[locale] ?? ui.en).film ?? ui.en.film;
+
+  return {
+    '@type': 'VideoObject',
+    '@id': `${abs(localePath(locale, '/'))}#film`,
+    name: copy.title,
+    description: copy.body,
+    thumbnailUrl: [abs('/media/img/retire-the-spreadsheet.jpg')],
+    contentUrl: abs('/media/video/retire-the-spreadsheet.mp4'),
+    uploadDate: '2026-09-18',
+    duration: 'PT23S',
+    inLanguage: htmlLang(locale),
+    isFamilyFriendly: true,
+    publisher: { '@id': `${SITE_URL}/#organization` },
+  };
+};
 
 export const productListLd = (locale = 'en') => ({
   '@type': 'ItemList',

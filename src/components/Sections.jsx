@@ -48,6 +48,85 @@ export function SectionHead({ eyebrow, title, body, align = 'left', tone = 'ligh
 }
 
 /* -------------------------------------------------------------------------- */
+/*  The film                                                                   */
+/*                                                                             */
+/*  Twenty three seconds of the product doing its job. It carries an audio      */
+/*  track, so it cannot autoplay: browsers would mute it, and a muted product   */
+/*  film is half a film. The poster renders immediately and the clip is         */
+/*  `preload="none"`, so a visitor who never presses play pays 67KB rather      */
+/*  than 2.2MB. Native controls appear once it is playing, because a            */
+/*  hand-rolled scrubber is a worse scrubber.                                   */
+/* -------------------------------------------------------------------------- */
+
+export function Film() {
+  const { t } = useLocale();
+  const videoRef = useRef(null);
+  const [started, setStarted] = useState(false);
+
+  const start = () => {
+    const node = videoRef.current;
+    setStarted(true);
+    if (node) {
+      const played = node.play();
+      // Safari rejects the promise if the gesture is not trusted; falling back
+      // to controls-only is better than a dead frame.
+      if (played?.catch) played.catch(() => {});
+    }
+  };
+
+  return (
+    <section id="film" className="relative bg-paper pt-24 scroll-mt-[var(--chrome-h)] md:pt-32">
+      <div className="shell">
+        <SectionHead
+          align="center"
+          eyebrow={t('film.eyebrow')}
+          title={t('film.title')}
+          body={t('film.body')}
+        />
+
+        <Reveal blur delay={140} className="mt-14">
+          <div className="relative mx-auto aspect-video w-full max-w-5xl overflow-hidden rounded-2xl border border-ink/10 bg-ink">
+            <video
+              ref={videoRef}
+              src="/media/video/retire-the-spreadsheet.mp4"
+              poster="/media/img/retire-the-spreadsheet.jpg"
+              preload="none"
+              playsInline
+              controls={started}
+              onPlay={() => setStarted(true)}
+              className="h-full w-full object-cover"
+            >
+              {t('film.unsupported')}
+            </video>
+
+            {started ? null : (
+              <button
+                type="button"
+                onClick={start}
+                aria-label={t('film.play')}
+                className="group absolute inset-0 flex items-center justify-center bg-ink/20 transition-colors duration-500 ease-smooth hover:bg-ink/30"
+              >
+                <span className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-ink transition-transform duration-500 ease-smooth group-hover:scale-105">
+                  <svg width="18" height="20" viewBox="0 0 18 20" aria-hidden="true">
+                    <path d="M17 10 0 20V0z" fill="currentColor" />
+                  </svg>
+                </span>
+              </button>
+            )}
+          </div>
+        </Reveal>
+
+        <Reveal delay={260}>
+          <p className="mt-5 text-center text-[11px] tracking-[0.01em] text-ink-faint">
+            {t('film.meta')}
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /*  Home products intro                                                       */
 /* -------------------------------------------------------------------------- */
 
